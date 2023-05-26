@@ -14,7 +14,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final _scrollController = ScrollController();
+  final _scrollController = PageController();
   final _key = GlobalKey();
   int page = 0;
   final int pageLength = 2;
@@ -69,29 +69,19 @@ class _HomePageState extends State<HomePage> {
         },
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: size.width * 0.1),
-          child: CustomScrollView(
+          child: PageView(
             key: _key,
             physics: const ClampingScrollPhysics(),
             controller: _scrollController,
-            slivers: [
-              SliverToBoxAdapter(
-                child: SizedBox(
-                  height: size.height,
-                  width: size.width,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      HeadlineText(),
-                    ],
-                  ),
-                ),
+            scrollDirection: Axis.vertical,
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  HeadlineText(),
+                ],
               ),
-              SliverToBoxAdapter(
-                child: SizedBox(
-                    height: size.height,
-                    width: size.width,
-                    child: const SecondPage()),
-              )
+              const SecondPage()
             ],
           ),
         ),
