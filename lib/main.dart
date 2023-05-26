@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'presentation/utils/custom_scroll_behaviour.dart';
 import 'presentation/views/home_page.dart';
 
 void main() {
@@ -14,6 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Ye-Lwin-Oo',
+      scrollBehavior: AppScrollBehavior(),
       debugShowCheckedModeBanner: false,
       theme: Theme.of(context).copyWith(
         primaryColor: Colors.white,
