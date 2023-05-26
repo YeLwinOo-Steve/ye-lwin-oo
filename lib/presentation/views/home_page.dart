@@ -1,10 +1,10 @@
-
 import 'dart:math';
 
 import 'package:atlas_icons/atlas_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:yelwinoo/presentation/widgets/animated_text_slide_box_transition.dart';
 
+import '../utils/custom_scroll_behaviour.dart';
 import '../widgets/animated_slide_transtion.dart';
 
 class HomePage extends StatefulWidget {
@@ -16,10 +16,35 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final _pageController = PageController();
+  final _scrollController = ScrollController();
+  double _previousOffset = 0.0;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    _pageController.addListener(_handleScroll);
+  }
+
+  void _handleScroll() {
+    int page = _pageController.page!.round();
+    double currentScrollOffset = _pageController.offset;
+    double scrollOffsetDelta = currentScrollOffset - _previousOffset;
+    _previousOffset = currentScrollOffset;
+    if (scrollOffsetDelta > 10 && page < 2) {
+      // Scrolling to the right
+      _pageController.animateToPage(
+        page + 1,
+        duration: Duration(milliseconds: 500),
+        curve: Curves.easeInOut,
+      );
+    } else if (scrollOffsetDelta < -10 && page > 0) {
+      // Scrolling to the left
+      _pageController.animateToPage(
+        page - 1,
+        duration: Duration(milliseconds: 500),
+        curve: Curves.easeInOut,
+      );
+    }
   }
 
   @override
@@ -42,12 +67,7 @@ class _HomePageState extends State<HomePage> {
         child: PageView(
           controller: _pageController,
           scrollDirection: Axis.vertical,
-          physics: const RangeMaintainingScrollPhysics(),
-          onPageChanged: (int page) {
-            _pageController.animateToPage(page,
-                duration: const Duration(milliseconds: 800),
-                curve: Curves.elasticInOut);
-          },
+          physics: const ClampingScrollPhysics(),
           children: [
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -89,11 +109,11 @@ class _HeadlineTextState extends State<HeadlineText>
     _slideAnimation =
         Tween<Offset>(begin: const Offset(0, 1), end: const Offset(0, 0))
             .animate(
-          CurvedAnimation(
-            parent: _controller,
-            curve: const Interval(0.6, 1.0, curve: Curves.ease),
-          ),
-        );
+      CurvedAnimation(
+        parent: _controller,
+        curve: const Interval(0.6, 1.0, curve: Curves.ease),
+      ),
+    );
     _controller.forward();
     Future.delayed(const Duration(milliseconds: 500), () {
       _controller2.forward();
@@ -167,34 +187,38 @@ class _HeadlineTextState extends State<HeadlineText>
                   coverColor: Theme.of(context).scaffoldBackgroundColor,
                   text: "Flutter Developer &",
                   textStyle:
-                  Theme.of(context).textTheme.headlineLarge?.copyWith(
-                    fontSize: 50,
-                    color: Colors.black,
-                    fontWeight: FontWeight.w900,
-                  ),
+                      Theme.of(context).textTheme.headlineLarge?.copyWith(
+                            fontSize: 50,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w900,
+                          ),
                 ),
                 AnimatedTextSlideBoxTransition(
                   controller: _controller,
                   coverColor: Theme.of(context).scaffoldBackgroundColor,
                   text: "AI/ML Enthusiast",
                   textStyle:
-                  Theme.of(context).textTheme.headlineLarge?.copyWith(
-                    fontSize: 50,
-                    color: Colors.black,
-                    fontWeight: FontWeight.w900,
-                  ),
+                      Theme.of(context).textTheme.headlineLarge?.copyWith(
+                            fontSize: 50,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w900,
+                          ),
                 ),
-                const SizedBox(height: 30,),
+                const SizedBox(
+                  height: 30,
+                ),
                 AnimatedTextSlideBoxTransition(
                   controller: _controller,
                   text: "I'm Ye Lwin Oo",
                   textStyle:
-                  Theme.of(context).textTheme.headlineMedium?.copyWith(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w500,
-                  ),
+                      Theme.of(context).textTheme.headlineMedium?.copyWith(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w500,
+                          ),
                 ),
-                const SizedBox(height: 70,),
+                const SizedBox(
+                  height: 70,
+                ),
                 Stack(
                   children: [
                     Positioned(
@@ -216,7 +240,10 @@ class _HeadlineTextState extends State<HeadlineText>
                               const SizedBox(
                                 width: 5.0,
                               ),
-                              Icon(Icons.arrow_right_alt,color: Colors.yellow,),
+                              Icon(
+                                Icons.arrow_right_alt,
+                                color: Colors.yellow,
+                              ),
                             ],
                           ),
                         ),
@@ -260,7 +287,7 @@ class _HeadlineTextState extends State<HeadlineText>
               ),
               padding: const EdgeInsets.all(12.0),
               margin:
-              const EdgeInsets.only(left: 25.0, top: 25.0, bottom: 25.0),
+                  const EdgeInsets.only(left: 25.0, top: 25.0, bottom: 25.0),
               child: Column(
                 children: [
                   Align(
@@ -330,7 +357,8 @@ class _SecondPageState extends State<SecondPage>
 
   @override
   Widget build(BuildContext context) {
-    double halfHeight = MediaQuery.of(context).size.height * 0.5 - kToolbarHeight;
+    double halfHeight =
+        MediaQuery.of(context).size.height * 0.5 - kToolbarHeight;
     return Column(
       children: [
         Row(
