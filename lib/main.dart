@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:yelwinoo/presentation/configs/configs.dart';
 
 import 'presentation/utils/custom_scroll_behaviour.dart';
-import 'presentation/views/home_page.dart';
+import 'presentation/views/home/home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,17 +19,17 @@ class MyApp extends StatelessWidget {
       scrollBehavior: AppScrollBehavior(),
       debugShowCheckedModeBanner: false,
       theme: Theme.of(context).copyWith(
-        primaryColor: Colors.white,
-        focusColor: Colors.white,
-        scaffoldBackgroundColor: Colors.white,
+        primaryColor: kPrimary,
+        focusColor: kPrimary,
+        scaffoldBackgroundColor: kPrimary,
         textTheme: Theme.of(context).textTheme.apply(
-          bodyColor: Colors.black,
-        ),
-        appBarTheme: const AppBarTheme(
+              bodyColor: kDark,
+            ),
+        appBarTheme: AppBarTheme(
           toolbarHeight: kToolbarHeight + 30,
           elevation: 0.0,
-          backgroundColor: Colors.white,
-          foregroundColor: Colors.black,
+          backgroundColor: kPrimary,
+          foregroundColor: kDark,
         ),
       ),
       home: const HomePage(),

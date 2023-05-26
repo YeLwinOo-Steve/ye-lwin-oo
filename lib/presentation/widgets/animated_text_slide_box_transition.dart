@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
 import 'animated_slide_box.dart';
 
 class AnimatedTextSlideBoxTransition extends StatefulWidget {
@@ -103,27 +104,13 @@ class _AnimatedTextSlideBoxTransitionState
   }
 
   void setTextWidthAndHeight() {
-    size = textSize(
-      text: widget.text,
+    size = widget.text.textSize(
       style: widget.textStyle,
       maxWidth: widget.width,
       maxLines: widget.maxLines,
     );
     textWidth = size.width * widget.widthFactor;
     textHeight = size.height * widget.heightFactor;
-  }
-  static Size textSize({
-    required String text,
-    required TextStyle? style,
-    int maxLines = 1,
-    double maxWidth = double.infinity,
-  }) {
-    final TextPainter textPainter = TextPainter(
-        text: TextSpan(text: text, style: style),
-        maxLines: maxLines,
-        textDirection: TextDirection.ltr)
-      ..layout(minWidth: 0, maxWidth: maxWidth);
-    return textPainter.size;
   }
 
   @override
