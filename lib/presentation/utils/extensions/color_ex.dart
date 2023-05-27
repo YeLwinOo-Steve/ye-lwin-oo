@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-extension HexToColor on String {
+extension ColorEx on String {
   Color toColor() {
     if (isEmpty) return Colors.white;
     if (startsWith('#') && length == 7) {

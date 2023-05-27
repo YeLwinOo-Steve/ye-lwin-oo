@@ -25,10 +25,10 @@ class MyApp extends StatelessWidget {
         textTheme: Theme.of(context).textTheme.apply(
               bodyColor: kDark,
             ),
-        appBarTheme: AppBarTheme(
+        appBarTheme: const AppBarTheme(
           toolbarHeight: kToolbarHeight + 30,
           elevation: 0.0,
-          backgroundColor: kPrimary,
+          backgroundColor: Colors.transparent,
           foregroundColor: kDark,
         ),
       ),

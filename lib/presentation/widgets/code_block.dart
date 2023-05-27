@@ -121,7 +121,18 @@ class Editor extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "\$ something in the way",
+                  "\$ find yoh yoh",
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  "> Yoh Yoh is my love..",
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),Text(
+                  "> She's my everything 🍒❤️",
                   style: TextStyle(
                     color: Colors.white,
                   ),

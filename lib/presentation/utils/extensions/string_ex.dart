@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-extension TextLength on String{
+extension StringEx on String{
   Size textSize({
     required TextStyle? style,
     int maxLines = 1,
