@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:url_strategy/url_strategy.dart';
 import 'package:yelwinoo/presentation/configs/configs.dart';
 
 import 'presentation/utils/custom_scroll_behaviour.dart';
 import 'presentation/views/home/home_page.dart';
 
 void main() {
+  setPathUrlStrategy();
   runApp(const MyApp());
 }
 
