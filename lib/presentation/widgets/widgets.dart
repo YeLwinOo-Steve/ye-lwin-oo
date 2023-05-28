@@ -5,3 +5,7 @@ export './code_block.dart';
 export './custom_button.dart';
 export './logo.dart';
 export './menu_button.dart';
+export './menu_item.dart';
+export './custom_slider.dart';
+export './vangogh_image.dart';
+export './custom_page_slider.dart';

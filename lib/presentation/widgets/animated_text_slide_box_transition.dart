@@ -17,7 +17,7 @@ class AnimatedTextSlideBoxTransition extends StatefulWidget {
     this.position,
     this.textAlign,
     this.boxColor = Colors.black,
-    this.coverColor = Colors.white,
+    this.coverColor = Colors.transparent,
     this.visibleAnimationcurve = Curves.fastOutSlowIn,
     this.invisibleAnimationcurve = Curves.fastOutSlowIn,
     this.slideAnimationcurve = Curves.fastOutSlowIn,

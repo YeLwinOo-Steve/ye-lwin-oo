@@ -4,7 +4,6 @@ import 'package:yelwinoo/presentation/widgets/widgets.dart';
 
 import '../../configs/configs.dart';
 
-
 class IntroductionPage extends StatefulWidget {
   const IntroductionPage({Key? key}) : super(key: key);
 
@@ -38,6 +37,8 @@ class _IntroductionPageState extends State<IntroductionPage>
     _controller.forward();
     Future.delayed(const Duration(milliseconds: 500), () {
       _controller2.forward();
+    }).catchError((ex) {
+      _controller2.dispose();
     });
   }
 
@@ -111,23 +112,13 @@ class _IntroductionPageState extends State<IntroductionPage>
                     controller: _controller,
                     coverColor: Theme.of(context).scaffoldBackgroundColor,
                     text: "Flutter Developer &",
-                    textStyle:
-                    Theme.of(context).textTheme.headlineLarge?.copyWith(
-                      fontSize: 50,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w900,
-                    ),
+                    textStyle: Theme.of(context).textTheme.headlineSmall,
                   ),
                   AnimatedTextSlideBoxTransition(
                     controller: _controller,
                     coverColor: Theme.of(context).scaffoldBackgroundColor,
                     text: "AI/ML Enthusiast",
-                    textStyle:
-                    Theme.of(context).textTheme.headlineLarge?.copyWith(
-                      fontSize: 50,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w900,
-                    ),
+                    textStyle: Theme.of(context).textTheme.headlineSmall,
                   ),
                   const SizedBox(
                     height: 30,
@@ -135,16 +126,15 @@ class _IntroductionPageState extends State<IntroductionPage>
                   AnimatedTextSlideBoxTransition(
                     controller: _controller,
                     text: "I'm Ye Lwin Oo",
-                    textStyle:
-                    Theme.of(context).textTheme.headlineMedium?.copyWith(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w500,
-                    ),
+                    coverColor: Theme.of(context).scaffoldBackgroundColor,
+                    textStyle: Theme.of(context).textTheme.titleLarge,
                   ),
-                  const SizedBox(
-                    height: 70,
+                  context.percentSizedBox(pHeight: s5),
+                  CustomButton(
+                    label: ksSeeMyWork,
+                    onPressed: () {},
+                    icon: kiArrowForward,
                   ),
-                  const CustomButton(),
                 ],
               ),
               const CodeBlock(),

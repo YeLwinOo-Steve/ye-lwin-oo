@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-extension StringEx on String{
+
+extension StringEx on String {
   Size textSize({
     required TextStyle? style,
     int maxLines = 1,
@@ -11,5 +12,9 @@ extension StringEx on String{
         textDirection: TextDirection.ltr)
       ..layout(minWidth: 0, maxWidth: maxWidth);
     return textPainter.size;
+  }
+
+  String prefixZero() {
+    return '0$this';
   }
 }

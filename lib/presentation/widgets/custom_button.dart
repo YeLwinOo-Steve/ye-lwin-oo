@@ -1,10 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
 
 import '../configs/configs.dart';
 
 class CustomButton extends StatefulWidget {
-  const CustomButton({Key? key}) : super(key: key);
-
+  const CustomButton({
+    Key? key,
+    required this.label,
+    this.bgColor = kWhite,
+    this.foregroundColor = kBlack,
+    this.shadowColor,
+    required this.onPressed,
+    required this.icon,
+  }) : super(key: key);
+  final String label;
+  final Color bgColor;
+  final Color foregroundColor;
+  final Color? shadowColor;
+  final VoidCallback onPressed;
+  final IconData icon;
   @override
   State<CustomButton> createState() => _CustomButtonState();
 }
@@ -15,9 +29,7 @@ class _CustomButtonState extends State<CustomButton> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        print('hello my love - yoh yoh');
-      },
+      onTap: widget.onPressed,
       child: MouseRegion(
         onHover: (PointerEvent event) {
           setState(() {
@@ -32,31 +44,33 @@ class _CustomButtonState extends State<CustomButton> {
         child: Stack(
           children: [
             AnimatedPositioned(
-              left: _isHovered ? 7 : 0,
-              bottom: _isHovered ? 7 : 0,
-              duration: const Duration(milliseconds: 500),
+              left: _isHovered ? s8 : s0,
+              bottom: _isHovered ? s8 : s0,
+              duration: const Duration(milliseconds: d300),
               child: Container(
                 padding: const EdgeInsets.symmetric(
-                    vertical: 15.0, horizontal: 40.0),
+                  vertical: s14,
+                  horizontal: s42,
+                ),
                 decoration: BoxDecoration(
-                  color: kBlue100,
+                  color: widget.shadowColor ?? kBlue100,
                   border: Border.all(
-                    color: kBlue100,
+                    color: widget.shadowColor ?? kBlue100,
                   ),
                 ),
                 child: Center(
                   child: Row(
                     children: [
                       Text(
-                        'Yoh Yoh',
-                        style: TextStyle(color: kBlue100),
+                        widget.label.toUpperCase(),
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: widget.shadowColor ?? kBlue100,
+                            ),
                       ),
-                      SizedBox(
-                        width: _isHovered ? 10.0 : 5.0,
-                      ),
+                      customSpace(w: _isHovered ? s10 : s5),
                       Icon(
-                        Icons.arrow_right_alt,
-                        color: kBlue100,
+                        widget.icon,
+                        color: widget.shadowColor ?? kBlue100,
                       ),
                     ],
                   ),
@@ -64,24 +78,29 @@ class _CustomButtonState extends State<CustomButton> {
               ),
             ),
             Container(
-              margin: const EdgeInsets.only(left: 7, bottom: 7),
+              margin: const EdgeInsets.only(left: s8, bottom: s8),
               padding:
-                  const EdgeInsets.symmetric(vertical: 15.0, horizontal: 40.0),
+                  const EdgeInsets.symmetric(vertical: s14, horizontal: s42),
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: Colors.black,
+                  color: widget.foregroundColor,
                 ),
               ),
               child: Center(
                 child: Row(
                   children: [
-                    const Text('Yoh Yoh'),
+                    Text(
+                      widget.label.toUpperCase(),
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
                     AnimatedContainer(
-                      width: _isHovered ? 10.0 : 5.0,
-                      duration: const Duration(milliseconds: 500),
+                      width: _isHovered ? s10 : s5,
+                      duration: const Duration(milliseconds: d300),
                       curve: Curves.easeInOut,
                     ),
-                    const Icon(Icons.arrow_right_alt),
+                    Icon(
+                      widget.icon,
+                    ),
                   ],
                 ),
               ),

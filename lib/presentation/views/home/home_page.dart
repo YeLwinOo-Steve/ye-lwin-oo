@@ -1,5 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
+import 'package:yelwinoo/presentation/views/menu/menu_page.dart';
 import 'package:yelwinoo/presentation/widgets/widgets.dart';
 
 import '../../configs/configs.dart';
@@ -22,29 +24,18 @@ class _HomePageState extends State<HomePage>
   late double _screenHeight;
   bool _isDrawerOpen = false;
   late AnimationController _animationController;
-  late Animation<Offset> _animation;
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     _animationController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 1000),
+      duration: duration1000,
     );
-
-    _animation = Tween<Offset>(
-      begin: const Offset(0.0, -1.2),
-      end: Offset.zero,
-    ).animate(
-      CurvedAnimation(
-        parent: _animationController,
-        curve: Curves.easeInOut,
-      ),
-    );
-    _screenHeight = MediaQuery.of(context).size.height;
+    _screenHeight = context.screenHeight;
   }
 
   void _handleScroll(Offset delta) {
-    if (delta.dy > 50 && page < pageLength) {
+    if (delta.dy > s50 && page < pageLength) {
       page++;
     } else {
       page--;
@@ -55,8 +46,7 @@ class _HomePageState extends State<HomePage>
   void _animateToPage() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _scrollController.animateTo(page * _screenHeight,
-          duration: const Duration(milliseconds: 1000),
-          curve: Curves.easeInOut);
+          duration: duration1000, curve: Curves.easeInOut);
     });
   }
 
@@ -79,7 +69,6 @@ class _HomePageState extends State<HomePage>
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         leading: const Logo(),
@@ -103,23 +92,15 @@ class _HomePageState extends State<HomePage>
               physics: const ClampingScrollPhysics(),
               controller: _scrollController,
               scrollDirection: Axis.vertical,
-              children: const [IntroductionPage(), SecondPage()],
+              children: const [
+                IntroductionPage(),
+                SecondPage(),
+                // CustomPageSlider()
+              ],
             ),
           ),
-          SlideTransition(
-            position: _animation,
-            child: Container(
-              height: size.height,
-              color: kPrimary,
-              child: const Center(
-                child: Text(
-                  'Drawer Content',
-                  style: TextStyle(
-                    fontSize: 20,
-                  ),
-                ),
-              ),
-            ),
+          MenuPage(
+            animation: _animationController.view,
           ),
         ],
       ),

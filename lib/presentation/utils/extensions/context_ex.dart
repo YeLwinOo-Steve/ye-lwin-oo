@@ -13,15 +13,22 @@ extension ContextEx on BuildContext {
         width: percentWidth(pWidth ?? 0),
         height: percentHeight(pHeight ?? 0),
       );
+  EdgeInsets get paddingZero => EdgeInsets.zero;
   EdgeInsets symmetricPercentPadding({double? hPercent, double? vPercent}) =>
       EdgeInsets.symmetric(
         horizontal: percentWidth(hPercent ?? 0),
         vertical: percentHeight(vPercent ?? 0),
       );
+  EdgeInsets symmetricPadding({double? h, double? v}) => EdgeInsets.symmetric(
+        horizontal: h ?? 0,
+        vertical: v ?? 0,
+      );
+
   EdgeInsets allPercentPadding({double? allPercent}) => EdgeInsets.symmetric(
         horizontal: percentWidth(allPercent ?? 0),
         vertical: percentHeight(allPercent ?? 0),
       );
+  EdgeInsets allPadding({double? p}) => EdgeInsets.all(p ?? 0);
   EdgeInsets percentPadding({double? l, double? r, double? t, double? b}) =>
       EdgeInsets.only(
         left: percentWidth(l ?? 0),
@@ -29,4 +36,12 @@ extension ContextEx on BuildContext {
         top: percentHeight(t ?? 0),
         bottom: percentHeight(b ?? 0),
       );
+  EdgeInsets padding({double? l, double? r, double? t, double? b}) =>
+      EdgeInsets.only(
+        left: l ?? 0,
+        right: r ?? 0,
+        bottom: b ?? 0,
+        top: t ?? 0,
+      );
+
 }

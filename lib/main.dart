@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:url_strategy/url_strategy.dart';
 import 'package:yelwinoo/presentation/configs/configs.dart';
+import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
 
 import 'presentation/utils/custom_scroll_behaviour.dart';
 import 'presentation/views/home/home_page.dart';
@@ -20,20 +21,7 @@ class MyApp extends StatelessWidget {
       title: 'Ye-Lwin-Oo',
       scrollBehavior: AppScrollBehavior(),
       debugShowCheckedModeBanner: false,
-      theme: Theme.of(context).copyWith(
-        primaryColor: kPrimary,
-        focusColor: kPrimary,
-        scaffoldBackgroundColor: kPrimary,
-        textTheme: Theme.of(context).textTheme.apply(
-              bodyColor: kDark,
-            ),
-        appBarTheme: const AppBarTheme(
-          toolbarHeight: kToolbarHeight + 30,
-          elevation: 0.0,
-          backgroundColor: Colors.transparent,
-          foregroundColor: kDark,
-        ),
-      ),
+      theme: context.theme(),
       home: const HomePage(),
     );
   }
