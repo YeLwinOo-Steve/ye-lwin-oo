@@ -9,12 +9,19 @@ class CustomSlider extends AnimatedWidget {
     required this.animation,
     this.color = kBlack,
     this.isForward = true,
-  })  : forward = Tween<double>(begin: 0, end: width).animate(
-          CurvedAnimation(
-            parent: animation,
-            curve: Curves.easeInOut,
-          ),
-        ),
+    required this.interval,
+  })  : forward = Tween<double>(begin: 0, end: width)
+            .chain(
+              CurveTween(
+                curve: interval,
+              ),
+            )
+            .animate(
+              CurvedAnimation(
+                parent: animation,
+                curve: Curves.easeInOut,
+              ),
+            ),
         backward = Tween<double>(begin: width, end: 0).animate(
           CurvedAnimation(
             parent: animation,
@@ -23,6 +30,7 @@ class CustomSlider extends AnimatedWidget {
         ),
         super(key: key, listenable: animation);
   final Animation<double> animation;
+  final Interval interval;
   final double width;
   final double height;
   final Color color;
@@ -35,8 +43,13 @@ class CustomSlider extends AnimatedWidget {
   Widget build(BuildContext context) {
     return Container(
       width: isForward ? forward.value : backward.value,
-      color: color,
       height: height,
+      decoration: BoxDecoration(
+        color: color,
+        border: Border.all(
+          color: color,
+        ),
+      ),
     );
   }
 }

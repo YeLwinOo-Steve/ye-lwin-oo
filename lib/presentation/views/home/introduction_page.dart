@@ -26,14 +26,6 @@ class _IntroductionPageState extends State<IntroductionPage>
       vsync: this,
       duration: const Duration(milliseconds: 3000),
     );
-    // _slideAnimation =
-    //     Tween<Offset>(begin: const Offset(0, 1), end: const Offset(0, 0))
-    //         .animate(
-    //   CurvedAnimation(
-    //     parent: _controller,
-    //     curve: const Interval(0.6, 1.0, curve: Curves.ease),
-    //   ),
-    // );
     _controller.forward();
     Future.delayed(const Duration(milliseconds: 500), () {
       _controller2.forward();

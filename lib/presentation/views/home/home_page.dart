@@ -18,9 +18,10 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
   final _scrollController = PageController();
+  List<Widget> mainPages = [];
   final _key = GlobalKey();
   int page = 0;
-  final int pageLength = 2;
+  int pageLength = 3;
   late double _screenHeight;
   bool _isDrawerOpen = false;
   late AnimationController _animationController;
@@ -32,10 +33,15 @@ class _HomePageState extends State<HomePage>
       duration: duration1000,
     );
     _screenHeight = context.screenHeight;
+    mainPages = const [
+      IntroductionPage(),
+      SecondPage(),
+      CustomPageSlider(),
+    ];
   }
 
   void _handleScroll(Offset delta) {
-    if (delta.dy > s50 && page < pageLength) {
+    if (delta.dy > s100 && page < pageLength) {
       page++;
     } else {
       page--;
@@ -70,6 +76,7 @@ class _HomePageState extends State<HomePage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
         leading: const Logo(),
         actions: [
@@ -77,6 +84,7 @@ class _HomePageState extends State<HomePage>
             onPressed: onMenuTapped,
             hasMenuTapped: _isDrawerOpen,
           ),
+          horizontalSpaceLarge,
         ],
       ),
       body: Stack(
@@ -89,14 +97,10 @@ class _HomePageState extends State<HomePage>
             },
             child: PageView(
               key: _key,
-              physics: const ClampingScrollPhysics(),
+              physics: const PageScrollPhysics(),
               controller: _scrollController,
               scrollDirection: Axis.vertical,
-              children: const [
-                IntroductionPage(),
-                SecondPage(),
-                // CustomPageSlider()
-              ],
+              children: mainPages,
             ),
           ),
           MenuPage(

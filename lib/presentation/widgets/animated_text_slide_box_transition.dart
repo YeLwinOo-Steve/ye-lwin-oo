@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
 import 'animated_slide_box.dart';
 
+/// credit to [https://davidcobbina.com] for his amazing artwork
+/// I love this animation
 class AnimatedTextSlideBoxTransition extends StatefulWidget {
   const AnimatedTextSlideBoxTransition({
     Key? key,
@@ -18,9 +20,9 @@ class AnimatedTextSlideBoxTransition extends StatefulWidget {
     this.textAlign,
     this.boxColor = Colors.black,
     this.coverColor = Colors.transparent,
-    this.visibleAnimationcurve = Curves.fastOutSlowIn,
-    this.invisibleAnimationcurve = Curves.fastOutSlowIn,
-    this.slideAnimationcurve = Curves.fastOutSlowIn,
+    this.visibleAnimationCurve = Curves.fastOutSlowIn,
+    this.invisibleAnimationCurve = Curves.fastOutSlowIn,
+    this.slideAnimationCurve = Curves.fastOutSlowIn,
   }) : super(key: key);
 
   final AnimationController controller;
@@ -31,9 +33,9 @@ class AnimatedTextSlideBoxTransition extends StatefulWidget {
   final Animation<double>? visibleBoxAnimation;
   final Animation<double>? invisibleBoxAnimation;
   final Animation<Offset>? position;
-  final Curve visibleAnimationcurve;
-  final Curve invisibleAnimationcurve;
-  final Curve slideAnimationcurve;
+  final Curve visibleAnimationCurve;
+  final Curve invisibleAnimationCurve;
+  final Curve slideAnimationCurve;
   final String text;
   final TextStyle? textStyle;
   final TextAlign? textAlign;
@@ -67,7 +69,7 @@ class _AnimatedTextSlideBoxTransitionState
             curve: Interval(
               0,
               0.35,
-              curve: widget.visibleAnimationcurve,
+              curve: widget.visibleAnimationCurve,
             ),
           ),
         );
@@ -79,7 +81,7 @@ class _AnimatedTextSlideBoxTransitionState
             curve: Interval(
               0.35,
               0.7,
-              curve: widget.invisibleAnimationcurve,
+              curve: widget.invisibleAnimationCurve,
             ),
           ),
         );
@@ -96,7 +98,7 @@ class _AnimatedTextSlideBoxTransitionState
     ).animate(
       CurvedAnimation(
         parent: controller,
-        curve: Interval(0.7, 1.0, curve: widget.invisibleAnimationcurve),
+        curve: Interval(0.7, 1.0, curve: widget.invisibleAnimationCurve),
       ),
     );
 
@@ -117,7 +119,7 @@ class _AnimatedTextSlideBoxTransitionState
   Widget build(BuildContext context) {
     setTextWidthAndHeight();
 
-    return Container(
+    return SizedBox(
       height: textHeight,
       child: Stack(
         children: [

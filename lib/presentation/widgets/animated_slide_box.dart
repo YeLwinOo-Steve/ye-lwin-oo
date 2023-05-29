@@ -11,7 +11,7 @@ class AnimatedSlideBox extends AnimatedWidget {
     this.visibleBoxAnimation,
     this.invisibleBoxAnimation,
     this.boxColor = Colors.black,
-    this.coverColor = Colors.white,
+    this.coverColor = Colors.transparent,
     this.visibleBoxCurve = Curves.fastOutSlowIn,
     this.invisibleBoxCurve = Curves.fastOutSlowIn,
   }) : super(key: key, listenable: controller);
@@ -28,7 +28,7 @@ class AnimatedSlideBox extends AnimatedWidget {
 
   Animation<double> get visibleAnimation =>
       visibleBoxAnimation ??
-      Tween<double>(begin: 0, end: width - (hiddenFactor*2)).animate(
+      Tween<double>(begin: 0, end: width - (hiddenFactor * 2)).animate(
         CurvedAnimation(
           parent: controller,
           curve: Interval(0, 0.5, curve: visibleBoxCurve),
@@ -43,14 +43,12 @@ class AnimatedSlideBox extends AnimatedWidget {
         ),
       );
 
-
-  
   @override
   Widget build(BuildContext context) {
     // in this animation, we first animation a black container and later followed by a white box.
-    // but because the height and width for both boxes are the same, 
+    // but because the height and width for both boxes are the same,
     // we can still see a small part of the black box after the animation
-    // to remedy this, i use the variable hidden factor to offset the black box 
+    // to remedy this, i use the variable hidden factor to offset the black box
     // so that it will be totally hidden by the white box
     return SizedBox(
       width: width,
@@ -70,7 +68,7 @@ class AnimatedSlideBox extends AnimatedWidget {
             top: 0,
             child: Container(
               width: invisibleAnimation.value,
-              height: height ,
+              height: height,
               color: coverColor,
             ),
           ),

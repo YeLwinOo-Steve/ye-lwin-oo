@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:atlas_icons/atlas_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:yelwinoo/presentation/configs/configs.dart';
 import 'package:yelwinoo/presentation/utils/extensions/context_ex.dart';
 
 class MenuButton extends StatelessWidget {
@@ -14,33 +15,38 @@ class MenuButton extends StatelessWidget {
   final bool hasMenuTapped;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: context.symmetricPadding(h: 30, v: 5),
-      child: Transform(
-          alignment: Alignment.center,
-          transform: Matrix4.rotationY(pi),
-          child: IconButton(
-            padding: context.allPadding(p: 8.0),
-            onPressed: onPressed,
-            iconSize: 40.0,
-            alignment: Alignment.center,
-            icon: AnimatedSwitcher(
-              duration: const Duration(milliseconds: 500),
+    return Transform(
+        alignment: Alignment.center,
+        transform: Matrix4.rotationY(pi),
+        child: InkWell(
+          onTap: onPressed,
+          borderRadius: BorderRadius.circular(s50),
+          child: Container(
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+            ),
+            width: s65,
+            height: s65,
+            child: AnimatedSwitcher(
+              duration: duration500,
               switchInCurve: Curves.easeInOut,
               switchOutCurve: Curves.easeInOut,
-              reverseDuration: const Duration(milliseconds: 500),
+              reverseDuration: duration500,
               transitionBuilder: (child, animation) {
                 return SizeTransition(
                   sizeFactor: animation,
                   child: child,
                 );
               },
-              child: Icon(
-                key: ValueKey<bool>(hasMenuTapped),
-                hasMenuTapped ? Atlas.xmark_circle : Atlas.two_line_bold,
+              child: Center(
+                child: Icon(
+                  hasMenuTapped ? Atlas.xmark_circle : Atlas.two_line_bold,
+                  size: s40,
+                  color: kBlack,
+                ),
               ),
             ),
-          )),
-    );
+          ),
+        ));
   }
 }

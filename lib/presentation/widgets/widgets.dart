@@ -9,3 +9,4 @@ export './menu_item.dart';
 export './custom_slider.dart';
 export './vangogh_image.dart';
 export './custom_page_slider.dart';
+export './rounded_image_container.dart';

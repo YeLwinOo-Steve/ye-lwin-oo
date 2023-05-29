@@ -33,6 +33,7 @@ const double s100 = 100.0;
 const double s200 = 200.0;
 
 //duration
+const int d50 = 50;
 const int d100 = 100;
 const int d200 = 200;
 const int d300 = 300;
@@ -41,6 +42,7 @@ const int d1000 = 1000;
 const int d2000 = 2000;
 const int d3000 = 3000;
 const int d5000 = 5000;
+const Duration duration50 = Duration(milliseconds: d50);
 const Duration duration100 = Duration(milliseconds: d100);
 const Duration duration200 = Duration(milliseconds: d200);
 const Duration duration300 = Duration(milliseconds: d300);

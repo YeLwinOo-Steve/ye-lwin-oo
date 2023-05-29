@@ -4,8 +4,12 @@ import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
 import '../configs/configs.dart';
 
 class VanGoghImage extends StatelessWidget {
-  VanGoghImage({Key? key, required this.hoveredIndex, required this.animation})
-      : _slideLeftAnimation = Tween<Offset>(
+  VanGoghImage({
+    Key? key,
+    required this.hoveredIndex,
+    required this.animation,
+    required this.images,
+  })  : _slideLeftAnimation = Tween<Offset>(
           begin: const Offset(1.3, 0),
           end: const Offset(0.2, 0),
         ).animate(
@@ -18,6 +22,7 @@ class VanGoghImage extends StatelessWidget {
   final int hoveredIndex;
   final Animation<double> animation;
   final Animation<Offset> _slideLeftAnimation;
+  final List<Image> images;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -32,10 +37,12 @@ class VanGoghImage extends StatelessWidget {
                 Positioned(
                   left: s0,
                   bottom: s0,
-                  child: Container(
+                  child: hoveredIndex < 0
+                      ? noSpace
+                      : Container(
                     width: context.percentWidth(s30),
                     height: context.percentHeight(s30),
-                    color: kBlue100,
+                    color: kMenuColors[hoveredIndex],
                   ),
                 ),
                 Positioned(
@@ -53,7 +60,7 @@ class VanGoghImage extends StatelessWidget {
                             width: context.percentWidth(s30),
                             decoration: BoxDecoration(
                               image: DecorationImage(
-                                image: AssetImage(kaMenu[hoveredIndex]),
+                                image: images[hoveredIndex].image,
                                 fit: BoxFit.cover,
                               ),
                             ),
