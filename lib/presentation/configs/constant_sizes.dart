@@ -30,23 +30,30 @@ const double s70 = 70.0;
 const double s80 = 80.0;
 const double s96 = 96.0;
 const double s100 = 100.0;
+const double s150 = 150.0;
 const double s200 = 200.0;
+const double s250 = 250.0;
+const double s400 = 400.0;
 
 //duration
 const int d50 = 50;
 const int d100 = 100;
+const int d150 = 150;
 const int d200 = 200;
 const int d300 = 300;
 const int d500 = 500;
+const int d800 = 800;
 const int d1000 = 1000;
 const int d2000 = 2000;
 const int d3000 = 3000;
 const int d5000 = 5000;
 const Duration duration50 = Duration(milliseconds: d50);
 const Duration duration100 = Duration(milliseconds: d100);
+const Duration duration150 = Duration(milliseconds: d150);
 const Duration duration200 = Duration(milliseconds: d200);
 const Duration duration300 = Duration(milliseconds: d300);
 const Duration duration500 = Duration(milliseconds: d500);
+const Duration duration800 = Duration(milliseconds: d800);
 const Duration duration1000 = Duration(milliseconds: d1000);
 const Duration duration2000 = Duration(milliseconds: d2000);
 const Duration duration3000 = Duration(milliseconds: d3000);
@@ -57,6 +64,7 @@ const double _small = s8;
 const double _medium = s14;
 const double _large = s20;
 const double _massive = s32;
+const double _enormous = s60;
 
 const SizedBox noSpace = SizedBox.shrink();
 
@@ -65,12 +73,14 @@ const SizedBox horizontalSpaceSmall = SizedBox(width: _small);
 const SizedBox horizontalSpaceMedium = SizedBox(width: _medium);
 const SizedBox horizontalSpaceLarge = SizedBox(width: _large);
 const SizedBox horizontalSpaceMassive = SizedBox(width: _massive);
+const SizedBox horizontalSpaceEnormous = SizedBox(width: _enormous);
 
 const SizedBox verticalSpaceTiny = SizedBox(height: _tiny);
 const SizedBox verticalSpaceSmall = SizedBox(height: _small);
 const SizedBox verticalSpaceMedium = SizedBox(height: _medium);
 const SizedBox verticalSpaceLarge = SizedBox(height: _large);
 const SizedBox verticalSpaceMassive = SizedBox(height: _massive);
+const SizedBox verticalSpaceEnormous = SizedBox(height: _enormous);
 
 SizedBox customSpace({double? w, double? h}) => SizedBox(
       width: w ?? 0,

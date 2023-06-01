@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
 
 import '../configs/configs.dart';
 
@@ -42,26 +43,24 @@ class _CodeBlockState extends State<CodeBlock>
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        AnimatedBuilder(
-          builder: (context, child) {
-            return Positioned(
-              left: _slideEditor.value,
-              top: _slideEditor.value,
-              child: child!,
-            );
-          },
-          animation: _slideEditor,
-          child: const Opacity(
-              opacity: 0.4,
-              child: Editor(
-                isBackground: true,
-              )),
-        ),
-        const Editor(),
-      ],
-    );
+    return [
+      AnimatedBuilder(
+        builder: (context, child) {
+          return Positioned(
+            left: _slideEditor.value,
+            top: _slideEditor.value,
+            child: child!,
+          );
+        },
+        animation: _slideEditor,
+        child: const Opacity(
+            opacity: 0.4,
+            child: Editor(
+              isBackground: true,
+            )),
+      ),
+      const Editor(),
+    ].addStack();
   }
 }
 
@@ -74,13 +73,13 @@ class Editor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 400,
-      height: 250,
+      width: s400,
+      height: s250,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12.0),
         border: Border.all(
-          width: 1,
-          color: Colors.black12,
+          width: s1,
+          color: kBlack12,
         ),
         color: Colors.black,
       ),
@@ -88,56 +87,56 @@ class Editor extends StatelessWidget {
       margin: const EdgeInsets.only(left: 25.0, top: 25.0, bottom: 25.0),
       child: isBackground
           ? const SizedBox.shrink()
-          : Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Align(
-                  alignment: Alignment.topRight,
-                  child: Row(
+          : [
+              const [
+                Icon(
+                  Icons.circle,
+                  size: 16,
+                  color: kYellow,
+                ),
+                SizedBox(
+                  width: 4.0,
+                ),
+                Icon(
+                  Icons.circle,
+                  size: 16,
+                  color: kGreen,
+                ),
+                SizedBox(
+                  width: 4.0,
+                ),
+                Icon(
+                  Icons.circle,
+                  size: 16,
+                  color: kRed,
+                ),
+              ]
+                  .addRow(
                     mainAxisAlignment: MainAxisAlignment.end,
-                    children: const [
-                      Icon(
-                        Icons.circle,
-                        size: 16,
-                        color: kYellow,
-                      ),
-                      SizedBox(
-                        width: 4.0,
-                      ),
-                      Icon(
-                        Icons.circle,
-                        size: 16,
-                        color: kGreen,
-                      ),
-                      SizedBox(
-                        width: 4.0,
-                      ),
-                      Icon(
-                        Icons.circle,
-                        size: 16,
-                        color: kRed,
-                      ),
-                    ],
+                  )
+                  .addAlign(
+                    alignment: Alignment.topRight,
                   ),
+              Text(
+                "\$ find yoh yoh",
+                style: TextStyle(
+                  color: Colors.white,
                 ),
-                Text(
-                  "\$ find yoh yoh",
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
+              ),
+              Text(
+                "> Yoh Yoh is my love..",
+                style: TextStyle(
+                  color: Colors.white,
                 ),
-                Text(
-                  "> Yoh Yoh is my love..",
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                ),Text(
-                  "> She's my everything 🍒❤️",
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
+              ),
+              Text(
+                "> She's my everything 🍒❤️",
+                style: TextStyle(
+                  color: Colors.white,
                 ),
-              ],
+              ),
+            ].addColumn(
+              crossAxisAlignment: CrossAxisAlignment.start,
             ),
     );
   }

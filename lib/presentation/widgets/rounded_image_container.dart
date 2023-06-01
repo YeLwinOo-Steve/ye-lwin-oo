@@ -45,30 +45,26 @@ class RoundedImageContainer extends StatelessWidget {
     Size labelSize = label.textSize(
       style: labelStyle,
     );
-    return Expanded(
-      child: AlignTransition(
-        alignment: alignAnimation,
-        child: Stack(
-          children: [
-            Container(
-              width: width,
-              margin: EdgeInsets.all(margin),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(borderRadius),
-                color: kBlue100,
-              ),
-            ),
-            Positioned(
-              bottom: 0,
-              left: s20,
-              child: Text(
-                label,
-                style: labelStyle,
-              ),
-            ),
-          ],
+    return AlignTransition(
+      alignment: alignAnimation,
+      child: [
+        Container(
+          width: width,
+          margin: EdgeInsets.all(margin),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(borderRadius),
+            color: kBlue100,
+          ),
         ),
-      ),
-    );
+        Positioned(
+          bottom: 0,
+          left: s20,
+          child: Text(
+            label,
+            style: labelStyle,
+          ),
+        ),
+      ].addStack(),
+    ).addExpanded();
   }
 }

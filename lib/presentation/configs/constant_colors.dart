@@ -5,6 +5,7 @@ final Color kPrimary = '#fdfff5'.toColor();
 const Color kTransparent = Colors.transparent;
 const Color kWhite = Colors.white;
 const Color kBlack = Colors.black;
+const Color kBlack12 = Colors.black12;
 const Color kBlack26  = Colors.black26;
 final Color kGrey100 = Colors.grey.shade100;
 final Color kBlue100 = Colors.blue.shade100;

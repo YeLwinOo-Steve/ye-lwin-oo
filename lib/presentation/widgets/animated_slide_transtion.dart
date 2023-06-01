@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class AnimatedSlideTranstion extends AnimatedWidget {
-  AnimatedSlideTranstion({
+class AnimatedSlideTransition extends AnimatedWidget {
+  const AnimatedSlideTransition({
     Key? key,
     required this.controller,
     required this.child,

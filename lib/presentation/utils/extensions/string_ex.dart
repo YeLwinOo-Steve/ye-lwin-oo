@@ -17,4 +17,7 @@ extension StringEx on String {
   String prefixZero() {
     return '0$this';
   }
+  String addDoubleQuote(){
+    return "“$this”";
+  }
 }

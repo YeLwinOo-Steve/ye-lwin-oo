@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
 import 'animated_slide_box.dart';
 
-/// credit to [https://davidcobbina.com] for his amazing artwork
-/// I love this animation
+/// credit to [https://davidcobbina.com] for his amazing artwork 👏🏻👏🏻
+/// I love this animation so much
 class AnimatedTextSlideBoxTransition extends StatefulWidget {
   const AnimatedTextSlideBoxTransition({
     Key? key,
@@ -117,31 +118,27 @@ class _AnimatedTextSlideBoxTransitionState
 
   @override
   Widget build(BuildContext context) {
-    setTextWidthAndHeight();
-
-    return SizedBox(
-      height: textHeight,
-      child: Stack(
-        children: [
-          AnimatedSlideBox(
-            controller: widget.controller,
-            height: textHeight,
-            width: textWidth,
-            coverColor: widget.coverColor,
-            boxColor: widget.boxColor,
-            visibleBoxAnimation: visibleAnimation,
-            invisibleBoxAnimation: invisibleAnimation,
-          ),
-          PositionedTransition(
-            rect: textPositionAnimation,
-            child: Text(
-              widget.text,
-              style: widget.textStyle,
-              textAlign: widget.textAlign,
-            ),
-          ),
-        ],
+    return <Widget>[
+      AnimatedSlideBox(
+        controller: widget.controller,
+        height: textHeight,
+        width: textWidth,
+        coverColor: widget.coverColor,
+        boxColor: widget.boxColor,
+        visibleBoxAnimation: visibleAnimation,
+        invisibleBoxAnimation: invisibleAnimation,
       ),
+      PositionedTransition(
+        rect: textPositionAnimation,
+        child: Text(
+          widget.text,
+          style: widget.textStyle,
+          textAlign: widget.textAlign,
+          maxLines: widget.maxLines,
+        ),
+      ),
+    ].addStack().addSizedBox(
+      height: textHeight,
     );
   }
 }

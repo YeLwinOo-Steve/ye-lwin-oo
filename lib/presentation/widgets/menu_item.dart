@@ -17,47 +17,41 @@ class MenuItem extends StatelessWidget {
   final double height;
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        decoration: const BoxDecoration(
-          border: Border(),
-        ),
-        child: Row(
-          children: [
-            AnimatedContainer(
-              duration: duration100,
-              curve: Curves.easeInOut,
-              width: isHovered ? s100 : s0,
-              height: s3,
-              decoration: BoxDecoration(
-                color: kBlack,
-                borderRadius: BorderRadius.circular(s5),
-              ),
-            ),
-            horizontalSpaceMedium,
-            AnimatedDefaultTextStyle(
-              style: isHovered
-                  ? context.bodyLarge.copyWith(
-                      fontWeight: FontWeight.bold,
-                    )
-                  : context.bodySmall,
-              duration: duration100,
-              child: Opacity(
-                  opacity: isHovered ? s1 : s05,
-                  child: Text('${index+1}'.prefixZero())),
-            ),
-            horizontalSpaceMedium,
-            AnimatedDefaultTextStyle(
-              style: isHovered ? context.headlineSmall : context.titleMedium,
-              duration: duration100,
-              child: Opacity(
-                opacity: isHovered ? s1 : s05,
-                child: Text(label),
-              ),
-            ),
-          ],
+    return [
+      AnimatedContainer(
+        duration: duration100,
+        curve: Curves.easeInOut,
+        width: isHovered ? s100 : s0,
+        height: s3,
+        decoration: BoxDecoration(
+          color: kBlack,
+          borderRadius: BorderRadius.circular(s5),
         ),
       ),
-    );
+      horizontalSpaceMedium,
+      AnimatedDefaultTextStyle(
+        style: isHovered
+            ? context.bodyLarge.copyWith(
+                fontWeight: FontWeight.bold,
+              )
+            : context.bodySmall,
+        duration: duration100,
+        child: Text('${index + 1}'.prefixZero())
+            .addOpacity(opacity: isHovered ? s1 : s05),
+      ),
+      horizontalSpaceMedium,
+      AnimatedDefaultTextStyle(
+        style: isHovered ? context.headlineSmall : context.titleMedium,
+        duration: duration100,
+        child: Text(label).addOpacity(opacity: isHovered ? s1 : s05),
+      ),
+    ]
+        .addRow()
+        .addContainer(
+          decoration: const BoxDecoration(
+            border: Border(),
+          ),
+        )
+        .addExpanded();
   }
 }

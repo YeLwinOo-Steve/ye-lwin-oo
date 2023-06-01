@@ -107,38 +107,32 @@ class _MenuPageState extends State<MenuPage> with TickerProviderStateMixin {
     _addSizeConfig();
     return SlideTransition(
       position: widget._slideDownAnimation,
-      child: Container(
+      child: MouseRegion(
+        onHover: onHover,
+        onExit: onExit,
+        child: [
+          Align(
+            alignment: Alignment.centerRight,
+            child: Visibility(
+              visible: currentHoverIndex > -1 &&
+                  currentHoverIndex < ksMenu.length,
+              child: VanGoghImage(
+                hoveredIndex: currentHoverIndex,
+                animation: _animationController.view,
+                images: _vanGoghImages,
+              ),
+            ),
+          ),
+          [
+            ...createMenuItems(context),
+          ].addColumn(),
+        ].addStack(
+          alignment: Alignment.center,
+        ).addCenter(),
+      ).addContainer(
         height: context.screenHeight,
         padding: _padding,
         color: kPrimary,
-        child: MouseRegion(
-          onHover: onHover,
-          onExit: onExit,
-          child: Center(
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: Visibility(
-                    visible: currentHoverIndex > -1 &&
-                        currentHoverIndex < ksMenu.length,
-                    child: VanGoghImage(
-                      hoveredIndex: currentHoverIndex,
-                      animation: _animationController.view,
-                      images: _vanGoghImages,
-                    ),
-                  ),
-                ),
-                Column(
-                  children: [
-                    ...createMenuItems(context),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ),
       ),
     );
   }

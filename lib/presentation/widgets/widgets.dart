@@ -8,5 +8,5 @@ export './menu_button.dart';
 export './menu_item.dart';
 export './custom_slider.dart';
 export './vangogh_image.dart';
-export './custom_page_slider.dart';
+export '../views/home/about_footer_page.dart';
 export './rounded_image_container.dart';

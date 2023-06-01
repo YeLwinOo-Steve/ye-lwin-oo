@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
 
+/// credit to [https://davidcobbina.com] for his amazing artwork 👏🏻👏🏻
 const double hiddenFactor = 2.0;
 
 class AnimatedSlideBox extends AnimatedWidget {
@@ -45,35 +47,27 @@ class AnimatedSlideBox extends AnimatedWidget {
 
   @override
   Widget build(BuildContext context) {
-    // in this animation, we first animation a black container and later followed by a white box.
-    // but because the height and width for both boxes are the same,
-    // we can still see a small part of the black box after the animation
-    // to remedy this, i use the variable hidden factor to offset the black box
-    // so that it will be totally hidden by the white box
-    return SizedBox(
-      width: width,
-      height: height,
-      child: Stack(
-        children: [
-          Positioned(
-            top: hiddenFactor,
-            left: hiddenFactor,
-            child: Container(
-              width: visibleAnimation.value,
-              height: height - (hiddenFactor * 2),
-              color: boxColor,
-            ),
-          ),
-          Positioned(
-            top: 0,
-            child: Container(
-              width: invisibleAnimation.value,
-              height: height,
-              color: coverColor,
-            ),
-          ),
-        ],
+    return [
+      Positioned(
+        top: hiddenFactor,
+        left: hiddenFactor,
+        child: Container(
+          width: visibleAnimation.value,
+          height: height - (hiddenFactor * 2),
+          color: boxColor,
+        ),
       ),
-    );
+      Positioned(
+        top: 0,
+        child: Container(
+          width: invisibleAnimation.value,
+          height: height,
+          color: coverColor,
+        ),
+      ),
+    ].addStack().addSizedBox(
+          width: width,
+          height: height,
+        );
   }
 }

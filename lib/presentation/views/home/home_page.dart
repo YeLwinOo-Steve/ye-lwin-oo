@@ -36,12 +36,12 @@ class _HomePageState extends State<HomePage>
     mainPages = const [
       IntroductionPage(),
       SecondPage(),
-      CustomPageSlider(),
+      AboutAndFooterPage(),
     ];
   }
 
   void _handleScroll(Offset delta) {
-    if (delta.dy > s100 && page < pageLength) {
+    if (delta.dy > s150 && page < pageLength) {
       page++;
     } else {
       page--;
@@ -87,27 +87,25 @@ class _HomePageState extends State<HomePage>
           horizontalSpaceLarge,
         ],
       ),
-      body: Stack(
-        children: [
-          Listener(
-            onPointerSignal: (PointerSignalEvent event) {
-              if (event is PointerScrollEvent) {
-                _handleScroll(event.scrollDelta);
-              }
-            },
-            child: PageView(
-              key: _key,
-              physics: const PageScrollPhysics(),
-              controller: _scrollController,
-              scrollDirection: Axis.vertical,
-              children: mainPages,
-            ),
+      body: [
+        Listener(
+          onPointerSignal: (PointerSignalEvent event) {
+            if (event is PointerScrollEvent) {
+              _handleScroll(event.scrollDelta);
+            }
+          },
+          child: PageView(
+            key: _key,
+            physics: const PageScrollPhysics(),
+            controller: _scrollController,
+            scrollDirection: Axis.vertical,
+            children: mainPages,
           ),
-          MenuPage(
-            animation: _animationController.view,
-          ),
-        ],
-      ),
+        ),
+        MenuPage(
+          animation: _animationController.view,
+        ),
+      ].addStack(),
     );
   }
 }

@@ -41,72 +41,60 @@ class _CustomButtonState extends State<CustomButton> {
             _isHovered = false;
           });
         },
-        child: Stack(
-          children: [
-            AnimatedPositioned(
-              left: _isHovered ? s8 : s0,
-              bottom: _isHovered ? s8 : s0,
-              duration: const Duration(milliseconds: d300),
-              child: Container(
-                padding: const EdgeInsets.symmetric(
-                  vertical: s14,
-                  horizontal: s42,
-                ),
-                decoration: BoxDecoration(
+        child: [
+          AnimatedPositioned(
+            left: _isHovered ? s8 : s0,
+            bottom: _isHovered ? s8 : s0,
+            duration: const Duration(milliseconds: d300),
+            child: [
+              Text(
+                widget.label.toUpperCase(),
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   color: widget.shadowColor ?? kBlue100,
-                  border: Border.all(
-                    color: widget.shadowColor ?? kBlue100,
-                  ),
-                ),
-                child: Center(
-                  child: Row(
-                    children: [
-                      Text(
-                        widget.label.toUpperCase(),
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              color: widget.shadowColor ?? kBlue100,
-                            ),
-                      ),
-                      customSpace(w: _isHovered ? s10 : s5),
-                      Icon(
-                        widget.icon,
-                        color: widget.shadowColor ?? kBlue100,
-                      ),
-                    ],
-                  ),
                 ),
               ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(left: s8, bottom: s8),
-              padding:
-                  const EdgeInsets.symmetric(vertical: s14, horizontal: s42),
+              customSpace(w: _isHovered ? s10 : s5),
+              Icon(
+                widget.icon,
+                color: widget.shadowColor ?? kBlue100,
+              ),
+            ].addRow().addCenter().addContainer(
+              padding: const EdgeInsets.symmetric(
+                vertical: s14,
+                horizontal: s42,
+              ),
               decoration: BoxDecoration(
+                color: widget.shadowColor ?? kBlue100,
                 border: Border.all(
-                  color: widget.foregroundColor,
-                ),
-              ),
-              child: Center(
-                child: Row(
-                  children: [
-                    Text(
-                      widget.label.toUpperCase(),
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
-                    AnimatedContainer(
-                      width: _isHovered ? s10 : s5,
-                      duration: const Duration(milliseconds: d300),
-                      curve: Curves.easeInOut,
-                    ),
-                    Icon(
-                      widget.icon,
-                    ),
-                  ],
+                  color: widget.shadowColor ?? kBlue100,
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+          [
+            Text(
+              widget.label.toUpperCase(),
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
+            AnimatedContainer(
+              width: _isHovered ? s10 : s5,
+              duration: const Duration(milliseconds: d300),
+              curve: Curves.easeInOut,
+            ),
+            Icon(
+              widget.icon,
+            ),
+          ].addRow().addCenter().addContainer(
+            margin: const EdgeInsets.only(left: s8, bottom: s8),
+            padding:
+            const EdgeInsets.symmetric(vertical: s14, horizontal: s42),
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: widget.foregroundColor,
+              ),
+            ),
+          ),
+        ].addStack(),
       ),
     );
   }
