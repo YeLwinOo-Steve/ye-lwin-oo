@@ -10,6 +10,18 @@ const String ksExperience = "My Experience";
 const String ksCertificates = "Certificates";
 const String ksProject = "My Projects";
 const String ksContact = "Contact Me";
+const String ksLetsWork = "Let's work together!";
+const String ksFreelanceAvailability = "I'm available for Freelancing";
+const String ksContactInfo = "- Contact Info";
+const String ksWorkEmail = "yelwinoo.work@gmail.com";
+const String ksWorkPhone = "+959 976294818";
+const String ksCreditTo = "- Heavily credit to";
+const String ksDavidCobbina = "David Cobbina";
+const String ksJuliusG = "Design by Julius G";
+const String ksBuildUsing = "Build using ";
+const String ksWithMuch = " with much ";
+const String ksCC = "©️ 2023 Ye Lwin Oo";
+
 
 const List<String> ksMenu = [
   ksHome,

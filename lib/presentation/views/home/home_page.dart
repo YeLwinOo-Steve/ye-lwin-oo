@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage>
     mainPages = const [
       IntroductionPage(),
       SecondPage(),
-      AboutAndFooterPage(),
+      FooterPage(),
     ];
   }
 

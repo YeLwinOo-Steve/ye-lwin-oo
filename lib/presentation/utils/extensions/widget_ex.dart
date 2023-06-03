@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:yelwinoo/presentation/configs/configs.dart';
-import 'package:yelwinoo/presentation/configs/configs.dart';
 
 extension WidgetEx on Widget {
   Padding addPadding({required EdgeInsetsGeometry edgeInsets}) {
