@@ -17,7 +17,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
-  final _scrollController = PageController();
   List<Widget> mainPages = [];
   final _key = GlobalKey();
   int page = 0;
@@ -50,15 +49,14 @@ class _HomePageState extends State<HomePage>
   // }
 
   void _animateToPage() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _scrollController.animateTo(page * _screenHeight,
-          duration: duration1000, curve: Curves.easeInOut);
-    });
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    //   _scrollController.animateTo(page * _screenHeight,
+    //       duration: duration1000, curve: Curves.easeInOut);
+    // });
   }
 
   @override
   void dispose() {
-    _scrollController.dispose();
     super.dispose();
   }
 
@@ -97,7 +95,7 @@ class _HomePageState extends State<HomePage>
           child: PageView(
             key: _key,
             physics: const AlwaysScrollableScrollPhysics(),
-            controller: _scrollController,
+            // controller: _scrollController,
             scrollDirection: Axis.vertical,
             children: mainPages,
           ),

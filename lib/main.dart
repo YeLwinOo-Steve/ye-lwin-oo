@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'yelwinoo',
       scrollBehavior: AppScrollBehavior(),
       debugShowCheckedModeBanner: false,
       theme: context.theme(),

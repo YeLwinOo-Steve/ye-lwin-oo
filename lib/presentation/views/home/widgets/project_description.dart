@@ -37,7 +37,7 @@ class ProjectDescription extends StatelessWidget {
               child: Opacity(
                 opacity: s05,
                 child: Text(
-                  '$index'.prefixZero(),
+                  '${index+1}'.prefixZero(),
                   style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                         color: kSecondary,
                       ),

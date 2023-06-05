@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
 
@@ -117,22 +118,34 @@ class Editor extends StatelessWidget {
                   .addAlign(
                     alignment: Alignment.topRight,
                   ),
-              Text(
-                "\$ find yoh yoh",
+              const Text(
+                "\$ find / name -\"life.dart\"",
                 style: TextStyle(
-                  color: Colors.white,
+                  color: kWhite,
                 ),
               ),
               Text(
-                "> Yoh Yoh is my love..",
+                "> Searching . . .",
                 style: TextStyle(
-                  color: Colors.white,
+                  color: kSecondary,
                 ),
               ),
-              Text(
-                "> She's my everything 🍒❤️",
+              const Text(
+                "> Error: No life is found!",
                 style: TextStyle(
-                  color: Colors.white,
+                  color: kRed,
+                ),
+              ),
+              const Text(
+                "> Since you are a programmer, you have no life!",
+                style: TextStyle(
+                  color: kRed,
+                ),
+              ),
+              const Text(
+                "\$ _",
+                style: TextStyle(
+                  color: kWhite,
                 ),
               ),
             ].addColumn(

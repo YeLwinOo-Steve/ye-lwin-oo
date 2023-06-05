@@ -105,8 +105,7 @@ class _SecondPageState extends State<SecondPage> with TickerProviderStateMixin {
             t: appBarHeight,
             b: s10,
           ),
-        )
-        .addSizedBox();
+        );
   }
 
   Widget leftImages() {
@@ -118,6 +117,7 @@ class _SecondPageState extends State<SecondPage> with TickerProviderStateMixin {
         endAlignment: Alignment.topLeft,
         animation: _controller.view,
         index: 1,
+        imageUrl: ksShowcaseProjects[0].image,
       ),
       RoundedImageContainer(
         width: imageWidth,
@@ -126,6 +126,7 @@ class _SecondPageState extends State<SecondPage> with TickerProviderStateMixin {
         endAlignment: Alignment.centerRight,
         animation: _controller.view,
         index: 2,
+        imageUrl: ksShowcaseProjects[1].image,
       ),
       RoundedImageContainer(
         width: imageWidth,
@@ -134,6 +135,7 @@ class _SecondPageState extends State<SecondPage> with TickerProviderStateMixin {
         endAlignment: Alignment.bottomLeft,
         animation: _controller.view,
         index: 3,
+        imageUrl: ksShowcaseProjects[2].image,
       ),
     ]
         .addColumn(

@@ -369,6 +369,6 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
               padding: context.symmetricPadding(h: s80),
             ),
       ].addColumn(),
-    ].addStack().addSizedBox();
+    ].addStack();
   }
 }

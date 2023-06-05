@@ -82,10 +82,10 @@ class _IntroductionPageState extends State<IntroductionPage>
               color: kWhite,
               boxShadow: [
                 BoxShadow(
-                  offset: const Offset(s3, s3),
-                  blurRadius: s5,
+                  offset: const Offset(s0, s0),
+                  blurRadius: s20,
                   spreadRadius: s5,
-                  color: kBlue50,
+                  color: kSecondary,
                   blurStyle: BlurStyle.outer,
                 ),
               ],

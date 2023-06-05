@@ -31,17 +31,19 @@ class MenuItem extends StatelessWidget {
       horizontalSpaceMedium,
       AnimatedDefaultTextStyle(
         style: isHovered
-            ? context.bodyLarge.copyWith(
-                fontWeight: FontWeight.bold,
-              )
-            : context.bodySmall,
+            ? Theme.of(context).textTheme.bodyLarge!.copyWith(
+                  fontWeight: FontWeight.bold,
+                )
+            : Theme.of(context).textTheme.bodySmall!,
         duration: duration100,
         child: Text('${index + 1}'.prefixZero())
             .addOpacity(opacity: isHovered ? s1 : s05),
       ),
       horizontalSpaceMedium,
       AnimatedDefaultTextStyle(
-        style: isHovered ? context.headlineSmall : context.titleMedium,
+        style: isHovered
+            ? Theme.of(context).textTheme.headlineSmall!
+            : Theme.of(context).textTheme.titleMedium!,
         duration: duration100,
         child: Text(label).addOpacity(opacity: isHovered ? s1 : s05),
       ),
