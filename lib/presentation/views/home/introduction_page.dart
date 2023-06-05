@@ -47,7 +47,7 @@ class _IntroductionPageState extends State<IntroductionPage>
         curve: Curves.fastOutSlowIn,
       ),
     );
-    Future.delayed(const Duration(milliseconds: 500), () {
+    Future.delayed(duration500, () {
       _controller2.forward();
     }).catchError((ex) {
       _controller2.dispose();
@@ -70,16 +70,25 @@ class _IntroductionPageState extends State<IntroductionPage>
           child: Container(
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: kBlue100,
+              color: kSecondary,
             ),
           ),
         ),
         ScaleTransition(
           scale: whiteCircleTween,
           child: Container(
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: kWhite,
+              boxShadow: [
+                BoxShadow(
+                  offset: const Offset(s3, s3),
+                  blurRadius: s5,
+                  spreadRadius: s5,
+                  color: kBlue50,
+                  blurStyle: BlurStyle.outer,
+                ),
+              ],
             ),
           ),
         ),
@@ -132,6 +141,6 @@ class _IntroductionPageState extends State<IntroductionPage>
           edgeInsets: context.symmetricPercentPadding(
             hPercent: 10,
           ),
-        );
+        ).addSizedBox();
   }
 }

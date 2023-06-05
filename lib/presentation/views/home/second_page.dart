@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
+import 'package:yelwinoo/presentation/views/home/widgets/project_description.dart';
 import 'package:yelwinoo/presentation/widgets/widgets.dart';
 
 import '../../configs/configs.dart';
@@ -47,68 +48,65 @@ class _SecondPageState extends State<SecondPage> with TickerProviderStateMixin {
     appBarHeight = Theme.of(context).appBarTheme.toolbarHeight!;
     containerHeight = context.screenHeight - (appBarHeight + s10);
     imageWidth = context.percentWidth(s50) * 0.8;
-    return [
-      [
+    return <Widget>[
+      <Widget>[
         leftImages(),
-        [
-          AnimatedTextSlideBoxTransition(
-            controller: _controller,
-            coverColor: Theme.of(context).scaffoldBackgroundColor,
-            text: "Crafted with Love",
-            textStyle: Theme.of(context).textTheme.titleLarge,
-          ),
-          AnimatedTextSlideBoxTransition(
-            controller: _controller,
-            coverColor: Theme.of(context).scaffoldBackgroundColor,
-            text: "Here are a selection of my recent projects",
-            textStyle: Theme.of(context).textTheme.titleSmall,
+        <Widget>[
+          <Widget>[
+            AnimatedTextSlideBoxTransition(
+              controller: _controller,
+              coverColor: Theme.of(context).scaffoldBackgroundColor,
+              text: ksCraftedWithLove,
+              textStyle: Theme.of(context).textTheme.headlineSmall,
+            ),
+            AnimatedTextSlideBoxTransition(
+              controller: _controller,
+              coverColor: Theme.of(context).scaffoldBackgroundColor,
+              text: ksRecentProjects,
+              textStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    fontWeight: FontWeight.w300,
+                  ),
+            ),
+          ].addColumn(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
           ),
           verticalSpaceMedium,
-          FadeTransition(
-            opacity: _controller,
-            child: SlideTransition(
-              position: _slideUpTween,
-              child: const Text(
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eget lorem ullamcorper ex blandit vestibulum. Donec a consequat turpis. Etiam vitae eleifend enim. Aliquam molestie diam erat, in tempus enim blandit sit amet. Curabitur semper vulputate sem, ac laoreet metus. Maecenas porttitor fermentum metus et faucibus. Maecenas eget diam fermentum, bibendum leo a, lobortis nunc. Nunc eleifend venenatis libero, vel vehicula ligula convallis vel. Etiam sollicitudin, eros ut convallis elementum, magna ante dapibus risus, et pellentesque lacus nisl vel lorem. Sed ornare neque massa, quis cursus justo mattis sed. Pellentesque non nisl in massa vestibulum vulputate et ut diam. Vivamus vitae metus ac augue condimentum lacinia id nec elit. In hac habitasse platea dictumst. In ut massa quis arcu tempus finibus vel id nulla. Nullam id vehicula elit.",
-              ),
-            ),
-          ),
-          verticalSpaceMedium,
-          FadeTransition(
-            opacity: _controller,
-            child: SlideTransition(
-              position: _slideUpTween,
-              child: const Text(
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eget lorem ullamcorper ex blandit vestibulum. Donec a consequat turpis. Etiam vitae eleifend enim. Aliquam molestie diam erat, in tempus enim blandit sit amet. Curabitur semper vulputate sem, ac laoreet metus. Maecenas porttitor fermentum metus et faucibus. Maecenas eget diam fermentum, bibendum leo a, lobortis nunc. Nunc eleifend venenatis libero, vel vehicula ligula convallis vel. Etiam sollicitudin, eros ut convallis elementum, magna ante dapibus risus, et pellentesque lacus nisl vel lorem. Sed ornare neque massa, quis cursus justo mattis sed. Pellentesque non nisl in massa vestibulum vulputate et ut diam. Vivamus vitae metus ac augue condimentum lacinia id nec elit. In hac habitasse platea dictumst. In ut massa quis arcu tempus finibus vel id nulla. Nullam id vehicula elit.",
-              ),
-            ),
-          ),
-          verticalSpaceMedium,
-          FadeTransition(
-            opacity: _controller,
-            child: SlideTransition(
-              position: _slideUpTween,
-              child: const Text(
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eget lorem ullamcorper ex blandit vestibulum. Donec a consequat turpis. Etiam vitae eleifend enim. Aliquam molestie diam erat, in tempus enim blandit sit amet. Curabitur semper vulputate sem, ac laoreet metus. Maecenas porttitor fermentum metus et faucibus. Maecenas eget diam fermentum, bibendum leo a, lobortis nunc. Nunc eleifend venenatis libero, vel vehicula ligula convallis vel. Etiam sollicitudin, eros ut convallis elementum, magna ante dapibus risus, et pellentesque lacus nisl vel lorem. Sed ornare neque massa, quis cursus justo mattis sed. Pellentesque non nisl in massa vestibulum vulputate et ut diam. Vivamus vitae metus ac augue condimentum lacinia id nec elit. In hac habitasse platea dictumst. In ut massa quis arcu tempus finibus vel id nulla. Nullam id vehicula elit.",
-              ),
-            ),
-          ),
+          ...ksShowcaseProjects
+              .map(
+                (project) => ProjectDescription(
+                  animation: _controller,
+                  slideUpTween: _slideUpTween,
+                  label: project.title,
+                  labelStyle: Theme.of(context).textTheme.titleSmall!.copyWith(
+                        fontWeight: FontWeight.w500,
+                      ),
+                  descriptionStyle: Theme.of(context).textTheme.bodyMedium!,
+                  description: project.description,
+                  index: ksShowcaseProjects.indexOf(project),
+                ),
+              )
+              .toList(),
         ]
             .addColumn(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             )
             .addContainer(
                 height: containerHeight, padding: context.allPadding(p: s30))
             .addExpanded(),
       ].addRow(),
-    ].addColumn().addPadding(
+    ]
+        .addColumn()
+        .addPadding(
           edgeInsets: context.padding(
             l: s80,
             r: s80,
             t: appBarHeight,
             b: s10,
           ),
-        );
+        )
+        .addSizedBox();
   }
 
   Widget leftImages() {

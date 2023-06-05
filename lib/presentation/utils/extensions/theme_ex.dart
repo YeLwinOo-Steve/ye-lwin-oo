@@ -88,9 +88,9 @@ extension ThemeEx on BuildContext {
 
   TextSelectionThemeData textSelectionTheme() {
     return TextSelectionThemeData(
-      cursorColor: kBlue100,
-      selectionColor: kBlue100,
-      selectionHandleColor: kBlue100,
+      cursorColor: kSecondary,
+      selectionColor: kSecondary,
+      selectionHandleColor: kSecondary,
     );
   }
 
@@ -105,8 +105,8 @@ extension ThemeEx on BuildContext {
       brightness: Brightness.light,
       primary: kPrimary,
       onPrimary: kPrimary,
-      secondary: kBlue100,
-      onSecondary: kBlue100,
+      secondary: kSecondary,
+      onSecondary: kSecondary,
       error: kRed,
       onError: kRed100,
       background: kWhite,

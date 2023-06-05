@@ -40,14 +40,14 @@ class _HomePageState extends State<HomePage>
     ];
   }
 
-  void _handleScroll(Offset delta) {
-    if (delta.dy > s150 && page < pageLength) {
-      page++;
-    } else {
-      page--;
-    }
-    _animateToPage();
-  }
+  // void _handleScroll(Offset delta) {
+  //   if (delta.dy > s150 && page < pageLength) {
+  //     page++;
+  //   } else {
+  //     page--;
+  //   }
+  //   _animateToPage();
+  // }
 
   void _animateToPage() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -89,14 +89,14 @@ class _HomePageState extends State<HomePage>
       ),
       body: [
         Listener(
-          onPointerSignal: (PointerSignalEvent event) {
-            if (event is PointerScrollEvent) {
-              _handleScroll(event.scrollDelta);
-            }
-          },
+          // onPointerSignal: (PointerSignalEvent event) {
+          //   if (event is PointerScrollEvent) {
+          //     _handleScroll(event.scrollDelta);
+          //   }
+          // },
           child: PageView(
             key: _key,
-            physics: const PageScrollPhysics(),
+            physics: const AlwaysScrollableScrollPhysics(),
             controller: _scrollController,
             scrollDirection: Axis.vertical,
             children: mainPages,

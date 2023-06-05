@@ -58,9 +58,17 @@ extension WidgetEx on Widget {
       child: this,
     );
   }
-  Widget addOpacity({required double opacity}){
+
+  Widget addOpacity({required double opacity}) {
     return Opacity(
       opacity: opacity,
+      child: this,
+    );
+  }
+
+  Widget addInkWell({required VoidCallback onTap}) {
+    return InkWell(
+      onTap: onTap,
       child: this,
     );
   }

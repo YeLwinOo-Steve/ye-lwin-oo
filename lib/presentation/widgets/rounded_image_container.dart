@@ -53,7 +53,7 @@ class RoundedImageContainer extends StatelessWidget {
           margin: EdgeInsets.all(margin),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(borderRadius),
-            color: kBlue100,
+            color: kSecondary,
           ),
         ),
         Positioned(

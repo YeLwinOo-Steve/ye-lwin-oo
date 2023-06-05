@@ -50,13 +50,13 @@ class _CustomButtonState extends State<CustomButton> {
               Text(
                 widget.label.toUpperCase(),
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: widget.shadowColor ?? kBlue100,
+                  color: widget.shadowColor ?? kSecondary,
                 ),
               ),
               customSpace(w: _isHovered ? s10 : s5),
               Icon(
                 widget.icon,
-                color: widget.shadowColor ?? kBlue100,
+                color: widget.shadowColor ?? kSecondary,
               ),
             ].addRow().addCenter().addContainer(
               padding: const EdgeInsets.symmetric(
@@ -64,9 +64,9 @@ class _CustomButtonState extends State<CustomButton> {
                 horizontal: s42,
               ),
               decoration: BoxDecoration(
-                color: widget.shadowColor ?? kBlue100,
+                color: widget.shadowColor ?? kSecondary,
                 border: Border.all(
-                  color: widget.shadowColor ?? kBlue100,
+                  color: widget.shadowColor ?? kSecondary,
                 ),
               ),
             ),

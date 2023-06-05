@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class SocialMedia {
   final String link;
-  final IconData icon;
+  final Widget icon;
   SocialMedia({
     required this.link,
     required this.icon,

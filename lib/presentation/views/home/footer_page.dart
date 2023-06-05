@@ -35,9 +35,9 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
   Duration get slideDuration =>
       staggeredDuration + (staggeredDuration * sectors) + itemSlideDuration;
   List<Color> get sectorColors => [
-        kBlue100,
-        kBlue100,
-        kBlue100,
+        _footerForegroundColor,
+        _footerForegroundColor,
+        _footerForegroundColor,
         kBlack,
         kBlack,
       ];
@@ -48,6 +48,7 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
       Theme.of(context).textTheme.titleMedium?.copyWith(
             fontWeight: FontWeight.w500,
           );
+  final Color _footerForegroundColor = kSecondary;
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -134,7 +135,7 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
     return <Widget>[
       AnimatedTextSlideBoxTransition(
         controller: _labelController,
-        coverColor: kBlue100,
+        coverColor: _footerForegroundColor,
         text: quoteName,
         width: context.screenWidth - quotePadding,
         maxLines: maxLines,
@@ -146,7 +147,7 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
         const Spacer(),
         AnimatedTextSlideBoxTransition(
           controller: _labelController,
-          coverColor: kBlue100,
+          coverColor: _footerForegroundColor,
           width: quoteSize.width + s50,
           text: "— ${randomQuote.author}",
           textStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(
@@ -173,14 +174,14 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
       Text(
         ksLetsWork,
         style: context.titleLarge.copyWith(
-          color: kWhite,
+          color: _footerForegroundColor,
         ),
       ),
       verticalSpaceMassive,
       Text(
         ksFreelanceAvailability,
         style: context.titleSmall.copyWith(
-          color: kWhite,
+          color: _footerForegroundColor,
         ),
       ),
     ].addColumn(
@@ -190,7 +191,7 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
 
   Widget _footerAnimatedPath() {
     return FooterPath(
-      color: kWhite,
+      color: _footerForegroundColor,
       animation: _pathAnimation,
     )
         .addSizedBox(
@@ -210,58 +211,47 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
       Text(
         ksContactInfo,
         style: context.bodyLarge.copyWith(
-          color: kWhite,
+          color: _footerForegroundColor,
         ),
       ),
       <Widget>[
-        const Icon(
+        Icon(
           Atlas.mailbox,
-          color: kWhite,
+          color: _footerForegroundColor,
           size: s18,
         ),
         horizontalSpaceMedium,
         Text(
           ksWorkEmail,
           style: context.bodyMedium.copyWith(
-            color: kWhite,
+            color: _footerForegroundColor,
           ),
         ),
-      ].addRow(),
+      ].addRow().addInkWell(
+            onTap: ksWorkEmail.launchEmail,
+          ),
       <Widget>[
-        const Icon(
+        Icon(
           Atlas.office_phone,
-          color: kWhite,
+          color: _footerForegroundColor,
           size: s18,
         ),
         horizontalSpaceMedium,
         Text(
           ksWorkPhone,
           style: context.bodyMedium.copyWith(
-            color: kWhite,
+            color: kSecondary,
           ),
         ),
       ].addRow(),
-      const <Widget>[
-        Icon(
-          Atlas.linkedin,
-          color: kWhite,
-        ), // github
-        Icon(
-          Atlas.linkedin,
-          color: kWhite,
-        ), // linkedin
-        Icon(
-          Atlas.linkedin,
-          color: kWhite,
-        ), // facebook,color: kWhite,
-        Icon(
-          Atlas.linkedin,
-          color: kWhite,
-        ), // medium
-        Icon(
-          Atlas.linkedin,
-          color: kWhite,
-        ), // stackoverflow
+      verticalSpaceMedium,
+      <Widget>[
+        ...ksSocialMedia.map((media) {
+          return IconButton(
+            onPressed: media.link.launchWebsite,
+            icon: media.icon,
+          );
+        }).toList()
       ].addRow(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       ),
@@ -269,48 +259,52 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
       Text(
         ksCreditTo,
         style: context.bodyMedium.copyWith(
-          color: kWhite,
+          color: _footerForegroundColor,
         ),
       ),
       <Widget>[
         <Widget>[
           horizontalSpaceMassive,
-          const Icon(
+          Icon(
             Atlas.star_trophy_achievement,
-            color: kWhite,
+            color: _footerForegroundColor,
             size: s14,
           ),
           horizontalSpaceMedium,
           Text(
             ksDavidCobbina,
             style: context.bodyMedium.copyWith(
-              color: kWhite,
+              color: _footerForegroundColor,
               decorationStyle: TextDecorationStyle.dotted,
               decoration: TextDecoration.underline,
-              decorationColor: kWhite,
+              decorationColor: _footerForegroundColor,
               decorationThickness: s4,
             ),
           ),
-        ].addRow(),
+        ].addRow().addInkWell(
+              onTap: ksDavidCobbinaWebsite.launchWebsite,
+            ),
         <Widget>[
           horizontalSpaceMassive,
-          const Icon(
+          Icon(
             Atlas.star_trophy_achievement,
-            color: kWhite,
+            color: _footerForegroundColor,
             size: s14,
           ),
           horizontalSpaceMedium,
           Text(
             ksJuliusG,
             style: context.bodyMedium.copyWith(
-              color: kWhite,
+              color: _footerForegroundColor,
               decorationStyle: TextDecorationStyle.dotted,
               decoration: TextDecoration.underline,
-              decorationColor: kWhite,
+              decorationColor: _footerForegroundColor,
               decorationThickness: s4,
             ),
           ),
-        ].addRow(),
+        ].addRow().addInkWell(
+              onTap: ksJuliusGWebsite.launchWebsite,
+            ),
       ].addColumn(
         crossAxisAlignment: CrossAxisAlignment.start,
       ),
@@ -325,14 +319,14 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
       Text(
         ksBuildUsing,
         style: context.bodyMedium.copyWith(
-          color: kWhite,
+          color: _footerForegroundColor,
         ),
       ),
       const FlutterLogo(size: 14),
       Text(
         ksWithMuch,
         style: context.bodyMedium.copyWith(
-          color: kWhite,
+          color: _footerForegroundColor,
         ),
       ),
       const Icon(
@@ -348,7 +342,7 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
     return Text(
       ksCC,
       style: context.bodyMedium.copyWith(
-        color: kWhite,
+        color: _footerForegroundColor,
       ),
     );
   }
@@ -375,6 +369,6 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
               padding: context.symmetricPadding(h: s80),
             ),
       ].addColumn(),
-    ].addStack();
+    ].addStack().addSizedBox();
   }
 }
