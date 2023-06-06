@@ -13,8 +13,8 @@ class IntroductionPage extends StatefulWidget {
 
 class _IntroductionPageState extends State<IntroductionPage>
     with TickerProviderStateMixin {
-  late final AnimationController _controller;
-  late final AnimationController _controller2;
+  late AnimationController _controller;
+  late AnimationController _controller2;
   late Animation<double> blueCircleTween;
   late Animation<double> whiteCircleTween;
   @override
@@ -83,8 +83,8 @@ class _IntroductionPageState extends State<IntroductionPage>
               boxShadow: [
                 BoxShadow(
                   offset: const Offset(s0, s0),
-                  blurRadius: s20,
-                  spreadRadius: s5,
+                  blurRadius: s50,
+                  spreadRadius: s05,
                   color: kSecondary,
                   blurStyle: BlurStyle.outer,
                 ),
@@ -141,6 +141,7 @@ class _IntroductionPageState extends State<IntroductionPage>
           edgeInsets: context.symmetricPercentPadding(
             hPercent: 10,
           ),
-        ).addSizedBox();
+        )
+        .addSizedBox();
   }
 }

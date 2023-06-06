@@ -3,6 +3,7 @@ import 'package:url_strategy/url_strategy.dart';
 import 'package:yelwinoo/presentation/configs/configs.dart';
 import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
 
+import 'presentation/route/routes.dart';
 import 'presentation/utils/custom_scroll_behaviour.dart';
 import 'presentation/views/home/home_page.dart';
 
@@ -22,7 +23,9 @@ class MyApp extends StatelessWidget {
       scrollBehavior: AppScrollBehavior(),
       debugShowCheckedModeBanner: false,
       theme: context.theme(),
-      home: const HomePage(),
+      initialRoute: initialRoute,
+      onGenerateRoute: RouteGen.generateRoute,
     );
   }
+  String get initialRoute => Routes.home;
 }

@@ -96,9 +96,7 @@ class _SecondPageState extends State<SecondPage> with TickerProviderStateMixin {
                 height: containerHeight, padding: context.allPadding(p: s30))
             .addExpanded(),
       ].addRow(),
-    ]
-        .addColumn()
-        .addPadding(
+    ].addColumn().addPadding(
           edgeInsets: context.padding(
             l: s80,
             r: s80,

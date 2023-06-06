@@ -10,11 +10,13 @@ class MenuItem extends StatelessWidget {
     this.isHovered = false,
     required this.index,
     required this.height,
+    required this.onTap,
   }) : super(key: key);
   final String label;
   final bool isHovered;
   final int index;
   final double height;
+  final VoidCallback onTap;
   @override
   Widget build(BuildContext context) {
     return [
@@ -54,6 +56,6 @@ class MenuItem extends StatelessWidget {
             border: Border(),
           ),
         )
-        .addExpanded();
+        .addInkWell(onTap: onTap);
   }
 }

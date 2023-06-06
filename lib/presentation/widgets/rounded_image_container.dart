@@ -53,7 +53,7 @@ class RoundedImageContainer extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(borderRadius),
             image: DecorationImage(
-              image: NetworkImage(
+              image: AssetImage(
                 imageUrl,
               ),
               fit: BoxFit.cover,

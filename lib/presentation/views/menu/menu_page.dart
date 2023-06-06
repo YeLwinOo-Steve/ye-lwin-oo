@@ -2,13 +2,20 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
+import 'package:yelwinoo/presentation/views/about/about_view.dart';
+import 'package:yelwinoo/presentation/views/certificates/certificates_view.dart';
+import 'package:yelwinoo/presentation/views/home/home_page.dart';
+import 'package:yelwinoo/presentation/views/projects/projects_view.dart';
 import 'package:yelwinoo/presentation/widgets/widgets.dart';
 
 import '../../configs/configs.dart';
 
 class MenuPage extends StatefulWidget {
-  MenuPage({Key? key, required this.animation})
-      : _slideDownAnimation = Tween<Offset>(
+  MenuPage({
+    Key? key,
+    required this.onMenuItemTapped,
+    required this.animation,
+  })  : _slideDownAnimation = Tween<Offset>(
           begin: const Offset(0.0, -1),
           end: Offset.zero,
         ).animate(
@@ -18,14 +25,16 @@ class MenuPage extends StatefulWidget {
           ),
         ),
         super(key: key);
+  final Function(int) onMenuItemTapped;
   final Animation<double> animation;
   final Animation<Offset> _slideDownAnimation;
+
   @override
   State<MenuPage> createState() => _MenuPageState();
 }
 
 class _MenuPageState extends State<MenuPage> with TickerProviderStateMixin {
-  late AnimationController _animationController;
+  late AnimationController _boxController;
 
   List<bool> _menuItemHover = List.filled(ksMenu.length, false);
   final List<double> _menuItemListPositionY = List.filled(ksMenu.length, 0.0);
@@ -53,7 +62,7 @@ class _MenuPageState extends State<MenuPage> with TickerProviderStateMixin {
   }
 
   void _precacheImages() {
-    WidgetsBinding.instance.addPostFrameCallback((_){
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       for (Image vanGoghImage in _vanGoghImages) {
         precacheImage(vanGoghImage.image, context);
       }
@@ -64,7 +73,8 @@ class _MenuPageState extends State<MenuPage> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     _precacheImages();
-    _animationController = AnimationController(
+
+    _boxController = AnimationController(
       duration: duration200,
       vsync: this,
     );
@@ -72,7 +82,7 @@ class _MenuPageState extends State<MenuPage> with TickerProviderStateMixin {
 
   @override
   void dispose() {
-    _animationController.dispose();
+    _boxController.dispose();
     super.dispose();
   }
 
@@ -95,11 +105,11 @@ class _MenuPageState extends State<MenuPage> with TickerProviderStateMixin {
   }
 
   void startSlideContainerAnimation() {
-    _animationController.forward();
+    _boxController.forward();
   }
 
   void dismissSlideContainerAnimation() {
-    _animationController.reverse();
+    _boxController.reverse();
   }
 
   @override
@@ -114,11 +124,11 @@ class _MenuPageState extends State<MenuPage> with TickerProviderStateMixin {
           Align(
             alignment: Alignment.centerRight,
             child: Visibility(
-              visible: currentHoverIndex > -1 &&
-                  currentHoverIndex < ksMenu.length,
+              visible:
+                  currentHoverIndex > -1 && currentHoverIndex < ksMenu.length,
               child: VanGoghImage(
                 hoveredIndex: currentHoverIndex,
-                animation: _animationController.view,
+                animation: _boxController.view,
                 images: _vanGoghImages,
               ),
             ),
@@ -126,9 +136,11 @@ class _MenuPageState extends State<MenuPage> with TickerProviderStateMixin {
           [
             ...createMenuItems(context),
           ].addColumn(),
-        ].addStack(
-          alignment: Alignment.center,
-        ).addCenter(),
+        ]
+            .addStack(
+              alignment: Alignment.center,
+            )
+            .addCenter(),
       ).addContainer(
         height: context.screenHeight,
         padding: _padding,
@@ -141,11 +153,12 @@ class _MenuPageState extends State<MenuPage> with TickerProviderStateMixin {
     return ksMenu.map((menuItem) {
       int index = ksMenu.indexOf(menuItem);
       return MenuItem(
-        label: menuItem,
+        label: menuItem.label,
         index: index,
         height: _menuItemHeight,
         isHovered: _menuItemHover[index],
-      );
+        onTap: () => widget.onMenuItemTapped(index),
+      ).addExpanded();
     }).toList();
   }
 }

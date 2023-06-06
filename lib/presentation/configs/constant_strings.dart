@@ -1,8 +1,10 @@
 import 'package:atlas_icons/atlas_icons.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:yelwinoo/data/model/quote.dart';
+import 'package:yelwinoo/data/model/route_model.dart';
 import 'package:yelwinoo/data/model/showcase_project.dart';
 import 'package:yelwinoo/data/model/social_media.dart';
+import 'package:yelwinoo/presentation/route/routes.dart';
 
 import 'constant_colors.dart';
 import 'constant_sizes.dart';
@@ -34,12 +36,12 @@ const String ksJuliusGWebsite =
 const String ksBuildUsing = "Build using ";
 const String ksWithMuch = " with much ";
 const String ksCC = "©️ 2023 Ye Lwin Oo";
-const List<String> ksMenu = [
-  ksHome,
-  ksProject,
-  ksCertificates,
-  ksAbout,
-  ksContact,
+final List<RouteModel> ksMenu = [
+  RouteModel(label: ksHome, route: Routes.home),
+  RouteModel(label: ksProject, route: Routes.projects),
+  RouteModel(label: ksCertificates, route: Routes.certificates),
+  RouteModel(label: ksAbout, route: Routes.about),
+  RouteModel(label: ksContact, route: Routes.contact),
 ];
 const String _nikolaTesla = "Nikola Tesla";
 const String _kentBeck = "Kent Beck";
@@ -161,8 +163,7 @@ final List<SocialMedia> ksSocialMedia = [
   ),
 ];
 
-const String dummyImage =
-    "https://elle.com.sg/wp-content/uploads/2020/06/kimgoeun-lead.jpg";
+const String dummyImage = "assets/images/projects/ggone.jpg";
 final List<ShowcaseProject> ksShowcaseProjects = [
   ShowcaseProject(
     title: 'Pulse-X State Management',

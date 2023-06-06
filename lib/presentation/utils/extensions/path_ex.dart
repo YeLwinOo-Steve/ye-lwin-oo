@@ -1,11 +1,14 @@
+
 import 'dart:ui';
+
+import 'package:flutter/cupertino.dart';
 
 extension PathEx on Path {
   Path createAnimatedPath(
     double animationPercent,
   ) {
     /// Don't know anything about it, just copied code from stackoverflow :)
-    // ComputeMetrics can only be iterated once!
+    /// ComputeMetrics can only be iterated once!
     final totalLength = computeMetrics()
         .fold(0.0, (double prev, PathMetric metric) => prev + metric.length);
 
@@ -22,7 +25,6 @@ extension PathEx on Path {
     final path = Path();
 
     var metricsIterator = computeMetrics().iterator;
-
     while (metricsIterator.moveNext()) {
       var metric = metricsIterator.current;
 

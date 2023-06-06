@@ -3,4 +3,4 @@ import 'package:flutter/material.dart';
 /// custom icons are prefixed with [ki]
 const IconData kiArrowForward = Icons.arrow_right_alt;
 const IconData kiClose = Atlas.xmark_circle_thin;
-
+const IconData kiCircle = Icons.circle;

@@ -2,6 +2,8 @@ import 'dart:math';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:type_text/type_rich_text.dart';
+import 'package:typewritertext/typewritertext.dart';
 import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
 
 import '../configs/configs.dart';
@@ -54,23 +56,28 @@ class _CodeBlockState extends State<CodeBlock>
           );
         },
         animation: _slideEditor,
-        child: const Opacity(
+        child: Opacity(
             opacity: 0.4,
             child: Editor(
               isBackground: true,
             )),
       ),
-      const Editor(),
+      Editor(),
     ].addStack();
   }
 }
 
 class Editor extends StatelessWidget {
-  const Editor({
+  Editor({
     Key? key,
     this.isBackground = false,
   }) : super(key: key);
   final bool isBackground;
+  final btnColors = [
+    kYellow,
+    kGreen,
+    kRed,
+  ];
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -82,35 +89,29 @@ class Editor extends StatelessWidget {
           width: s1,
           color: kBlack12,
         ),
-        color: Colors.black,
+        color: kBlack,
       ),
       padding: const EdgeInsets.all(12.0),
       margin: const EdgeInsets.only(left: 25.0, top: 25.0, bottom: 25.0),
       child: isBackground
           ? const SizedBox.shrink()
-          : [
-              const [
-                Icon(
-                  Icons.circle,
-                  size: 16,
-                  color: kYellow,
-                ),
-                SizedBox(
-                  width: 4.0,
-                ),
-                Icon(
-                  Icons.circle,
-                  size: 16,
-                  color: kGreen,
-                ),
-                SizedBox(
-                  width: 4.0,
-                ),
-                Icon(
-                  Icons.circle,
-                  size: 16,
-                  color: kRed,
-                ),
+          : <Widget>[
+              <Widget>[
+                ...btnColors.map(
+                  (color) {
+                    return Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          kiCircle,
+                          size: s14,
+                          color: color,
+                        ),
+                        horizontalSpaceSmall,
+                      ],
+                    );
+                  },
+                ).toList(),
               ]
                   .addRow(
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -118,35 +119,34 @@ class Editor extends StatelessWidget {
                   .addAlign(
                     alignment: Alignment.topRight,
                   ),
-              const Text(
-                "\$ find / name -\"life.dart\"",
-                style: TextStyle(
-                  color: kWhite,
+              TypeRichText(
+                text: TextSpan(
+                  text: '\$ find / name -"life.dart"\n\n',
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: kWhite,
+                      ),
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: '> Searching . . .\n\n',
+                      style: TextStyle(
+                        color: kSecondary,
+                      ),
+                    ),
+                    const TextSpan(
+                      text: '> Error: No life is found!\n\n',
+                      style: TextStyle(
+                        color: kRed,
+                      ),
+                    ),
+                    const TextSpan(
+                      text: "> Since you are a programmer, you have no life!",
+                      style: TextStyle(
+                        color: kRed,
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-              Text(
-                "> Searching . . .",
-                style: TextStyle(
-                  color: kSecondary,
-                ),
-              ),
-              const Text(
-                "> Error: No life is found!",
-                style: TextStyle(
-                  color: kRed,
-                ),
-              ),
-              const Text(
-                "> Since you are a programmer, you have no life!",
-                style: TextStyle(
-                  color: kRed,
-                ),
-              ),
-              const Text(
-                "\$ _",
-                style: TextStyle(
-                  color: kWhite,
-                ),
+                duration: duration5000,
               ),
             ].addColumn(
               crossAxisAlignment: CrossAxisAlignment.start,
