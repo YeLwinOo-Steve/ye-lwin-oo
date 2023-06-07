@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
 import 'package:yelwinoo/presentation/views/menu/menu_page.dart';
 import 'package:yelwinoo/presentation/widgets/widgets.dart';
@@ -14,18 +15,18 @@ class Wrapper extends StatefulWidget {
 
 class _WrapperState extends State<Wrapper> with TickerProviderStateMixin {
   bool _isDrawerOpen = false;
-  int sectors = 6;
-  double screenHeight = 0.0;
-  double sectorHeight = 0.0;
+  int sectors = 10;
+  double screenWidth = 0.0;
+  double sectorWidth = 0.0;
   final GlobalKey _globalKey = GlobalKey();
   late AnimationController _menuController;
   late AnimationController _loadingController;
   final List<Interval> _itemSlideIntervals = [];
-  Duration get staggeredDuration => duration100;
+  Duration get staggeredDuration => duration150;
   Duration get itemSlideDuration => duration1000;
   Duration get labelDuration => duration1000;
   Duration get slideDuration =>
-      staggeredDuration + (staggeredDuration * sectors) + itemSlideDuration;
+      staggeredDuration + (staggeredDuration * sectors) + itemSlideDuration + duration500;
 
   void createStaggeredIntervals() {
     for (int i = 0; i < sectors; i++) {
@@ -52,8 +53,8 @@ class _WrapperState extends State<Wrapper> with TickerProviderStateMixin {
       vsync: this,
       duration: slideDuration,
     );
-    screenHeight = context.screenHeight - context.percentHeight(s20);
-    sectorHeight = screenHeight / sectors;
+    screenWidth = context.screenWidth;
+    sectorWidth = screenWidth / sectors;
   }
 
   @override
@@ -85,7 +86,7 @@ class _WrapperState extends State<Wrapper> with TickerProviderStateMixin {
 
   void navigate(int index) {
     _loadingController.addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
+      if(status == AnimationStatus.completed){
         Navigator.pushNamed(
           context,
           ksMenu[index].route,
@@ -115,15 +116,22 @@ class _WrapperState extends State<Wrapper> with TickerProviderStateMixin {
           onMenuItemTapped: _handleNavigation,
           animation: _menuController.view,
         ),
-        ...List.generate(
-          sectors,
-          (index) => CustomPageTransition(
-            controller: _loadingController,
-            height: context.screenHeight,
-            width: context.screenWidth,
-            coverColor: kPrimary,
-            interval: _itemSlideIntervals[index],
-          ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            ...List.generate(
+              sectors,
+                  (index) => CustomPageTransition(
+                controller: _loadingController,
+                height: context.screenHeight,
+                width: sectorWidth,
+                boxColor: kSecondary,
+                coverColor: kPrimary,
+                index: index,
+                interval: _itemSlideIntervals[index],
+              ),
+            ),
+          ],
         ),
         // CustomSlider(
         //   width: context.screenWidth,

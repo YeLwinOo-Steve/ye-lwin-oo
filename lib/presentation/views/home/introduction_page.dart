@@ -49,8 +49,6 @@ class _IntroductionPageState extends State<IntroductionPage>
     );
     Future.delayed(duration500, () {
       _controller2.forward();
-    }).catchError((ex) {
-      _controller2.dispose();
     });
   }
 

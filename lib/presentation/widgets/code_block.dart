@@ -1,9 +1,6 @@
 import 'dart:math';
-
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:type_text/type_rich_text.dart';
-import 'package:typewritertext/typewritertext.dart';
 import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
 
 import '../configs/configs.dart';

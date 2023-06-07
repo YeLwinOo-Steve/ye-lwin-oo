@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
 
 class CustomPageTransition extends AnimatedWidget {
   const CustomPageTransition({
     Key? key,
     required this.controller,
+    this.index = 0,
     required this.height,
     required this.width,
     this.visibleBoxAnimation,
@@ -18,6 +20,7 @@ class CustomPageTransition extends AnimatedWidget {
 
   final AnimationController controller;
   final double height;
+  final int index;
   final double width;
   final Color boxColor;
   final Color coverColor;
@@ -29,27 +32,28 @@ class CustomPageTransition extends AnimatedWidget {
 
   Animation<double> get visibleAnimation =>
       visibleBoxAnimation ??
-      Tween<double>(begin: 0, end: height)
-          .animate(
-            CurvedAnimation(
-              parent: controller,
-              curve: Interval(0.0, 0.5, curve: visibleBoxCurve),
-            ),
-          );
+      Tween<double>(begin: 0, end: height).animate(
+        CurvedAnimation(
+          parent: controller,
+          curve: Interval(
+            interval.begin,
+            interval.end,
+            curve: visibleBoxCurve,
+          ),
+        ),
+      );
 
   Animation<double> get invisibleAnimation =>
-      Tween<double>(begin: 0, end: height)
-          .chain(
-            CurveTween(
-              curve: interval,
-            ),
-          )
-          .animate(
-            CurvedAnimation(
-              parent: controller,
-              curve: invisibleBoxCurve,
-            ),
-          );
+      Tween<double>(begin: 0, end: height).animate(
+        CurvedAnimation(
+          parent: controller,
+          curve: Interval(
+            interval.end,
+            1,
+            curve: invisibleBoxCurve,
+          ),
+        ),
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +66,6 @@ class CustomPageTransition extends AnimatedWidget {
         ),
       ),
       Positioned(
-        top: 0,
         child: Container(
           height: invisibleAnimation.value,
           width: width,
