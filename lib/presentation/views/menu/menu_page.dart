@@ -75,7 +75,7 @@ class _MenuPageState extends State<MenuPage> with TickerProviderStateMixin {
     _precacheImages();
 
     _boxController = AnimationController(
-      duration: duration200,
+      duration: duration100,
       vsync: this,
     );
   }

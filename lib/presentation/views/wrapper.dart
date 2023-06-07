@@ -47,7 +47,7 @@ class _WrapperState extends State<Wrapper> with TickerProviderStateMixin {
     createStaggeredIntervals();
     _menuController = AnimationController(
       vsync: this,
-      duration: duration1000,
+      duration: duration500,
     );
     _loadingController = AnimationController(
       vsync: this,
@@ -133,12 +133,6 @@ class _WrapperState extends State<Wrapper> with TickerProviderStateMixin {
             ),
           ],
         ),
-        // CustomSlider(
-        //   width: context.screenWidth,
-        //   height: context.screenHeight,
-        //   animation: _loadingController.view,
-        //   interval: const Interval(0, 1),
-        // ),
       ].addStack(),
     );
   }
