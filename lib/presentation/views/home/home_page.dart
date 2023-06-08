@@ -37,22 +37,6 @@ class _HomePageState extends State<HomePage>
     ];
   }
 
-  // // void _handleScroll(Offset delta) {
-  // //   if (delta.dy > s150 && page < pageLength) {
-  // //     page++;
-  // //   } else {
-  // //     page--;
-  // //   }
-  // //   _animateToPage();
-  // // }
-  //
-  // void _animateToPage() {
-  //   // WidgetsBinding.instance.addPostFrameCallback((_) {
-  //   //   _scrollController.animateTo(page * _screenHeight,
-  //   //       duration: duration1000, curve: Curves.easeInOut);
-  //   // });
-  // }
-
   void onMenuTapped() {
     setState(() {
       _isDrawerOpen = !_isDrawerOpen;

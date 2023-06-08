@@ -99,23 +99,23 @@ class _IntroductionPageState extends State<IntroductionPage>
           AnimatedTextSlideBoxTransition(
             controller: _controller,
             coverColor: Theme.of(context).scaffoldBackgroundColor,
-            text: "Flutter Developer &",
+            text: ksFlutterDeveloperAnd,
             textStyle: Theme.of(context).textTheme.headlineSmall,
           ),
           AnimatedTextSlideBoxTransition(
             controller: _controller,
             coverColor: Theme.of(context).scaffoldBackgroundColor,
-            text: "AI/ML Enthusiast",
+            text: ksAiEnthusiast,
             textStyle: Theme.of(context).textTheme.headlineSmall,
           ),
-          const SizedBox(
-            height: 30,
-          ),
+          verticalSpaceMassive,
           AnimatedTextSlideBoxTransition(
             controller: _controller,
-            text: "I'm Ye Lwin Oo",
+            text: ksIntro,
             coverColor: Theme.of(context).scaffoldBackgroundColor,
-            textStyle: Theme.of(context).textTheme.titleLarge,
+            textStyle: Theme.of(context).textTheme.bodyLarge,
+            width: context.screenWidth * 0.3,
+            maxLines: 4,
           ),
           context.percentSizedBox(pHeight: s5),
           CustomButton(

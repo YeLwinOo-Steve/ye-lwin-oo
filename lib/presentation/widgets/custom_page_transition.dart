@@ -58,29 +58,25 @@ class CustomPageTransition extends AnimatedWidget {
   @override
   Widget build(BuildContext context) {
     return [
-      Positioned(
-        child: Container(
-          height: visibleAnimation.value,
-          width: width,
-          decoration: BoxDecoration(
-            color: boxColor,
-            border: const Border.fromBorderSide(
-              BorderSide.none,
-            ),
+      Container(
+        height: visibleAnimation.value,
+        width: width,
+        decoration: BoxDecoration(
+          color: boxColor,
+          border: const Border.fromBorderSide(
+            BorderSide.none,
           ),
         ),
       ),
-      Positioned(
-        child: Container(
-          height: invisibleAnimation.value,
-          decoration: BoxDecoration(
-            color: coverColor,
-            border: const Border.fromBorderSide(
-              BorderSide.none,
-            ),
+      Container(
+        height: invisibleAnimation.value,
+        decoration: BoxDecoration(
+          color: coverColor,
+          border: const Border.fromBorderSide(
+            BorderSide.none,
           ),
-          width: width,
         ),
+        width: width,
       ),
     ].addStack().addSizedBox(
           width: width,

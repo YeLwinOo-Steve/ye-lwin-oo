@@ -12,6 +12,14 @@ import 'constant_sizes.dart';
 /// constant strings are prefixed with [ks]
 const String ksFontFamily = "Poppins";
 
+const String ksFlutterDeveloperAnd = "Flutter Developer &";
+const String ksAiEnthusiast = "AI/ML Enthusiast";
+const String ksIntro = """
+  Hi, I'm Ye Lwin Oo!
+    - a passionate mobile developer from Myanmar
+    - a CDM student from UCSM
+    - an avid reader
+  """;
 const String ksSeeMyWork = "See my work";
 const String ksHome = "Home";
 const String ksAbout = "About";
@@ -174,7 +182,13 @@ final List<ShowcaseProject> ksShowcaseProjects = [
     ],
     image: dummyImage,
     description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five ",
+        """
+        Pulse X is the state management for Flutter projects. It has four features:
+          - state management
+          - context-less routing
+          - dependency injection 
+          - reaction (side effects)
+        """,
     link: dummyImage,
     heroTag: 'pulse-x',
   ),
@@ -183,7 +197,13 @@ final List<ShowcaseProject> ksShowcaseProjects = [
     tags: ['flutter', 'dart', 'android', 'ios'],
     image: dummyImage,
     description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five ",
+        """
+        Notee is a personal management app that includes four parts :
+          - Note taking
+          - To-Do List
+          - Timer
+          - Account Control
+        """,
     link: dummyImage,
     heroTag: 'notee',
   ),
@@ -192,7 +212,9 @@ final List<ShowcaseProject> ksShowcaseProjects = [
     tags: ['html', 'css', 'javascript', 'website'],
     image: dummyImage,
     description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five ",
+        """
+        Web project showing Myanmar's Culture, Famous Places, Cuisine, Festivals, etc
+        """,
     link: dummyImage,
     heroTag: 'the-golden-land',
   ),

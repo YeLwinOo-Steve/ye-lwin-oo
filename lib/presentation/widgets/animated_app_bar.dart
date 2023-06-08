@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 import '../configs/configs.dart';
 
 class AnimatedAppBar extends PreferredSize {
-  AnimatedAppBar({
+  const AnimatedAppBar({
     super.key,
     required this.appBar,
     required this.animation,
   }) : super(
           child: appBar,
           preferredSize:
-              Size.fromHeight(appBar.toolbarHeight ?? s100),
+              const Size.fromHeight(s100),
         );
 
-  final AppBar appBar;
+  final Widget appBar;
 
   final Animation<double> animation;
 

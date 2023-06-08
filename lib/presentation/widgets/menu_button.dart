@@ -24,7 +24,7 @@ class MenuButton extends StatelessWidget {
         child: Icon(
           hasMenuTapped ? Atlas.xmark_circle : Atlas.two_line_bold,
           size: s40,
-          color: kSecondary,
+          color: kBlack,
         ).addCenter().addContainer(
               decoration: const BoxDecoration(
                 shape: BoxShape.circle,

@@ -27,9 +27,12 @@ extension ThemeEx on BuildContext {
   }
 
   AppBarTheme appBarTheme() {
-    return const AppBarTheme(
+    return AppBarTheme(
       backgroundColor: kTransparent,
       elevation: s0,
+      titleTextStyle: Theme.of(this).textTheme.labelLarge!.copyWith(
+        fontWeight: FontWeight.w700,
+      ),
       foregroundColor: kBlack,
       toolbarHeight: s100,
     );
@@ -43,6 +46,7 @@ extension ThemeEx on BuildContext {
           titleLarge: titleLarge,
           titleMedium: titleMedium,
           titleSmall: titleSmall,
+          labelLarge: labelLarge,
           bodyLarge: bodyLarge,
           bodyMedium: bodyMedium,
           bodySmall: bodySmall,
@@ -71,6 +75,10 @@ extension ThemeEx on BuildContext {
       );
   TextStyle get titleSmall => const TextStyle(
         fontSize: s32,
+        fontWeight: bold,
+      );
+  TextStyle get labelLarge => const TextStyle(
+        fontSize: s26,
         fontWeight: bold,
       );
   TextStyle get bodyLarge => const TextStyle(

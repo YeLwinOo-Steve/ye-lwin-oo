@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:yelwinoo/presentation/route/route_transitions.dart';
 import 'package:yelwinoo/presentation/route/routes.dart';
 import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
 import 'package:yelwinoo/presentation/views/home/widgets/project_description.dart';
+import 'package:yelwinoo/presentation/views/project_details/project_details_view.dart';
 import 'package:yelwinoo/presentation/widgets/widgets.dart';
 
 import '../../configs/configs.dart';
@@ -54,37 +56,48 @@ class _ShowcaseProjectsPageState extends State<ShowcaseProjectsPage>
       <Widget>[
         leftImages(),
         <Widget>[
-          AnimatedTextSlideBoxTransition(
-            controller: _controller,
-            coverColor: Theme.of(context).scaffoldBackgroundColor,
-            text: ksCraftedWithLove,
-            textStyle: Theme.of(context).textTheme.headlineSmall,
+          <Widget>[
+            AnimatedTextSlideBoxTransition(
+              controller: _controller,
+              coverColor: Theme.of(context).scaffoldBackgroundColor,
+              text: ksCraftedWithLove,
+              textStyle: Theme.of(context).textTheme.headlineSmall,
+            ),
+            AnimatedTextSlideBoxTransition(
+              controller: _controller,
+              coverColor: Theme.of(context).scaffoldBackgroundColor,
+              text: ksRecentProjects,
+              textStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    fontWeight: FontWeight.w300,
+                  ),
+            ),
+          ].addColumn(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
           ),
-          AnimatedTextSlideBoxTransition(
-            controller: _controller,
-            coverColor: Theme.of(context).scaffoldBackgroundColor,
-            text: ksRecentProjects,
-            textStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  fontWeight: FontWeight.w300,
-                ),
-          ),
-          verticalSpaceMedium,
           ...ksShowcaseProjects
               .map(
                 (project) => ProjectDescription(
                   animation: _controller,
                   slideUpTween: _slideUpTween,
                   label: project.title,
-                  labelStyle: Theme.of(context).textTheme.titleSmall!.copyWith(
-                        fontWeight: FontWeight.w500,
+                  labelStyle: Theme.of(context).textTheme.labelLarge!.copyWith(
+                        fontWeight: FontWeight.w700,
                       ),
                   descriptionStyle: Theme.of(context).textTheme.bodyMedium!,
                   description: project.description,
                   index: ksShowcaseProjects.indexOf(project),
                   onPressed: () {
-                    Navigator.of(context).pushNamed(
-                      Routes.projectDetails,
-                      arguments: project,
+                    Navigator.of(context).push(
+                      SlideRouteTransition(
+                        position: SlidePosition.right,
+                        enterWidget: ProjectDetailsView(
+                          project: project,
+                        ),
+                        settings: RouteSettings(
+                          name: '${Routes.projectDetails}/${project.title}',
+                        ),
+                      ),
                     );
                   },
                 ),
@@ -96,7 +109,8 @@ class _ShowcaseProjectsPageState extends State<ShowcaseProjectsPage>
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             )
             .addContainer(
-                height: containerHeight, padding: context.allPadding(p: s30))
+                height: containerHeight,
+                padding: context.symmetricPadding(h: s30, v: s0))
             .addExpanded(),
       ].addRow(),
     ].addColumn().addPadding(

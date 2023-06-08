@@ -9,6 +9,8 @@ import 'package:yelwinoo/presentation/views/home/home_page.dart';
 import 'package:yelwinoo/presentation/views/project_details/project_details_view.dart';
 import 'package:yelwinoo/presentation/views/projects/projects_view.dart';
 
+import 'route_transitions.dart';
+
 class RouteGen {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     final arguments = settings.arguments;
@@ -19,10 +21,13 @@ class RouteGen {
         return _buildRoute(const ProjectsView(), settings: settings);
       case Routes.projectDetails:
         return _buildRoute(
-            ProjectDetailsView(
-              project: arguments as ShowcaseProject,
-            ),
-            settings: settings);
+          ProjectDetailsView(
+            project: arguments as ShowcaseProject,
+          ),
+          settings: RouteSettings(
+            name: '${settings.name}/${arguments.title}',
+          ),
+        );
       case Routes.certificates:
         return _buildRoute(const CertificatesView(), settings: settings);
       case Routes.about:
@@ -33,7 +38,7 @@ class RouteGen {
   }
 
   static PageRouteBuilder _buildRoute(Widget child, {RouteSettings? settings}) {
-    return SlideDownRoute(
+    return SlideRouteTransition(
       settings: settings,
       enterWidget: child,
     );
@@ -56,7 +61,7 @@ class ErrorView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Error Page'),
+        title: const Text('Error Page'),
       ),
       body: Center(
         child: Text(
@@ -66,35 +71,4 @@ class ErrorView extends StatelessWidget {
       ),
     );
   }
-}
-
-class SlideDownRoute extends PageRouteBuilder {
-  final Widget enterWidget;
-
-  SlideDownRoute({
-    required this.enterWidget,
-    super.settings,
-  }) : super(
-            transitionDuration: duration500,
-            pageBuilder: (BuildContext context, Animation<double> animation,
-                Animation<double> secondaryAnimation) {
-              return enterWidget;
-            },
-            transitionsBuilder: (BuildContext context,
-                Animation<double> animation,
-                Animation<double> secondaryAnimation,
-                Widget child) {
-              return SlideTransition(
-                position: Tween<Offset>(
-                  begin: const Offset(0.0, -1.0),
-                  end: Offset.zero,
-                ).animate(
-                  CurvedAnimation(
-                    parent: animation,
-                    curve: Curves.fastLinearToSlowEaseIn,
-                  ),
-                ),
-                child: enterWidget,
-              );
-            });
 }

@@ -43,8 +43,6 @@ class ProjectDescription extends StatelessWidget {
             Text(
               label,
               style: labelStyle,
-            ).addHero(
-              tag: label,
             ),
             verticalSpaceMedium,
             Text(
