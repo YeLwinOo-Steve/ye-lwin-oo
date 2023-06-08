@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:yelwinoo/presentation/route/routes.dart';
 import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
 import 'package:yelwinoo/presentation/views/home/widgets/project_description.dart';
 import 'package:yelwinoo/presentation/widgets/widgets.dart';
 
 import '../../configs/configs.dart';
 
-class SecondPage extends StatefulWidget {
-  const SecondPage({Key? key}) : super(key: key);
+class ShowcaseProjectsPage extends StatefulWidget {
+  const ShowcaseProjectsPage({Key? key}) : super(key: key);
 
   @override
-  State<SecondPage> createState() => _SecondPageState();
+  State<ShowcaseProjectsPage> createState() => _ShowcaseProjectsPageState();
 }
 
-class _SecondPageState extends State<SecondPage> with TickerProviderStateMixin {
+class _ShowcaseProjectsPageState extends State<ShowcaseProjectsPage>
+    with TickerProviderStateMixin {
   late final AnimationController _controller;
   late double appBarHeight;
   late double containerHeight;
@@ -52,24 +54,19 @@ class _SecondPageState extends State<SecondPage> with TickerProviderStateMixin {
       <Widget>[
         leftImages(),
         <Widget>[
-          <Widget>[
-            AnimatedTextSlideBoxTransition(
-              controller: _controller,
-              coverColor: Theme.of(context).scaffoldBackgroundColor,
-              text: ksCraftedWithLove,
-              textStyle: Theme.of(context).textTheme.headlineSmall,
-            ),
-            AnimatedTextSlideBoxTransition(
-              controller: _controller,
-              coverColor: Theme.of(context).scaffoldBackgroundColor,
-              text: ksRecentProjects,
-              textStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    fontWeight: FontWeight.w300,
-                  ),
-            ),
-          ].addColumn(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
+          AnimatedTextSlideBoxTransition(
+            controller: _controller,
+            coverColor: Theme.of(context).scaffoldBackgroundColor,
+            text: ksCraftedWithLove,
+            textStyle: Theme.of(context).textTheme.headlineSmall,
+          ),
+          AnimatedTextSlideBoxTransition(
+            controller: _controller,
+            coverColor: Theme.of(context).scaffoldBackgroundColor,
+            text: ksRecentProjects,
+            textStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                  fontWeight: FontWeight.w300,
+                ),
           ),
           verticalSpaceMedium,
           ...ksShowcaseProjects
@@ -84,6 +81,12 @@ class _SecondPageState extends State<SecondPage> with TickerProviderStateMixin {
                   descriptionStyle: Theme.of(context).textTheme.bodyMedium!,
                   description: project.description,
                   index: ksShowcaseProjects.indexOf(project),
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(
+                      Routes.projectDetails,
+                      arguments: project,
+                    );
+                  },
                 ),
               )
               .toList(),
@@ -107,7 +110,7 @@ class _SecondPageState extends State<SecondPage> with TickerProviderStateMixin {
   }
 
   Widget leftImages() {
-    return [
+    return <Widget>[
       RoundedImageContainer(
         width: imageWidth,
         margin: s10,
@@ -116,6 +119,7 @@ class _SecondPageState extends State<SecondPage> with TickerProviderStateMixin {
         animation: _controller.view,
         index: 1,
         imageUrl: ksShowcaseProjects[0].image,
+        tag: ksShowcaseProjects[0].heroTag,
       ),
       RoundedImageContainer(
         width: imageWidth,
@@ -125,6 +129,7 @@ class _SecondPageState extends State<SecondPage> with TickerProviderStateMixin {
         animation: _controller.view,
         index: 2,
         imageUrl: ksShowcaseProjects[1].image,
+        tag: ksShowcaseProjects[1].heroTag,
       ),
       RoundedImageContainer(
         width: imageWidth,
@@ -134,6 +139,7 @@ class _SecondPageState extends State<SecondPage> with TickerProviderStateMixin {
         animation: _controller.view,
         index: 3,
         imageUrl: ksShowcaseProjects[2].image,
+        tag: ksShowcaseProjects[2].heroTag,
       ),
     ]
         .addColumn(

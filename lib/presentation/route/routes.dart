@@ -1,31 +1,41 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:yelwinoo/data/model/showcase_project.dart';
+import 'package:yelwinoo/presentation/configs/configs.dart';
 import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
 import 'package:yelwinoo/presentation/views/about/about_view.dart';
 import 'package:yelwinoo/presentation/views/certificates/certificates_view.dart';
 import 'package:yelwinoo/presentation/views/home/home_page.dart';
+import 'package:yelwinoo/presentation/views/project_details/project_details_view.dart';
 import 'package:yelwinoo/presentation/views/projects/projects_view.dart';
 
 class RouteGen {
   static Route<dynamic> generateRoute(RouteSettings settings) {
+    final arguments = settings.arguments;
     switch (settings.name) {
       case Routes.home:
-        return _buildRoute(const HomePage(),settings: settings);
+        return _buildRoute(const HomePage(), settings: settings);
       case Routes.projects:
-        return _buildRoute(const ProjectsView(),settings: settings);
+        return _buildRoute(const ProjectsView(), settings: settings);
+      case Routes.projectDetails:
+        return _buildRoute(
+            ProjectDetailsView(
+              project: arguments as ShowcaseProject,
+            ),
+            settings: settings);
       case Routes.certificates:
-        return _buildRoute(const CertificatesView(),settings: settings);
+        return _buildRoute(const CertificatesView(), settings: settings);
       case Routes.about:
-        return _buildRoute(const AboutView(),settings: settings);
+        return _buildRoute(const AboutView(), settings: settings);
       default:
-        return _buildRoute(const ErrorView(),settings: settings);
+        return _buildRoute(const ErrorView(), settings: settings);
     }
   }
 
-  static MaterialPageRoute _buildRoute(Widget child, {RouteSettings? settings}) {
-    return MaterialPageRoute(
-      builder: (BuildContext context) => child,
+  static PageRouteBuilder _buildRoute(Widget child, {RouteSettings? settings}) {
+    return SlideLeftRoute(
       settings: settings,
+      enterWidget: child,
     );
   }
 }
@@ -39,7 +49,6 @@ class Routes {
   static const contact = "/contact_me";
 }
 
-
 class ErrorView extends StatelessWidget {
   const ErrorView({super.key});
 
@@ -50,8 +59,37 @@ class ErrorView extends StatelessWidget {
         title: Text('Error Page'),
       ),
       body: Center(
-        child: Text("404 - Page Not Found!",style: context.titleLarge,),
+        child: Text(
+          "404 - Page Not Found!",
+          style: context.titleLarge,
+        ),
       ),
     );
   }
+}
+
+class SlideLeftRoute extends PageRouteBuilder {
+  final Widget enterWidget;
+
+  SlideLeftRoute({
+    required this.enterWidget,
+    super.settings,
+  }) : super(
+            transitionDuration: duration1000,
+            pageBuilder: (BuildContext context, Animation<double> animation,
+                Animation<double> secondaryAnimation) {
+              return enterWidget;
+            },
+            transitionsBuilder: (BuildContext context,
+                Animation<double> animation,
+                Animation<double> secondaryAnimation,
+                Widget child) {
+              return SlideTransition(
+                position: Tween<Offset>(
+                  begin: const Offset(0.0, -1.0),
+                  end: Offset.zero,
+                ).animate(animation),
+                child: enterWidget,
+              );
+            });
 }

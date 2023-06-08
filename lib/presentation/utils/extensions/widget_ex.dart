@@ -59,6 +59,13 @@ extension WidgetEx on Widget {
     );
   }
 
+  Widget addHero({required Object tag}) {
+    return Hero(
+      tag: tag,
+      child: this,
+    );
+  }
+
   Widget addOpacity({required double opacity}) {
     return Opacity(
       opacity: opacity,

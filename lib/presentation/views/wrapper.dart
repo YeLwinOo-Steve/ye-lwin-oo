@@ -26,7 +26,10 @@ class _WrapperState extends State<Wrapper> with TickerProviderStateMixin {
   Duration get itemSlideDuration => duration1000;
   Duration get labelDuration => duration1000;
   Duration get slideDuration =>
-      staggeredDuration + (staggeredDuration * sectors) + itemSlideDuration + duration500;
+      staggeredDuration +
+      (staggeredDuration * sectors) +
+      itemSlideDuration +
+      duration500;
 
   void createStaggeredIntervals() {
     for (int i = 0; i < sectors; i++) {
@@ -75,21 +78,21 @@ class _WrapperState extends State<Wrapper> with TickerProviderStateMixin {
     }
   }
 
-  void _handleNavigation(int index) {
+  void _handleNavigation(String routeName) {
     _menuController.reverse().then((value) {
       if (_menuController.status == AnimationStatus.dismissed) {
         _loadingController.forward();
-        navigate(index);
+        navigate(routeName);
       }
     });
   }
 
-  void navigate(int index) {
+  void navigate(String routeName) {
     _loadingController.addStatusListener((status) {
-      if(status == AnimationStatus.completed){
+      if (status == AnimationStatus.completed) {
         Navigator.pushNamed(
           context,
-          ksMenu[index].route,
+          routeName,
         );
       }
     });
@@ -110,28 +113,27 @@ class _WrapperState extends State<Wrapper> with TickerProviderStateMixin {
           horizontalSpaceLarge,
         ],
       ),
-      body: [
+      body: <Widget>[
         widget.page,
         MenuPage(
-          onMenuItemTapped: _handleNavigation,
+          onMenuItemTapped: (index) => _handleNavigation(ksMenu[index].route),
           animation: _menuController.view,
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            ...List.generate(
-              sectors,
-                  (index) => CustomPageTransition(
-                controller: _loadingController,
-                height: context.screenHeight,
-                width: sectorWidth,
-                boxColor: kSecondary,
-                coverColor: kPrimary,
-                index: index,
-                interval: _itemSlideIntervals[index],
-              ),
+        <Widget>[
+          ...List.generate(
+            sectors,
+            (index) => CustomPageTransition(
+              controller: _loadingController,
+              height: context.screenHeight,
+              width: sectorWidth,
+              boxColor: kSecondary,
+              coverColor: kPrimary,
+              index: index,
+              interval: _itemSlideIntervals[index],
             ),
-          ],
+          ),
+        ].addRow(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         ),
       ].addStack(),
     );

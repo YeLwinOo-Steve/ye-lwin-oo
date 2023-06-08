@@ -15,6 +15,7 @@ class RoundedImageContainer extends StatelessWidget {
     this.labelStyle,
     required this.index,
     required this.imageUrl,
+    required this.tag,
   })  : alignAnimation = Tween<AlignmentGeometry>(
           begin: beginAlignment,
           end: endAlignment,
@@ -36,6 +37,7 @@ class RoundedImageContainer extends StatelessWidget {
   TextStyle? labelStyle;
   final int index;
   final String imageUrl;
+  final String tag;
 
   @override
   Widget build(BuildContext context) {
@@ -47,16 +49,19 @@ class RoundedImageContainer extends StatelessWidget {
     return AlignTransition(
       alignment: alignAnimation,
       child: [
-        Container(
-          width: width,
-          margin: EdgeInsets.all(margin),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(borderRadius),
-            image: DecorationImage(
-              image: AssetImage(
-                imageUrl,
+        Hero(
+          tag: tag,
+          child: Container(
+            width: width,
+            margin: EdgeInsets.all(margin),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(borderRadius),
+              image: DecorationImage(
+                image: AssetImage(
+                  imageUrl,
+                ),
+                fit: BoxFit.cover,
               ),
-              fit: BoxFit.cover,
             ),
           ),
         ),

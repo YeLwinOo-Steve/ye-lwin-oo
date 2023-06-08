@@ -3,7 +3,7 @@ import 'package:yelwinoo/presentation/views/wrapper.dart';
 import 'package:yelwinoo/presentation/widgets/widgets.dart';
 
 import 'introduction_page.dart';
-import 'second_page.dart';
+import 'showcase_projects_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage>
     super.didChangeDependencies();
     mainPages = const [
       IntroductionPage(),
-      SecondPage(),
+      ShowcaseProjectsPage(),
       FooterPage(),
     ];
   }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:logger/logger.dart';
 import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
 
 class CustomPageTransition extends AnimatedWidget {
@@ -12,7 +11,7 @@ class CustomPageTransition extends AnimatedWidget {
     this.visibleBoxAnimation,
     this.invisibleBoxAnimation,
     this.boxColor = Colors.black,
-    this.coverColor = Colors.transparent,
+    this.coverColor = Colors.blue,
     required this.interval,
     this.visibleBoxCurve = Curves.fastOutSlowIn,
     this.invisibleBoxCurve = Curves.fastOutSlowIn,

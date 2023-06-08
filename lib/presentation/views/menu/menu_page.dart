@@ -1,11 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:logger/logger.dart';
 import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
-import 'package:yelwinoo/presentation/views/about/about_view.dart';
-import 'package:yelwinoo/presentation/views/certificates/certificates_view.dart';
-import 'package:yelwinoo/presentation/views/home/home_page.dart';
-import 'package:yelwinoo/presentation/views/projects/projects_view.dart';
 import 'package:yelwinoo/presentation/widgets/widgets.dart';
 
 import '../../configs/configs.dart';

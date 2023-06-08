@@ -196,7 +196,6 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
     )
         .addSizedBox(
           height: footerHeight,
-          width: context.screenWidth * 0.5,
         )
         .addPadding(
           edgeInsets: context.symmetricPadding(
@@ -356,7 +355,7 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
         <Widget>[
           <Widget>[
             _footerWelcomePart(),
-            _footerAnimatedPath(),
+            _footerAnimatedPath().addExpanded(),
             _footerSocialAndCreditPart(),
           ].addRow().addExpanded(),
           _madeWithFlutterLabel(),

@@ -14,6 +14,7 @@ class ProjectDescription extends StatelessWidget {
     this.index = 0,
     required this.description,
     required this.descriptionStyle,
+    required this.onPressed,
   });
   final Animation<double> animation;
   final Animation<Offset> slideUpTween;
@@ -21,56 +22,50 @@ class ProjectDescription extends StatelessWidget {
   final String description;
   final TextStyle labelStyle;
   final TextStyle descriptionStyle;
+  final VoidCallback onPressed;
   final int index;
   @override
   Widget build(BuildContext context) {
-    Size buttonSize = ksViewProject.textSize(
-      style: Theme.of(context).textTheme.bodyMedium,
-    );
     return FadeTransition(
       opacity: animation,
       child: SlideTransition(
         position: slideUpTween,
-        child: Stack(
-          children: [
-            Positioned(
-              child: Opacity(
-                opacity: s05,
-                child: Text(
-                  '${index + 1}'.prefixZero(),
-                  style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                        color: kSecondary,
-                      ),
+        child: <Widget>[
+          Text(
+            '${index + 1}'.prefixZero(),
+            style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                  color: kSecondary,
                 ),
-              ),
+          ).addOpacity(
+            opacity: s05,
+          ),
+          <Widget>[
+            Text(
+              label,
+              style: labelStyle,
+            ).addHero(
+              tag: label,
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            verticalSpaceMedium,
+            Text(
+              description,
+              style: descriptionStyle,
+            ),
+            verticalSpaceSmall,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Text(
-                  label,
-                  style: labelStyle,
-                ),
-                verticalSpaceMedium,
-                Text(
-                  description,
-                  style: descriptionStyle,
-                ),
-                verticalSpaceSmall,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    CustomButton(
-                      label: ksViewProject,
-                      onPressed: () {},
-                      icon: kiArrowForward,
-                    ),
-                  ],
+                CustomButton(
+                  label: ksViewProject,
+                  onPressed: onPressed,
+                  icon: kiArrowForward,
                 ),
               ],
             ),
-          ],
-        ),
+          ].addColumn(
+            crossAxisAlignment: CrossAxisAlignment.start,
+          ),
+        ].addStack(),
       ),
     );
   }
