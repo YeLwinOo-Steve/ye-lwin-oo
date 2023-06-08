@@ -33,7 +33,7 @@ class RouteGen {
   }
 
   static PageRouteBuilder _buildRoute(Widget child, {RouteSettings? settings}) {
-    return SlideLeftRoute(
+    return SlideDownRoute(
       settings: settings,
       enterWidget: child,
     );
@@ -68,14 +68,14 @@ class ErrorView extends StatelessWidget {
   }
 }
 
-class SlideLeftRoute extends PageRouteBuilder {
+class SlideDownRoute extends PageRouteBuilder {
   final Widget enterWidget;
 
-  SlideLeftRoute({
+  SlideDownRoute({
     required this.enterWidget,
     super.settings,
   }) : super(
-            transitionDuration: duration1000,
+            transitionDuration: duration500,
             pageBuilder: (BuildContext context, Animation<double> animation,
                 Animation<double> secondaryAnimation) {
               return enterWidget;
@@ -88,7 +88,12 @@ class SlideLeftRoute extends PageRouteBuilder {
                 position: Tween<Offset>(
                   begin: const Offset(0.0, -1.0),
                   end: Offset.zero,
-                ).animate(animation),
+                ).animate(
+                  CurvedAnimation(
+                    parent: animation,
+                    curve: Curves.fastLinearToSlowEaseIn,
+                  ),
+                ),
                 child: enterWidget,
               );
             });

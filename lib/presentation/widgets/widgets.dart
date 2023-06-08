@@ -11,3 +11,4 @@ export './vangogh_image.dart';
 export '../views/home/footer_page.dart';
 export './rounded_image_container.dart';
 export './custom_page_transition.dart';
+export './animated_app_bar.dart';

@@ -16,20 +16,22 @@ class Wrapper extends StatefulWidget {
 class _WrapperState extends State<Wrapper> with TickerProviderStateMixin {
   bool _isDrawerOpen = false;
   int sectors = 10;
-  double screenWidth = 0.0;
-  double sectorWidth = 0.0;
+  double screenWidth = s0;
+  double sectorWidth = s0;
+
   final GlobalKey _globalKey = GlobalKey();
   late AnimationController _menuController;
   late AnimationController _loadingController;
+  late AnimationController _appBarController;
   final List<Interval> _itemSlideIntervals = [];
-  Duration get staggeredDuration => duration150;
+  Duration get staggeredDuration => duration50;
   Duration get itemSlideDuration => duration1000;
   Duration get labelDuration => duration1000;
   Duration get slideDuration =>
       staggeredDuration +
       (staggeredDuration * sectors) +
       itemSlideDuration +
-      duration500;
+      duration200;
 
   void createStaggeredIntervals() {
     for (int i = 0; i < sectors; i++) {
@@ -56,6 +58,7 @@ class _WrapperState extends State<Wrapper> with TickerProviderStateMixin {
       vsync: this,
       duration: slideDuration,
     );
+    _appBarController = AnimationController(vsync: this,duration: duration300);
     screenWidth = context.screenWidth;
     sectorWidth = screenWidth / sectors;
   }
@@ -64,6 +67,7 @@ class _WrapperState extends State<Wrapper> with TickerProviderStateMixin {
   void dispose() {
     _menuController.dispose();
     _loadingController.dispose();
+    _appBarController.dispose();
     super.dispose();
   }
 
@@ -82,6 +86,7 @@ class _WrapperState extends State<Wrapper> with TickerProviderStateMixin {
     _menuController.reverse().then((value) {
       if (_menuController.status == AnimationStatus.dismissed) {
         _loadingController.forward();
+        _appBarController.forward();
         navigate(routeName);
       }
     });
@@ -103,15 +108,18 @@ class _WrapperState extends State<Wrapper> with TickerProviderStateMixin {
     return Scaffold(
       key: _globalKey,
       extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        leading: const Logo(),
-        actions: [
-          MenuButton(
-            onPressed: onMenuTapped,
-            hasMenuTapped: _isDrawerOpen,
-          ),
-          horizontalSpaceLarge,
-        ],
+      appBar: AnimatedAppBar(
+        animation: _appBarController.view,
+        appBar: AppBar(
+          leading: const Logo(),
+          actions: [
+            MenuButton(
+              onPressed: onMenuTapped,
+              hasMenuTapped: _isDrawerOpen,
+            ),
+            horizontalSpaceLarge,
+          ],
+        ),
       ),
       body: <Widget>[
         widget.page,
@@ -123,13 +131,13 @@ class _WrapperState extends State<Wrapper> with TickerProviderStateMixin {
           ...List.generate(
             sectors,
             (index) => CustomPageTransition(
-              controller: _loadingController,
+              startController: _loadingController,
               height: context.screenHeight,
               width: sectorWidth,
-              boxColor: kSecondary,
+              boxColor: kBlack,
               coverColor: kPrimary,
               index: index,
-              interval: _itemSlideIntervals[index],
+              slideInterval: _itemSlideIntervals[index],
             ),
           ),
         ].addRow(

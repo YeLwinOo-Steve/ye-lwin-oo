@@ -1,4 +1,6 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:yelwinoo/presentation/configs/configs.dart';
 import 'package:yelwinoo/presentation/views/wrapper.dart';
 import 'package:yelwinoo/presentation/widgets/widgets.dart';
 
@@ -14,6 +16,11 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
+  final PageController pageController = PageController();
+  // this is like a lock that prevent update the PageView multiple times while is
+  // scrolling
+  bool pageIsScrolling = false;
+
   List<Widget> mainPages = [];
   final _key = GlobalKey();
   int page = 0;
@@ -52,21 +59,48 @@ class _HomePageState extends State<HomePage>
     });
   }
 
+  void _onScroll(double offset) {
+    if (pageIsScrolling == false) {
+      pageIsScrolling = true;
+      if (offset > 0) {
+        pageController
+            .nextPage(
+              duration: duration300,
+              curve: Curves.easeInOut,
+            )
+            .then((value) => pageIsScrolling = false);
+
+      } else {
+        pageController
+            .previousPage(
+              duration: duration300,
+              curve: Curves.easeInOut,
+            )
+            .then((value) => pageIsScrolling = false);
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Wrapper(
-      page: Listener(
-        // onPointerSignal: (PointerSignalEvent event) {
-        //   if (event is PointerScrollEvent) {
-        //     _handleScroll(event.scrollDelta);
-        //   }
-        // },
-        child: PageView(
-          key: _key,
-          physics: const AlwaysScrollableScrollPhysics(),
-          // controller: _scrollController,
-          scrollDirection: Axis.vertical,
-          children: mainPages,
+      page: GestureDetector(
+        onPanUpdate: (details) {
+          _onScroll(details.delta.dy * -1);
+        },
+        child: Listener(
+          onPointerSignal: (pointerSignal) {
+            if (pointerSignal is PointerScrollEvent) {
+              _onScroll(pointerSignal.scrollDelta.dy);
+            }
+          },
+          child: PageView(
+            key: _key,
+            controller: pageController,
+            physics: const NeverScrollableScrollPhysics(),
+            scrollDirection: Axis.vertical,
+            children: mainPages,
+          ),
         ),
       ),
     );

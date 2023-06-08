@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:yelwinoo/presentation/configs/configs.dart';
 import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
 
 class CustomPageTransition extends AnimatedWidget {
   const CustomPageTransition({
     Key? key,
-    required this.controller,
+    required this.startController,
     this.index = 0,
     required this.height,
     required this.width,
     this.visibleBoxAnimation,
     this.invisibleBoxAnimation,
-    this.boxColor = Colors.black,
-    this.coverColor = Colors.blue,
-    required this.interval,
-    this.visibleBoxCurve = Curves.fastOutSlowIn,
-    this.invisibleBoxCurve = Curves.fastOutSlowIn,
-  }) : super(key: key, listenable: controller);
+    this.boxColor = kBlack,
+    this.coverColor = kWhite,
+    required this.slideInterval,
+    this.visibleBoxCurve = Curves.easeInOut,
+    this.invisibleBoxCurve = Curves.easeInOut,
+  }) : super(key: key, listenable: startController);
 
-  final AnimationController controller;
+  final AnimationController startController;
   final double height;
   final int index;
   final double width;
@@ -25,7 +26,7 @@ class CustomPageTransition extends AnimatedWidget {
   final Color coverColor;
   final Curve visibleBoxCurve;
   final Curve invisibleBoxCurve;
-  final Interval interval;
+  final Interval slideInterval;
   final Animation<double>? visibleBoxAnimation;
   final Animation<double>? invisibleBoxAnimation;
 
@@ -33,10 +34,10 @@ class CustomPageTransition extends AnimatedWidget {
       visibleBoxAnimation ??
       Tween<double>(begin: 0, end: height).animate(
         CurvedAnimation(
-          parent: controller,
+          parent: startController,
           curve: Interval(
-            interval.begin,
-            interval.end,
+            slideInterval.begin,
+            slideInterval.end,
             curve: visibleBoxCurve,
           ),
         ),
@@ -45,9 +46,9 @@ class CustomPageTransition extends AnimatedWidget {
   Animation<double> get invisibleAnimation =>
       Tween<double>(begin: 0, end: height).animate(
         CurvedAnimation(
-          parent: controller,
+          parent: startController,
           curve: Interval(
-            interval.end,
+            slideInterval.end,
             1,
             curve: invisibleBoxCurve,
           ),
@@ -79,7 +80,6 @@ class CustomPageTransition extends AnimatedWidget {
             ),
           ),
           width: width,
-
         ),
       ),
     ].addStack().addSizedBox(

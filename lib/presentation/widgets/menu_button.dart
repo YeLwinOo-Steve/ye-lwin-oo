@@ -21,29 +21,17 @@ class MenuButton extends StatelessWidget {
       child: InkWell(
         onTap: onPressed,
         borderRadius: BorderRadius.circular(s50),
-        child: AnimatedSwitcher(
-          duration: duration500,
-          switchInCurve: Curves.easeInOut,
-          switchOutCurve: Curves.easeInOut,
-          reverseDuration: duration500,
-          transitionBuilder: (child, animation) {
-            return SizeTransition(
-              sizeFactor: animation,
-              child: child,
-            );
-          },
-          child: Icon(
-            hasMenuTapped ? Atlas.xmark_circle : Atlas.two_line_bold,
-            size: s40,
-            color: kBlack,
-          ).addCenter(),
-        ).addContainer(
-          decoration: const BoxDecoration(
-            shape: BoxShape.circle,
-          ),
-          width: s65,
-          height: s65,
-        ),
+        child: Icon(
+          hasMenuTapped ? Atlas.xmark_circle : Atlas.two_line_bold,
+          size: s40,
+          color: kSecondary,
+        ).addCenter().addContainer(
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+              ),
+              width: s65,
+              height: s65,
+            ),
       ),
     );
   }
