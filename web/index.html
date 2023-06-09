@@ -72,25 +72,65 @@
       background:#F4F4EF;
     }
     body{
-      height: 100vh;
-      width: 100vw;
       display:flex;
       align-items:center;
       justify-content: center;
+    }
+    #icon{
+    margin: auto; display: block;
+    }
+    .loading{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      -moz-transform: translateX(-50%) translateY(-50%);
+      -webkit-transform: translateX(-50%) translateY(-50%);
+    }
+    .loading-label{
+      font-size: 18px;
+      font-family: 'poppins';
+      animation-name: changing;
+      animation-duration: 1.5s;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease;
+    }
+
+    @keyframes changing{
+      90% {
+        display: none;
+      }
     }
   </style>
   <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
 </head>
 <body>
 <div class="loading">
-  <lord-icon
+  <lord-icon id="icon"
           src="https://cdn.lordicon.com/fmpamzwr.json"
           trigger="loop"
           colors="primary:#000000,secondary:#ffc738,tertiary:#f24c00"
           style="width:200px;height:200px">
   </lord-icon>
+    <p class="loading-label"></p>
 </div>
   <script>
+        const texts = [
+        "Discovering new ways of making you wait...",
+        "Please wait while we ignore you...",
+        "Still faster than Windows update...",
+        "Kindly hold on until I finish a cup of coffee...",
+        "Don't panic, Just count to infinity...",
+      ];
+      const element = document.querySelector('p.loading-label');
+      let i=0;
+      const listener = e => {
+        i = i < texts.length - 1 ? i+1 : 0;
+        element.innerHTML  = texts[i];
+      };
+      element.innerHTML = texts[0];
+      element.addEventListener('animationiteration', listener, false);
+
     window.addEventListener('load', function(ev) {
       // Download main.dart.js
       _flutter.loader.loadEntrypoint({
@@ -99,7 +139,7 @@
         },
         onEntrypointLoaded: function(engineInitializer) {
           engineInitializer.initializeEngine().then(function(appRunner) {
-            appRunner.runApp();
+              appRunner.runApp();
           });
         }
       });
@@ -107,47 +147,3 @@
   </script>
 </body>
 </html>
-
-<!--.loading {-->
-<!--display: flex;-->
-<!--justify-content: center;-->
-<!--align-items: center;-->
-<!--margin: 0;-->
-<!--position: absolute;-->
-<!--top: 50%;-->
-<!--left: 50%;-->
-<!-- -ms-transform: translate(-50%, -50%);-->
-<!--transform: translate(-50%, -50%);-->
-<!--}-->
-
-<!--.loader {-->
-<!--border: 16px solid #f3f3f3;-->
-<!--border-radius: 50%;-->
-<!--border: 15px solid ;-->
-<!--border-top: 16px solid blue;-->
-<!--border-right: 16px solid white;-->
-<!--border-bottom: 16px solid blue;-->
-<!--border-left: 16px solid white;-->
-<!--width: 120px;-->
-<!--height: 120px;-->
-<!-- -webkit-animation: spin 2s linear infinite;-->
-<!--animation: spin 2s linear infinite;-->
-<!--}-->
-
-<!--@-webkit-keyframes spin {-->
-<!--0% {-->
-<!-- -webkit-transform: rotate(0deg);-->
-<!--}-->
-<!--100% {-->
-<!-- -webkit-transform: rotate(360deg);-->
-<!--}-->
-<!--}-->
-
-<!--@keyframes spin {-->
-<!--0% {-->
-<!--transform: rotate(0deg);-->
-<!--}-->
-<!--100% {-->
-<!--transform: rotate(360deg);-->
-<!--}-->
-<!--}-->
