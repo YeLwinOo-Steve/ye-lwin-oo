@@ -49,64 +49,46 @@
 
   <title>yelwinoo</title>
   <link rel="manifest" href="manifest.json">
-
+  <script type="application/javascript">
+      function openLink(url, target, isAsync=false) {
+        var is_safari = /^(?!.*chrome).*safari/i.test(navigator.userAgent.toLowerCase());
+        if (is_safari && isAsync) {
+          window.location.href = url;
+        } else {
+          window.open(url, target);
+        }
+      }
+    </script>
   <script>
     // The value below is injected by flutter build, do not touch.
     var serviceWorkerVersion = null;
   </script>
   <!-- This script adds the flutter initialization JS code -->
-  <script src="flutter.js" defer></script>
   <script src="https://unpkg.com/canvaskit-wasm@0.37.1/bin/canvaskit.js"></script>
   <link rel="preload" href="https://unpkg.com/canvaskit-wasm@0.37.1/bin/canvaskit.wasm" as="fetch" crossOrigin="anonymous">
+  <script src="flutter.js" defer></script>
   <style>
-    .loading {
-      display: flex;
+    html{
+      background:#F4F4EF;
+    }
+    body{
+      height: 100vh;
+      width: 100vw;
+      display:flex;
+      align-items:center;
       justify-content: center;
-      align-items: center;
-      margin: 0;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      -ms-transform: translate(-50%, -50%);
-      transform: translate(-50%, -50%);
-    }
-
-    .loader {
-      border: 16px solid #f3f3f3;
-      border-radius: 50%;
-      border: 15px solid ;
-      border-top: 16px solid blue;
-      border-right: 16px solid white;
-      border-bottom: 16px solid blue;
-      border-left: 16px solid white;
-      width: 120px;
-      height: 120px;
-      -webkit-animation: spin 2s linear infinite;
-      animation: spin 2s linear infinite;
-    }
-
-    @-webkit-keyframes spin {
-      0% {
-        -webkit-transform: rotate(0deg);
-      }
-      100% {
-        -webkit-transform: rotate(360deg);
-      }
-    }
-
-    @keyframes spin {
-      0% {
-        transform: rotate(0deg);
-      }
-      100% {
-        transform: rotate(360deg);
-      }
     }
   </style>
+  <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
 </head>
 <body>
 <div class="loading">
-  <div class="loader"></div>
+  <lord-icon
+          src="https://cdn.lordicon.com/fmpamzwr.json"
+          trigger="loop"
+          colors="primary:#000000,secondary:#ffc738,tertiary:#f24c00"
+          style="width:200px;height:200px">
+  </lord-icon>
 </div>
   <script>
     window.addEventListener('load', function(ev) {
@@ -125,3 +107,47 @@
   </script>
 </body>
 </html>
+
+<!--.loading {-->
+<!--display: flex;-->
+<!--justify-content: center;-->
+<!--align-items: center;-->
+<!--margin: 0;-->
+<!--position: absolute;-->
+<!--top: 50%;-->
+<!--left: 50%;-->
+<!-- -ms-transform: translate(-50%, -50%);-->
+<!--transform: translate(-50%, -50%);-->
+<!--}-->
+
+<!--.loader {-->
+<!--border: 16px solid #f3f3f3;-->
+<!--border-radius: 50%;-->
+<!--border: 15px solid ;-->
+<!--border-top: 16px solid blue;-->
+<!--border-right: 16px solid white;-->
+<!--border-bottom: 16px solid blue;-->
+<!--border-left: 16px solid white;-->
+<!--width: 120px;-->
+<!--height: 120px;-->
+<!-- -webkit-animation: spin 2s linear infinite;-->
+<!--animation: spin 2s linear infinite;-->
+<!--}-->
+
+<!--@-webkit-keyframes spin {-->
+<!--0% {-->
+<!-- -webkit-transform: rotate(0deg);-->
+<!--}-->
+<!--100% {-->
+<!-- -webkit-transform: rotate(360deg);-->
+<!--}-->
+<!--}-->
+
+<!--@keyframes spin {-->
+<!--0% {-->
+<!--transform: rotate(0deg);-->
+<!--}-->
+<!--100% {-->
+<!--transform: rotate(360deg);-->
+<!--}-->
+<!--}-->
