@@ -23,17 +23,17 @@ class _HomePageState extends State<HomePage>
 
   List<Widget> mainPages = [];
   final _key = GlobalKey();
-  int page = 0;
-  int pageLength = 3;
   bool _isDrawerOpen = false;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    mainPages = const [
-      IntroductionPage(),
-      ShowcaseProjectsPage(),
-      FooterPage(),
+    mainPages = [
+      IntroductionPage(
+        onTapSeeMyWorks: _onTapSeeMyWorks,
+      ),
+      const ShowcaseProjectsPage(),
+      const FooterPage(),
     ];
   }
 
@@ -53,7 +53,6 @@ class _HomePageState extends State<HomePage>
               curve: Curves.easeInOut,
             )
             .then((value) => pageIsScrolling = false);
-
       } else {
         pageController
             .previousPage(
@@ -63,6 +62,16 @@ class _HomePageState extends State<HomePage>
             .then((value) => pageIsScrolling = false);
       }
     }
+  }
+
+  void _onTapSeeMyWorks() {
+    pageController
+        .animateToPage(
+          1,
+          duration: duration300,
+          curve: Curves.easeInOut,
+        )
+        .then((value) => pageIsScrolling = false);
   }
 
   @override

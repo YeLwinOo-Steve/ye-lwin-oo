@@ -5,8 +5,9 @@ import 'package:yelwinoo/presentation/widgets/widgets.dart';
 import '../../configs/configs.dart';
 
 class IntroductionPage extends StatefulWidget {
-  const IntroductionPage({Key? key}) : super(key: key);
-
+  const IntroductionPage({Key? key, required this.onTapSeeMyWorks})
+      : super(key: key);
+  final VoidCallback onTapSeeMyWorks;
   @override
   State<IntroductionPage> createState() => _IntroductionPageState();
 }
@@ -61,8 +62,8 @@ class _IntroductionPageState extends State<IntroductionPage>
 
   @override
   Widget build(BuildContext context) {
-    return [
-      [
+    return <Widget>[
+      <Widget>[
         ScaleTransition(
           scale: blueCircleTween,
           child: Container(
@@ -94,8 +95,8 @@ class _IntroductionPageState extends State<IntroductionPage>
             width: s400,
             height: s400,
           ),
-      [
-        [
+      <Widget>[
+        <Widget>[
           AnimatedTextSlideBoxTransition(
             controller: _controller,
             coverColor: Theme.of(context).scaffoldBackgroundColor,
@@ -117,12 +118,24 @@ class _IntroductionPageState extends State<IntroductionPage>
             width: context.screenWidth * 0.3,
             maxLines: 4,
           ),
-          context.percentSizedBox(pHeight: s5),
+          verticalSpaceMassive,
           CustomButton(
             label: ksSeeMyWork,
-            onPressed: () {},
+            onPressed: widget.onTapSeeMyWorks,
             icon: kiArrowForward,
           ),
+          context.percentSizedBox(pHeight: s10),
+          <Widget>[
+            const Text('Github'),
+            const Text('/').addCenter().addSizedBox(
+                  width: s50,
+                ),
+            const Text('LinkedIn'),
+            const Text('/').addCenter().addSizedBox(
+                  width: s50,
+                ),
+            const Text('Discord'),
+          ].addRow(),
         ].addColumn(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
