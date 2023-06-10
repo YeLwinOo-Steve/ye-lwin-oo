@@ -61,7 +61,7 @@ class _ShowcaseProjectsPageState extends State<ShowcaseProjectsPage>
               controller: _controller,
               coverColor: Theme.of(context).scaffoldBackgroundColor,
               text: ksCraftedWithLove,
-              textStyle: Theme.of(context).textTheme.headlineSmall,
+              textStyle: Theme.of(context).textTheme.titleLarge,
             ),
             AnimatedTextSlideBoxTransition(
               controller: _controller,

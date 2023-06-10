@@ -30,6 +30,10 @@ const String ksViewProject = "View Project";
 const String ksCraftedWithLove = "Crafted with Love";
 const String ksRecentProjects = "Here are a selection of my recent projects";
 const String ksContact = "Contact Me";
+const String ksGithub = "Github";
+const String ksLinkedIn = "LinkedIn";
+const String ksDiscord = "Discord";
+const String ksSlash = "/";
 const String ksLetsWork = "Let's work together!";
 const String ksFreelanceAvailability = "I'm available for Freelancing";
 const String ksContactInfo = "- Contact Info";
@@ -120,9 +124,15 @@ final List<Quote> ksQuotes = [
   ),
 ];
 
+const String ksFacebookLink = 'https://www.facebook.com/ye.lwin.oo.someone';
+const String ksGithubLink = 'https://github.com/YeLwinOo-Steve';
+const String ksLinkedInLink = 'https://www.linkedin.com/in/ye-lwin-oo-ucsm/';
+const String ksMediumLink =  'https://yelwino.medium.com/';
+const String ksStackoverflowLink = 'https://stackoverflow.com/users/19209151/ye-lwin-oo';
+const String ksDiscordLink = 'https://discordapp.com/users/809527318632071178';
 final List<SocialMedia> ksSocialMedia = [
   SocialMedia(
-    link: 'https://www.facebook.com/ye.lwin.oo.someone',
+    link: ksFacebookLink,
     icon: FaIcon(
       FontAwesomeIcons.facebook,
       color: kSecondary,
@@ -130,7 +140,7 @@ final List<SocialMedia> ksSocialMedia = [
     ),
   ),
   SocialMedia(
-    link: 'https://github.com/YeLwinOo-Steve',
+    link: ksGithubLink,
     icon: FaIcon(
       FontAwesomeIcons.github,
       color: kSecondary,
@@ -138,7 +148,7 @@ final List<SocialMedia> ksSocialMedia = [
     ),
   ),
   SocialMedia(
-    link: 'https://www.linkedin.com/in/ye-lwin-oo-ucsm/',
+    link: ksLinkedInLink,
     icon: FaIcon(
       FontAwesomeIcons.linkedin,
       color: kSecondary,
@@ -146,7 +156,7 @@ final List<SocialMedia> ksSocialMedia = [
     ),
   ),
   SocialMedia(
-    link: 'https://yelwino.medium.com/',
+    link: ksMediumLink,
     icon: FaIcon(
       FontAwesomeIcons.medium,
       color: kSecondary,
@@ -154,7 +164,7 @@ final List<SocialMedia> ksSocialMedia = [
     ),
   ),
   SocialMedia(
-    link: 'https://stackoverflow.com/users/19209151/ye-lwin-oo',
+    link: ksStackoverflowLink,
     icon: FaIcon(
       FontAwesomeIcons.stackOverflow,
       color: kSecondary,
@@ -162,7 +172,7 @@ final List<SocialMedia> ksSocialMedia = [
     ),
   ),
   SocialMedia(
-    link: 'https://discordapp.com/users/809527318632071178',
+    link: ksDiscordLink,
     icon: FaIcon(
       FontAwesomeIcons.discord,
       color: kSecondary,

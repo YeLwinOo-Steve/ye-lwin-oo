@@ -41,6 +41,7 @@ dependencies:
   url_launcher: ^6.1.11
   font_awesome_flutter: ^10.4.0
   type_text: ^1.0.5
+  visibility_detector: ^0.4.0+2
 
 dev_dependencies:
   flutter_test:

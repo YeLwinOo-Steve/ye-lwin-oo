@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 
 extension WidgetEx on Widget {
   Padding addPadding({required EdgeInsetsGeometry edgeInsets}) {
@@ -79,6 +80,23 @@ extension WidgetEx on Widget {
       child: this,
     );
   }
+
+  Widget addScrollView() {
+    return SingleChildScrollView(
+      child: this,
+    );
+  }
+
+  Widget addVisibilityDetector({
+    Key? key,
+    required Function(VisibilityInfo) onDetectVisibility,
+  }) {
+    return VisibilityDetector(
+      key: key ?? UniqueKey(),
+      onVisibilityChanged: onDetectVisibility,
+      child: this,
+    );
+  }
 }
 
 extension WidgetListEx on List<Widget> {
@@ -111,6 +129,21 @@ extension WidgetListEx on List<Widget> {
       mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.start,
       crossAxisAlignment: crossAxisAlignment ?? CrossAxisAlignment.center,
       mainAxisSize: mainAxisSize ?? MainAxisSize.max,
+      children: this,
+    );
+  }
+
+  Widget addListView({
+    Axis? scrollDirection,
+    ScrollPhysics? physics,
+    bool? shrinkWrap,
+    EdgeInsetsGeometry? padding,
+  }) {
+    return ListView(
+      scrollDirection: scrollDirection ?? Axis.vertical,
+      physics: physics,
+      shrinkWrap: shrinkWrap ?? false,
+      padding: padding,
       children: this,
     );
   }

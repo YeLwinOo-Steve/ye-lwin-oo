@@ -126,15 +126,48 @@ class _IntroductionPageState extends State<IntroductionPage>
           ),
           context.percentSizedBox(pHeight: s10),
           <Widget>[
-            const Text('Github'),
-            const Text('/').addCenter().addSizedBox(
+            AnimatedTextSlideBoxTransition(
+              controller: _controller,
+              coverColor: Theme.of(context).scaffoldBackgroundColor,
+              text: ksGithub,
+              textStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                decoration: TextDecoration.underline,
+                decorationThickness: 1,
+                decorationColor: kBlack,
+              ),
+            ).addInkWell(
+              onTap: ksGithubLink.launchWebsite,
+            ),
+            const Text(ksSlash).addCenter().addSizedBox(
                   width: s50,
                 ),
-            const Text('LinkedIn'),
-            const Text('/').addCenter().addSizedBox(
+            AnimatedTextSlideBoxTransition(
+              controller: _controller,
+              coverColor: Theme.of(context).scaffoldBackgroundColor,
+              text: ksLinkedIn,
+              textStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                decoration: TextDecoration.underline,
+                decorationThickness: 1,
+                decorationColor: kBlack,
+              ),
+            ).addInkWell(
+              onTap: ksLinkedInLink.launchWebsite,
+            ),
+            const Text(ksSlash).addCenter().addSizedBox(
                   width: s50,
                 ),
-            const Text('Discord'),
+            AnimatedTextSlideBoxTransition(
+              controller: _controller,
+              coverColor: Theme.of(context).scaffoldBackgroundColor,
+              text: ksDiscord,
+              textStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                decoration: TextDecoration.underline,
+                decorationThickness: 1,
+                decorationColor: kBlack,
+              ),
+            ).addInkWell(
+              onTap: ksDiscordLink.launchWebsite,
+            ),
           ].addRow(),
         ].addColumn(
           mainAxisAlignment: MainAxisAlignment.center,
