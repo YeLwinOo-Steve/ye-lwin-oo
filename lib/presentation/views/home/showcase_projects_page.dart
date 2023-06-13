@@ -85,7 +85,7 @@ class _ShowcaseProjectsPageState extends State<ShowcaseProjectsPage>
                         fontWeight: FontWeight.w700,
                       ),
                   descriptionStyle: Theme.of(context).textTheme.bodyMedium!,
-                  description: project.description,
+                  description: project.shortDescription,
                   index: ksShowcaseProjects.indexOf(project),
                   onPressed: () {
                     Navigator.of(context).push(

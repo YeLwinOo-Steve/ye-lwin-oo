@@ -126,15 +126,8 @@ class _IntroductionPageState extends State<IntroductionPage>
           ),
           context.percentSizedBox(pHeight: s10),
           <Widget>[
-            AnimatedTextSlideBoxTransition(
+            AnimatedHoverLink(
               controller: _controller,
-              coverColor: Theme.of(context).scaffoldBackgroundColor,
-              text: ksGithub,
-              textStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                decoration: TextDecoration.underline,
-                decorationThickness: 1,
-                decorationColor: kBlack,
-              ),
             ).addInkWell(
               onTap: ksGithubLink.launchWebsite,
             ),
@@ -146,10 +139,10 @@ class _IntroductionPageState extends State<IntroductionPage>
               coverColor: Theme.of(context).scaffoldBackgroundColor,
               text: ksLinkedIn,
               textStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                decoration: TextDecoration.underline,
-                decorationThickness: 1,
-                decorationColor: kBlack,
-              ),
+                    decoration: TextDecoration.underline,
+                    decorationThickness: 1,
+                    decorationColor: kBlack,
+                  ),
             ).addInkWell(
               onTap: ksLinkedInLink.launchWebsite,
             ),
@@ -161,10 +154,10 @@ class _IntroductionPageState extends State<IntroductionPage>
               coverColor: Theme.of(context).scaffoldBackgroundColor,
               text: ksDiscord,
               textStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                decoration: TextDecoration.underline,
-                decorationThickness: 1,
-                decorationColor: kBlack,
-              ),
+                    decoration: TextDecoration.underline,
+                    decorationThickness: 1,
+                    decorationColor: kBlack,
+                  ),
             ).addInkWell(
               onTap: ksDiscordLink.launchWebsite,
             ),

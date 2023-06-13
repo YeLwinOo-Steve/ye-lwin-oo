@@ -13,6 +13,7 @@ class SlideRouteTransition extends PageRouteBuilder {
   }) : super(
             transitionDuration:
                 position == SlidePosition.top ? duration500 : duration2000,
+            reverseTransitionDuration: position == SlidePosition.top ? duration500 : duration2000,
             pageBuilder: (BuildContext context, Animation<double> animation,
                 Animation<double> secondaryAnimation) {
               return enterWidget;
@@ -38,10 +39,20 @@ class SlideRouteTransition extends PageRouteBuilder {
                 ).animate(
                   CurvedAnimation(
                     parent: animation,
-                    curve: Curves.fastLinearToSlowEaseIn,
+                    curve: Curves.easeInOut,
                   ),
                 ),
-                child: child,
+                child: SlideTransition(
+                    position: Tween<Offset>(
+                      begin: Offset.zero,
+                      end: offset,
+                    ).animate(
+                      CurvedAnimation(
+                        parent: secondaryAnimation,
+                        curve: Curves.easeInOut,
+                      ),
+                    ),
+                    child: child),
               );
             });
 }

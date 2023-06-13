@@ -133,6 +133,14 @@ extension WidgetListEx on List<Widget> {
     );
   }
 
+  Widget addWrap(){
+    return Wrap(
+      alignment: WrapAlignment.start,
+      crossAxisAlignment: WrapCrossAlignment.start,
+      children: this,
+    );
+  }
+
   Widget addListView({
     Axis? scrollDirection,
     ScrollPhysics? physics,

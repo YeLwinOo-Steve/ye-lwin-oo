@@ -4,6 +4,7 @@ import 'package:atlas_icons/atlas_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:visibility_detector/visibility_detector.dart';
+import 'package:yelwinoo/data/model/project_info.dart';
 import 'package:yelwinoo/data/model/showcase_project.dart';
 import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
 import 'package:yelwinoo/presentation/widgets/widgets.dart';
@@ -133,9 +134,10 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView>
                   alignment: Alignment.bottomRight,
                 )
                 .addPadding(
-                    edgeInsets: context.symmetricPadding(
-                  h: s40,
-                )),
+                  edgeInsets: context.symmetricPadding(
+                    h: s40,
+                  ),
+                ),
           ]
               .addColumn(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -171,11 +173,11 @@ class _ProjectOverviewState extends State<ProjectOverview>
     if (info.visibleFraction > 0.45) {
       _titleController.forward();
       _titleController.addStatusListener(_titleControllerListener);
-    }else{
-      if(_titleController.isCompleted){
+    } else {
+      if (_titleController.isCompleted) {
         _titleController.reset();
       }
-      if(_contentController.isCompleted){
+      if (_contentController.isCompleted) {
         _contentController.reset();
       }
     }
@@ -213,23 +215,109 @@ class _ProjectOverviewState extends State<ProjectOverview>
       ),
       verticalSpaceMassive,
       AnimatedTextSlideBoxTransition(
-        controller: _titleController,
-        text: 'Lorem ipsum blah blah. I quick brown fox jumps over the lazy dog and the lazy dog got up and barked at the quick brown fox.',
+        controller: _contentController,
+        text: widget.project.description,
         coverColor: kPrimary,
         textStyle: Theme.of(context).textTheme.bodyLarge,
         maxLines: 10,
       ),
+      context.percentSizedBox(
+        pHeight: s3,
+      ),
+      <Widget>[
+        InfoSection(
+          controller: _contentController,
+          info: widget.project.tech,
+        ),
+        InfoSection(
+          controller: _contentController,
+          info: widget.project.platform,
+        ),
+        InfoSection(
+          controller: _contentController,
+          info: widget.project.tags,
+        ),
+        InfoSection(
+          controller: _contentController,
+          info: widget.project.author,
+        ),
+      ].addWrap(),
     ]
         .addColumn(
           crossAxisAlignment: CrossAxisAlignment.start,
         )
+        .addVisibilityDetector(onDetectVisibility: detectVisibility)
         .addContainer(
-          height: context.screenHeight,
           padding: context.symmetricPercentPadding(
-            hPercent: s5,
-            vPercent: s5,
+            hPercent: s10,
+            vPercent: s12,
           ),
-        )
-        .addVisibilityDetector(onDetectVisibility: detectVisibility);
+        );
+  }
+}
+
+class InfoSection extends StatelessWidget {
+  InfoSection({
+    super.key,
+    required this.controller,
+    required this.info,
+  })  : _slideUpAnimation =
+            Tween<Offset>(begin: const Offset(s0, s1), end: Offset.zero)
+                .animate(
+          CurvedAnimation(
+            parent: controller,
+            curve: Curves.easeInOut,
+          ),
+        ),
+        _fadeAnimation = Tween<double>(begin: s0, end: s1).animate(
+          CurvedAnimation(
+            parent: controller,
+            curve: Curves.easeInOut,
+          ),
+        );
+  final AnimationController controller;
+  final Animation<Offset> _slideUpAnimation;
+  final Animation<double> _fadeAnimation;
+  final ProjectInfo info;
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        IconLabel(
+          icon: info.icon,
+          controller: controller,
+          label: info.label,
+          coverColor: kPrimary,
+          textStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                fontWeight: FontWeight.w700,
+              ),
+        ),
+        verticalSpaceLarge,
+        ...info.contents.map((content) {
+          return FadeTransition(
+            opacity: _fadeAnimation,
+            child: SlideTransition(
+              position: _slideUpAnimation,
+              child: Text(
+                info.isTag == true
+                    ? content.prefixHash()
+                    : content.prefixDash(),
+              ).addPadding(
+                edgeInsets: context.padding(
+                  l: 2 * horizontalSpaceMassive.width!,
+                ),
+              ),
+            ),
+          );
+        }),
+      ],
+    ).addPadding(
+      edgeInsets: context.padding(
+        r: s100,
+        b: s50,
+      ),
+    );
   }
 }

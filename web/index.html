@@ -105,7 +105,7 @@
   <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
 </head>
 <body>
-<div class="loading">
+<div class="loading" id="loader">
   <lord-icon id="icon"
           src="https://cdn.lordicon.com/fmpamzwr.json"
           trigger="loop"
@@ -139,6 +139,8 @@
         },
         onEntrypointLoaded: function(engineInitializer) {
           engineInitializer.initializeEngine().then(function(appRunner) {
+              const loader = document.getElementById("loader");
+              // loader.remove();
               appRunner.runApp();
           });
         }

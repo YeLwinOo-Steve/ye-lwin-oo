@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
@@ -58,7 +60,7 @@ class _WrapperState extends State<Wrapper> with TickerProviderStateMixin {
       vsync: this,
       duration: slideDuration,
     );
-    _appBarController = AnimationController(vsync: this,duration: duration300);
+    _appBarController = AnimationController(vsync: this, duration: duration300);
     screenWidth = context.screenWidth;
     sectorWidth = screenWidth / sectors;
   }

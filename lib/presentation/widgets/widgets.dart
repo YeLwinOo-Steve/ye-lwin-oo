@@ -13,3 +13,7 @@ export './rounded_image_container.dart';
 export './custom_page_transition.dart';
 export './animated_app_bar.dart';
 export './animated_height.dart';
+export './icon_label.dart';
+export './outlined_text.dart';
+
+export './animated_hover_link.dart';

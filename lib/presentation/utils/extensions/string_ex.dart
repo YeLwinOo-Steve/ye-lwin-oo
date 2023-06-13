@@ -19,6 +19,13 @@ extension StringEx on String {
     return '0$this';
   }
 
+  String prefixHash(){
+    return """#   $this""";
+  }
+  String prefixDash(){
+    return """-   $this""";
+  }
+
   String addDoubleQuote() {
     return "“$this”";
   }
