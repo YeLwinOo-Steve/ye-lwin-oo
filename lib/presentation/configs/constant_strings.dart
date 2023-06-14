@@ -51,6 +51,10 @@ const String ksJuliusGWebsite =
 const String ksBuildUsing = "Build using ";
 const String ksWithMuch = " with much ";
 const String ksCC = "©️ 2023 Ye Lwin Oo";
+const String ksYoung = "When I was young, I was a kid!";
+const String ksNobody = "I'm NOBODY";
+const String ksWhoAmI = 'Who Am I?';
+
 final List<RouteModel> ksMenu = [
   RouteModel(label: ksHome, route: Routes.home),
   RouteModel(label: ksProject, route: Routes.projects),

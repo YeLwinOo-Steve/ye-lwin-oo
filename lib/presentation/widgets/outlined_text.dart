@@ -9,12 +9,16 @@ class OutlinedText extends StatelessWidget {
     required this.fontSize,
     required this.strokeColor,
     required this.textColor,
+    this.strokeWidth = s4,
+    this.letterSpacing = s1,
     this.fontWeight = FontWeight.normal,
   });
   final String text;
   final double fontSize;
+  final double letterSpacing;
   final Color strokeColor;
   final Color textColor;
+  final double strokeWidth;
   final FontWeight fontWeight;
   @override
   Widget build(BuildContext context) {
@@ -26,9 +30,10 @@ class OutlinedText extends StatelessWidget {
           style: TextStyle(
             fontSize: fontSize,
             fontWeight: fontWeight,
+            letterSpacing: letterSpacing,
             foreground: Paint()
               ..style = PaintingStyle.stroke
-              ..strokeWidth = s4
+              ..strokeWidth = strokeWidth
               ..color = strokeColor,
           ),
         ),
@@ -37,6 +42,7 @@ class OutlinedText extends StatelessWidget {
           style: TextStyle(
             fontSize: fontSize,
             fontWeight: fontWeight,
+            letterSpacing: letterSpacing,
             color: textColor,
           ),
         ),

@@ -20,11 +20,13 @@ class _BackgroundStoryState extends State<BackgroundStory> {
         child: RotatedBox(
           quarterTurns: 3,
           child: OutlinedText(
-            text: "When I was young, I was a kid!",
-            fontSize: s40,
+            text: ksYoung,
+            fontSize: s24,
+            letterSpacing: 1.5,
             strokeColor: kSecondary,
             textColor: kTransparent,
-            fontWeight: FontWeight.w300,
+            strokeWidth: s1,
+            fontWeight: FontWeight.w700,
           ),
         ).addPadding(
           edgeInsets: context.allPadding(

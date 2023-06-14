@@ -85,7 +85,7 @@ class _WhoAmIState extends State<WhoAmI> with TickerProviderStateMixin {
         top: context.percentHeight(s10),
         right: context.percentWidth(s8),
         child: OutlinedText(
-          text: "I'm NOBODY",
+          text: ksNobody,
           fontSize: s100,
           strokeColor: kSecondary,
           textColor: kTransparent,
@@ -100,7 +100,7 @@ class _WhoAmIState extends State<WhoAmI> with TickerProviderStateMixin {
         child: <Widget>[
           <Widget>[
             Text(
-              'Who Am I?',
+              ksWhoAmI,
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                     color: kWhite,
                   ),
