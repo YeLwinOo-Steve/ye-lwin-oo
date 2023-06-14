@@ -73,7 +73,7 @@ class _WhoAmIState extends State<WhoAmI> with TickerProviderStateMixin {
             controller: _textController,
             coverColor: kPrimary,
             textStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
-              fontWeight: FontWeight.w400,
+              fontWeight: FontWeight.w700,
             ),
           ),
         ).addPadding(

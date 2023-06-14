@@ -123,7 +123,7 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView>
                   v: s20,
                 )),
               ),
-              AnimatedHeight(
+              AnimatedVerticalStick(
                 controller: _stickController,
               ),
             ]

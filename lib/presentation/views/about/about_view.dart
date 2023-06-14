@@ -9,7 +9,7 @@ import 'package:yelwinoo/presentation/views/wrapper.dart';
 
 import '../../configs/configs.dart';
 import 'subviews/background_story.dart';
-import 'subviews/tech_stack.dart';
+import 'subviews/overall.dart';
 import 'subviews/who_am_i.dart';
 
 class AboutView extends StatefulWidget {
@@ -30,7 +30,7 @@ class _AboutViewState extends State<AboutView> {
     aboutPages = const [
       WhoAmI(),
       BackgroundStory(),
-      TechStack(),
+      Overall(),
     ];
   }
   // this is like locking a critical state in concurrency deadlock problem

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../configs/configs.dart';
 
-class AnimatedHeight extends AnimatedWidget {
-  const AnimatedHeight({
+class AnimatedVerticalStick extends AnimatedWidget {
+  const AnimatedVerticalStick({
     super.key,
     this.width = s2,
     required this.controller,
@@ -20,7 +20,7 @@ class AnimatedHeight extends AnimatedWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: s2,
+      width: width,
       height: height.value,
       color: kBlack,
     );

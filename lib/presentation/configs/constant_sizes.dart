@@ -31,8 +31,11 @@ const double s70 = 70.0;
 const double s80 = 80.0;
 const double s96 = 96.0;
 const double s100 = 100.0;
+const double s120 = 120.0;
 const double s150 = 150.0;
+const double s180 = 180.0;
 const double s200 = 200.0;
+const double s220 = 220.0;
 const double s250 = 250.0;
 const double s400 = 400.0;
 

@@ -12,8 +12,11 @@ export '../views/home/footer_page.dart';
 export './rounded_image_container.dart';
 export './custom_page_transition.dart';
 export './animated_app_bar.dart';
-export './animated_height.dart';
+export './animated_vertical_stick.dart';
+export './animated_horizontal_stick.dart';
 export './icon_label.dart';
 export './outlined_text.dart';
+export './animated_outlined_text.dart';
+export './animated_stroke_text.dart';
 
 export './animated_hover_link.dart';
