@@ -57,6 +57,18 @@ const String ksCC = "©️ 2023 Ye Lwin Oo";
 const String ksYoung = "When I was young, I was a kid!";
 const String ksNobody = "I'm NOBODY";
 const String ksWhoAmI = 'Who Am I?';
+const String ksWhatILove = "What I Love To Do";
+const String ksBriefAboutMe =
+    "Hi! I'm a Front-end Software Engineer who is passionate about emerging Technologies and AI. I have fairly extensive amount of experience in developing high quality applications. I often work on freelance projects.";
+const String ksMyLife =
+    "I'm a Computer University Student from Myanmar. But I dropped out in 2021 because of Military Coup.";
+const String ksProfession =
+    "I started working as a Flutter Developer since 2019. Later, I fell in love with it. Now, I'm eager to contribute in Flutter community. Recently, I've published my first state management package: Pulse-X.";
+
+const String ksMyTools =
+    "I use a bunch of tools and technologies to make design and implementation process easier. ";
+const String ksWeapon = "My favorite choice of weapon is ";
+const String ksFlutter = "Flutter & Dart";
 
 final List<RouteModel> ksMenu = [
   RouteModel(label: ksHome, route: Routes.home),
@@ -318,7 +330,10 @@ final List<ShowcaseProject> ksShowcaseProjects = [
     shortDescription:
         "The Golden Land (Myanmar) is a website for showing Myanmar's Culture.",
     description: """
-        Web project showing Myanmar's Culture, Famous Places, Cuisine, Festivals, etc
+        An all-in-one website that you can explore Myanmar's Traditions
+        
+        This is the web project showing the Culture, Cuisine, Festivals, Famous Places, Ethnic Groups and Handicrafts in Myanmar.
+        Some of the data may be inaccurate because I collect most of my data on the Internet.
         """,
     link: dummyImage,
     heroTag: 'the-golden-land',

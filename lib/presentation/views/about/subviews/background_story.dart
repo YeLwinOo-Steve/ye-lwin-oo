@@ -40,74 +40,124 @@ class _BackgroundStoryState extends State<BackgroundStory>
   @override
   Widget build(BuildContext context) {
     return <Widget>[
-      Align(
-        alignment: Alignment.bottomRight,
-        child: RotatedBox(
-          quarterTurns: 3,
-          child: OutlinedText(
-            text: ksYoung,
-            fontSize: s24,
-            letterSpacing: 1.5,
-            strokeColor: kSecondary,
-            textColor: kTransparent,
-            strokeWidth: s1,
-            fontWeight: FontWeight.w700,
-          ),
-        ).addPadding(
-          edgeInsets: context.allPadding(
-            p: s40,
-          ),
+      RotatedBox(
+        quarterTurns: 3,
+        child: OutlinedText(
+          text: ksYoung,
+          fontSize: s24,
+          letterSpacing: 1.5,
+          strokeColor: kSecondary,
+          textColor: kTransparent,
+          strokeWidth: s1,
+          fontWeight: FontWeight.w700,
         ),
-      ),
-      Container(
-        margin: context.symmetricPercentPadding(hPercent: s8, vPercent: s20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                AnimatedHorizontalStick(
-                  controller: _stickController,
-                ),
-                horizontalSpaceMedium,
-                AnimatedTextSlideBoxTransition(
-                  text: ksBgStory.toUpperCase(),
-                  controller: _textController,
-                  coverColor: kPrimary,
-                  textStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        fontWeight: FontWeight.w700,
-                      ),
-                ),
-              ],
+      )
+          .addPadding(
+            edgeInsets: context.allPadding(
+              p: s40,
             ),
-            verticalSpaceMassive,
-            Text(
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-            ),
-            verticalSpaceMassive,
-            Row(
-              children: [
-                AnimatedHorizontalStick(
-                  controller: _stickController,
+          )
+          .addAlign(
+            alignment: Alignment.bottomRight,
+          ),
+      <Widget>[
+        <Widget>[
+          AnimatedHorizontalStick(
+            controller: _stickController,
+          ),
+          horizontalSpaceMedium,
+          AnimatedTextSlideBoxTransition(
+            text: ksBgStory.toUpperCase(),
+            controller: _textController,
+            coverColor: kPrimary,
+            textStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  fontWeight: FontWeight.w700,
                 ),
-                horizontalSpaceMedium,
-                AnimatedTextSlideBoxTransition(
-                  text: ksTools.toUpperCase(),
-                  controller: _textController,
-                  coverColor: kPrimary,
-                  textStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-              ],
-            ),
-            verticalSpaceMassive,
-            Text(
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-            ),
-          ],
+          ),
+        ].addRow(),
+        verticalSpaceMassive,
+        Text(
+          ksBriefAboutMe,
+          style: Theme.of(context).textTheme.bodyLarge,
+        ).addPadding(edgeInsets: context.symmetricPercentPadding(hPercent: s8)),
+        verticalSpaceMedium,
+        Text(
+          ksMyLife,
+          style: Theme.of(context).textTheme.bodyLarge,
+        ).addPadding(edgeInsets: context.symmetricPercentPadding(hPercent: s8)),
+        verticalSpaceSmall,
+        Text(
+          ksProfession,
+          style: Theme.of(context).textTheme.bodyLarge,
+        ).addPadding(edgeInsets: context.symmetricPercentPadding(hPercent: s8)),
+        verticalSpaceMedium,
+        AnimatedTextSlideBoxTransition(
+          text: ksWhatILove.toUpperCase(),
+          controller: _textController,
+          coverColor: kPrimary,
+          textStyle: Theme.of(context).textTheme.labelLarge,
+        ).addPadding(edgeInsets: context.symmetricPercentPadding(hPercent: s8)),
+        verticalSpaceLarge,
+        const <Widget>[
+          HobbyItem(icon: kiCoding, label: "Software Engineering"),
+          HobbyItem(icon: kiCoffee, label: "Coffee"),
+          HobbyItem(icon: kiReading, label: "Reading"),
+          HobbyItem(icon: kiMusic, label: "80's,90's Music"),
+          HobbyItem(icon: kiMovie, label: "Movies"),
+          HobbyItem(icon: kiExplore, label: "Exploring more..."),
+        ].addRow(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         ),
-      ),
+        context.percentSizedBox(
+          pHeight: s5,
+        ),
+        <Widget>[
+          AnimatedHorizontalStick(
+            controller: _stickController,
+          ),
+          horizontalSpaceMedium,
+          AnimatedTextSlideBoxTransition(
+            text: ksTools.toUpperCase(),
+            controller: _textController,
+            coverColor: kPrimary,
+            textStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  fontWeight: FontWeight.w700,
+                ),
+          ),
+        ].addRow(),
+        verticalSpaceMassive,
+        Text(
+          ksMyTools,
+          style: Theme.of(context).textTheme.bodyLarge,
+        ).addPadding(edgeInsets: context.symmetricPercentPadding(hPercent: s8)),
+        verticalSpaceSmall,
+        <Widget>[
+          Text(
+            ksWeapon,
+            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                  fontWeight: FontWeight.w600,
+                ),
+          ),
+          horizontalSpaceMedium,
+          Text(ksFlutter.toUpperCase(),
+            style: Theme.of(context).textTheme.labelLarge?.copyWith(
+              fontWeight: FontWeight.w700,
+              decoration: TextDecoration.underline,
+              decorationStyle: TextDecorationStyle.dotted,
+              decorationThickness: s5,
+              decorationColor: kBlack,
+            ),
+          ),
+        ].addRow().addPadding(
+            edgeInsets: context.symmetricPercentPadding(hPercent: s8)),
+      ]
+          .addColumn(
+            crossAxisAlignment: CrossAxisAlignment.start,
+          )
+          .addContainer(
+            margin:
+                context.symmetricPercentPadding(hPercent: s8, vPercent: s20),
+          ),
     ].addStack();
   }
 }

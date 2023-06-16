@@ -92,6 +92,13 @@ class _OverallState extends State<Overall> with TickerProviderStateMixin {
           curve: Curves.easeInOut,
         ),
       );
+  Animation<Color?> get transparentColorTween =>
+      ColorTween(begin: kSecondary, end: kPrimary).animate(
+        CurvedAnimation(
+          parent: _firstController,
+          curve: Curves.easeInOut,
+        ),
+      );
   Animation<Color?> get coffeeColorTween =>
       ColorTween(begin: kGrey50, end: kCoffee).animate(
         CurvedAnimation(
@@ -134,22 +141,20 @@ class _OverallState extends State<Overall> with TickerProviderStateMixin {
       Positioned(
         top: context.percentHeight(s10),
         right: context.percentWidth(s8),
-        child: Row(
-          children: [
-            AnimatedTextSlideBoxTransition(
-              text: ksAllAboutMe.toUpperCase(),
-              controller: _textController,
-              coverColor: kPrimary,
-              textStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    fontWeight: FontWeight.w700,
-                  ),
-            ),
-            horizontalSpaceMedium,
-            AnimatedHorizontalStick(
-              controller: _stickController,
-            ),
-          ],
-        ),
+        child: <Widget>[
+          AnimatedTextSlideBoxTransition(
+            text: ksAllAboutMe.toUpperCase(),
+            controller: _textController,
+            coverColor: kPrimary,
+            textStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  fontWeight: FontWeight.w700,
+                ),
+          ),
+          horizontalSpaceMedium,
+          AnimatedHorizontalStick(
+            controller: _stickController,
+          ),
+        ].addRow(),
       ),
       Positioned(
         top: context.percentHeight(s18),
@@ -159,15 +164,17 @@ class _OverallState extends State<Overall> with TickerProviderStateMixin {
           child: AnimatedOutlinedText(
             text: "a  tech  nerd".toUpperCase(),
             fontSize: s200,
+            strokeWidth: s18,
+            letterSpacing: 1.5,
             strokeColor: kSecondary,
-            animation: colorTween,
+            animation: transparentColorTween,
             fontWeight: FontWeight.w900,
           ),
         ),
       ),
       Positioned(
         top: context.percentHeight(s32),
-        left: context.percentWidth(s14),
+        left: context.percentWidth(s4),
         child: SlideTransition(
           position: slideRightTween,
           child: AnimatedOutlinedText(
@@ -181,7 +188,7 @@ class _OverallState extends State<Overall> with TickerProviderStateMixin {
       ),
       Positioned(
         top: context.percentHeight(s48),
-        right: context.percentWidth(s5),
+        right: context.percentWidth(s8),
         child: AnimatedStrokeText(
           text: 'ai enthusiast'.toUpperCase(),
           fontSize: s70,
@@ -195,28 +202,27 @@ class _OverallState extends State<Overall> with TickerProviderStateMixin {
       Positioned(
         bottom: context.percentHeight(s1),
         right: context.percentHeight(s3),
-        child: Row(
+        child: <Widget>[
+          Container(
+            width: s10,
+            height: s10,
+            decoration: BoxDecoration(
+              color: kCoffee,
+              shape: BoxShape.circle,
+            ),
+          ),
+          horizontalSpaceMedium,
+          AnimatedStrokeText(
+            text: 'an introvert'.toUpperCase(),
+            fontSize: s30,
+            strokeWidth: s1,
+            letterSpacing: s2,
+            fontWeight: FontWeight.w900,
+            animation: strokeColorTween,
+            textColor: kTransparent,
+          ),
+        ].addRow(
           mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              width: s10,
-              height: s10,
-              decoration: BoxDecoration(
-                color: kCoffee,
-                shape: BoxShape.circle,
-              ),
-            ),
-            horizontalSpaceMedium,
-            AnimatedStrokeText(
-              text: 'an introvert'.toUpperCase(),
-              fontSize: s30,
-              strokeWidth: s1,
-              letterSpacing: s2,
-              fontWeight: FontWeight.w900,
-              animation: strokeColorTween,
-              textColor: kTransparent,
-            ),
-          ],
         ),
       ),
       Positioned(
@@ -236,13 +242,12 @@ class _OverallState extends State<Overall> with TickerProviderStateMixin {
       Positioned(
         bottom: context.percentHeight(s20),
         left: context.percentWidth(s6),
-        child: SizedBox(
+        child: WavePath(
+          color: kCoffee,
+          animation: waveTween,
+        ).addSizedBox(
           width: context.percentWidth(s10),
           height: s30,
-          child: WavePath(
-            color: kCoffee,
-            animation: waveTween,
-          ),
         ),
       ),
     ].addStack();

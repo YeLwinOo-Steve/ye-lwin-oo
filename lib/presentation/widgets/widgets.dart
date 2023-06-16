@@ -18,5 +18,6 @@ export './icon_label.dart';
 export './outlined_text.dart';
 export './animated_outlined_text.dart';
 export './animated_stroke_text.dart';
+export './hobby_item.dart';
 
 export './animated_hover_link.dart';
