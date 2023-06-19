@@ -63,12 +63,38 @@ const String ksBriefAboutMe =
 const String ksMyLife =
     "I'm a Computer University Student from Myanmar. But I dropped out in 2021 because of Military Coup.";
 const String ksProfession =
-    "I started working as a Flutter Developer since 2019. Later, I fell in love with it. Now, I'm eager to contribute in Flutter community. Recently, I've published my first state management package: Pulse-X.";
+    "I started working as a Flutter Developer since 2019. Later, I fell in love with it. I'm eager to contribute in Flutter community. Recently, I've published my first state management package: Pulse-X.";
 
 const String ksMyTools =
     "I use a bunch of tools and technologies to make design and implementation process easier. ";
 const String ksWeapon = "My favorite choice of weapon is ";
 const String ksFlutter = "Flutter & Dart";
+
+const String ksMobile = 'Mobile Technologies';
+const String ksWebAndOther = 'Web & Other Technologies';
+final List<String> ksMobileTech = ['Flutter', 'Dart'];
+final List<String> ksWebTech = [
+  'HTML',
+  'CSS',
+  'Three Js',
+  'C',
+  'Java',
+];
+final List<String> ksOtherTech = [
+  'Firebase',
+  'GraphQL',
+  'Appwrite',
+  'MongoDB',
+  'SQL',
+  'Python',
+];
+
+const String ksCoding = "Software Engineering";
+const String ksCoffee = "Coffee";
+const String ksReading = "Reading";
+const String ksMusic = "80's,90's Music";
+const String ksMovie = "Movies";
+const String ksExplore = "Exploring more...";
 
 final List<RouteModel> ksMenu = [
   RouteModel(label: ksHome, route: Routes.home),

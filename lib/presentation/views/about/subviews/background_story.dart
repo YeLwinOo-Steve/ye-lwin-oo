@@ -3,6 +3,8 @@ import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
 import 'package:yelwinoo/presentation/widgets/widgets.dart';
 
 import '../../../configs/configs.dart';
+import 'background_info.dart';
+import 'tools_and_technologies.dart';
 
 class BackgroundStory extends StatefulWidget {
   const BackgroundStory({super.key});
@@ -61,102 +63,24 @@ class _BackgroundStoryState extends State<BackgroundStory>
             alignment: Alignment.bottomRight,
           ),
       <Widget>[
-        <Widget>[
-          AnimatedHorizontalStick(
-            controller: _stickController,
-          ),
-          horizontalSpaceMedium,
-          AnimatedTextSlideBoxTransition(
-            text: ksBgStory.toUpperCase(),
-            controller: _textController,
-            coverColor: kPrimary,
-            textStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  fontWeight: FontWeight.w700,
-                ),
-          ),
-        ].addRow(),
-        verticalSpaceMassive,
-        Text(
-          ksBriefAboutMe,
-          style: Theme.of(context).textTheme.bodyLarge,
-        ).addPadding(edgeInsets: context.symmetricPercentPadding(hPercent: s8)),
-        verticalSpaceMedium,
-        Text(
-          ksMyLife,
-          style: Theme.of(context).textTheme.bodyLarge,
-        ).addPadding(edgeInsets: context.symmetricPercentPadding(hPercent: s8)),
-        verticalSpaceSmall,
-        Text(
-          ksProfession,
-          style: Theme.of(context).textTheme.bodyLarge,
-        ).addPadding(edgeInsets: context.symmetricPercentPadding(hPercent: s8)),
-        verticalSpaceMedium,
-        AnimatedTextSlideBoxTransition(
-          text: ksWhatILove.toUpperCase(),
-          controller: _textController,
-          coverColor: kPrimary,
-          textStyle: Theme.of(context).textTheme.labelLarge,
-        ).addPadding(edgeInsets: context.symmetricPercentPadding(hPercent: s8)),
-        verticalSpaceLarge,
-        const <Widget>[
-          HobbyItem(icon: kiCoding, label: "Software Engineering"),
-          HobbyItem(icon: kiCoffee, label: "Coffee"),
-          HobbyItem(icon: kiReading, label: "Reading"),
-          HobbyItem(icon: kiMusic, label: "80's,90's Music"),
-          HobbyItem(icon: kiMovie, label: "Movies"),
-          HobbyItem(icon: kiExplore, label: "Exploring more..."),
-        ].addRow(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        BackgroundInfo(
+          stickController: _stickController,
+          textController: _textController,
         ),
         context.percentSizedBox(
           pHeight: s5,
         ),
-        <Widget>[
-          AnimatedHorizontalStick(
-            controller: _stickController,
-          ),
-          horizontalSpaceMedium,
-          AnimatedTextSlideBoxTransition(
-            text: ksTools.toUpperCase(),
-            controller: _textController,
-            coverColor: kPrimary,
-            textStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  fontWeight: FontWeight.w700,
-                ),
-          ),
-        ].addRow(),
-        verticalSpaceMassive,
-        Text(
-          ksMyTools,
-          style: Theme.of(context).textTheme.bodyLarge,
-        ).addPadding(edgeInsets: context.symmetricPercentPadding(hPercent: s8)),
-        verticalSpaceSmall,
-        <Widget>[
-          Text(
-            ksWeapon,
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  fontWeight: FontWeight.w600,
-                ),
-          ),
-          horizontalSpaceMedium,
-          Text(ksFlutter.toUpperCase(),
-            style: Theme.of(context).textTheme.labelLarge?.copyWith(
-              fontWeight: FontWeight.w700,
-              decoration: TextDecoration.underline,
-              decorationStyle: TextDecorationStyle.dotted,
-              decorationThickness: s5,
-              decorationColor: kBlack,
-            ),
-          ),
-        ].addRow().addPadding(
-            edgeInsets: context.symmetricPercentPadding(hPercent: s8)),
+        ToolsAndTechnologies(
+          stickController: _stickController,
+          textController: _textController,
+        ),
       ]
           .addColumn(
             crossAxisAlignment: CrossAxisAlignment.start,
           )
           .addContainer(
             margin:
-                context.symmetricPercentPadding(hPercent: s8, vPercent: s20),
+                context.symmetricPercentPadding(hPercent: s8, vPercent: s10),
           ),
     ].addStack();
   }

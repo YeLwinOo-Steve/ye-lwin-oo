@@ -73,8 +73,8 @@ class _WhoAmIState extends State<WhoAmI> with TickerProviderStateMixin {
             controller: _textController,
             coverColor: kPrimary,
             textStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
-              fontWeight: FontWeight.w700,
-            ),
+                  fontWeight: FontWeight.w700,
+                ),
           ),
         ).addPadding(
             edgeInsets: context.symmetricPadding(
@@ -93,57 +93,64 @@ class _WhoAmIState extends State<WhoAmI> with TickerProviderStateMixin {
         ),
       ),
       Container(
-        color: kBlack,
         margin: context.symmetricPercentPadding(hPercent: s8),
         padding: context.allPercentPadding(allPercent: s3),
         height: context.percentHeight(s50),
         child: <Widget>[
-          <Widget>[
-            Text(
-              ksWhoAmI,
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    color: kWhite,
-                  ),
-            ),
-            verticalSpaceLarge,
-            Text(
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: kWhite,
-                  ),
-            ),
-          ]
-              .addColumn(
-                crossAxisAlignment: CrossAxisAlignment.start,
-              )
-              .addExpanded(),
+          Text(
+            "I specialize in Mobile Technologies and highly passionate about developing quality applications & open-source works.",
+            style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                  fontWeight: FontWeight.w300,
+                  color: kWhite,
+                ),
+          ).addExpanded(),
           const SizedBox.shrink().addExpanded(),
         ].addRow(),
       ),
       <Widget>[
-        SlideTransition(
-          position: _earthSlideAnimation,
-          child: SvgPicture.asset(
-            kaEarth,
-            semanticsLabel: 'Earth SVG',
-            width: s80,
-            height: s80,
+        AspectRatio(
+          aspectRatio: 9 / 16,
+          child: Image.asset(
+            kaShowcaseStyle,
+            height: context.percentHeight(s50),
           ),
         ),
-        horizontalSpaceMassive,
-        SlideTransition(
-          position: _galaxySlideAnimation,
-          child: SvgPicture.asset(
-            kaGalaxy,
-            semanticsLabel: 'Galaxy SVG',
-            width: s80,
-            height: s80,
+        Positioned(
+          left: s0,
+          top: context.percentHeight(s32),
+          child: SlideTransition(
+            position: _earthSlideAnimation,
+            child: SvgPicture.asset(
+              kaEarth,
+              semanticsLabel: 'Earth SVG',
+              width: s80,
+              height: s80,
+            ),
+          ),
+        ),
+        Align(
+          alignment: Alignment.centerRight,
+          child: SlideTransition(
+            position: _galaxySlideAnimation,
+            child: SvgPicture.asset(
+              kaGalaxy,
+              semanticsLabel: 'Galaxy SVG',
+              width: s80,
+              height: s80,
+            ),
           ),
         ),
       ]
-          .addRow(
-            mainAxisSize: MainAxisSize.min,
+          .addStack(
+            alignment: Alignment.bottomCenter,
           )
+          .addSizedBox(
+            width: context.percentWidth(s30),
+          )
+          .addPadding(
+              edgeInsets: context.percentPadding(
+            r: s6,
+          ))
           .addAlign(
             alignment: Alignment.centerRight,
           ),

@@ -15,8 +15,9 @@ extension WidgetEx on Widget {
     );
   }
 
-  Widget addExpanded() {
+  Widget addExpanded({int? flex}) {
     return Expanded(
+      flex: flex ?? 1,
       child: this,
     );
   }
@@ -133,7 +134,7 @@ extension WidgetListEx on List<Widget> {
     );
   }
 
-  Widget addWrap(){
+  Widget addWrap() {
     return Wrap(
       alignment: WrapAlignment.start,
       crossAxisAlignment: WrapCrossAlignment.start,

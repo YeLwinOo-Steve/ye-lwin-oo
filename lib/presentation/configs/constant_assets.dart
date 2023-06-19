@@ -7,6 +7,7 @@ const String mePath = "/personal";
 const String kaMe = "$basePath$mePath/me.jpg";
 const String kaEarth = "$basePath$mePath/earth.svg";
 const String kaGalaxy = "$basePath$mePath/galaxy.svg";
+const String kaShowcaseStyle = "$basePath$mePath/my_showcase_style.png";
 
 /// van gogh artworks which are downloaded from https://wikiart.com
 const String vanGoghPath = "/van_gogh";
