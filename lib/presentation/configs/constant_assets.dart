@@ -5,6 +5,7 @@ const String basePath = "assets/images";
 /// personal assets
 const String mePath = "/personal";
 const String kaMe = "$basePath$mePath/me.jpg";
+const String kaLogo = "$basePath$mePath/logo.svg";
 const String kaEarth = "$basePath$mePath/earth.svg";
 const String kaGalaxy = "$basePath$mePath/galaxy.svg";
 const String kaShowcaseStyle = "$basePath$mePath/my_showcase_style.png";

@@ -1,10 +1,24 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
+
+import '../configs/configs.dart';
 
 class Logo extends StatelessWidget {
   const Logo({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Text('Yoh');
+    return Transform.scale(
+      scaleX: -1,
+      child: SvgPicture.asset(
+        kaLogo,
+        semanticsLabel: 'Logo SVG',
+        width: s80,
+        height: s80,
+      ),
+    ).addPadding(edgeInsets: context.padding(l: s10));
   }
 }

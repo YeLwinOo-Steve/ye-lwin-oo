@@ -165,7 +165,7 @@ class _OverallState extends State<Overall> with TickerProviderStateMixin {
             text: "a  tech  nerd".toUpperCase(),
             fontSize: s200,
             strokeWidth: s18,
-            letterSpacing: 1.5,
+            letterSpacing: 2.5,
             strokeColor: kSecondary,
             animation: transparentColorTween,
             fontWeight: FontWeight.w900,

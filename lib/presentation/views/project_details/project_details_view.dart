@@ -150,7 +150,7 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView>
         ProjectOverview(
           project: project,
         ),
-      ].addListView(
+      ].addNestedListView(
         physics: const BouncingScrollPhysics(),
       ),
     );

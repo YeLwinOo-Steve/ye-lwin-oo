@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 extension ContextEx on BuildContext {
@@ -43,5 +45,12 @@ extension ContextEx on BuildContext {
         bottom: b ?? 0,
         top: t ?? 0,
       );
+
+  double textScaleFactor({double maxTextScaleFactor = 1}) {
+    final width = MediaQuery.of(this).size.width;
+    double val = (width / 1400) * maxTextScaleFactor;
+    return max(1, min(val, maxTextScaleFactor));
+  }
+
 
 }

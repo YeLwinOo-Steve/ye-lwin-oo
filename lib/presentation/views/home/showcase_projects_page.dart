@@ -104,9 +104,9 @@ class _ShowcaseProjectsPageState extends State<ShowcaseProjectsPage>
               )
               .toList(),
         ]
-            .addColumn(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            .addNestedListView(
+              // crossAxisAlignment: CrossAxisAlignment.start,
+              // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             )
             .addContainer(
                 height: containerHeight,

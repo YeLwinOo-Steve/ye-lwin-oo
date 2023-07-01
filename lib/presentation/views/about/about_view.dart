@@ -58,6 +58,7 @@ class _AboutViewState extends State<AboutView> {
 
   @override
   Widget build(BuildContext context) {
+
     return Wrapper(
       page: GestureDetector(
         onPanUpdate: (details) {

@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:yelwinoo/presentation/route/route_transitions.dart';
 import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
 import 'package:yelwinoo/presentation/widgets/widgets.dart';
 
 import '../../../configs/configs.dart';
-
 
 class ToolsAndTechnologies extends StatelessWidget {
   const ToolsAndTechnologies({
     super.key,
     required this.stickController,
     required this.textController,
+    required this.techController,
   });
   final AnimationController stickController;
   final AnimationController textController;
+  final AnimationController techController;
   @override
   Widget build(BuildContext context) {
     return <Widget>[
@@ -26,16 +28,16 @@ class ToolsAndTechnologies extends StatelessWidget {
           controller: textController,
           coverColor: kPrimary,
           textStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
-            fontWeight: FontWeight.w700,
-          ),
+                fontWeight: FontWeight.w700,
+              ),
         ),
       ].addRow(),
       verticalSpaceMassive,
-      <Widget>[
+      SlideWidget(<Widget>[
         Text(
-          ksMyTools,
-          style: Theme.of(context).textTheme.bodyLarge,
-        ),
+            ksMyTools,
+            style: Theme.of(context).textTheme.bodyLarge,
+          ),
         verticalSpaceSmall,
         <Widget>[
           Text(
@@ -117,7 +119,10 @@ class ToolsAndTechnologies extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
       )
           .addPadding(
-          edgeInsets: context.symmetricPercentPadding(hPercent: s8)),
+        edgeInsets: context.symmetricPercentPadding(hPercent: s8),
+      ), animation: techController,
+      slidePosition: SlidePosition.bottom,
+      ),
     ].addColumn(
       crossAxisAlignment: CrossAxisAlignment.start,
     );

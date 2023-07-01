@@ -16,26 +16,55 @@ class BackgroundStory extends StatefulWidget {
 class _BackgroundStoryState extends State<BackgroundStory>
     with TickerProviderStateMixin {
   late AnimationController _textController;
+  late AnimationController _text2Controller;
   late AnimationController _stickController;
+  late AnimationController _stick2Controller;
+  late AnimationController _infoController;
+  late AnimationController _techController;
   @override
   void initState() {
     super.initState();
     _textController = AnimationController(vsync: this, duration: duration2000);
+    _text2Controller = AnimationController(vsync: this, duration: duration2000);
+    _infoController = AnimationController(vsync: this, duration: duration500);
+    _techController = AnimationController(vsync: this, duration: duration500);
+    _infoController.addStatusListener(infoControllerListener);
     _stickController = AnimationController(vsync: this, duration: duration1000)
       ..forward();
     _stickController.addStatusListener(stickControllerListener);
+    _stick2Controller =
+        AnimationController(vsync: this, duration: duration1000);
+    _stick2Controller.addStatusListener(stick2ControllerListener);
+  }
+
+  void infoControllerListener(AnimationStatus status) {
+    if (status == AnimationStatus.completed) {
+      _stick2Controller.forward();
+    }
   }
 
   void stickControllerListener(AnimationStatus status) {
     if (status == AnimationStatus.completed) {
       _textController.forward();
+      _infoController.forward();
+    }
+  }
+
+  void stick2ControllerListener(AnimationStatus status) {
+    if (status == AnimationStatus.completed) {
+      _text2Controller.forward();
+      _techController.forward();
     }
   }
 
   @override
   void dispose() {
     _stickController.dispose();
+    _stick2Controller.dispose();
+    _text2Controller.dispose();
+    _techController.dispose();
     _textController.dispose();
+    _infoController.dispose();
     super.dispose();
   }
 
@@ -66,13 +95,15 @@ class _BackgroundStoryState extends State<BackgroundStory>
         BackgroundInfo(
           stickController: _stickController,
           textController: _textController,
+          infoController: _infoController,
         ),
         context.percentSizedBox(
           pHeight: s5,
         ),
         ToolsAndTechnologies(
-          stickController: _stickController,
-          textController: _textController,
+          stickController: _stick2Controller,
+          textController: _text2Controller,
+          techController: _techController,
         ),
       ]
           .addColumn(

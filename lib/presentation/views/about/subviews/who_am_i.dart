@@ -95,14 +95,14 @@ class _WhoAmIState extends State<WhoAmI> with TickerProviderStateMixin {
       Container(
         margin: context.symmetricPercentPadding(hPercent: s8),
         padding: context.allPercentPadding(allPercent: s3),
-        height: context.percentHeight(s50),
         child: <Widget>[
           Text(
             "I specialize in Mobile Technologies and highly passionate about developing quality applications & open-source works.",
             style: Theme.of(context).textTheme.titleSmall?.copyWith(
                   fontWeight: FontWeight.w300,
-                  color: kWhite,
+                  color: kBlack,
                 ),
+            textScaleFactor: context.textScaleFactor(),
           ).addExpanded(),
           const SizedBox.shrink().addExpanded(),
         ].addRow(),

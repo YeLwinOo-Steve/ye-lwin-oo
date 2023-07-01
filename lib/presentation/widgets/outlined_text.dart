@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
 
 import '../configs/configs.dart';
 
@@ -36,6 +37,7 @@ class OutlinedText extends StatelessWidget {
               ..strokeWidth = strokeWidth
               ..color = strokeColor,
           ),
+          textScaleFactor: context.textScaleFactor(),
         ),
         Text(
           text,
@@ -45,6 +47,7 @@ class OutlinedText extends StatelessWidget {
             letterSpacing: letterSpacing,
             color: textColor,
           ),
+          textScaleFactor: context.textScaleFactor(),
         ),
       ],
     );

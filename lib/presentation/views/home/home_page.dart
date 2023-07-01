@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:nested_scroll_views/widgets.dart';
 import 'package:yelwinoo/presentation/configs/configs.dart';
 import 'package:yelwinoo/presentation/views/wrapper.dart';
 import 'package:yelwinoo/presentation/widgets/widgets.dart';
@@ -87,7 +88,7 @@ class _HomePageState extends State<HomePage>
               _onScroll(pointerSignal.scrollDelta.dy);
             }
           },
-          child: PageView(
+          child: NestedPageView(
             key: _key,
             controller: pageController,
             physics: const NeverScrollableScrollPhysics(),

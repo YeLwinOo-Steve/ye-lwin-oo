@@ -113,6 +113,7 @@ class _WrapperState extends State<Wrapper> with TickerProviderStateMixin {
       appBar: AnimatedAppBar(
         animation: _appBarController.view,
         appBar: AppBar(
+          leadingWidth: s70,
           leading: const Logo(),
           actions: [
             MenuButton(
