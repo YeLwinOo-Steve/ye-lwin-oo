@@ -168,14 +168,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
-  nested_scroll_views:
-    dependency: "direct main"
-    description:
-      name: nested_scroll_views
-      sha256: "5ebbaf7d86d7cec55433532b0476aa1275cbe3298e1303d02db06b7b5e70b362"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.7"
   path:
     dependency: transitive
     description:

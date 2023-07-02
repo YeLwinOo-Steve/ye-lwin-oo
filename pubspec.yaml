@@ -43,7 +43,6 @@ dependencies:
   type_text: ^1.0.5
   visibility_detector: ^0.4.0+2
   flutter_svg: ^2.0.5
-  nested_scroll_views: ^0.0.7
   responsive_builder: ^0.7.0
 
 dev_dependencies:

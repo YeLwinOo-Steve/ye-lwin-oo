@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:nested_scroll_views/widgets.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 extension WidgetEx on Widget {
@@ -149,7 +148,7 @@ extension WidgetListEx on List<Widget> {
     bool? shrinkWrap,
     EdgeInsetsGeometry? padding,
   }) {
-    return NestedListView(
+    return ListView(
       scrollDirection: scrollDirection ?? Axis.vertical,
       physics: physics,
       shrinkWrap: shrinkWrap ?? false,
