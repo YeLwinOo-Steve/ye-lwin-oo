@@ -44,6 +44,8 @@ dependencies:
   visibility_detector: ^0.4.0+2
   flutter_svg: ^2.0.5
   responsive_builder: ^0.7.0
+  flutter_staggered_grid_view: ^0.6.2
+  flutter_staggered_animations: ^1.1.1
 
 dev_dependencies:
   flutter_test:
@@ -58,6 +60,7 @@ flutter:
     - assets/images/personal/
     - assets/images/van_gogh/
     - assets/images/projects/
+    - assets/images/certificates/
   fonts:
     - family: Poppins
       fonts:

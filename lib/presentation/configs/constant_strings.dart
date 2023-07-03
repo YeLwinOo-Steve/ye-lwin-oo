@@ -1,10 +1,12 @@
 import 'package:atlas_icons/atlas_icons.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:yelwinoo/data/model/certificate.dart';
 import 'package:yelwinoo/data/model/project_info.dart';
 import 'package:yelwinoo/data/model/quote.dart';
 import 'package:yelwinoo/data/model/route_model.dart';
 import 'package:yelwinoo/data/model/showcase_project.dart';
 import 'package:yelwinoo/data/model/social_media.dart';
+import 'package:yelwinoo/presentation/configs/configs.dart';
 import 'package:yelwinoo/presentation/route/routes.dart';
 
 import 'constant_colors.dart';
@@ -103,6 +105,35 @@ final List<RouteModel> ksMenu = [
   RouteModel(label: ksAbout, route: Routes.about),
   RouteModel(label: ksContact, route: Routes.contact),
 ];
+
+final List<Certificate> ksCertificateList = [
+  Certificate(
+    name: "GraphQL Associate Certificate",
+    image: kaGraphQL,
+    link: "",
+  ),
+  Certificate(
+    name: "Deep Learning Specialization (Coursera)",
+    image: kaDeepLearning,
+    link: "",
+  ),
+  Certificate(
+    name: "Intermediate Python (DataCamp)",
+    image: kaPython,
+    link: "",
+  ),
+  Certificate(
+    name: "JST Japan-Asia Youth Exchange Program",
+    image: kaJST,
+    link: "",
+  ),
+  Certificate(
+    name: "TF SCALE Leadership Exchange Program",
+    image: kaTMESEK,
+    link: "",
+  ),
+];
+
 const String _nikolaTesla = "Nikola Tesla";
 const String _kentBeck = "Kent Beck";
 const String _linusTorvalds = "Linus Torvalds";

@@ -10,6 +10,14 @@ const String kaEarth = "$basePath$mePath/earth.svg";
 const String kaGalaxy = "$basePath$mePath/galaxy.svg";
 const String kaShowcaseStyle = "$basePath$mePath/my_showcase_style.png";
 
+/// certificates
+const  String certificatePath = "/certificates";
+const String kaGraphQL = "$basePath$certificatePath/graphql.jpg";
+const String kaDeepLearning = "$basePath$certificatePath/deep_learning.jpg";
+const String kaPython = "$basePath$certificatePath/intermediate_python.jpg";
+const String kaJST = "$basePath$certificatePath/jst_japan_asia.jpg";
+const String kaTMESEK = "$basePath$certificatePath/tmesek.jpg";
+
 /// van gogh artworks which are downloaded from https://wikiart.com
 const String vanGoghPath = "/van_gogh";
 

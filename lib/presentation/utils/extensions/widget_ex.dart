@@ -82,8 +82,9 @@ extension WidgetEx on Widget {
     );
   }
 
-  Widget addScrollView() {
+  Widget addScrollView({ScrollPhysics? physics}) {
     return SingleChildScrollView(
+      physics: physics,
       child: this,
     );
   }
