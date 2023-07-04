@@ -14,10 +14,11 @@ class AnimatedSlideBox extends AnimatedWidget {
     this.invisibleBoxAnimation,
     this.boxColor = Colors.black,
     this.coverColor = Colors.transparent,
+    this.isVertical = false,
     this.visibleBoxCurve = Curves.fastOutSlowIn,
     this.invisibleBoxCurve = Curves.fastOutSlowIn,
   }) : super(key: key, listenable: controller);
-
+  final bool isVertical;
   final AnimationController controller;
   final double height;
   final double width;
@@ -30,7 +31,9 @@ class AnimatedSlideBox extends AnimatedWidget {
 
   Animation<double> get visibleAnimation =>
       visibleBoxAnimation ??
-      Tween<double>(begin: 0, end: width - (hiddenFactor * 2)).animate(
+      Tween<double>(
+              begin: 0, end: isVertical ? height : width - (hiddenFactor * 2))
+          .animate(
         CurvedAnimation(
           parent: controller,
           curve: Interval(0, 0.5, curve: visibleBoxCurve),
@@ -38,7 +41,7 @@ class AnimatedSlideBox extends AnimatedWidget {
       );
 
   Animation<double> get invisibleAnimation =>
-      Tween<double>(begin: 0, end: width).animate(
+      Tween<double>(begin: 0, end: isVertical ? height : width).animate(
         CurvedAnimation(
           parent: controller,
           curve: Interval(0.5, 1.0, curve: invisibleBoxCurve),
@@ -52,16 +55,17 @@ class AnimatedSlideBox extends AnimatedWidget {
         top: hiddenFactor,
         left: hiddenFactor,
         child: Container(
-          width: visibleAnimation.value,
-          height: height - (hiddenFactor * 2),
+          width: isVertical ? width - (hiddenFactor * 2) : visibleAnimation.value,
+          height:
+              isVertical ? visibleAnimation.value : height - (hiddenFactor * 2),
           color: boxColor,
         ),
       ),
       Positioned(
         top: 0,
         child: Container(
-          width: invisibleAnimation.value,
-          height: height,
+          width: isVertical ? width : invisibleAnimation.value,
+          height: isVertical ? invisibleAnimation.value : height,
           color: coverColor,
         ),
       ),

@@ -19,10 +19,11 @@ class _WhoAmIState extends State<WhoAmI> with TickerProviderStateMixin {
   late AnimationController _galaxyController;
   late Animation<Offset> _earthSlideAnimation;
   late Animation<Offset> _galaxySlideAnimation;
-
+  Image myPicture = Image.asset(kaShowcaseStyle);
   @override
   void initState() {
     super.initState();
+    _precacheImage();
     _textController = AnimationController(
       vsync: this,
       duration: duration2000,
@@ -51,6 +52,12 @@ class _WhoAmIState extends State<WhoAmI> with TickerProviderStateMixin {
         curve: Curves.easeInOut,
       ),
     );
+  }
+
+  void _precacheImage() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      precacheImage(myPicture.image, context);
+    });
   }
 
   @override
@@ -110,8 +117,8 @@ class _WhoAmIState extends State<WhoAmI> with TickerProviderStateMixin {
       <Widget>[
         AspectRatio(
           aspectRatio: 9 / 16,
-          child: Image.asset(
-            kaShowcaseStyle,
+          child: Image(
+            image: myPicture.image,
             height: context.percentHeight(s50),
           ),
         ),

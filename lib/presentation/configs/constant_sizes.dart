@@ -40,6 +40,7 @@ const double s250 = 250.0;
 const double s400 = 400.0;
 
 //duration
+const int d10 = 10;
 const int d50 = 50;
 const int d100 = 100;
 const int d150 = 150;
@@ -68,6 +69,7 @@ const Duration duration3000 = Duration(milliseconds: d3000);
 const Duration duration4000 = Duration(milliseconds: d4000);
 const Duration duration4300 = Duration(milliseconds: d4300);
 const Duration duration5000 = Duration(milliseconds: d5000);
+const Duration duration10s = Duration(seconds: d10);
 
 const double _tiny = s4;
 const double _small = s8;

@@ -30,6 +30,7 @@ class MenuPage extends StatefulWidget {
 
 class _MenuPageState extends State<MenuPage> with TickerProviderStateMixin {
   late AnimationController _boxController;
+  late AnimationController _colorBoxController;
 
   List<bool> _menuItemHover = List.filled(ksMenu.length, false);
   final List<double> _menuItemListPositionY = List.filled(ksMenu.length, 0.0);
@@ -73,11 +74,24 @@ class _MenuPageState extends State<MenuPage> with TickerProviderStateMixin {
       duration: duration100,
       vsync: this,
     );
+    _boxController.addStatusListener(boxControllerListener);
+    _colorBoxController = AnimationController(
+      duration: duration500,
+      vsync: this,
+    );
   }
 
+  void boxControllerListener(AnimationStatus status){
+    if(status == AnimationStatus.completed){
+      _colorBoxController.forward();
+    }else if( status == AnimationStatus.dismissed){
+      _colorBoxController.reverse();
+    }
+  }
   @override
   void dispose() {
     _boxController.dispose();
+    _colorBoxController.dispose();
     super.dispose();
   }
 
@@ -124,6 +138,7 @@ class _MenuPageState extends State<MenuPage> with TickerProviderStateMixin {
               child: VanGoghImage(
                 hoveredIndex: currentHoverIndex,
                 animation: _boxController.view,
+                coloredBoxAnimation: _colorBoxController.view,
                 images: _vanGoghImages,
               ),
             ),

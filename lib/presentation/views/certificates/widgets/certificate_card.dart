@@ -41,7 +41,7 @@ class AnimatedCertificateImage extends AnimatedWidget {
 
   Animation<double> get opacityAnimation => Tween<double>(
         begin: s1,
-        end: 0.3,
+        end: 0.2,
       ).animate(curvedAnimation);
   @override
   Widget build(BuildContext context) {
@@ -66,17 +66,50 @@ class AnimatedCertificateImage extends AnimatedWidget {
             ),
           ),
           Align(
-            alignment: Alignment.topRight,
-            child: Opacity(
-              opacity: 1 - opacityAnimation.value,
-              child: IconButton(
-                onPressed: (){},
-                icon: Icon(Atlas.arrows_corners_move_thin,)
-              ).addPadding(
-                edgeInsets: context.allPadding(p: s8,)
-              ),
-            )
-          ),
+              alignment: Alignment.topRight,
+              child: Opacity(
+                opacity: 1 - opacityAnimation.value,
+                child: IconButton(
+                  onPressed: () {
+                    showDialog<void>(
+                      context: context,
+                      barrierDismissible: true,
+                      // false = user must tap button, true = tap outside dialog
+                      builder: (BuildContext dialogContext) {
+                        return AlertDialog(
+                          title: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                certificate.name,
+                                style: Theme.of(context).textTheme.bodyLarge,
+                              ),
+                              IconButton(
+                                onPressed: () {
+                                  Navigator.of(dialogContext).pop();
+                                },
+                                icon: const Icon(Atlas.xmark_circle),
+                              ),
+                            ],
+                          ),
+                          content: AspectRatio(
+                            aspectRatio: 9 / 10,
+                            child: Image.asset(
+                              certificate.image,
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  },
+                  icon: const Icon(
+                    Atlas.arrows_corners_move_thin,
+                  ),
+                ).addPadding(
+                    edgeInsets: context.allPadding(
+                  p: s8,
+                )),
+              )),
           Align(
             alignment: Alignment.center,
             child: Opacity(
@@ -86,7 +119,9 @@ class AnimatedCertificateImage extends AnimatedWidget {
                 children: [
                   Text(
                     certificate.name,
-                    style: Theme.of(context).textTheme.titleMedium,
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                          fontWeight: FontWeight.w700,
+                        ),
                     textAlign: TextAlign.center,
                   ),
                   verticalSpaceMedium,

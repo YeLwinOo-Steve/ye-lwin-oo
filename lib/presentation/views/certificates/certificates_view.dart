@@ -3,6 +3,8 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
 import 'package:yelwinoo/presentation/views/wrapper.dart';
+import 'package:yelwinoo/presentation/widgets/animated_horizontal_stick.dart';
+import 'package:yelwinoo/presentation/widgets/animated_text_slide_box_transition.dart';
 
 import '../../configs/configs.dart';
 import 'widgets/certificate_card.dart';
@@ -16,13 +18,24 @@ class CertificatesView extends StatefulWidget {
 
 class _CertificatesViewState extends State<CertificatesView>
     with TickerProviderStateMixin {
+  late AnimationController _stickController;
   List<AnimationController> _controller = [];
-
+  late AnimationController _textController;
   @override
   void initState() {
     super.initState();
+    _stickController = AnimationController(vsync: this, duration: duration500)
+      ..forward();
+    _stickController.addStatusListener(stickControllerListener);
+    _textController = AnimationController(vsync: this, duration: duration1000);
     for (int i = 0; i < ksCertificateList.length; i++) {
       _controller.add(AnimationController(vsync: this, duration: duration500));
+    }
+  }
+
+  void stickControllerListener(AnimationStatus status) {
+    if (status == AnimationStatus.completed) {
+      _textController.forward();
     }
   }
 
@@ -31,57 +44,78 @@ class _CertificatesViewState extends State<CertificatesView>
     for (var element in _controller) {
       element.dispose();
     }
+    _stickController.dispose();
+    _textController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Wrapper(
-      page: GridView.custom(
-        physics: const NeverScrollableScrollPhysics(),
-        shrinkWrap: true,
-        gridDelegate: SliverWovenGridDelegate.count(
-          crossAxisCount: 2,
-          pattern: [
-            const WovenGridTile(
-              1.8 / 1,
+      page: Column(
+        children: [
+          Row(
+            children: [
+              AnimatedHorizontalStick(controller: _stickController),
+              horizontalSpaceMedium,
+              AnimatedTextSlideBoxTransition(
+                controller: _textController,
+                text: ksCertificates,
+                textStyle: Theme.of(context).textTheme.titleSmall,
+                coverColor: kPrimary,
+              ),
+            ],
+          ),
+          GridView.custom(
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            gridDelegate: SliverWovenGridDelegate.count(
+              crossAxisCount: 2,
+              mainAxisSpacing: s10,
+              pattern: [
+                const WovenGridTile(
+                  1.5,
+                ),
+                const WovenGridTile(
+                  13 / 9,
+                  crossAxisRatio: 0.95,
+                  alignment: AlignmentDirectional.centerEnd,
+                ),
+              ],
             ),
-            const WovenGridTile(
-              13 / 9,
-              crossAxisRatio: 0.95,
-              alignment: AlignmentDirectional.centerEnd,
-            ),
-          ],
-        ),
-        childrenDelegate: SliverChildBuilderDelegate(
-          childCount: ksCertificateList.length,
-          (context, index) => AnimationConfiguration.staggeredList(
-            position: index,
-            duration: duration2000,
-            child: SlideAnimation(
-              verticalOffset: s50,
-              curve: Curves.easeInOut,
-              child: FadeInAnimation(
-                child: CertificateCard(
-                  key: ValueKey(index.toString()),
-                  animation: _controller[index],
-                  certificate: ksCertificateList[index],
-                  onHover: (isHovered) {
-                    if (isHovered) {
-                      _controller[index].forward();
-                    } else {
-                      if (!_controller[index].isDismissed) {
-                        _controller[index].reverse();
-                      }
-                    }
-                  },
+            childrenDelegate: SliverChildBuilderDelegate(
+              childCount: ksCertificateList.length,
+              (context, index) => AnimationConfiguration.staggeredList(
+                position: index,
+                duration: duration2000,
+                child: SlideAnimation(
+                  verticalOffset: s50,
+                  curve: Curves.easeInOut,
+                  child: FadeInAnimation(
+                    child: CertificateCard(
+                      key: ValueKey(index.toString()),
+                      animation: _controller[index],
+                      certificate: ksCertificateList[index],
+                      onHover: (isHovered) {
+                        if (isHovered) {
+                          _controller[index].forward();
+                        } else {
+                          if (!_controller[index].isDismissed) {
+                            _controller[index].reverse();
+                          }
+                        }
+                      },
+                    ),
+                  ),
                 ),
               ),
             ),
           ),
-        ),
+        ],
       )
-          .addPadding(edgeInsets: context.allPercentPadding(allPercent: s8))
+          .addPadding(
+            edgeInsets: context.allPercentPadding(allPercent: s8),
+          )
           .addScrollView(
             physics: const BouncingScrollPhysics(),
           ),
