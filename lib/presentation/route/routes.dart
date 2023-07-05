@@ -5,6 +5,7 @@ import 'package:yelwinoo/presentation/configs/configs.dart';
 import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
 import 'package:yelwinoo/presentation/views/about/about_view.dart';
 import 'package:yelwinoo/presentation/views/certificates/certificates_view.dart';
+import 'package:yelwinoo/presentation/views/experience/experience_view.dart';
 import 'package:yelwinoo/presentation/views/home/home_page.dart';
 import 'package:yelwinoo/presentation/views/project_details/project_details_view.dart';
 import 'package:yelwinoo/presentation/views/projects/projects_view.dart';
@@ -28,6 +29,8 @@ class RouteGen {
             name: '${settings.name}/${arguments.title}',
           ),
         );
+      case Routes.experience:
+        return _buildRoute(const ExperienceView(), settings: settings);
       case Routes.certificates:
         return _buildRoute(const CertificatesView(), settings: settings);
       case Routes.about:
@@ -49,6 +52,7 @@ class Routes {
   static const home = "/";
   static const certificates = "/certificates";
   static const projects = "/projects";
+  static const experience = "/experience";
   static const projectDetails = "/project_details";
   static const about = "/about";
   static const contact = "/contact_me";

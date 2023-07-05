@@ -9,10 +9,6 @@ import 'package:yelwinoo/data/model/social_media.dart';
 import 'package:yelwinoo/presentation/configs/configs.dart';
 import 'package:yelwinoo/presentation/route/routes.dart';
 
-import 'constant_colors.dart';
-import 'constant_icons.dart';
-import 'constant_sizes.dart';
-
 /// constant strings are prefixed with [ks]
 const String ksFontFamily = "Poppins";
 
@@ -33,6 +29,8 @@ const String ksProject = "My Projects";
 const String ksViewProject = "View Project";
 const String ksCraftedWithLove = "Crafted with Love";
 const String ksRecentProjects = "Here are a selection of my recent projects";
+const String ksCraftedProjects =
+    'Here are some of my carefully crafted projects';
 const String ksContact = "Contact Me";
 const String ksAboutMe = "About Me";
 const String ksBgStory = "Background Story";
@@ -101,6 +99,7 @@ const String ksExplore = "Exploring more...";
 final List<RouteModel> ksMenu = [
   RouteModel(label: ksHome, route: Routes.home),
   RouteModel(label: ksProject, route: Routes.projects),
+  RouteModel(label: ksExperience, route: Routes.experience),
   RouteModel(label: ksCertificates, route: Routes.certificates),
   RouteModel(label: ksAbout, route: Routes.about),
   RouteModel(label: ksContact, route: Routes.contact),
@@ -109,27 +108,27 @@ final List<RouteModel> ksMenu = [
 final List<Certificate> ksCertificateList = [
   Certificate(
     name: "GraphQL Associate Certificate",
-    image: kaGraphQL,
+    image: kaGraphQLCerti,
     link: "",
   ),
   Certificate(
     name: "Deep Learning Specialization (Coursera)",
-    image: kaDeepLearning,
+    image: kaDeepLearningCerti,
     link: "",
   ),
   Certificate(
     name: "Intermediate Python (DataCamp)",
-    image: kaPython,
+    image: kaPythonCerti,
     link: "",
   ),
   Certificate(
     name: "JST Japan-Asia Youth Exchange Program",
-    image: kaJST,
+    image: kaJSTCerti,
     link: "",
   ),
   Certificate(
     name: "TF SCALE Leadership Exchange Program",
-    image: kaTMESEK,
+    image: kaTMESEKCerti,
     link: "",
   ),
 ];
@@ -269,6 +268,7 @@ const String _FIREBASE = 'Firebase';
 const String _HTML = 'Html';
 const String _CSS = 'Css';
 const String _JAVASCRIPT = 'Javascript';
+const String _GRAPHQL = "GraphQL";
 const String _ME = 'Ye Lwin Oo';
 
 const String _ANDROID = 'Android';
@@ -427,6 +427,221 @@ final List<ShowcaseProject> ksShowcaseProjects = [
       contents: [
         _WEB,
       ],
+    ),
+  ),
+  ShowcaseProject(
+    title: 'Pretty Animated Buttons',
+    image: dummyImage,
+    shortDescription:
+        "A collection of ready-to-use smoothly animated pretty buttons written in Flutter",
+    description: """
+        Pretty Animated Buttons is a package for a collection of beautiful animated buttons which are highly customizable too.
+        Currently, a total of 12 animated buttons are available. More fancy buttons are coming soon...
+        """,
+    link: dummyImage,
+    heroTag: 'pretty_animated_buttons',
+    tags: ProjectInfo(
+      icon: kiTag,
+      label: 'Tags',
+      isTag: true,
+      contents: [
+        'package',
+        _FLUTTER.toLowerCase(),
+        _DART.toLowerCase(),
+        'animation',
+      ],
+    ),
+    tech: ProjectInfo(
+      icon: kiChip,
+      label: 'Tools & Technologies',
+      contents: [
+        _FLUTTER.toUpperCase(),
+        _DART.toUpperCase(),
+      ],
+    ),
+    author: ProjectInfo(
+      icon: kiPerson,
+      label: 'Developer',
+      contents: [
+        _ME,
+      ],
+    ),
+    platform: ProjectInfo(
+      icon: kiLaptop,
+      label: 'Available Platforms',
+      contents: [
+        _ANDROID,
+        _IOS,
+        _LINUX,
+        _MAC,
+        _WEB,
+      ],
+    ),
+  ),
+  ShowcaseProject(
+    title: 'Flappy Ironman',
+    image: dummyImage,
+    shortDescription: "Flappy Ironman game inspired by Flappy Bird Game",
+    description: """
+        This is Flappy Ironman game inspired by Flappy Bird Game. 
+        No external game engine packages are used.
+        Written in Flutter ...
+        """,
+    link: dummyImage,
+    heroTag: 'flappy_ironman',
+    tags: ProjectInfo(
+      icon: kiTag,
+      label: 'Tags',
+      isTag: true,
+      contents: [
+        'game',
+        _FLUTTER.toLowerCase(),
+        _DART.toLowerCase(),
+      ],
+    ),
+    tech: ProjectInfo(
+      icon: kiChip,
+      label: 'Tools & Technologies',
+      contents: [
+        _DART.toUpperCase(),
+        _FLUTTER.toUpperCase(),
+      ],
+    ),
+    author: ProjectInfo(
+      icon: kiPerson,
+      label: 'Developer',
+      contents: [
+        _ME,
+      ],
+    ),
+    platform: ProjectInfo(
+      icon: kiLaptop,
+      label: 'Available Platforms',
+      contents: [
+        _ANDROID,
+        _IOS,
+      ],
+    ),
+  ),
+  ShowcaseProject(
+    title: 'AI Chat Bot',
+    image: dummyImage,
+    shortDescription: "AI chat bot using Flutter and Dialogflow.",
+    description: """
+        AI chat bot using Flutter and Dialogflow.
+        ⚠️ Dialogflow key is now expired so it won't work no more ...
+        """,
+    link: "https://github.com/YeLwinOo-Steve/AIChatbot",
+    heroTag: 'ai_chat_bot',
+    tags: ProjectInfo(
+      icon: kiTag,
+      label: 'Tags',
+      isTag: true,
+      contents: [
+        'chat bot',
+        _FLUTTER.toLowerCase(),
+        _DART.toLowerCase(),
+      ],
+    ),
+    tech: ProjectInfo(
+      icon: kiChip,
+      label: 'Tools & Technologies',
+      contents: [
+        _DART.toUpperCase(),
+        _FLUTTER.toUpperCase(),
+      ],
+    ),
+    author: ProjectInfo(
+      icon: kiPerson,
+      label: 'Developer',
+      contents: [
+        _ME,
+      ],
+    ),
+    platform: ProjectInfo(
+      icon: kiLaptop,
+      label: 'Available Platforms',
+      contents: [
+        _ANDROID,
+        _IOS,
+      ],
+    ),
+  ),
+  ShowcaseProject(
+    title: 'GraphQL Notes',
+    image: dummyImage,
+    shortDescription: "My Apollo graphQL Associate Certified Developer path",
+    description: """
+       My Apollo graphQL Associate Certified Developer path coding practice notes
+       All of these notes are available at Apollo GraphQL Tutorials
+        """,
+    link: "https://github.com/YeLwinOo-Steve/graphql-associate-dev",
+    heroTag: 'graphql_notes',
+    tags: ProjectInfo(
+      icon: kiTag,
+      label: 'Tags',
+      isTag: true,
+      contents: ['GraphQL', 'note'],
+    ),
+    tech: ProjectInfo(
+      icon: kiChip,
+      label: 'Tools & Technologies',
+      contents: [
+        _GRAPHQL.toLowerCase(),
+      ],
+    ),
+    author: ProjectInfo(
+      icon: kiPerson,
+      label: 'Developer',
+      contents: [
+        _ME,
+      ],
+    ),
+    platform: ProjectInfo(
+      icon: kiLaptop,
+      label: 'Available Platforms',
+      contents: [],
+    ),
+  ),
+  ShowcaseProject(
+    title: 'Design Patterns',
+    image: dummyImage,
+    shortDescription:
+        "Design patterns usage with simple examples written in Dart",
+    description: """
+        Design patterns usage with simple examples written in Dart
+        Currently, not all design patterns are available yet.
+        Still developing ...
+        """,
+    link: "https://github.com/YeLwinOo-Steve/FlappyIronman",
+    heroTag: 'design_patterns',
+    tags: ProjectInfo(
+      icon: kiTag,
+      label: 'Tags',
+      isTag: true,
+      contents: [
+        'design_patterns',
+        _DART.toLowerCase(),
+      ],
+    ),
+    tech: ProjectInfo(
+      icon: kiChip,
+      label: 'Tools & Technologies',
+      contents: [
+        _DART.toUpperCase(),
+      ],
+    ),
+    author: ProjectInfo(
+      icon: kiPerson,
+      label: 'Developer',
+      contents: [
+        _ME,
+      ],
+    ),
+    platform: ProjectInfo(
+      icon: kiLaptop,
+      label: 'Available Platforms',
+      contents: [],
     ),
   ),
 ];

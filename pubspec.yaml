@@ -61,6 +61,7 @@ flutter:
     - assets/images/van_gogh/
     - assets/images/projects/
     - assets/images/certificates/
+    - assets/images/tools/
   fonts:
     - family: Poppins
       fonts:

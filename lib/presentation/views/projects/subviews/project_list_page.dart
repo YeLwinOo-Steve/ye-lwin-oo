@@ -1,11 +1,14 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
-import 'package:logger/logger.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
+import 'package:yelwinoo/presentation/widgets/animated_text_slide_box_transition.dart';
 
 import '../../../configs/configs.dart';
+import '../widgets/animated_background_circle.dart';
+import '../widgets/animated_project_card.dart';
 
 class ProjectListPage extends StatefulWidget {
   const ProjectListPage({super.key});
@@ -17,8 +20,12 @@ class ProjectListPage extends StatefulWidget {
 class _ProjectListPageState extends State<ProjectListPage>
     with TickerProviderStateMixin {
   late AnimationController _controller;
+  late AnimationController _labelController;
   late AnimationController _projectSlideController;
   late AnimationController _projectRotateController;
+  late AnimationController _slideOpacityController;
+  late AnimationController _toolOpacityController;
+  List<AnimationController> _toolAnimations = [];
   final _scrollController = ScrollController();
   @override
   void initState() {
@@ -27,6 +34,21 @@ class _ProjectListPageState extends State<ProjectListPage>
     _controller.addListener(controllerListener);
     _projectSlideController =
         AnimationController(vsync: this, duration: duration3000);
+    _projectSlideController.addStatusListener(projectSlideListener);
+    _slideOpacityController =
+        AnimationController(vsync: this, duration: duration500);
+    _toolOpacityController =
+        AnimationController(vsync: this, duration: duration500);
+    _toolOpacityController.addStatusListener(toolOpacityListener);
+    _labelController = AnimationController(vsync: this, duration: duration2000);
+    for (var _ in kaTools) {
+      _toolAnimations.add(
+        AnimationController(
+          vsync: this,
+          duration: duration500,
+        ),
+      );
+    }
     _projectRotateController = AnimationController(
       vsync: this,
       duration: duration2000,
@@ -35,8 +57,20 @@ class _ProjectListPageState extends State<ProjectListPage>
   }
 
   void controllerListener() {
+    if (_controller.value > 0.95) {
+      _labelController.forward();
+      _toolOpacityController.forward();
+    }
     if (_controller.value > 0.6) {
       _projectSlideController.forward();
+    }
+  }
+
+  void toolOpacityListener(AnimationStatus status) {
+    for (int i = 0; i < _toolAnimations.length; i++) {
+      Future.delayed(Duration(milliseconds: d50 * i), () {
+        _toolAnimations[i].forward();
+      });
     }
   }
 
@@ -46,24 +80,40 @@ class _ProjectListPageState extends State<ProjectListPage>
     }
   }
 
+  void projectSlideListener(AnimationStatus status) {
+    if (status == AnimationStatus.completed) {
+      _slideOpacityController.forward();
+    }
+  }
+
   @override
   void dispose() {
     _controller.dispose();
+    _labelController.dispose();
     _projectSlideController.dispose();
+    _slideOpacityController.dispose();
+    _toolOpacityController.dispose();
     _projectRotateController.dispose();
     _scrollController.dispose();
+    for (var toolAnimation in _toolAnimations) {
+      toolAnimation.dispose();
+    }
     super.dispose();
   }
 
-  Animation<Offset> get projectSlideAnimation =>
-      Tween<Offset>(begin: const Offset(1, 0), end: Offset.zero)
-          .animate(CurvedAnimation(
-        parent: _projectSlideController,
-        curve: Curves.easeInOut,
-      ));
+  Animation<Offset> get projectSlideAnimation => Tween<Offset>(
+        begin: const Offset(1, 0),
+        end: Offset.zero,
+      ).animate(
+        CurvedAnimation(
+          parent: _projectSlideController,
+          curve: Curves.easeInOut,
+        ),
+      );
 
   @override
   Widget build(BuildContext context) {
+    double cardWidth = context.percentWidth(s20);
     return VisibilityDetector(
       key: const ValueKey("project_list"),
       onVisibilityChanged: (info) {
@@ -83,99 +133,116 @@ class _ProjectListPageState extends State<ProjectListPage>
               ),
             ),
             Align(
-              alignment: Alignment.center,
-              child: SizedBox(
-                height: context.percentHeight(s60),
-                width: double.maxFinite,
-                child: SlideTransition(
-                  position: projectSlideAnimation,
-                  child: HorizontalProjectList(
-                    controller: _projectRotateController,
-                    scrollController: _scrollController,
+              alignment: Alignment.topLeft,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Stack(
+                    children: [
+                      ...kaTools.map((tool) {
+                        double cardSize = s80;
+                        int index = kaTools.indexOf(tool);
+                        return ToolCard(
+                          animation: _toolAnimations[index],
+                          bgAnimation: _toolOpacityController,
+                          size: cardSize,
+                          index: index,
+                          tool: tool,
+                        );
+                      }).toList(),
+                    ],
                   ),
-                ),
+                  horizontalSpaceMassive,
+                  AnimatedTextSlideBoxTransition(
+                    controller: _labelController,
+                    text: ksCraftedProjects,
+                    coverColor: kSecondary,
+                    textStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                          fontWeight: FontWeight.w200,
+                        ),
+                  ),
+                ],
               ),
-            )
+            ).addPadding(
+              edgeInsets: context.symmetricPercentPadding(
+                hPercent: s5,
+                vPercent: s10,
+              ),
+            ),
+            Align(
+              alignment: Alignment.center,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  SizedBox(
+                    height: context.percentHeight(s60),
+                    width: double.maxFinite,
+                    child: SlideTransition(
+                      position: projectSlideAnimation,
+                      child: HorizontalProjectList(
+                        controller: _projectRotateController,
+                        scrollController: _scrollController,
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: FadeTransition(
+                      opacity: _slideOpacityController,
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          IconButton(
+                            onPressed: () {
+                              double currentOffset = _scrollController.offset;
+                              double minOffset =
+                                  _scrollController.position.minScrollExtent;
+                              if (currentOffset >= minOffset) {
+                                double previousScroll =
+                                    currentOffset - cardWidth;
+                                _scrollController.animateTo(
+                                  previousScroll < minOffset
+                                      ? s0
+                                      : previousScroll,
+                                  duration: duration500,
+                                  curve: Curves.easeInOut,
+                                );
+                              }
+                            },
+                            icon: const Icon(Icons.arrow_back),
+                          ),
+                          horizontalSpaceMassive,
+                          IconButton(
+                            onPressed: () {
+                              double currentOffset = _scrollController.offset;
+                              double maxOffset =
+                                  _scrollController.position.maxScrollExtent;
+                              if (currentOffset <= maxOffset) {
+                                double nextScroll = currentOffset + cardWidth;
+                                _scrollController.animateTo(
+                                  nextScroll > maxOffset
+                                      ? maxOffset
+                                      : nextScroll,
+                                  duration: duration500,
+                                  curve: Curves.easeInOut,
+                                );
+                              }
+                            },
+                            icon: const Icon(Icons.arrow_forward),
+                          ),
+                        ],
+                      ).addPadding(
+                          edgeInsets: context.symmetricPadding(
+                        h: s40,
+                        v: s20,
+                      )),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class AnimatedBackgroundCircle extends AnimatedWidget {
-  const AnimatedBackgroundCircle({
-    super.key,
-    required this.animation,
-    required this.targetWidth,
-    required this.targetHeight,
-  }) : super(
-          listenable: animation,
-        );
-  final double targetWidth;
-  final double targetHeight;
-  final Animation<double> animation;
-
-  Animation<double> get widthAnimation =>
-      Tween<double>(begin: s150, end: targetWidth).animate(curvedAnimation);
-  Animation<double> get heightAnimation =>
-      Tween<double>(begin: s150, end: targetWidth).animate(curvedAnimation);
-  Animation<double> get radiusAnimation =>
-      Tween<double>(begin: s150, end: 0).animate(curvedAnimation);
-
-  Animation<double> get delayedAnimation =>
-      CurvedAnimation(parent: animation, curve: Curves.fastLinearToSlowEaseIn);
-  Animation<double> get curvedAnimation =>
-      CurvedAnimation(parent: animation, curve: Curves.easeInOut);
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: widthAnimation.value,
-      height: heightAnimation.value,
-      decoration: BoxDecoration(
-        color: kSecondary,
-        borderRadius: BorderRadius.circular(radiusAnimation.value),
-      ),
-    );
-  }
-}
-
-class AnimatedCard extends AnimatedWidget {
-  const AnimatedCard({
-    super.key,
-    required this.animation,
-    this.startAngle = 10,
-    this.endAngle = -10,
-    required this.bgColor,
-  }) : super(listenable: animation);
-  final Animation<double> animation;
-  final double startAngle;
-  final double endAngle;
-  final Color bgColor;
-
-  Animation<double> get rotateAnimation =>
-      Tween<double>(begin: startAngle, end: endAngle).animate(curvedAnimation);
-
-  Animation<double> get curvedAnimation => CurvedAnimation(
-        parent: animation,
-        curve: Curves.easeInOut,
-      );
-  @override
-  Widget build(BuildContext context) {
-    return RotationTransition(
-      turns: AlwaysStoppedAnimation(rotateAnimation.value / 360),
-      child: Container(
-        width: context.percentWidth(s20),
-        height: context.percentHeight(s50),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(s20),
-          color: bgColor,
-        ),
-      ),
-    ).addPadding(
-      edgeInsets: context.symmetricPercentPadding(
-        hPercent: s4,
-        vPercent: s8,
       ),
     );
   }
@@ -198,22 +265,74 @@ class HorizontalProjectList extends StatelessWidget {
       shrinkWrap: true,
       physics: const BouncingScrollPhysics(),
       children: [
-        ...List.generate(kMenuColors.length, (index) {
-          double startAngle = s10;
-          double endAngle = -s10;
-          if (index % 2 == 0) {
-            double tempAngle = startAngle;
-            startAngle = endAngle;
-            endAngle = tempAngle;
-          }
-          return AnimatedCard(
-            bgColor: kMenuColors[index],
-            animation: controller,
-            startAngle: startAngle,
-            endAngle: endAngle,
-          );
-        }),
+        ...List.generate(
+          ksShowcaseProjects.length,
+          (index) {
+            double startAngle = s10;
+            double endAngle = -s10;
+            if (index % 2 == 0) {
+              double tempAngle = startAngle;
+              startAngle = endAngle;
+              endAngle = tempAngle;
+            }
+            return AnimatedProjectCard(
+              bgColor: kDeepBlack,
+              animation: controller,
+              startAngle: startAngle,
+              endAngle: endAngle,
+              index: index + 1,
+              project: ksShowcaseProjects[index],
+            );
+          },
+        ),
       ],
+    );
+  }
+}
+
+class ToolCard extends AnimatedWidget {
+  const ToolCard({
+    super.key,
+    required this.animation,
+    required this.bgAnimation,
+    required this.size,
+    required this.index,
+    required this.tool,
+  }) : super(listenable: animation);
+  final Animation<double> animation;
+  final Animation<double> bgAnimation;
+  final double size;
+  final int index;
+  final String tool;
+
+  Animation<double> get paddingAnimation =>
+      Tween<double>(begin: s0, end: size * 0.7 * index)
+          .animate(curvedAnimation);
+  Animation<double> get curvedAnimation =>
+      CurvedAnimation(parent: animation, curve: Curves.easeInOut);
+  @override
+  Widget build(BuildContext context) {
+    return Opacity(
+      opacity: bgAnimation.value,
+      child: Container(
+        width: size,
+        height: size,
+        margin: context.padding(
+          l: paddingAnimation.value,
+        ),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(s28),
+          color: kToolColors[index],
+        ),
+        child: Center(
+          child: SvgPicture.asset(
+            tool,
+            semanticsLabel: tool,
+            width: size * 0.7,
+            height: size * 0.7,
+          ),
+        ),
+      ),
     );
   }
 }
