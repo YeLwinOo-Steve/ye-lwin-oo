@@ -5,14 +5,14 @@ import 'package:yelwinoo/presentation/widgets/widgets.dart';
 
 import '../../../configs/configs.dart';
 
-class ProjectTitlePage extends StatefulWidget {
-  const ProjectTitlePage({super.key});
+class ExperienceTitlePage extends StatefulWidget {
+  const ExperienceTitlePage({super.key});
 
   @override
-  State<ProjectTitlePage> createState() => _ProjectTitlePageState();
+  State<ExperienceTitlePage> createState() => _ExperienceTitlePageState();
 }
 
-class _ProjectTitlePageState extends State<ProjectTitlePage>
+class _ExperienceTitlePageState extends State<ExperienceTitlePage>
     with TickerProviderStateMixin {
   late AnimationController _titleController;
   late AnimationController _stickController;
@@ -40,8 +40,8 @@ class _ProjectTitlePageState extends State<ProjectTitlePage>
         Align(
           alignment: Alignment.bottomCenter,
           child: SvgPicture.asset(
-            kaComplexity,
-            semanticsLabel: 'Complexity SVG',
+            kaWorkStump,
+            semanticsLabel: 'Work Stump SVG',
             width: context.percentHeight(s30),
             height: context.percentHeight(s30),
           ).addPadding(
@@ -55,7 +55,7 @@ class _ProjectTitlePageState extends State<ProjectTitlePage>
           alignment: Alignment.center,
           child: AnimatedTextSlideBoxTransition(
             controller: _titleController,
-            text: ksBrowseProjects,
+            text: ksExperience,
             coverColor: kPrimary,
             textStyle: Theme.of(context).textTheme.headlineMedium,
           ),

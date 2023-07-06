@@ -31,6 +31,7 @@ class _ProjectsViewState extends State<ProjectsView>
   @override
   void dispose() {
     _controller.dispose();
+    _pageController.dispose();
     super.dispose();
   }
 
@@ -54,7 +55,6 @@ class _ProjectsViewState extends State<ProjectsView>
       }
     }
   }
-
   @override
   Widget build(BuildContext context) {
     return Wrapper(

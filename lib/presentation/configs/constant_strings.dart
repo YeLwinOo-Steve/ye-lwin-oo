@@ -1,6 +1,7 @@
 import 'package:atlas_icons/atlas_icons.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:yelwinoo/data/model/certificate.dart';
+import 'package:yelwinoo/data/model/experience.dart';
 import 'package:yelwinoo/data/model/project_info.dart';
 import 'package:yelwinoo/data/model/quote.dart';
 import 'package:yelwinoo/data/model/route_model.dart';
@@ -21,6 +22,10 @@ const String ksIntro = """
     - an avid reader
   """;
 const String ksSeeMyWork = "See my work";
+const String ksBrowseProjects = "Browse My Projects";
+const String ksWhatElse =
+    "What else? I have freelanced on several side projects.";
+const String ksSayHello = "Just say Hello to work together!";
 const String ksHome = "Home";
 const String ksAbout = "About";
 const String ksExperience = "My Experience";
@@ -103,6 +108,46 @@ final List<RouteModel> ksMenu = [
   RouteModel(label: ksCertificates, route: Routes.certificates),
   RouteModel(label: ksAbout, route: Routes.about),
   RouteModel(label: ksContact, route: Routes.contact),
+];
+
+final List<Experience> ksExperiences = [
+  Experience(
+    company: "Nexus Hub Solution",
+    position: "Mid-Senior Flutter Developer",
+    responsibilities: [
+      "Lead a team of 2 Flutter developers and worked closely with backend developer and UI/UX designers",
+      "Started learning Appwrite, Mobx and dynamic modelling in Flutter",
+      "Contributed in Music Player app, HR Management System and E-commerce app",
+      "Worked closely with UI/UX designer & Backend developer in developing Travel Agency Proprietary System",
+    ],
+    startDate: DateTime(2022, 9),
+    endDate: DateTime(2023, 4),
+  ),
+  Experience(
+    company: "App.com.mm",
+    position: "Mid-Senior Flutter Developer",
+    responsibilities: [
+      "Lead and trained a team of 3 Flutter developers in developing mobile applications",
+      "Contributed features in Blogging app & E-commerce app",
+      "Worked on the delivery service mobile app",
+    ],
+    startDate: DateTime(2022, 5),
+    endDate: DateTime(2022, 9),
+  ),
+  Experience(
+    company: "7r48",
+    position: "Junior Flutter Developer",
+    responsibilities: [
+      "Started learning Flutter, GetX, Provider, Bloc and implementing small projects using Flutter",
+      "Worked closely with senior mobile developer and backend developer to develop Kaung Myat Denti Dental Clinic System mobile app",
+      "Worked on car service management system mobile app",
+      "Architected and implemented small projects such as TOTO lottery prediction app using AI backend using python",
+      "Implemented small python AI projects - Activity Recognition, Driver Drowsiness Detection, Football match prediction, JSON to excel file converter"
+    ],
+    type: JobType.remote,
+    startDate: DateTime(2019, 10),
+    endDate: DateTime(2022, 12),
+  ),
 ];
 
 final List<Certificate> ksCertificateList = [

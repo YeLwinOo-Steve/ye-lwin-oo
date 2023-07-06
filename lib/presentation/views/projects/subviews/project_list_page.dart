@@ -1,7 +1,4 @@
-import 'dart:math' as math;
-
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
 import 'package:yelwinoo/presentation/widgets/animated_text_slide_box_transition.dart';
@@ -9,6 +6,8 @@ import 'package:yelwinoo/presentation/widgets/animated_text_slide_box_transition
 import '../../../configs/configs.dart';
 import '../widgets/animated_background_circle.dart';
 import '../widgets/animated_project_card.dart';
+import '../widgets/project_scroll_icons.dart';
+import '../widgets/tool_card.dart';
 
 class ProjectListPage extends StatefulWidget {
   const ProjectListPage({super.key});
@@ -25,7 +24,7 @@ class _ProjectListPageState extends State<ProjectListPage>
   late AnimationController _projectRotateController;
   late AnimationController _slideOpacityController;
   late AnimationController _toolOpacityController;
-  List<AnimationController> _toolAnimations = [];
+  final List<AnimationController> _toolAnimations = [];
   final _scrollController = ScrollController();
   @override
   void initState() {
@@ -140,7 +139,7 @@ class _ProjectListPageState extends State<ProjectListPage>
                   Stack(
                     children: [
                       ...kaTools.map((tool) {
-                        double cardSize = s80;
+                        double cardSize = s50;
                         int index = kaTools.indexOf(tool);
                         return ToolCard(
                           animation: _toolAnimations[index],
@@ -189,53 +188,10 @@ class _ProjectListPageState extends State<ProjectListPage>
                     alignment: Alignment.centerRight,
                     child: FadeTransition(
                       opacity: _slideOpacityController,
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          IconButton(
-                            onPressed: () {
-                              double currentOffset = _scrollController.offset;
-                              double minOffset =
-                                  _scrollController.position.minScrollExtent;
-                              if (currentOffset >= minOffset) {
-                                double previousScroll =
-                                    currentOffset - cardWidth;
-                                _scrollController.animateTo(
-                                  previousScroll < minOffset
-                                      ? s0
-                                      : previousScroll,
-                                  duration: duration500,
-                                  curve: Curves.easeInOut,
-                                );
-                              }
-                            },
-                            icon: const Icon(Icons.arrow_back),
-                          ),
-                          horizontalSpaceMassive,
-                          IconButton(
-                            onPressed: () {
-                              double currentOffset = _scrollController.offset;
-                              double maxOffset =
-                                  _scrollController.position.maxScrollExtent;
-                              if (currentOffset <= maxOffset) {
-                                double nextScroll = currentOffset + cardWidth;
-                                _scrollController.animateTo(
-                                  nextScroll > maxOffset
-                                      ? maxOffset
-                                      : nextScroll,
-                                  duration: duration500,
-                                  curve: Curves.easeInOut,
-                                );
-                              }
-                            },
-                            icon: const Icon(Icons.arrow_forward),
-                          ),
-                        ],
-                      ).addPadding(
-                          edgeInsets: context.symmetricPadding(
-                        h: s40,
-                        v: s20,
-                      )),
+                      child: ProjectScrollIcons(
+                        scrollController: _scrollController,
+                        cardWidth: cardWidth,
+                      ),
                     ),
                   ),
                 ],
@@ -286,53 +242,6 @@ class HorizontalProjectList extends StatelessWidget {
           },
         ),
       ],
-    );
-  }
-}
-
-class ToolCard extends AnimatedWidget {
-  const ToolCard({
-    super.key,
-    required this.animation,
-    required this.bgAnimation,
-    required this.size,
-    required this.index,
-    required this.tool,
-  }) : super(listenable: animation);
-  final Animation<double> animation;
-  final Animation<double> bgAnimation;
-  final double size;
-  final int index;
-  final String tool;
-
-  Animation<double> get paddingAnimation =>
-      Tween<double>(begin: s0, end: size * 0.7 * index)
-          .animate(curvedAnimation);
-  Animation<double> get curvedAnimation =>
-      CurvedAnimation(parent: animation, curve: Curves.easeInOut);
-  @override
-  Widget build(BuildContext context) {
-    return Opacity(
-      opacity: bgAnimation.value,
-      child: Container(
-        width: size,
-        height: size,
-        margin: context.padding(
-          l: paddingAnimation.value,
-        ),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(s28),
-          color: kToolColors[index],
-        ),
-        child: Center(
-          child: SvgPicture.asset(
-            tool,
-            semanticsLabel: tool,
-            width: size * 0.7,
-            height: size * 0.7,
-          ),
-        ),
-      ),
     );
   }
 }
