@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
 import 'package:yelwinoo/presentation/widgets/widgets.dart';
 
 import '../../../configs/configs.dart';
+import 'awards_and_activities.dart';
 import 'background_info.dart';
 import 'tools_and_technologies.dart';
 
@@ -17,29 +19,43 @@ class _BackgroundStoryState extends State<BackgroundStory>
     with TickerProviderStateMixin {
   late AnimationController _textController;
   late AnimationController _text2Controller;
+  late AnimationController _text3Controller;
   late AnimationController _stickController;
   late AnimationController _stick2Controller;
+  late AnimationController _stick3Controller;
   late AnimationController _infoController;
   late AnimationController _techController;
+  late AnimationController _awardController;
   @override
   void initState() {
     super.initState();
     _textController = AnimationController(vsync: this, duration: duration2000);
     _text2Controller = AnimationController(vsync: this, duration: duration2000);
+    _text3Controller = AnimationController(vsync: this, duration: duration2000);
     _infoController = AnimationController(vsync: this, duration: duration500);
     _techController = AnimationController(vsync: this, duration: duration500);
+    _awardController = AnimationController(vsync: this, duration: duration500);
     _infoController.addStatusListener(infoControllerListener);
-    _stickController = AnimationController(vsync: this, duration: duration1000)
-      ..forward();
+    _techController.addStatusListener(techControllerListener);
+    _stickController = AnimationController(vsync: this, duration: duration1000);
     _stickController.addStatusListener(stickControllerListener);
     _stick2Controller =
         AnimationController(vsync: this, duration: duration1000);
     _stick2Controller.addStatusListener(stick2ControllerListener);
+    _stick3Controller =
+        AnimationController(vsync: this, duration: duration1000);
+    _stick3Controller.addStatusListener(stick3ControllerListener);
   }
 
   void infoControllerListener(AnimationStatus status) {
     if (status == AnimationStatus.completed) {
       _stick2Controller.forward();
+    }
+  }
+
+  void techControllerListener(AnimationStatus status) {
+    if (status == AnimationStatus.completed) {
+      _stick3Controller.forward();
     }
   }
 
@@ -57,12 +73,22 @@ class _BackgroundStoryState extends State<BackgroundStory>
     }
   }
 
+  void stick3ControllerListener(AnimationStatus status) {
+    if (status == AnimationStatus.completed) {
+      _text3Controller.forward();
+      _awardController.forward();
+    }
+  }
+
   @override
   void dispose() {
     _stickController.dispose();
     _stick2Controller.dispose();
+    _stick3Controller.dispose();
     _text2Controller.dispose();
+    _text3Controller.dispose();
     _techController.dispose();
+    _awardController.dispose();
     _textController.dispose();
     _infoController.dispose();
     super.dispose();
@@ -70,49 +96,66 @@ class _BackgroundStoryState extends State<BackgroundStory>
 
   @override
   Widget build(BuildContext context) {
-    return <Widget>[
-      RotatedBox(
-        quarterTurns: 3,
-        child: OutlinedText(
-          text: ksYoung,
-          fontSize: s24,
-          letterSpacing: 1.5,
-          strokeColor: kSecondary,
-          textColor: kTransparent,
-          strokeWidth: s1,
-          fontWeight: FontWeight.w700,
-        ),
-      )
-          .addPadding(
-            edgeInsets: context.allPadding(
-              p: s40,
+    return VisibilityDetector(
+      key: const ValueKey("background_story"),
+      onVisibilityChanged: (info) {
+        if (info.visibleFraction > 0.2) {
+          _stickController.forward();
+        }
+      },
+      child: <Widget>[
+        RotatedBox(
+          quarterTurns: 3,
+          child: OutlinedText(
+            text: ksYoung,
+            fontSize: s24,
+            letterSpacing: 1.5,
+            strokeColor: kSecondary,
+            textColor: kTransparent,
+            strokeWidth: s1,
+            fontWeight: FontWeight.w700,
+          ),
+        )
+            .addPadding(
+              edgeInsets: context.allPadding(
+                p: s40,
+              ),
+            )
+            .addAlign(
+              alignment: Alignment.bottomRight,
             ),
-          )
-          .addAlign(
-            alignment: Alignment.bottomRight,
+        <Widget>[
+          BackgroundInfo(
+            stickController: _stickController,
+            textController: _textController,
+            infoController: _infoController,
           ),
-      <Widget>[
-        BackgroundInfo(
-          stickController: _stickController,
-          textController: _textController,
-          infoController: _infoController,
-        ),
-        context.percentSizedBox(
-          pHeight: s5,
-        ),
-        ToolsAndTechnologies(
-          stickController: _stick2Controller,
-          textController: _text2Controller,
-          techController: _techController,
-        ),
-      ]
-          .addColumn(
-            crossAxisAlignment: CrossAxisAlignment.start,
-          )
-          .addContainer(
-            margin:
-                context.symmetricPercentPadding(hPercent: s8, vPercent: s10),
+          context.percentSizedBox(
+            pHeight: s3,
           ),
-    ].addStack();
+          ToolsAndTechnologies(
+            stickController: _stick2Controller,
+            textController: _text2Controller,
+            techController: _techController,
+          ),
+          context.percentSizedBox(
+            pHeight: s3,
+          ),
+          AwardsAndActivities(
+            stickController: _stick3Controller,
+            textController: _text3Controller,
+            infoController: _awardController,
+          ),
+        ]
+            .addColumn(
+              crossAxisAlignment: CrossAxisAlignment.start,
+            )
+            .addPadding(
+              edgeInsets: context.symmetricPercentPadding(
+                hPercent: s8,
+              ),
+            ),
+      ].addStack(),
+    );
   }
 }

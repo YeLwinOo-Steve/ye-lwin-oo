@@ -50,11 +50,7 @@ class ToolsAndTechnologies extends StatelessWidget {
           Text(
             ksFlutter.toUpperCase(),
             style: Theme.of(context).textTheme.labelLarge?.copyWith(
-              fontWeight: FontWeight.w700,
-              decoration: TextDecoration.underline,
-              decorationStyle: TextDecorationStyle.dotted,
-              decorationThickness: s2,
-              decorationColor: kBlack,
+              fontWeight: FontWeight.w300,
             ),
           ),
         ].addRow(),

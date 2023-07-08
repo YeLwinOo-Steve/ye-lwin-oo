@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:type_text/type_text.dart';
 import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
 import 'package:yelwinoo/presentation/views/wrapper.dart';
 import 'package:yelwinoo/presentation/widgets/widgets.dart';
@@ -7,8 +8,9 @@ import 'package:yelwinoo/presentation/widgets/widgets.dart';
 import '../../../configs/configs.dart';
 
 class WhoAmI extends StatefulWidget {
-  const WhoAmI({super.key});
-
+  const WhoAmI({
+    super.key,
+  });
   @override
   State<WhoAmI> createState() => _WhoAmIState();
 }
@@ -17,13 +19,17 @@ class _WhoAmIState extends State<WhoAmI> with TickerProviderStateMixin {
   late AnimationController _textController;
   late AnimationController _earthController;
   late AnimationController _galaxyController;
+  late AnimationController _stickController;
   late Animation<Offset> _earthSlideAnimation;
   late Animation<Offset> _galaxySlideAnimation;
   Image myPicture = Image.asset(kaShowcaseStyle);
+
   @override
   void initState() {
     super.initState();
     _precacheImage();
+    _stickController = AnimationController(vsync: this, duration: duration2000)
+      ..repeat();
     _textController = AnimationController(
       vsync: this,
       duration: duration2000,
@@ -72,21 +78,35 @@ class _WhoAmIState extends State<WhoAmI> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return <Widget>[
       Align(
-        alignment: Alignment.centerLeft,
-        child: RotatedBox(
-          quarterTurns: 3,
-          child: AnimatedTextSlideBoxTransition(
-            text: ksAboutMe.toUpperCase(),
-            controller: _textController,
-            coverColor: kPrimary,
-            textStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  fontWeight: FontWeight.w700,
-                ),
-          ),
-        ).addPadding(
-            edgeInsets: context.symmetricPadding(
-          h: s40,
-        )),
+        alignment: Alignment.bottomLeft,
+        child: Column(
+          children: [
+            RotatedBox(
+              quarterTurns: 3,
+              child: AnimatedTextSlideBoxTransition(
+                text: ksAboutMe.toUpperCase(),
+                controller: _textController,
+                coverColor: kPrimary,
+                textStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      fontWeight: FontWeight.w700,
+                    ),
+              ),
+            ).addPadding(
+              edgeInsets: context.symmetricPadding(
+                h: s40,
+                v: s20,
+              ),
+            ),
+            AnimatedSlideBox(
+              controller: _stickController,
+              height: context.percentHeight(s40),
+              isVertical: true,
+              coverColor: kPrimary,
+              visibleBoxCurve: Curves.fastLinearToSlowEaseIn,
+              width: s6,
+            ),
+          ],
+        ),
       ),
       Positioned(
         top: context.percentHeight(s10),
@@ -103,14 +123,15 @@ class _WhoAmIState extends State<WhoAmI> with TickerProviderStateMixin {
         margin: context.symmetricPercentPadding(hPercent: s8),
         padding: context.allPercentPadding(allPercent: s3),
         child: <Widget>[
-          Text(
-            "I specialize in Mobile Technologies and highly passionate about developing quality applications & open-source works.",
+          TypeText(
+            ksSpecialization,
             style: Theme.of(context).textTheme.titleSmall?.copyWith(
                   fontWeight: FontWeight.w300,
                   color: kBlack,
                 ),
-            textScaleFactor: context.textScaleFactor(),
-          ).addExpanded(),
+            textAlign: TextAlign.center,
+            duration: duration2000,
+          ).addCenter().addExpanded(),
           const SizedBox.shrink().addExpanded(),
         ].addRow(),
       ),
@@ -135,8 +156,9 @@ class _WhoAmIState extends State<WhoAmI> with TickerProviderStateMixin {
             ),
           ),
         ),
-        Align(
-          alignment: Alignment.centerRight,
+        Positioned(
+          right: s0,
+          top: context.percentHeight(s48),
           child: SlideTransition(
             position: _galaxySlideAnimation,
             child: SvgPicture.asset(

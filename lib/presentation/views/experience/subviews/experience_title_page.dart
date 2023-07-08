@@ -35,43 +35,44 @@ class _ExperienceTitlePageState extends State<ExperienceTitlePage>
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: SvgPicture.asset(
-            kaWorkStump,
-            semanticsLabel: 'Work Stump SVG',
-            width: context.percentHeight(s30),
-            height: context.percentHeight(s30),
-          ).addPadding(
-            edgeInsets: context.percentPadding(
-              l: s30,
-              b: s10,
-            ),
+    return <Widget>[
+      Align(
+        alignment: Alignment.topRight,
+        child: SvgPicture.asset(
+          kaWorkStump,
+          semanticsLabel: 'Work Stump SVG',
+          width: context.percentHeight(s40),
+          height: context.percentHeight(s40),
+        ).addPadding(
+          edgeInsets: context.percentPadding(
+            r: s5,
+            t: s5,
           ),
         ),
-        Align(
-          alignment: Alignment.center,
-          child: AnimatedTextSlideBoxTransition(
-            controller: _titleController,
-            text: ksExperience,
-            coverColor: kPrimary,
-            textStyle: Theme.of(context).textTheme.headlineMedium,
-          ),
+      ),
+      Align(
+        alignment: Alignment.center,
+        child: AnimatedTextSlideBoxTransition(
+          controller: _titleController,
+          text: ksExperience,
+          coverColor: kPrimary,
+          textStyle: Theme.of(context).textTheme.headlineMedium,
         ),
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: AnimatedSlideBox(
-            controller: _stickController,
-            height: context.percentHeight(s40),
-            isVertical: true,
-            coverColor: kPrimary,
-            visibleBoxCurve: Curves.fastLinearToSlowEaseIn,
-            width: s6,
-          ),
+      ),
+      Align(
+        alignment: Alignment.bottomCenter,
+        child: AnimatedSlideBox(
+          controller: _stickController,
+          height: context.percentHeight(s40),
+          isVertical: true,
+          coverColor: kPrimary,
+          visibleBoxCurve: Curves.fastLinearToSlowEaseIn,
+          width: s6,
         ),
-      ],
+      ),
+    ].addStack().addSizedBox(
+      width: context.screenWidth,
+      height: context.screenHeight - context.appBarTheme().toolbarHeight!,
     );
   }
 }

@@ -25,7 +25,7 @@ class _JobsListPageState extends State<JobsListPage>
     _controller = AnimationController(
       vsync: this,
       duration: duration * ksExperiences.length,
-    )..forward();
+    );
     _textController = AnimationController(vsync: this, duration: duration2000);
   }
 
@@ -38,8 +38,17 @@ class _JobsListPageState extends State<JobsListPage>
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
+    return VisibilityDetector(
+      key: const ValueKey("jobs_list"),
+      onVisibilityChanged: (info){
+        if(info.visibleFraction > 0.2){
+          _controller.forward();
+        }
+        if(info.visibleFraction < 0.4 && _controller.isCompleted){
+          _controller.reverse();
+        }
+      },
+      child: <Widget>[
         ...ksExperiences.map(
           (exp) {
             int index = ksExperiences.indexOf(exp);
@@ -79,20 +88,23 @@ class _JobsListPageState extends State<JobsListPage>
         AnimatedTextSlideBoxTransition(
           controller: _textController,
           text: ksSayHello.addDoubleQuote(),
-          textStyle: Theme.of(context).textTheme.titleSmall,
+          textStyle: Theme.of(context).textTheme.titleSmall?.copyWith(
+                fontWeight: FontWeight.w300,
+              ),
           textAlign: TextAlign.center,
           coverColor: kPrimary,
         ),
-      ],
-    )
-        .addPadding(
-          edgeInsets: context.symmetricPercentPadding(
-            vPercent: s18,
-            hPercent: s4,
+      ]
+          .addColumn()
+          .addPadding(
+            edgeInsets: context.symmetricPercentPadding(
+              vPercent: s6,
+              hPercent: s4,
+            ),
+          )
+          .addScrollView(
+            physics: const BouncingScrollPhysics(),
           ),
-        )
-        .addScrollView(
-          physics: const BouncingScrollPhysics(),
-        );
+    );
   }
 }

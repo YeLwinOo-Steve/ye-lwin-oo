@@ -8,9 +8,11 @@ import '../configs/configs.dart';
 class AnimatedHoverLink extends AnimatedWidget {
   AnimatedHoverLink({
     super.key,
+    required this.label,
     required this.controller,
   }) : super(listenable: controller);
   final AnimationController controller;
+  final String label;
 
   final ValueNotifier<bool> _isHovered = ValueNotifier(false);
   void _onHover(bool isHovered) {
@@ -28,7 +30,7 @@ class AnimatedHoverLink extends AnimatedWidget {
           child: AnimatedTextSlideBoxTransition(
             controller: controller,
             coverColor: Theme.of(context).scaffoldBackgroundColor,
-            text: ksGithub,
+            text: label,
             textStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   decoration: TextDecoration.underline,
                   decorationThickness: hover ? s5 : s3,

@@ -35,43 +35,47 @@ class _ProjectTitlePageState extends State<ProjectTitlePage>
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: SvgPicture.asset(
-            kaComplexity,
-            semanticsLabel: 'Complexity SVG',
-            width: context.percentHeight(s30),
-            height: context.percentHeight(s30),
-          ).addPadding(
-            edgeInsets: context.percentPadding(
-              l: s30,
-              b: s10,
+    return SizedBox(
+      width: context.screenWidth,
+      height: context.screenHeight - context.appBarTheme().toolbarHeight!,
+      child: Stack(
+        children: [
+          Align(
+            alignment: Alignment.topRight,
+            child: SvgPicture.asset(
+              kaComplexity,
+              semanticsLabel: 'Complexity SVG',
+              width: context.percentHeight(s30),
+              height: context.percentHeight(s30),
+            ).addPadding(
+              edgeInsets: context.percentPadding(
+                r: s5,
+                t: s5,
+              ),
             ),
           ),
-        ),
-        Align(
-          alignment: Alignment.center,
-          child: AnimatedTextSlideBoxTransition(
-            controller: _titleController,
-            text: ksBrowseProjects,
-            coverColor: kPrimary,
-            textStyle: Theme.of(context).textTheme.headlineMedium,
+          Align(
+            alignment: Alignment.center,
+            child: AnimatedTextSlideBoxTransition(
+              controller: _titleController,
+              text: ksBrowseProjects,
+              coverColor: kPrimary,
+              textStyle: Theme.of(context).textTheme.headlineMedium,
+            ),
           ),
-        ),
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: AnimatedSlideBox(
-            controller: _stickController,
-            height: context.percentHeight(s40),
-            isVertical: true,
-            coverColor: kPrimary,
-            visibleBoxCurve: Curves.fastLinearToSlowEaseIn,
-            width: s6,
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: AnimatedSlideBox(
+              controller: _stickController,
+              height: context.percentHeight(s40),
+              isVertical: true,
+              coverColor: kPrimary,
+              visibleBoxCurve: Curves.fastLinearToSlowEaseIn,
+              width: s6,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

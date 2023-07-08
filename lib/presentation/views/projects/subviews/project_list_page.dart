@@ -93,7 +93,6 @@ class _ProjectListPageState extends State<ProjectListPage>
     _slideOpacityController.dispose();
     _toolOpacityController.dispose();
     _projectRotateController.dispose();
-    _scrollController.dispose();
     for (var toolAnimation in _toolAnimations) {
       toolAnimation.dispose();
     }
@@ -121,6 +120,8 @@ class _ProjectListPageState extends State<ProjectListPage>
         }
       },
       child: SizedBox(
+        width: context.screenWidth,
+        height: context.screenHeight,
         child: Stack(
           children: [
             Align(
@@ -169,7 +170,7 @@ class _ProjectListPageState extends State<ProjectListPage>
               ),
             ),
             Align(
-              alignment: Alignment.center,
+              alignment: Alignment.bottomCenter,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [

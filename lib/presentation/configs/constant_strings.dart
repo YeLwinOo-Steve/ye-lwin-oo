@@ -1,5 +1,6 @@
 import 'package:atlas_icons/atlas_icons.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:yelwinoo/data/model/activity.dart';
 import 'package:yelwinoo/data/model/certificate.dart';
 import 'package:yelwinoo/data/model/experience.dart';
 import 'package:yelwinoo/data/model/project_info.dart';
@@ -25,7 +26,7 @@ const String ksSeeMyWork = "See my work";
 const String ksBrowseProjects = "Browse My Projects";
 const String ksWhatElse =
     "What else? I have freelanced on several side projects.";
-const String ksSayHello = "Just say Hello to work together!";
+const String ksSayHello = "Just say Hello to collaborate!";
 const String ksHome = "Home";
 const String ksAbout = "About";
 const String ksExperience = "My Experience";
@@ -61,14 +62,15 @@ const String ksWithMuch = " with much ";
 const String ksCC = "©️ 2023 Ye Lwin Oo";
 const String ksYoung = "When I was young, I was a kid!";
 const String ksNobody = "I'm NOBODY";
+const String ksSpecialization = "I specialize in Mobile Technologies and highly passionate about developing quality applications, open-source works and AI.";
 const String ksWhoAmI = 'Who Am I?';
 const String ksWhatILove = "What I Love To Do";
 const String ksBriefAboutMe =
     "Hi! I'm a Front-end Software Engineer who is passionate about emerging Technologies and AI. I have fairly extensive amount of experience in developing high quality applications. I often work on freelance projects.";
 const String ksMyLife =
-    "I'm a Computer University Student from Myanmar. But I dropped out in 2021 because of Military Coup.";
+    "I was a third year student from the University of Computer Studies, Mandalay, Myanmar. But I dropped out in 2020 because of Military Coup & COVID-19.";
 const String ksProfession =
-    "I started working as a Flutter Developer since 2019. Later, I fell in love with it. I'm eager to contribute in Flutter community. Recently, I've published my first state management package: Pulse-X.";
+    "I started working as a Flutter Developer since 2019. Later, I fell in love with it. I'm eager to contribute in Flutter community. Recently, I've published my first state management package: Pulse-X and animated button library: Pretty Animated Buttons.";
 
 const String ksMyTools =
     "I use a bunch of tools and technologies to make design and implementation process easier. ";
@@ -108,6 +110,36 @@ final List<RouteModel> ksMenu = [
   RouteModel(label: ksCertificates, route: Routes.certificates),
   RouteModel(label: ksAbout, route: Routes.about),
   RouteModel(label: ksContact, route: Routes.contact),
+];
+
+const String ksAwardsAndActivities = "Awards & Activities";
+const String ksAward = "Award I've won";
+const String ksAwardName = "Design Award by WIT (Web Innovative Talent Award)";
+const String ksAwardLink = "https://witaward.com/result/2020";
+const String ksAwardDetails =
+    "This project aims for foreigners and Myanmar citizens who are enthusiastic about Myanmar culture, cuisine, handicrafts and who want to pay a visit to famous places in Myanmar and who want to enhance their knowledge about various ethnic groups in Myanmar.";
+const String ksActivities = "Activities I've joined";
+final List<Activity> ksActivityList = [
+  Activity(
+    title: ksAward,
+    name: ksAwardName,
+    icon: kiTrophy,
+    details: ksAwardDetails,
+    link: ksAwardLink,
+  ),
+  Activity(
+    title: ksActivities,
+    name:
+        "TFI SCALE Program (Temasek Foundation International Specialists' Community Action andLeadership Exchange Program - Singapore)",
+    icon: kiActivity,
+    details:
+        "This is a five-week Exchange Program with Singapore Polytechnic ( 3-weeks in Singapore and 2-weeks in Myanmar Learnt data analytics, design thinking and co-operation skills and applied them on the Coffee Farm Project",
+  ),
+  Activity(
+    name: "JST Japan-Asia Youth Program (Sakura Science Exchange Program - Japan)",
+    icon: kiActivity,
+    details: "This is a 9-days Exchange Program at Miyakonojo College, Miyazaki, Japan\nLearnt basic IOT and made the POINT Traffic Control System ( Traffic lights control system with extended functionalities such as alerts when driver recklessly drive while red light is on )",
+  ),
 ];
 
 final List<Experience> ksExperiences = [

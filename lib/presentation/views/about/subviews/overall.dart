@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
 import 'package:yelwinoo/presentation/widgets/widgets.dart';
 
@@ -23,17 +24,14 @@ class _OverallState extends State<Overall> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    _slideController = AnimationController(vsync: this, duration: duration2000)
-      ..forward();
+    _slideController = AnimationController(vsync: this, duration: duration2000);
     _slideController.addStatusListener(slideControllerListener);
-    _firstController = AnimationController(vsync: this, duration: duration2000)
-      ..forward();
+    _firstController = AnimationController(vsync: this, duration: duration2000);
     _secondController =
         AnimationController(vsync: this, duration: duration2000);
     _firstController.addStatusListener(firstControllerListener);
     _textController = AnimationController(vsync: this, duration: duration2000);
-    _stickController = AnimationController(vsync: this, duration: duration1000)
-      ..forward();
+    _stickController = AnimationController(vsync: this, duration: duration1000);
     _stickController.addStatusListener(stickControllerListener);
     _waveController = AnimationController(vsync: this, duration: duration2000);
   }
@@ -126,130 +124,143 @@ class _OverallState extends State<Overall> with TickerProviderStateMixin {
       );
   @override
   Widget build(BuildContext context) {
-    return <Widget>[
-      Positioned(
-        top: context.percentHeight(s10),
-        left: context.percentWidth(s8),
-        child: AnimatedOutlinedText(
-          text: "I'm",
-          fontSize: s80,
-          strokeColor: kTeal200,
-          animation: introColorTween,
-          fontWeight: FontWeight.w500,
-        ),
-      ),
-      Positioned(
-        top: context.percentHeight(s10),
-        right: context.percentWidth(s8),
-        child: <Widget>[
-          AnimatedTextSlideBoxTransition(
-            text: ksAllAboutMe.toUpperCase(),
-            controller: _textController,
-            coverColor: kPrimary,
-            textStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  fontWeight: FontWeight.w700,
-                ),
-          ),
-          horizontalSpaceMedium,
-          AnimatedHorizontalStick(
-            controller: _stickController,
-          ),
-        ].addRow(),
-      ),
-      Positioned(
-        top: context.percentHeight(s18),
-        left: context.percentWidth(s18),
-        child: SlideTransition(
-          position: slideLeftTween,
+    return VisibilityDetector(
+      key: const ValueKey("overall"),
+      onVisibilityChanged:(info){
+        if(info.visibleFraction > 0.2){
+          _slideController.forward();
+          _firstController.forward();
+          _stickController.forward();
+        }
+      },
+      child: <Widget>[
+        Positioned(
+          top: context.percentHeight(s10),
+          left: context.percentWidth(s8),
           child: AnimatedOutlinedText(
-            text: "a  tech  nerd".toUpperCase(),
-            fontSize: s200,
-            strokeWidth: s18,
-            letterSpacing: 2.5,
-            strokeColor: kSecondary,
-            animation: transparentColorTween,
-            fontWeight: FontWeight.w900,
+            text: "I'm",
+            fontSize: s80,
+            strokeColor: kTeal200,
+            animation: introColorTween,
+            fontWeight: FontWeight.w500,
           ),
         ),
-      ),
-      Positioned(
-        top: context.percentHeight(s32),
-        left: context.percentWidth(s4),
-        child: SlideTransition(
-          position: slideRightTween,
-          child: AnimatedOutlinedText(
-            text: "coffee addict".toUpperCase(),
-            fontSize: s180,
-            strokeColor: kCoffee,
-            fontWeight: FontWeight.w700,
-            animation: coffeeColorTween,
-          ),
+        Positioned(
+          top: context.percentHeight(s10),
+          right: context.percentWidth(s8),
+          child: <Widget>[
+            AnimatedTextSlideBoxTransition(
+              text: ksAllAboutMe.toUpperCase(),
+              controller: _textController,
+              coverColor: kPrimary,
+              textStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    fontWeight: FontWeight.w700,
+                  ),
+            ),
+            horizontalSpaceMedium,
+            AnimatedHorizontalStick(
+              controller: _stickController,
+            ),
+          ].addRow(),
         ),
-      ),
-      Positioned(
-        top: context.percentHeight(s48),
-        right: context.percentWidth(s8),
-        child: AnimatedStrokeText(
-          text: 'ai enthusiast'.toUpperCase(),
-          fontSize: s70,
-          strokeWidth: s1,
-          letterSpacing: s10,
-          fontWeight: FontWeight.w900,
-          animation: blackStrokeColorTween,
-          textColor: kTransparent,
-        ),
-      ),
-      Positioned(
-        bottom: context.percentHeight(s1),
-        right: context.percentHeight(s3),
-        child: <Widget>[
-          Container(
-            width: s10,
-            height: s10,
-            decoration: BoxDecoration(
-              color: kCoffee,
-              shape: BoxShape.circle,
+        Positioned(
+          top: context.percentHeight(s18),
+          left: context.percentWidth(s18),
+          child: SlideTransition(
+            position: slideLeftTween,
+            child: AnimatedOutlinedText(
+              text: "a  tech  nerd".toUpperCase(),
+              fontSize: s200,
+              strokeWidth: s18,
+              letterSpacing: 2.5,
+              strokeColor: kSecondary,
+              animation: transparentColorTween,
+              fontWeight: FontWeight.w900,
             ),
           ),
-          horizontalSpaceMedium,
-          AnimatedStrokeText(
-            text: 'an introvert'.toUpperCase(),
-            fontSize: s30,
+        ),
+        Positioned(
+          top: context.percentHeight(s32),
+          left: context.percentWidth(s4),
+          child: SlideTransition(
+            position: slideRightTween,
+            child: AnimatedOutlinedText(
+              text: "coffee addict".toUpperCase(),
+              fontSize: s180,
+              strokeColor: kCoffee,
+              fontWeight: FontWeight.w700,
+              animation: coffeeColorTween,
+            ),
+          ),
+        ),
+        Positioned(
+          top: context.percentHeight(s48),
+          right: context.percentWidth(s8),
+          child: AnimatedStrokeText(
+            text: 'ai enthusiast'.toUpperCase(),
+            fontSize: s70,
             strokeWidth: s1,
-            letterSpacing: s2,
+            letterSpacing: s10,
             fontWeight: FontWeight.w900,
-            animation: strokeColorTween,
+            animation: blackStrokeColorTween,
             textColor: kTransparent,
           ),
-        ].addRow(
-          mainAxisSize: MainAxisSize.min,
         ),
-      ),
-      Positioned(
-        bottom: context.percentHeight(s8),
-        left: context.percentWidth(s10),
-        child: SlideTransition(
-          position: slideUpTween,
-          child: AnimatedOutlinedText(
-            text: "flutter  dev".toUpperCase(),
-            fontSize: s250,
-            strokeColor: kSecondary,
-            animation: colorTween,
-            fontWeight: FontWeight.w900,
+        Positioned(
+          bottom: context.percentHeight(s1),
+          right: context.percentHeight(s3),
+          child: <Widget>[
+            Container(
+              width: s10,
+              height: s10,
+              decoration: BoxDecoration(
+                color: kCoffee,
+                shape: BoxShape.circle,
+              ),
+            ),
+            horizontalSpaceMedium,
+            AnimatedStrokeText(
+              text: 'an introvert'.toUpperCase(),
+              fontSize: s30,
+              strokeWidth: s1,
+              letterSpacing: s2,
+              fontWeight: FontWeight.w900,
+              animation: strokeColorTween,
+              textColor: kTransparent,
+            ),
+          ].addRow(
+            mainAxisSize: MainAxisSize.min,
           ),
         ),
-      ),
-      Positioned(
-        bottom: context.percentHeight(s20),
-        left: context.percentWidth(s6),
-        child: WavePath(
-          color: kCoffee,
-          animation: waveTween,
-        ).addSizedBox(
-          width: context.percentWidth(s10),
-          height: s30,
+        Positioned(
+          bottom: context.percentHeight(s8),
+          left: context.percentWidth(s10),
+          child: SlideTransition(
+            position: slideUpTween,
+            child: AnimatedOutlinedText(
+              text: "flutter  dev".toUpperCase(),
+              fontSize: s250,
+              strokeColor: kSecondary,
+              animation: colorTween,
+              fontWeight: FontWeight.w900,
+            ),
+          ),
         ),
+        Positioned(
+          bottom: context.percentHeight(s20),
+          left: context.percentWidth(s6),
+          child: WavePath(
+            color: kCoffee,
+            animation: waveTween,
+          ).addSizedBox(
+            width: context.percentWidth(s10),
+            height: s30,
+          ),
+        ),
+      ].addStack().addSizedBox(
+        width: context.screenWidth,
+        height: context.screenHeight,
       ),
-    ].addStack();
+    );
   }
 }

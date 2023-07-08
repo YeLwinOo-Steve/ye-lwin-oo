@@ -48,6 +48,7 @@ class CustomSlider extends AnimatedWidget {
         color: color,
         border: Border.all(
           color: color,
+          strokeAlign: BorderSide.strokeAlignOutside,
         ),
       ),
     );

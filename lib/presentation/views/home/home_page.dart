@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:yelwinoo/presentation/configs/configs.dart';
+import 'package:yelwinoo/presentation/utils/extensions/context_ex.dart';
 import 'package:yelwinoo/presentation/views/wrapper.dart';
 import 'package:yelwinoo/presentation/widgets/widgets.dart';
 
@@ -16,11 +17,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
-  final PageController pageController = PageController();
-  // this is like a lock that prevent update the PageView multiple times while is
-  // scrolling
-  bool pageIsScrolling = false;
-
+  final _scrollController = ScrollController();
   List<Widget> mainPages = [];
   final _key = GlobalKey();
   bool _isDrawerOpen = false;
@@ -37,64 +34,35 @@ class _HomePageState extends State<HomePage>
     ];
   }
 
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
   void onMenuTapped() {
     setState(() {
       _isDrawerOpen = !_isDrawerOpen;
     });
   }
 
-  void _onScroll(double offset) {
-    if (pageIsScrolling == false) {
-      pageIsScrolling = true;
-      if (offset > 0) {
-        pageController
-            .nextPage(
-              duration: duration300,
-              curve: Curves.easeInOut,
-            )
-            .then((value) => pageIsScrolling = false);
-      } else {
-        pageController
-            .previousPage(
-              duration: duration300,
-              curve: Curves.easeInOut,
-            )
-            .then((value) => pageIsScrolling = false);
-      }
-    }
-  }
-
   void _onTapSeeMyWorks() {
-    pageController
-        .animateToPage(
-          1,
-          duration: duration300,
-          curve: Curves.easeInOut,
-        )
-        .then((value) => pageIsScrolling = false);
+    _scrollController.animateTo(
+      context.screenHeight,
+      duration: duration500,
+      curve: Curves.easeInOut,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Wrapper(
-      page: GestureDetector(
-        onPanUpdate: (details) {
-          _onScroll(details.delta.dy * -1);
-        },
-        child: Listener(
-          onPointerSignal: (pointerSignal) {
-            if (pointerSignal is PointerScrollEvent) {
-              _onScroll(pointerSignal.scrollDelta.dy);
-            }
-          },
-          child: PageView(
-            key: _key,
-            controller: pageController,
-            physics: const NeverScrollableScrollPhysics(),
-            scrollDirection: Axis.vertical,
-            children: mainPages,
-          ),
-        ),
+      page: ListView(
+        key: _key,
+        controller: _scrollController,
+        physics: const ClampingScrollPhysics(),
+        scrollDirection: Axis.vertical,
+        children: mainPages,
       ),
     );
   }

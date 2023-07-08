@@ -127,6 +127,7 @@ class _IntroductionPageState extends State<IntroductionPage>
           context.percentSizedBox(pHeight: s10),
           <Widget>[
             AnimatedHoverLink(
+              label: ksGithub,
               controller: _controller,
             ).addInkWell(
               onTap: ksGithubLink.launchWebsite,
@@ -134,30 +135,18 @@ class _IntroductionPageState extends State<IntroductionPage>
             const Text(ksSlash).addCenter().addSizedBox(
                   width: s50,
                 ),
-            AnimatedTextSlideBoxTransition(
+            AnimatedHoverLink(
+              label: ksLinkedIn,
               controller: _controller,
-              coverColor: Theme.of(context).scaffoldBackgroundColor,
-              text: ksLinkedIn,
-              textStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    decoration: TextDecoration.underline,
-                    decorationThickness: 1,
-                    decorationColor: kBlack,
-                  ),
             ).addInkWell(
               onTap: ksLinkedInLink.launchWebsite,
             ),
             const Text(ksSlash).addCenter().addSizedBox(
                   width: s50,
                 ),
-            AnimatedTextSlideBoxTransition(
+            AnimatedHoverLink(
+              label: ksDiscord,
               controller: _controller,
-              coverColor: Theme.of(context).scaffoldBackgroundColor,
-              text: ksDiscord,
-              textStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    decoration: TextDecoration.underline,
-                    decorationThickness: 1,
-                    decorationColor: kBlack,
-                  ),
             ).addInkWell(
               onTap: ksDiscordLink.launchWebsite,
             ),
@@ -179,6 +168,9 @@ class _IntroductionPageState extends State<IntroductionPage>
             hPercent: 10,
           ),
         )
-        .addSizedBox();
+        .addSizedBox(
+          height: context.screenHeight - context.appBarTheme().toolbarHeight!,
+          width: context.screenWidth,
+        );
   }
 }

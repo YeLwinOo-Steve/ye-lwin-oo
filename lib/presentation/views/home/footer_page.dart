@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:atlas_icons/atlas_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 import 'package:yelwinoo/data/model/quote.dart';
 import 'package:yelwinoo/presentation/configs/configs.dart';
 import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
@@ -21,6 +22,7 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
   late AnimationController _labelController;
   late AnimationController _pathController;
   late Animation<double> _pathAnimation;
+  late AnimationController _footerTextController;
   final List<Interval> _itemSlideIntervals = [];
   int sectors = 5;
   double screenHeight = 0.0;
@@ -61,7 +63,7 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
     _slideController = AnimationController(
       duration: slideDuration,
       vsync: this,
-    )..forward();
+    );
     _labelController = AnimationController(
       duration: labelDuration,
       vsync: this,
@@ -75,6 +77,10 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
       curve: Curves.fastLinearToSlowEaseIn,
     );
     _slideController.addListener(_slideControllerListener);
+    _footerTextController = AnimationController(
+      vsync: this,
+      duration: duration2000,
+    );
     quoteSize = quoteName.textSize(
       style: quoteTextStyle,
       maxWidth: context.screenWidth - quotePadding,
@@ -86,9 +92,11 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
     if (_slideController.isCompleted) {
       _labelController.forward();
       _pathController.forward();
+      _footerTextController.forward();
     } else if (_slideController.isDismissed) {
       _labelController.reset();
       _pathController.reset();
+      _footerTextController.reset();
     }
   }
 
@@ -110,6 +118,7 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
     _slideController.dispose();
     _labelController.dispose();
     _pathController.dispose();
+    _footerTextController.dispose();
     super.dispose();
   }
 
@@ -171,18 +180,24 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
 
   Widget _footerWelcomePart() {
     return <Widget>[
-      Text(
-        ksLetsWork,
-        style: context.titleLarge.copyWith(
+      AnimatedTextSlideBoxTransition(
+        controller: _footerTextController,
+        text: ksLetsWork,
+        textStyle: Theme.of(context).textTheme.titleLarge?.copyWith(
           color: _footerForegroundColor,
         ),
+        boxColor: kSecondary,
+        coverColor: kBlack,
       ),
       verticalSpaceMassive,
-      Text(
-        ksFreelanceAvailability,
-        style: context.titleSmall.copyWith(
+      AnimatedTextSlideBoxTransition(
+        controller: _footerTextController,
+        text: ksFreelanceAvailability,
+        textStyle: Theme.of(context).textTheme.titleSmall?.copyWith(
           color: _footerForegroundColor,
         ),
+        boxColor: kSecondary,
+        coverColor: kBlack,
       ),
     ].addColumn(
       mainAxisSize: MainAxisSize.min,
@@ -348,26 +363,37 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return <Widget>[
-      _sectorWidgets(),
-      <Widget>[
-        _quoteSection(),
+    return VisibilityDetector(
+      key: const ValueKey("footer_page"),
+      onVisibilityChanged: (info) {
+        if (info.visibleFraction > 0.3) {
+          _slideController.forward();
+        }
+      },
+      child: <Widget>[
+        _sectorWidgets(),
         <Widget>[
+          _quoteSection(),
           <Widget>[
-            _footerWelcomePart(),
-            _footerAnimatedPath().addExpanded(),
-            _footerSocialAndCreditPart(),
-          ].addRow().addExpanded(),
-          _madeWithFlutterLabel(),
-          verticalSpaceMedium,
-          _ccLabel(),
-          verticalSpaceLarge,
-        ].addColumn().addContainer(
-              height: footerHeight,
-              width: context.screenWidth,
-              padding: context.symmetricPadding(h: s80),
-            ),
-      ].addColumn(),
-    ].addStack();
+            <Widget>[
+              _footerWelcomePart(),
+              _footerAnimatedPath().addExpanded(),
+              _footerSocialAndCreditPart(),
+            ].addRow().addExpanded(),
+            _madeWithFlutterLabel(),
+            verticalSpaceMedium,
+            _ccLabel(),
+            verticalSpaceLarge,
+          ].addColumn().addContainer(
+                height: footerHeight,
+                width: context.screenWidth,
+                padding: context.symmetricPadding(h: s80),
+              ),
+        ].addColumn(),
+      ].addStack().addSizedBox(
+            height: context.screenHeight,
+            width: context.screenWidth,
+          ),
+    );
   }
 }

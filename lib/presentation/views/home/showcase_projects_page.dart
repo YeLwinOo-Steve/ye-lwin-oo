@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 import 'package:yelwinoo/presentation/route/route_transitions.dart';
 import 'package:yelwinoo/presentation/route/routes.dart';
 import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
@@ -38,7 +39,6 @@ class _ShowcaseProjectsPageState extends State<ShowcaseProjectsPage>
         curve: Curves.easeInOut,
       ),
     );
-    _controller.forward();
   }
 
   @override
@@ -52,76 +52,84 @@ class _ShowcaseProjectsPageState extends State<ShowcaseProjectsPage>
     appBarHeight = Theme.of(context).appBarTheme.toolbarHeight!;
     containerHeight = context.screenHeight - (appBarHeight + s10);
     imageWidth = context.percentWidth(s50) * 0.8;
-    return <Widget>[
-      <Widget>[
-        leftImages(),
+    return VisibilityDetector(
+      key: const ValueKey("showcase_projects"),
+      onVisibilityChanged: (info){
+        if(info.visibleFraction > 0.3){
+          _controller.forward();
+        }
+      },
+      child: <Widget>[
         <Widget>[
+          leftImages(),
           <Widget>[
-            AnimatedTextSlideBoxTransition(
-              controller: _controller,
-              coverColor: Theme.of(context).scaffoldBackgroundColor,
-              text: ksCraftedWithLove,
-              textStyle: Theme.of(context).textTheme.titleLarge,
+            <Widget>[
+              AnimatedTextSlideBoxTransition(
+                controller: _controller,
+                coverColor: Theme.of(context).scaffoldBackgroundColor,
+                text: ksCraftedWithLove,
+                textStyle: Theme.of(context).textTheme.titleLarge,
+              ),
+              AnimatedTextSlideBoxTransition(
+                controller: _controller,
+                coverColor: Theme.of(context).scaffoldBackgroundColor,
+                text: ksRecentProjects,
+                textStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      fontWeight: FontWeight.w300,
+                    ),
+              ),
+            ].addColumn(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
             ),
-            AnimatedTextSlideBoxTransition(
-              controller: _controller,
-              coverColor: Theme.of(context).scaffoldBackgroundColor,
-              text: ksRecentProjects,
-              textStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    fontWeight: FontWeight.w300,
+            ...ksShowcaseProjects
+                .sublist(0, 4)
+                .map(
+                  (project) => ProjectDescription(
+                    animation: _controller,
+                    slideUpTween: _slideUpTween,
+                    label: project.title,
+                    labelStyle: Theme.of(context).textTheme.labelLarge!.copyWith(
+                          fontWeight: FontWeight.w700,
+                        ),
+                    descriptionStyle: Theme.of(context).textTheme.bodyMedium!,
+                    description: project.shortDescription,
+                    index: ksShowcaseProjects.indexOf(project),
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        SlideRouteTransition(
+                          position: SlidePosition.right,
+                          enterWidget: ProjectDetailsView(
+                            project: project,
+                          ),
+                          settings: RouteSettings(
+                            name: '${Routes.projectDetails}/${project.title}',
+                          ),
+                        ),
+                      );
+                    },
                   ),
-            ),
-          ].addColumn(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-          ),
-          ...ksShowcaseProjects
-              .sublist(0, 4)
-              .map(
-                (project) => ProjectDescription(
-                  animation: _controller,
-                  slideUpTween: _slideUpTween,
-                  label: project.title,
-                  labelStyle: Theme.of(context).textTheme.labelLarge!.copyWith(
-                        fontWeight: FontWeight.w700,
-                      ),
-                  descriptionStyle: Theme.of(context).textTheme.bodyMedium!,
-                  description: project.shortDescription,
-                  index: ksShowcaseProjects.indexOf(project),
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      SlideRouteTransition(
-                        position: SlidePosition.right,
-                        enterWidget: ProjectDetailsView(
-                          project: project,
-                        ),
-                        settings: RouteSettings(
-                          name: '${Routes.projectDetails}/${project.title}',
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              )
-              .toList(),
-        ]
-            .addNestedListView(
-                // crossAxisAlignment: CrossAxisAlignment.start,
-                // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 )
-            .addContainer(
-                height: containerHeight,
-                padding: context.symmetricPadding(h: s30, v: s0))
-            .addExpanded(),
-      ].addRow(),
-    ].addColumn().addPadding(
-          edgeInsets: context.padding(
-            l: s80,
-            r: s80,
-            t: appBarHeight,
-            b: s10,
+                .toList(),
+          ]
+              .addColumn(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  )
+              .addContainer(
+                  height: containerHeight,
+                  padding: context.symmetricPadding(h: s30, v: s0))
+              .addExpanded(),
+        ].addRow(),
+      ].addColumn().addPadding(
+            edgeInsets: context.padding(
+              l: s80,
+              r: s80,
+              t: appBarHeight,
+              b: s10,
+            ),
           ),
-        );
+    );
   }
 
   Widget leftImages() {
