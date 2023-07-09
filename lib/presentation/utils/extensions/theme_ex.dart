@@ -23,6 +23,7 @@ extension ThemeEx on BuildContext {
       highlightColor: kTransparent,
       focusColor: kPrimary,
       visualDensity: VisualDensity.adaptivePlatformDensity,
+      inputDecorationTheme: inputDecorationTheme(),
     );
   }
 
@@ -37,7 +38,16 @@ extension ThemeEx on BuildContext {
       toolbarHeight: s100,
     );
   }
-
+  InputDecorationTheme inputDecorationTheme(){
+    return InputDecorationTheme(
+      filled: true,
+      fillColor: kPrimary,
+      hintStyle: bodyLarge.copyWith(
+        color: kBlack26,
+      ),
+      alignLabelWithHint: true,
+    );
+  }
   TextTheme textTheme() {
     return Theme.of(this).textTheme.copyWith(
           headlineLarge: headlineLarge,

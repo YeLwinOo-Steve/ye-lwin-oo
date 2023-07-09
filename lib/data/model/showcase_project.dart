@@ -5,8 +5,8 @@ class ShowcaseProject {
   final String image;
   final String shortDescription;
   final String description;
-  final String link;
   final String heroTag;
+  final ProjectInfo link;
   final ProjectInfo tags;
   final ProjectInfo tech;
   final ProjectInfo author;

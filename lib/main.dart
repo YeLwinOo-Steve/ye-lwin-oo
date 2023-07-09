@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:url_strategy/url_strategy.dart';
-import 'package:yelwinoo/presentation/configs/configs.dart';
 import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
 
 import 'presentation/route/routes.dart';
 import 'presentation/utils/custom_scroll_behaviour.dart';
-import 'presentation/views/home/home_page.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   setPathUrlStrategy();
   runApp(const MyApp());
 }

@@ -62,7 +62,8 @@ const String ksWithMuch = " with much ";
 const String ksCC = "©️ 2023 Ye Lwin Oo";
 const String ksYoung = "When I was young, I was a kid!";
 const String ksNobody = "I'm NOBODY";
-const String ksSpecialization = "I specialize in Mobile Technologies and highly passionate about developing quality applications, open-source works and AI.";
+const String ksSpecialization =
+    "I specialize in Mobile Technologies and highly passionate about developing quality applications, open-source works and AI.";
 const String ksWhoAmI = 'Who Am I?';
 const String ksWhatILove = "What I Love To Do";
 const String ksBriefAboutMe =
@@ -136,9 +137,11 @@ final List<Activity> ksActivityList = [
         "This is a five-week Exchange Program with Singapore Polytechnic ( 3-weeks in Singapore and 2-weeks in Myanmar Learnt data analytics, design thinking and co-operation skills and applied them on the Coffee Farm Project",
   ),
   Activity(
-    name: "JST Japan-Asia Youth Program (Sakura Science Exchange Program - Japan)",
+    name:
+        "JST Japan-Asia Youth Program (Sakura Science Exchange Program - Japan)",
     icon: kiActivity,
-    details: "This is a 9-days Exchange Program at Miyakonojo College, Miyazaki, Japan\nLearnt basic IOT and made the POINT Traffic Control System ( Traffic lights control system with extended functionalities such as alerts when driver recklessly drive while red light is on )",
+    details:
+        "This is a 9-days Exchange Program at Miyakonojo College, Miyazaki, Japan\nLearnt basic IOT and made the POINT Traffic Control System ( Traffic lights control system with extended functionalities such as alerts when driver recklessly drive while red light is on )",
   ),
 ];
 
@@ -367,7 +370,15 @@ final List<ShowcaseProject> ksShowcaseProjects = [
           - dependency injection 
           - reaction (side effects)
         """,
-    link: dummyImage,
+    link: ProjectInfo(
+      icon: kiLink,
+      label: "Project Links",
+      isLink: true,
+      contents: [
+        "https://pub.dev/packages/pulse_x",
+        "https://github.com/YeLwinOo-Steve/pulse_x",
+      ],
+    ),
     heroTag: 'pulse-x',
     tags: ProjectInfo(
       icon: kiTag,
@@ -418,7 +429,14 @@ final List<ShowcaseProject> ksShowcaseProjects = [
           - Timer
           - Account Control
         """,
-    link: dummyImage,
+    link: ProjectInfo(
+        icon: kiLink,
+        label: "Project Links",
+        isLink: true,
+      contents: [
+        "https://github.com/YeLwinOo-Steve/notee",
+      ]
+    ),
     heroTag: 'notee',
     tags: ProjectInfo(
       icon: kiTag,
@@ -469,7 +487,15 @@ final List<ShowcaseProject> ksShowcaseProjects = [
         This is the web project showing the Culture, Cuisine, Festivals, Famous Places, Ethnic Groups and Handicrafts in Myanmar.
         Some of the data may be inaccurate because I collect most of my data on the Internet.
         """,
-    link: dummyImage,
+    link: ProjectInfo(
+        icon: kiLink,
+        label: "Project Links",
+        isLink: true,
+        contents: [
+          "https://the-golden-land.vercel.app/",
+          "https://github.com/YeLwinOo-Steve/TheGoldenLand",
+        ]
+    ),
     heroTag: 'the-golden-land',
     tags: ProjectInfo(
       icon: kiTag,
@@ -515,7 +541,15 @@ final List<ShowcaseProject> ksShowcaseProjects = [
         Pretty Animated Buttons is a package for a collection of beautiful animated buttons which are highly customizable too.
         Currently, a total of 12 animated buttons are available. More fancy buttons are coming soon...
         """,
-    link: dummyImage,
+    link: ProjectInfo(
+        icon: kiLink,
+        label: "Project Links",
+        isLink: true,
+        contents: [
+          "https://pub.dev/packages/pretty_animated_buttons",
+          "https://github.com/YeLwinOo-Steve/pretty_animated_buttons",
+        ],
+    ),
     heroTag: 'pretty_animated_buttons',
     tags: ProjectInfo(
       icon: kiTag,
@@ -564,7 +598,14 @@ final List<ShowcaseProject> ksShowcaseProjects = [
         No external game engine packages are used.
         Written in Flutter ...
         """,
-    link: dummyImage,
+    link: ProjectInfo(
+      icon: kiLink,
+      label: "Project Links",
+      isLink: true,
+      contents: [
+        "https://github.com/YeLwinOo-Steve/FlappyIronman",
+      ],
+    ),
     heroTag: 'flappy_ironman',
     tags: ProjectInfo(
       icon: kiTag,
@@ -608,7 +649,14 @@ final List<ShowcaseProject> ksShowcaseProjects = [
         AI chat bot using Flutter and Dialogflow.
         ⚠️ Dialogflow key is now expired so it won't work no more ...
         """,
-    link: "https://github.com/YeLwinOo-Steve/AIChatbot",
+    link: ProjectInfo(
+      icon: kiLink,
+      label: "Project Links",
+      isLink: true,
+      contents: [
+        "https://github.com/YeLwinOo-Steve/AIChatbot",
+      ],
+    ),
     heroTag: 'ai_chat_bot',
     tags: ProjectInfo(
       icon: kiTag,
@@ -652,7 +700,14 @@ final List<ShowcaseProject> ksShowcaseProjects = [
        My Apollo graphQL Associate Certified Developer path coding practice notes
        All of these notes are available at Apollo GraphQL Tutorials
         """,
-    link: "https://github.com/YeLwinOo-Steve/graphql-associate-dev",
+    link: ProjectInfo(
+      icon: kiLink,
+      label: "Project Links",
+      isLink: true,
+      contents: [
+        "https://github.com/YeLwinOo-Steve/graphql-associate-dev",
+      ],
+    ),
     heroTag: 'graphql_notes',
     tags: ProjectInfo(
       icon: kiTag,
@@ -690,7 +745,15 @@ final List<ShowcaseProject> ksShowcaseProjects = [
         Currently, not all design patterns are available yet.
         Still developing ...
         """,
-    link: "https://github.com/YeLwinOo-Steve/FlappyIronman",
+    link: ProjectInfo(
+    icon: kiLink,
+    label: "Project Links",
+    isLink: true,
+    contents: [
+      "https://github.com/YeLwinOo-Steve/design_patterns",
+    ],
+  ),
+
     heroTag: 'design_patterns',
     tags: ProjectInfo(
       icon: kiTag,

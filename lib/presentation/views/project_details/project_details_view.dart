@@ -239,6 +239,10 @@ class _ProjectOverviewState extends State<ProjectOverview>
         ),
         InfoSection(
           controller: _contentController,
+          info: widget.project.link,
+        ),
+        InfoSection(
+          controller: _contentController,
           info: widget.project.author,
         ),
       ].addWrap(),
@@ -250,7 +254,7 @@ class _ProjectOverviewState extends State<ProjectOverview>
         .addContainer(
           padding: context.symmetricPercentPadding(
             hPercent: s10,
-            vPercent: s12,
+            vPercent: s4,
           ),
         );
   }
@@ -300,14 +304,29 @@ class InfoSection extends StatelessWidget {
             opacity: _fadeAnimation,
             child: SlideTransition(
               position: _slideUpAnimation,
-              child: Text(
-                info.isTag == true
-                    ? content.prefixHash()
-                    : content.prefixDash(),
-              ).addPadding(
-                edgeInsets: context.padding(
-                  l: 2 * horizontalSpaceMassive.width!,
-                ),
+              child: GestureDetector(
+                onTap: () => content.launchWebsite(),
+                child: Text(
+                  info.isTag == true
+                      ? content.prefixHash()
+                      : info.isLink == true
+                          ? content.prefixLink()
+                          : content.prefixDash(),
+                )
+                    .addContainer(
+                      decoration: BoxDecoration(
+                        border: info.isLink == true
+                            ? const Border(
+                                bottom: BorderSide(color: Colors.black26),
+                              )
+                            : const Border(),
+                      ),
+                    )
+                    .addPadding(
+                      edgeInsets: context.padding(
+                        l: 2 * horizontalSpaceMassive.width!,
+                      ),
+                    ),
               ),
             ),
           );

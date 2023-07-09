@@ -135,8 +135,10 @@ extension WidgetListEx on List<Widget> {
     );
   }
 
-  Widget addWrap() {
+  Widget addWrap({double spacing = 0.0,double vSpacing = 0.0,}) {
     return Wrap(
+      spacing: spacing,
+      runSpacing: vSpacing,
       alignment: WrapAlignment.start,
       crossAxisAlignment: WrapCrossAlignment.start,
       children: this,

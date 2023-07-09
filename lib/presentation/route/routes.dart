@@ -5,6 +5,7 @@ import 'package:yelwinoo/presentation/configs/configs.dart';
 import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
 import 'package:yelwinoo/presentation/views/about/about_view.dart';
 import 'package:yelwinoo/presentation/views/certificates/certificates_view.dart';
+import 'package:yelwinoo/presentation/views/contact_me/contact_me_view.dart';
 import 'package:yelwinoo/presentation/views/experience/experience_view.dart';
 import 'package:yelwinoo/presentation/views/home/home_page.dart';
 import 'package:yelwinoo/presentation/views/project_details/project_details_view.dart';
@@ -35,6 +36,8 @@ class RouteGen {
         return _buildRoute(const CertificatesView(), settings: settings);
       case Routes.about:
         return _buildRoute(const AboutView(), settings: settings);
+      case Routes.contact:
+        return _buildRoute(const ContactMeView(), settings: settings);
       default:
         return _buildRoute(const ErrorView(), settings: settings);
     }

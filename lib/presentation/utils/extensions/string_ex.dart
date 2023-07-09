@@ -26,6 +26,14 @@ extension StringEx on String {
     return """-   $this""";
   }
 
+  String prefixLink(){
+    return """🔗   $this""";
+  }
+
+  String prefixSlash(){
+    return """/   $this""";
+  }
+
   String addDoubleQuote() {
     return "“$this”";
   }
