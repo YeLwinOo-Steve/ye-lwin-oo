@@ -16,7 +16,7 @@ class MenuPage extends StatefulWidget {
         ).animate(
           CurvedAnimation(
             parent: animation,
-            curve: Curves.easeInOut,
+            curve: Curves.easeOutQuad,
           ),
         ),
         super(key: key);

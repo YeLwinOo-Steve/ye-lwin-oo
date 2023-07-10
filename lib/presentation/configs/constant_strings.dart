@@ -45,6 +45,8 @@ const String ksAllAboutMe = "All About Me";
 const String ksGithub = "Github";
 const String ksLinkedIn = "LinkedIn";
 const String ksDiscord = "Discord";
+const String ksSendMessage = 'Send Message';
+
 const String ksSlash = "/";
 const String ksLetsWork = "Let's work together!";
 const String ksFreelanceAvailability = "I'm available for Freelancing";

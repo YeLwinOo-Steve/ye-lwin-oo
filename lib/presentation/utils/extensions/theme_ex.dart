@@ -41,7 +41,7 @@ extension ThemeEx on BuildContext {
   InputDecorationTheme inputDecorationTheme(){
     return InputDecorationTheme(
       filled: true,
-      fillColor: kPrimary,
+      fillColor: kTransparent,
       hintStyle: bodyLarge.copyWith(
         color: kBlack26,
       ),
