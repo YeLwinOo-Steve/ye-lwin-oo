@@ -63,7 +63,7 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
     _slideController = AnimationController(
       duration: slideDuration,
       vsync: this,
-    );
+    )..addListener(_slideControllerListener);
     _labelController = AnimationController(
       duration: labelDuration,
       vsync: this,
@@ -76,7 +76,6 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
       parent: _pathController,
       curve: Curves.fastLinearToSlowEaseIn,
     );
-    _slideController.addListener(_slideControllerListener);
     _footerTextController = AnimationController(
       vsync: this,
       duration: duration2000,
@@ -184,8 +183,8 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
         controller: _footerTextController,
         text: ksLetsWork,
         textStyle: Theme.of(context).textTheme.titleLarge?.copyWith(
-          color: _footerForegroundColor,
-        ),
+              color: _footerForegroundColor,
+            ),
         boxColor: kSecondary,
         coverColor: kBlack,
       ),
@@ -194,8 +193,8 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
         controller: _footerTextController,
         text: ksFreelanceAvailability,
         textStyle: Theme.of(context).textTheme.titleSmall?.copyWith(
-          color: _footerForegroundColor,
-        ),
+              color: _footerForegroundColor,
+            ),
         boxColor: kSecondary,
         coverColor: kBlack,
       ),
@@ -230,7 +229,7 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
       ),
       <Widget>[
         Icon(
-          Atlas.mailbox,
+          kiMail,
           color: _footerForegroundColor,
           size: s18,
         ),
@@ -246,7 +245,7 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
           ),
       <Widget>[
         Icon(
-          Atlas.office_phone,
+          kiPhone,
           color: _footerForegroundColor,
           size: s18,
         ),
@@ -301,7 +300,7 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
         <Widget>[
           horizontalSpaceMassive,
           Icon(
-            Atlas.star_trophy_achievement,
+            kiCredit,
             color: _footerForegroundColor,
             size: s14,
           ),
@@ -344,7 +343,7 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
         ),
       ),
       const Icon(
-        Atlas.heart_arrow_bold,
+        kiHeart,
         color: kRed,
       ),
     ].addRow(

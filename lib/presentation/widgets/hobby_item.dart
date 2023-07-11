@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
 
 import '../configs/configs.dart';
 
@@ -8,18 +9,17 @@ class HobbyItem extends StatelessWidget {
   final String label;
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return <Widget>[
+      Icon(icon),
+      verticalSpaceLarge,
+      Text(
+        label,
+        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              fontWeight: FontWeight.w200,
+            ),
+      ),
+    ].addColumn(
       mainAxisSize: MainAxisSize.min,
-      children: [
-        Icon(icon),
-        verticalSpaceLarge,
-        Text(
-          label,
-          style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                fontWeight: FontWeight.w200,
-              ),
-        ),
-      ],
     );
   }
 }

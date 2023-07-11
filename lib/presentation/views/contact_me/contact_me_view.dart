@@ -16,7 +16,7 @@ class ContactMeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Wrapper(
+    return const Wrapper(
       page: GetInTouchPage(),
     );
   }
@@ -61,8 +61,8 @@ class _GetInTouchPageState extends State<GetInTouchPage>
     _messageAnimationController =
         AnimationController(vsync: this, duration: duration500);
     _snackbarAnimationController =
-        AnimationController(vsync: this, duration: duration500);
-    _snackbarAnimationController.addStatusListener(snackBarListener);
+        AnimationController(vsync: this, duration: duration500)
+          ..addStatusListener(snackBarListener);
     _nameNode.addListener(nameListener);
     _jobNode.addListener(jobListener);
     _emailNode.addListener(emailListener);
@@ -142,43 +142,44 @@ class _GetInTouchPageState extends State<GetInTouchPage>
     _messageController.clear();
   }
 
+  void sendMessage() {
+    _contactVM.name = _nameController.text;
+    _contactVM.job = _jobController.text;
+    _contactVM.email = _emailController.text;
+    _contactVM.message = _messageController.text;
+    bool hasSent = _contactVM.sendMessage();
+    if (hasSent) clearData();
+    _snackbarAnimationController.forward();
+    setState(() {
+      hasError = !hasSent;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return <Widget>[
-      Align(
-        alignment: Alignment.topRight,
-        child: ClipRRect(
-          child: ImageFiltered(
-            imageFilter: ImageFilter.blur(sigmaX: s10, sigmaY: s10),
-            child: Opacity(
-              opacity: 0.1,
-              child: SvgPicture.asset(
-                kaMess,
-                semanticsLabel: 'Mess SVG',
-                width: context.percentHeight(s70),
-                height: context.percentHeight(s70),
-              ),
-            ),
-          ),
+      ClipRRect(
+        child: ImageFiltered(
+          imageFilter: ImageFilter.blur(sigmaX: s10, sigmaY: s10),
+          child: SvgPicture.asset(
+            kaMess,
+            semanticsLabel: 'Mess SVG',
+            width: context.percentHeight(s70),
+            height: context.percentHeight(s70),
+          ).addOpacity(opacity: 0.1),
         ),
-      ),
-      Align(
-        alignment: Alignment.bottomLeft,
-        child: ClipRRect(
-          child: Opacity(
-            opacity: 0.05,
-            child: Transform.scale(
-              scaleX: -1,
-              child: SvgPicture.asset(
-                kaMessage,
-                semanticsLabel: 'Message SVG',
-                width: context.percentHeight(s20),
-                height: context.percentHeight(s20),
-              ),
-            ),
+      ).addAlign(alignment: Alignment.topRight),
+      ClipRRect(
+        child: Transform.scale(
+          scaleX: -1,
+          child: SvgPicture.asset(
+            kaMessage,
+            semanticsLabel: 'Message SVG',
+            width: context.percentHeight(s20),
+            height: context.percentHeight(s20),
           ),
-        ),
-      ),
+        ).addOpacity(opacity: 0.05),
+      ).addAlign(alignment: Alignment.bottomLeft),
       <Widget>[
         Text('Get In Touch'.prefixSlash()),
         verticalSpaceMedium,
@@ -242,29 +243,15 @@ class _GetInTouchPageState extends State<GetInTouchPage>
           ),
         ),
         context.percentSizedBox(pHeight: s4),
-        Align(
-          alignment: Alignment.centerRight,
-          child: PrettyCapsuleButton(
-            label: ksSendMessage,
-            onPressed: () {
-              _contactVM.name = _nameController.text;
-              _contactVM.job = _jobController.text;
-              _contactVM.email = _emailController.text;
-              _contactVM.message = _messageController.text;
-              bool hasSent = _contactVM.sendMessage();
-              if (hasSent) clearData();
-              _snackbarAnimationController.forward();
-              setState(() {
-                hasError = !hasSent;
-              });
-            },
-            icon: kiMemo,
-            padding: context.symmetricPadding(
-              h: s50,
-              v: s18,
-            ),
+        PrettyCapsuleButton(
+          label: ksSendMessage,
+          onPressed: sendMessage,
+          icon: kiMemo,
+          padding: context.symmetricPadding(
+            h: s50,
+            v: s18,
           ),
-        ),
+        ).addAlign(alignment: Alignment.centerRight),
       ]
           .addColumn(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -279,30 +266,20 @@ class _GetInTouchPageState extends State<GetInTouchPage>
           .addScrollView(
             physics: const PageScrollPhysics(),
           ),
-      Align(alignment: Alignment.bottomCenter, child: showSnackBar()),
+      showSnackBar().addAlign(alignment: Alignment.bottomCenter),
     ].addStack();
   }
 
   Widget showSnackBar() {
-    return SlideTransition(
-      position:
-          Tween<Offset>(begin: const Offset(0, 1), end: Offset.zero).animate(
-        CurvedAnimation(
-          curve: Curves.easeOutQuad,
-          parent: _snackbarAnimationController,
-        ),
-      ),
-      child: Container(
-        decoration: BoxDecoration(
-          color: hasError ? kRed100 : kTeal200,
-          borderRadius: BorderRadius.circular(s8),
-        ),
-        margin: context.percentPadding(
-          b: s3,
-        ),
-        padding: context.symmetricPadding(
-          h: s30,
-          v: s14,
+    return Visibility(
+      visible: !_snackbarAnimationController.isDismissed,
+      child: SlideTransition(
+        position:
+            Tween<Offset>(begin: const Offset(0, 1), end: Offset.zero).animate(
+          CurvedAnimation(
+            curve: Curves.easeOutQuad,
+            parent: _snackbarAnimationController,
+          ),
         ),
         child: <Widget>[
           Icon(
@@ -321,9 +298,23 @@ class _GetInTouchPageState extends State<GetInTouchPage>
                   color: hasError ? kRed : kTeal,
                 ),
           ),
-        ].addRow(
-          mainAxisSize: MainAxisSize.min,
-        ),
+        ]
+            .addRow(
+              mainAxisSize: MainAxisSize.min,
+            )
+            .addContainer(
+              decoration: BoxDecoration(
+                color: hasError ? kRed100 : kTeal200,
+                borderRadius: BorderRadius.circular(s8),
+              ),
+              margin: context.percentPadding(
+                b: s3,
+              ),
+              padding: context.symmetricPadding(
+                h: s30,
+                v: s14,
+              ),
+            ),
       ),
     );
   }

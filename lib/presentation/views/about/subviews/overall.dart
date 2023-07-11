@@ -24,15 +24,15 @@ class _OverallState extends State<Overall> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    _slideController = AnimationController(vsync: this, duration: duration2000);
-    _slideController.addStatusListener(slideControllerListener);
-    _firstController = AnimationController(vsync: this, duration: duration2000);
+    _slideController = AnimationController(vsync: this, duration: duration2000)
+      ..addStatusListener(slideControllerListener);
+    _firstController = AnimationController(vsync: this, duration: duration2000)
+      ..addStatusListener(firstControllerListener);
     _secondController =
         AnimationController(vsync: this, duration: duration2000);
-    _firstController.addStatusListener(firstControllerListener);
     _textController = AnimationController(vsync: this, duration: duration2000);
-    _stickController = AnimationController(vsync: this, duration: duration1000);
-    _stickController.addStatusListener(stickControllerListener);
+    _stickController = AnimationController(vsync: this, duration: duration1000)
+      ..addStatusListener(stickControllerListener);
     _waveController = AnimationController(vsync: this, duration: duration2000);
   }
 
@@ -126,8 +126,8 @@ class _OverallState extends State<Overall> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return VisibilityDetector(
       key: const ValueKey("overall"),
-      onVisibilityChanged:(info){
-        if(info.visibleFraction > 0.2){
+      onVisibilityChanged: (info) {
+        if (info.visibleFraction > 0.2) {
           _slideController.forward();
           _firstController.forward();
           _stickController.forward();
@@ -258,9 +258,9 @@ class _OverallState extends State<Overall> with TickerProviderStateMixin {
           ),
         ),
       ].addStack().addSizedBox(
-        width: context.screenWidth,
-        height: context.screenHeight,
-      ),
+            width: context.screenWidth,
+            height: context.screenHeight,
+          ),
     );
   }
 }

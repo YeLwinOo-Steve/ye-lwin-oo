@@ -19,9 +19,9 @@ class _CodeBlockState extends State<CodeBlock>
   @override
   void initState() {
     _controller = AnimationController(
-      duration: const Duration(milliseconds: 3000),
+      duration: duration3000,
       vsync: this,
-    );
+    )..forward();
     _slideEditor = Tween<double>(
       begin: 0,
       end: -20,
@@ -31,7 +31,6 @@ class _CodeBlockState extends State<CodeBlock>
         curve: Curves.easeInOut,
       ),
     );
-    _controller.forward();
     super.initState();
   }
 
@@ -43,7 +42,7 @@ class _CodeBlockState extends State<CodeBlock>
 
   @override
   Widget build(BuildContext context) {
-    return [
+    return <Widget>[
       AnimatedBuilder(
         builder: (context, child) {
           return Positioned(
@@ -91,7 +90,7 @@ class Editor extends StatelessWidget {
       padding: const EdgeInsets.all(12.0),
       margin: const EdgeInsets.only(left: 25.0, top: 25.0, bottom: 25.0),
       child: isBackground
-          ? const SizedBox.shrink()
+          ? noSpace
           : <Widget>[
               <Widget>[
                 ...btnColors.map(

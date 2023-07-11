@@ -145,15 +145,19 @@ extension WidgetListEx on List<Widget> {
     );
   }
 
-  Widget addNestedListView({
+  Widget addListView({
+    Key? key,
     Axis? scrollDirection,
     ScrollPhysics? physics,
     bool? shrinkWrap,
+    ScrollController? controller,
     EdgeInsetsGeometry? padding,
   }) {
     return ListView(
+      key: key,
       scrollDirection: scrollDirection ?? Axis.vertical,
       physics: physics,
+      controller: controller,
       shrinkWrap: shrinkWrap ?? false,
       padding: padding,
       children: this,

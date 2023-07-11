@@ -13,46 +13,47 @@ class ProjectScrollIcons extends StatelessWidget {
   final double cardWidth;
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        IconButton(
-          onPressed: () {
-            double currentOffset = scrollController.offset;
-            double minOffset = scrollController.position.minScrollExtent;
-            if (currentOffset >= minOffset) {
-              double previousScroll = currentOffset - cardWidth;
-              scrollController.animateTo(
-                previousScroll < minOffset ? s0 : previousScroll,
-                duration: duration500,
-                curve: Curves.easeInOut,
-              );
-            }
-          },
-          icon: const Icon(Icons.arrow_back),
-        ),
-        horizontalSpaceMassive,
-        IconButton(
-          onPressed: () {
-            double currentOffset = scrollController.offset;
-            double maxOffset = scrollController.position.maxScrollExtent;
-            if (currentOffset <= maxOffset) {
-              double nextScroll = currentOffset + cardWidth;
-              scrollController.animateTo(
-                nextScroll > maxOffset ? maxOffset : nextScroll,
-                duration: duration500,
-                curve: Curves.easeInOut,
-              );
-            }
-          },
-          icon: const Icon(Icons.arrow_forward),
-        ),
-      ],
-    ).addPadding(
-      edgeInsets: context.symmetricPadding(
-        h: s40,
-        v: s20,
+    return <Widget>[
+      IconButton(
+        onPressed: () {
+          double currentOffset = scrollController.offset;
+          double minOffset = scrollController.position.minScrollExtent;
+          if (currentOffset >= minOffset) {
+            double previousScroll = currentOffset - cardWidth;
+            scrollController.animateTo(
+              previousScroll < minOffset ? s0 : previousScroll,
+              duration: duration500,
+              curve: Curves.easeInOut,
+            );
+          }
+        },
+        icon: const Icon(kiArrowBack),
       ),
-    );
+      horizontalSpaceMassive,
+      IconButton(
+        onPressed: () {
+          double currentOffset = scrollController.offset;
+          double maxOffset = scrollController.position.maxScrollExtent;
+          if (currentOffset <= maxOffset) {
+            double nextScroll = currentOffset + cardWidth;
+            scrollController.animateTo(
+              nextScroll > maxOffset ? maxOffset : nextScroll,
+              duration: duration500,
+              curve: Curves.easeInOut,
+            );
+          }
+        },
+        icon: const Icon(kiArrowNext),
+      ),
+    ]
+        .addRow(
+          mainAxisSize: MainAxisSize.min,
+        )
+        .addPadding(
+          edgeInsets: context.symmetricPadding(
+            h: s40,
+            v: s20,
+          ),
+        );
   }
 }

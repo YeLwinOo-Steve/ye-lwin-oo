@@ -47,85 +47,83 @@ class AnimatedCertificateImage extends AnimatedWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => showCertificateDialog(context),
-      child: Container(
-        width: double.maxFinite,
-        decoration: BoxDecoration(
-          color: kWhite,
+      child: <Widget>[
+        ClipRRect(
           borderRadius: BorderRadius.circular(s14),
+          child: Image.asset(
+            certificate.image,
+            fit: BoxFit.cover,
+            width: double.maxFinite,
+            height: double.maxFinite,
+          ),
+        ).addOpacity(
+          opacity: opacityAnimation.value,
         ),
-        child: Stack(
-          children: [
-            Opacity(
-              opacity: opacityAnimation.value,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(s14),
-                child: Image.asset(
-                  certificate.image,
-                  fit: BoxFit.cover,
-                  width: double.maxFinite,
-                  height: double.maxFinite,
-                ),
+        IconButton(
+          onPressed: () => showCertificateDialog(context),
+          icon: const Icon(
+            Atlas.arrows_corners_move_thin,
+          ),
+        )
+            .addPadding(
+              edgeInsets: context.allPadding(
+                p: s8,
               ),
+            )
+            .addOpacity(
+              opacity: 1 - opacityAnimation.value,
+            )
+            .addAlign(
+              alignment: Alignment.topRight,
             ),
-            Align(
-                alignment: Alignment.topRight,
-                child: Opacity(
-                  opacity: 1 - opacityAnimation.value,
-                  child: IconButton(
-                    onPressed: () => showCertificateDialog(context),
-                    icon: const Icon(
-                      Atlas.arrows_corners_move_thin,
-                    ),
-                  ).addPadding(
-                      edgeInsets: context.allPadding(
-                    p: s8,
-                  )),
-                )),
-            Align(
+        <Widget>[
+          Text(
+            certificate.name,
+            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                  fontWeight: FontWeight.w700,
+                ),
+            textAlign: TextAlign.center,
+          ),
+          verticalSpaceMedium,
+        ]
+            .addColumn(
+              mainAxisSize: MainAxisSize.min,
+            )
+            .addOpacity(
+              opacity: 1 - opacityAnimation.value,
+            )
+            .addAlign(
               alignment: Alignment.center,
-              child: Opacity(
-                opacity: 1 - opacityAnimation.value,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      certificate.name,
-                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                            fontWeight: FontWeight.w700,
-                          ),
-                      textAlign: TextAlign.center,
-                    ),
-                    verticalSpaceMedium,
-                  ],
-                ),
-              ),
             ),
-          ],
-        ),
-      ),
+      ].addStack().addContainer(
+            width: double.maxFinite,
+            decoration: BoxDecoration(
+              color: kWhite,
+              borderRadius: BorderRadius.circular(s14),
+            ),
+          ),
     );
   }
 
-  void showCertificateDialog(BuildContext context) async{
+  void showCertificateDialog(BuildContext context) async {
     await showDialog<void>(
       context: context,
       barrierDismissible: true,
       builder: (BuildContext dialogContext) {
         return AlertDialog(
-          title: Row(
+          title: <Widget>[
+            Text(
+              certificate.name,
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
+            IconButton(
+              onPressed: () {
+                Navigator.of(dialogContext).pop();
+              },
+              icon: const Icon(Atlas.xmark_circle),
+            ),
+          ].addRow(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                certificate.name,
-                style: Theme.of(context).textTheme.bodyLarge,
-              ),
-              IconButton(
-                onPressed: () {
-                  Navigator.of(dialogContext).pop();
-                },
-                icon: const Icon(Atlas.xmark_circle),
-              ),
-            ],
           ),
           content: AspectRatio(
             aspectRatio: 9 / 10,

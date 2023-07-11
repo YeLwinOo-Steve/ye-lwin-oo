@@ -21,5 +21,4 @@ export './animated_stroke_text.dart';
 export './hobby_item.dart';
 export './slide_widget.dart';
 export './animated_text_field.dart';
-
 export './animated_hover_link.dart';

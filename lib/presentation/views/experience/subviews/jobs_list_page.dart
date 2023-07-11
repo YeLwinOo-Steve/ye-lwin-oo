@@ -40,11 +40,11 @@ class _JobsListPageState extends State<JobsListPage>
   Widget build(BuildContext context) {
     return VisibilityDetector(
       key: const ValueKey("jobs_list"),
-      onVisibilityChanged: (info){
-        if(info.visibleFraction > 0.2){
+      onVisibilityChanged: (info) {
+        if (info.visibleFraction > 0.2) {
           _controller.forward();
         }
-        if(info.visibleFraction < 0.4 && _controller.isCompleted){
+        if (info.visibleFraction < 0.4 && _controller.isCompleted) {
           _controller.reverse();
         }
       },
@@ -97,10 +97,8 @@ class _JobsListPageState extends State<JobsListPage>
       ]
           .addColumn()
           .addPadding(
-            edgeInsets: context.symmetricPercentPadding(
-              vPercent: s6,
-              hPercent: s4,
-            ),
+            edgeInsets:
+                context.symmetricPercentPadding(vPercent: s6, hPercent: s4),
           )
           .addScrollView(
             physics: const BouncingScrollPhysics(),

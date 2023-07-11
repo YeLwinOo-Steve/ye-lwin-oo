@@ -28,36 +28,35 @@ class AnimatedTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IntrinsicWidth(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          TextField(
-            focusNode: node,
-            keyboardType: isMultiline == true
-                ? TextInputType.multiline
-                : isEmail == true
-                    ? TextInputType.emailAddress
-                    : TextInputType.text,
-            controller: textController,
-            onSubmitted: (String text) {},
-            maxLines: isMultiline == true ? null : 1,
-            textAlign: TextAlign.center,
-            expands: false,
-            decoration: InputDecoration(
-              hintText: hintText,
-              isCollapsed: true,
-              contentPadding: context.allPadding(
-                p: s12,
-              ),
+      child: <Widget>[
+        TextField(
+          focusNode: node,
+          keyboardType: isMultiline == true
+              ? TextInputType.multiline
+              : isEmail == true
+                  ? TextInputType.emailAddress
+                  : TextInputType.text,
+          controller: textController,
+          onSubmitted: (String text) {},
+          maxLines: isMultiline == true ? null : 1,
+          textAlign: TextAlign.center,
+          expands: false,
+          decoration: InputDecoration(
+            hintText: hintText,
+            isCollapsed: true,
+            contentPadding: context.allPadding(
+              p: s12,
             ),
-          ).addSizedBox(
-            width: width ?? double.infinity,
           ),
-          AnimatedUnderline(
-            animation: animation,
-            width: width ?? double.infinity,
-          ),
-        ],
+        ).addSizedBox(
+          width: width ?? double.infinity,
+        ),
+        AnimatedUnderline(
+          animation: animation,
+          width: width ?? double.infinity,
+        ),
+      ].addColumn(
+        mainAxisSize: MainAxisSize.min,
       ),
     );
   }
@@ -82,19 +81,17 @@ class AnimatedUnderline extends AnimatedWidget {
       );
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          height: s2,
-          width: width,
-          color: Colors.black12,
-        ),
-        Container(
-          height: s2,
-          width: widthAnimation.value,
-          color: kBlack,
-        )
-      ],
-    );
+    return <Widget>[
+      Container(
+        height: s2,
+        width: width,
+        color: Colors.black12,
+      ),
+      Container(
+        height: s2,
+        width: widthAnimation.value,
+        color: kBlack,
+      )
+    ].addStack();
   }
 }

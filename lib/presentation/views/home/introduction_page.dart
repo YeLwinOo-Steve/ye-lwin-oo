@@ -24,12 +24,11 @@ class _IntroductionPageState extends State<IntroductionPage>
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 3000),
-    );
+    )..forward();
     _controller2 = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 3000),
     );
-    _controller.forward();
     blueCircleTween = Tween<double>(
       begin: 0,
       end: 1,

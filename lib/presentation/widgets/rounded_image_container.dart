@@ -48,7 +48,7 @@ class RoundedImageContainer extends StatelessWidget {
         );
     return AlignTransition(
       alignment: alignAnimation,
-      child: [
+      child: <Widget>[
         Hero(
           tag: tag,
           child: Container(

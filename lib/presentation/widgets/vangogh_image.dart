@@ -27,10 +27,10 @@ class VanGoghImage extends StatelessWidget {
   final List<Image> images;
   @override
   Widget build(BuildContext context) {
-    return [
+    return <Widget>[
       SlideTransition(
         position: _slideLeftAnimation,
-        child: [
+        child: <Widget>[
           Positioned(
             left: s0,
             bottom: s0,

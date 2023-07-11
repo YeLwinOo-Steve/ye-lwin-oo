@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yelwinoo/presentation/configs/configs.dart';
+import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
 
 import 'animated_text_slide_box_transition.dart';
 
@@ -25,20 +26,17 @@ class IconLabel extends StatelessWidget {
   final TextStyle? textStyle;
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return <Widget>[
+      FadeTransition(opacity: _fadeAnimation, child: Icon(icon)),
+      horizontalSpaceMassive,
+      AnimatedTextSlideBoxTransition(
+        controller: controller,
+        text: label,
+        coverColor: coverColor,
+        textStyle: textStyle,
+      ),
+    ].addRow(
       mainAxisSize: MainAxisSize.min,
-      children: [
-        FadeTransition(
-            opacity: _fadeAnimation,
-            child: Icon(icon)),
-        horizontalSpaceMassive,
-        AnimatedTextSlideBoxTransition(
-          controller: controller,
-          text: label,
-          coverColor: coverColor,
-          textStyle: textStyle,
-        ),
-      ],
     );
   }
 }

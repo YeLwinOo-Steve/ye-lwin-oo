@@ -19,7 +19,7 @@ class MenuItem extends StatelessWidget {
   final VoidCallback onTap;
   @override
   Widget build(BuildContext context) {
-    return [
+    return <Widget>[
       AnimatedContainer(
         duration: duration100,
         curve: Curves.easeInOut,

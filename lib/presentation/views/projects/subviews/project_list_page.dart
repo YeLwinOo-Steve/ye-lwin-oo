@@ -29,16 +29,16 @@ class _ProjectListPageState extends State<ProjectListPage>
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this, duration: duration1000);
-    _controller.addListener(controllerListener);
+    _controller = AnimationController(vsync: this, duration: duration1000)
+      ..addListener(controllerListener);
     _projectSlideController =
-        AnimationController(vsync: this, duration: duration3000);
-    _projectSlideController.addStatusListener(projectSlideListener);
+        AnimationController(vsync: this, duration: duration3000)
+          ..addStatusListener(projectSlideListener);
     _slideOpacityController =
         AnimationController(vsync: this, duration: duration500);
     _toolOpacityController =
-        AnimationController(vsync: this, duration: duration500);
-    _toolOpacityController.addStatusListener(toolOpacityListener);
+        AnimationController(vsync: this, duration: duration500)
+          ..addStatusListener(toolOpacityListener);
     _labelController = AnimationController(vsync: this, duration: duration2000);
     for (var _ in kaTools) {
       _toolAnimations.add(
@@ -51,8 +51,9 @@ class _ProjectListPageState extends State<ProjectListPage>
     _projectRotateController = AnimationController(
       vsync: this,
       duration: duration2000,
-    )..forward();
-    _projectRotateController.addStatusListener(projectRotateListener);
+    )
+      ..forward()
+      ..addStatusListener(projectRotateListener);
   }
 
   void controllerListener() {
@@ -119,88 +120,79 @@ class _ProjectListPageState extends State<ProjectListPage>
           _controller.forward();
         }
       },
-      child: SizedBox(
-        width: context.screenWidth,
-        height: context.screenHeight,
-        child: Stack(
-          children: [
-            Align(
-              alignment: Alignment.center,
-              child: AnimatedBackgroundCircle(
-                animation: _controller,
-                targetWidth: context.screenWidth,
-                targetHeight: context.screenHeight,
-              ),
-            ),
-            Align(
+      child: <Widget>[
+        AnimatedBackgroundCircle(
+          animation: _controller,
+          targetWidth: context.screenWidth,
+          targetHeight: context.screenHeight,
+        ).addAlign(
+          alignment: Alignment.center,
+        ),
+        <Widget>[
+          <Widget>[
+            ...kaTools.map((tool) {
+              double cardSize = s50;
+              int index = kaTools.indexOf(tool);
+              return ToolCard(
+                animation: _toolAnimations[index],
+                bgAnimation: _toolOpacityController,
+                size: cardSize,
+                index: index,
+                tool: tool,
+              );
+            }).toList(),
+          ].addStack(),
+          horizontalSpaceMassive,
+          AnimatedTextSlideBoxTransition(
+            controller: _labelController,
+            text: ksCraftedProjects,
+            coverColor: kSecondary,
+            textStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                  fontWeight: FontWeight.w200,
+                ),
+          ),
+        ]
+            .addRow(
+              mainAxisSize: MainAxisSize.min,
+            )
+            .addAlign(
               alignment: Alignment.topLeft,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Stack(
-                    children: [
-                      ...kaTools.map((tool) {
-                        double cardSize = s50;
-                        int index = kaTools.indexOf(tool);
-                        return ToolCard(
-                          animation: _toolAnimations[index],
-                          bgAnimation: _toolOpacityController,
-                          size: cardSize,
-                          index: index,
-                          tool: tool,
-                        );
-                      }).toList(),
-                    ],
-                  ),
-                  horizontalSpaceMassive,
-                  AnimatedTextSlideBoxTransition(
-                    controller: _labelController,
-                    text: ksCraftedProjects,
-                    coverColor: kSecondary,
-                    textStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          fontWeight: FontWeight.w200,
-                        ),
-                  ),
-                ],
-              ),
-            ).addPadding(
+            )
+            .addPadding(
               edgeInsets: context.symmetricPercentPadding(
                 hPercent: s5,
                 vPercent: s10,
               ),
             ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  SizedBox(
-                    height: context.percentHeight(s60),
-                    width: double.maxFinite,
-                    child: SlideTransition(
-                      position: projectSlideAnimation,
-                      child: HorizontalProjectList(
-                        controller: _projectRotateController,
-                        scrollController: _scrollController,
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: FadeTransition(
-                      opacity: _slideOpacityController,
-                      child: ProjectScrollIcons(
-                        scrollController: _scrollController,
-                        cardWidth: cardWidth,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+        <Widget>[
+          SlideTransition(
+            position: projectSlideAnimation,
+            child: HorizontalProjectList(
+              controller: _projectRotateController,
+              scrollController: _scrollController,
             ),
-          ],
-        ),
-      ),
+          ).addSizedBox(
+            height: context.percentHeight(s60),
+            width: double.maxFinite,
+          ),
+          FadeTransition(
+            opacity: _slideOpacityController,
+            child: ProjectScrollIcons(
+              scrollController: _scrollController,
+              cardWidth: cardWidth,
+            ),
+          ).addAlign(alignment: Alignment.centerRight),
+        ]
+            .addColumn(
+              mainAxisSize: MainAxisSize.min,
+            )
+            .addAlign(
+              alignment: Alignment.bottomCenter,
+            ),
+      ].addStack().addSizedBox(
+            width: context.screenWidth,
+            height: context.screenHeight,
+          ),
     );
   }
 }
@@ -216,33 +208,32 @@ class HorizontalProjectList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
+    return <Widget>[
+      ...List.generate(
+        ksShowcaseProjects.length,
+        (index) {
+          double startAngle = s10;
+          double endAngle = -s10;
+          if (index % 2 == 0) {
+            double tempAngle = startAngle;
+            startAngle = endAngle;
+            endAngle = tempAngle;
+          }
+          return AnimatedProjectCard(
+            bgColor: kDeepBlack,
+            animation: controller,
+            startAngle: startAngle,
+            endAngle: endAngle,
+            index: index + 1,
+            project: ksShowcaseProjects[index],
+          );
+        },
+      ),
+    ].addListView(
       controller: scrollController,
       scrollDirection: Axis.horizontal,
       shrinkWrap: true,
       physics: const BouncingScrollPhysics(),
-      children: [
-        ...List.generate(
-          ksShowcaseProjects.length,
-          (index) {
-            double startAngle = s10;
-            double endAngle = -s10;
-            if (index % 2 == 0) {
-              double tempAngle = startAngle;
-              startAngle = endAngle;
-              endAngle = tempAngle;
-            }
-            return AnimatedProjectCard(
-              bgColor: kDeepBlack,
-              animation: controller,
-              startAngle: startAngle,
-              endAngle: endAngle,
-              index: index + 1,
-              project: ksShowcaseProjects[index],
-            );
-          },
-        ),
-      ],
     );
   }
 }

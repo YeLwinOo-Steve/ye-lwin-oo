@@ -26,27 +26,24 @@ class ToolCard extends AnimatedWidget {
       CurvedAnimation(parent: animation, curve: Curves.easeInOut);
   @override
   Widget build(BuildContext context) {
-    return Opacity(
-      opacity: bgAnimation.value,
-      child: Container(
-        width: size,
-        height: size,
-        margin: context.padding(
-          l: paddingAnimation.value,
-        ),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(s28),
-          color: kToolColors[index],
-        ),
-        child: Center(
-          child: SvgPicture.asset(
-            tool,
-            semanticsLabel: tool,
-            width: size * 0.5,
-            height: size * 0.5,
+    return SvgPicture.asset(
+      tool,
+      semanticsLabel: tool,
+      width: size * 0.5,
+      height: size * 0.5,
+    )
+        .addCenter()
+        .addContainer(
+          width: size,
+          height: size,
+          margin: context.padding(
+            l: paddingAnimation.value,
           ),
-        ),
-      ),
-    );
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(s28),
+            color: kToolColors[index],
+          ),
+        )
+        .addOpacity(opacity: bgAnimation.value);
   }
 }

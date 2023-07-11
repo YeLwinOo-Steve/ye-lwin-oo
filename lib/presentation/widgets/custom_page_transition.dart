@@ -57,7 +57,7 @@ class CustomPageTransition extends AnimatedWidget {
 
   @override
   Widget build(BuildContext context) {
-    return [
+    return <Widget>[
       Container(
         height: visibleAnimation.value,
         width: width,
@@ -70,7 +70,7 @@ class CustomPageTransition extends AnimatedWidget {
         height: invisibleAnimation.value,
         decoration: BoxDecoration(
           color: coverColor,
-          border:  Border.all(color: coverColor),
+          border: Border.all(color: coverColor),
         ),
         width: width,
       ),

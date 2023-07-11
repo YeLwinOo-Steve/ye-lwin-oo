@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
 
 import '../configs/configs.dart';
 
@@ -22,31 +23,29 @@ class AnimatedOutlinedText extends AnimatedWidget {
   final Animation<Color?> animation;
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        // Stroked text as border.
-        Text(
-          text,
-          style: TextStyle(
-            fontSize: fontSize,
-            fontWeight: fontWeight,
-            letterSpacing: letterSpacing,
-            foreground: Paint()
-              ..style = PaintingStyle.stroke
-              ..strokeWidth = strokeWidth
-              ..color = strokeColor,
-          ),
+    return <Widget>[
+      // Stroked text as border.
+      Text(
+        text,
+        style: TextStyle(
+          fontSize: fontSize,
+          fontWeight: fontWeight,
+          letterSpacing: letterSpacing,
+          foreground: Paint()
+            ..style = PaintingStyle.stroke
+            ..strokeWidth = strokeWidth
+            ..color = strokeColor,
         ),
-        Text(
-          text,
-          style: TextStyle(
-            fontSize: fontSize,
-            fontWeight: fontWeight,
-            letterSpacing: letterSpacing,
-            color: animation.value,
-          ),
+      ),
+      Text(
+        text,
+        style: TextStyle(
+          fontSize: fontSize,
+          fontWeight: fontWeight,
+          letterSpacing: letterSpacing,
+          color: animation.value,
         ),
-      ],
-    );
+      ),
+    ].addStack();
   }
 }

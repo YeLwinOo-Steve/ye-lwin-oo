@@ -73,21 +73,21 @@ class _MenuPageState extends State<MenuPage> with TickerProviderStateMixin {
     _boxController = AnimationController(
       duration: duration100,
       vsync: this,
-    );
-    _boxController.addStatusListener(boxControllerListener);
+    )..addStatusListener(boxControllerListener);
     _colorBoxController = AnimationController(
       duration: duration500,
       vsync: this,
     );
   }
 
-  void boxControllerListener(AnimationStatus status){
-    if(status == AnimationStatus.completed){
+  void boxControllerListener(AnimationStatus status) {
+    if (status == AnimationStatus.completed) {
       _colorBoxController.forward();
-    }else if( status == AnimationStatus.dismissed){
+    } else if (status == AnimationStatus.dismissed) {
       _colorBoxController.reverse();
     }
   }
+
   @override
   void dispose() {
     _boxController.dispose();
@@ -129,21 +129,20 @@ class _MenuPageState extends State<MenuPage> with TickerProviderStateMixin {
       child: MouseRegion(
         onHover: onHover,
         onExit: onExit,
-        child: [
-          Align(
-            alignment: Alignment.centerRight,
-            child: Visibility(
-              visible:
-                  currentHoverIndex > -1 && currentHoverIndex < ksMenu.length,
-              child: VanGoghImage(
-                hoveredIndex: currentHoverIndex,
-                animation: _boxController.view,
-                coloredBoxAnimation: _colorBoxController.view,
-                images: _vanGoghImages,
-              ),
+        child: <Widget>[
+          Visibility(
+            visible:
+                currentHoverIndex > -1 && currentHoverIndex < ksMenu.length,
+            child: VanGoghImage(
+              hoveredIndex: currentHoverIndex,
+              animation: _boxController.view,
+              coloredBoxAnimation: _colorBoxController.view,
+              images: _vanGoghImages,
             ),
+          ).addAlign(
+            alignment: Alignment.centerRight,
           ),
-          [
+          <Widget>[
             ...createMenuItems(context),
           ].addColumn(),
         ]

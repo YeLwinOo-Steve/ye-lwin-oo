@@ -64,6 +64,7 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView>
   @override
   void dispose() {
     _appBarController.dispose();
+    _mouseIconController.dispose();
     _stickController.dispose();
     _titleController.dispose();
     super.dispose();
@@ -150,7 +151,7 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView>
         ProjectOverview(
           project: project,
         ),
-      ].addNestedListView(
+      ].addListView(
         physics: const BouncingScrollPhysics(),
       ),
     );

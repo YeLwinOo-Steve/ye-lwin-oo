@@ -23,33 +23,31 @@ class OutlinedText extends StatelessWidget {
   final FontWeight fontWeight;
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-// Stroked text as border.
-        Text(
-          text,
-          style: TextStyle(
-            fontSize: fontSize,
-            fontWeight: fontWeight,
-            letterSpacing: letterSpacing,
-            foreground: Paint()
-              ..style = PaintingStyle.stroke
-              ..strokeWidth = strokeWidth
-              ..color = strokeColor,
-          ),
-          textScaleFactor: context.textScaleFactor(),
+    return <Widget>[
+      // Stroked text as border.
+      Text(
+        text,
+        style: TextStyle(
+          fontSize: fontSize,
+          fontWeight: fontWeight,
+          letterSpacing: letterSpacing,
+          foreground: Paint()
+            ..style = PaintingStyle.stroke
+            ..strokeWidth = strokeWidth
+            ..color = strokeColor,
         ),
-        Text(
-          text,
-          style: TextStyle(
-            fontSize: fontSize,
-            fontWeight: fontWeight,
-            letterSpacing: letterSpacing,
-            color: textColor,
-          ),
-          textScaleFactor: context.textScaleFactor(),
+        textScaleFactor: context.textScaleFactor(),
+      ),
+      Text(
+        text,
+        style: TextStyle(
+          fontSize: fontSize,
+          fontWeight: fontWeight,
+          letterSpacing: letterSpacing,
+          color: textColor,
         ),
-      ],
-    );
+        textScaleFactor: context.textScaleFactor(),
+      ),
+    ].addStack();
   }
 }

@@ -41,17 +41,17 @@ class _CustomButtonState extends State<CustomButton> {
             _isHovered = false;
           });
         },
-        child: [
+        child: <Widget>[
           AnimatedPositioned(
             left: _isHovered ? s8 : s0,
             bottom: _isHovered ? s8 : s0,
             duration: const Duration(milliseconds: d300),
-            child: [
+            child: <Widget>[
               Text(
                 widget.label.toUpperCase(),
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: widget.shadowColor ?? kSecondary,
-                ),
+                      color: widget.shadowColor ?? kSecondary,
+                    ),
               ),
               customSpace(w: _isHovered ? s10 : s5),
               Icon(
@@ -59,19 +59,19 @@ class _CustomButtonState extends State<CustomButton> {
                 color: widget.shadowColor ?? kSecondary,
               ),
             ].addRow().addCenter().addContainer(
-              padding: const EdgeInsets.symmetric(
-                vertical: s14,
-                horizontal: s42,
-              ),
-              decoration: BoxDecoration(
-                color: widget.shadowColor ?? kSecondary,
-                border: Border.all(
-                  color: widget.shadowColor ?? kSecondary,
+                  padding: const EdgeInsets.symmetric(
+                    vertical: s14,
+                    horizontal: s42,
+                  ),
+                  decoration: BoxDecoration(
+                    color: widget.shadowColor ?? kSecondary,
+                    border: Border.all(
+                      color: widget.shadowColor ?? kSecondary,
+                    ),
+                  ),
                 ),
-              ),
-            ),
           ),
-          [
+          <Widget>[
             Text(
               widget.label.toUpperCase(),
               style: Theme.of(context).textTheme.bodyMedium,
@@ -85,15 +85,15 @@ class _CustomButtonState extends State<CustomButton> {
               widget.icon,
             ),
           ].addRow().addCenter().addContainer(
-            margin: const EdgeInsets.only(left: s8, bottom: s8),
-            padding:
-            const EdgeInsets.symmetric(vertical: s14, horizontal: s42),
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: widget.foregroundColor,
+                margin: const EdgeInsets.only(left: s8, bottom: s8),
+                padding:
+                    const EdgeInsets.symmetric(vertical: s14, horizontal: s42),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: widget.foregroundColor,
+                  ),
+                ),
               ),
-            ),
-          ),
         ].addStack(),
       ),
     );

@@ -37,93 +37,79 @@ class ExperienceStepCard extends StatelessWidget {
       b: s5,
     );
     return IntrinsicHeight(
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Expanded(
-            child: noSpace,
-          ),
-          Expanded(
-            flex: 2,
-            child: Align(
-              alignment: Alignment.topLeft,
-              child: ThreeDFlip(
-                animation: curvedAnimation,
-                start: start,
-                end: end,
-                child: <Widget>[
-                  Text(
-                    "/ ${"$index".prefixZero()}",
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          fontWeight: FontWeight.w200,
-                        ),
-                  ),
-                  horizontalSpaceMassive,
-                  Text(
-                    "${experience.startDate.toMonthAndYear()} - ${experience.endDate.toMonthAndYear()}",
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          fontWeight: FontWeight.w200,
-                        ),
-                  ),
-                ]
-                    .addRow(
-                      mainAxisSize: MainAxisSize.min,
-                    )
-                    .addPadding(
-                      edgeInsets: padding,
-                    ),
-              ),
-            ),
-          ),
-          ThreeDFlip(
-            animation: curvedAnimation,
-            start: start,
-            end: end,
-            child: Container(
-              width: s2,
-              margin: context.percentPadding(
-                r: s5,
-              ),
-              decoration: const BoxDecoration(
-                color: kBlack,
-              ),
-            ),
-          ),
-          Expanded(
-            flex: 7,
-            child: ThreeDFlip(
-              animation: curvedAnimation,
-              start: start,
-              end: end,
-              child: <Widget>[
-                Text(
-                  experience.company,
-                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        fontWeight: FontWeight.w600,
-                      ),
-                ),
-                verticalSpaceMedium,
-                Text(experience.position),
-                if (experience.type == JobType.remote) const Text("(remote)"),
-                verticalSpaceMassive,
-                ...experience.responsibilities
-                    .map(
-                      (responsibility) => Text(
-                        responsibility.prefixDash(),
-                      ),
-                    )
-                    .toList(),
-              ]
-                  .addColumn(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                  )
-                  .addPadding(
-                    edgeInsets: padding,
+      child: <Widget>[
+        noSpace.addExpanded(),
+        ThreeDFlip(
+          animation: curvedAnimation,
+          start: start,
+          end: end,
+          child: <Widget>[
+            Text(
+              "/ ${"$index".prefixZero()}",
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    fontWeight: FontWeight.w200,
                   ),
             ),
-          )
-        ],
-      ),
+            horizontalSpaceMassive,
+            Text(
+              "${experience.startDate.toMonthAndYear()} - ${experience.endDate.toMonthAndYear()}",
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    fontWeight: FontWeight.w200,
+                  ),
+            ),
+          ]
+              .addRow(
+                mainAxisSize: MainAxisSize.min,
+              )
+              .addPadding(
+                edgeInsets: padding,
+              ),
+        ).addAlign(alignment: Alignment.topLeft).addExpanded(flex: 2),
+        ThreeDFlip(
+          animation: curvedAnimation,
+          start: start,
+          end: end,
+          child: Container(
+            width: s2,
+            margin: context.percentPadding(
+              r: s5,
+            ),
+            decoration: const BoxDecoration(
+              color: kBlack,
+            ),
+          ),
+        ),
+        ThreeDFlip(
+          animation: curvedAnimation,
+          start: start,
+          end: end,
+          child: <Widget>[
+            Text(
+              experience.company,
+              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
+            ),
+            verticalSpaceMedium,
+            Text(experience.position),
+            if (experience.type == JobType.remote) const Text("(remote)"),
+            verticalSpaceMassive,
+            ...experience.responsibilities
+                .map(
+                  (responsibility) => Text(
+                    responsibility.prefixDash(),
+                  ),
+                )
+                .toList(),
+          ]
+              .addColumn(
+                crossAxisAlignment: CrossAxisAlignment.start,
+              )
+              .addPadding(
+                edgeInsets: padding,
+              ),
+        ).addExpanded(flex: 7)
+      ].addRow(crossAxisAlignment: CrossAxisAlignment.start),
     );
   }
 }

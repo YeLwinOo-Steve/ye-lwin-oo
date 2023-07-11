@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
 
 import '../../../configs/configs.dart';
 
@@ -11,8 +11,8 @@ class ThreeDFlip extends AnimatedWidget {
     required this.start,
     required this.end,
   }) : super(
-    listenable: animation,
-  );
+          listenable: animation,
+        );
   final Animation<double> animation;
   final Widget child;
   final double start;
@@ -24,16 +24,13 @@ class ThreeDFlip extends AnimatedWidget {
       );
   @override
   Widget build(BuildContext context) {
-    return Opacity(
-      opacity: animation.value,
-      child: Transform(
-        transform: Matrix4.identity()
-          ..setEntry(3, 2, 0.0015)
-          ..rotateX(
-            transformAnimation.value,
-          ),
-        child: child,
-      ),
-    );
+    return Transform(
+      transform: Matrix4.identity()
+        ..setEntry(3, 2, 0.0015)
+        ..rotateX(
+          transformAnimation.value,
+        ),
+      child: child,
+    ).addOpacity(opacity: animation.value);
   }
 }

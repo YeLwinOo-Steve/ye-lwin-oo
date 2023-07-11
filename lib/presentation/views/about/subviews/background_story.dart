@@ -32,19 +32,17 @@ class _BackgroundStoryState extends State<BackgroundStory>
     _textController = AnimationController(vsync: this, duration: duration2000);
     _text2Controller = AnimationController(vsync: this, duration: duration2000);
     _text3Controller = AnimationController(vsync: this, duration: duration2000);
-    _infoController = AnimationController(vsync: this, duration: duration500);
-    _techController = AnimationController(vsync: this, duration: duration500);
+    _infoController = AnimationController(vsync: this, duration: duration500)
+      ..addStatusListener(infoControllerListener);
+    _techController = AnimationController(vsync: this, duration: duration500)
+      ..addStatusListener(techControllerListener);
     _awardController = AnimationController(vsync: this, duration: duration500);
-    _infoController.addStatusListener(infoControllerListener);
-    _techController.addStatusListener(techControllerListener);
-    _stickController = AnimationController(vsync: this, duration: duration1000);
-    _stickController.addStatusListener(stickControllerListener);
-    _stick2Controller =
-        AnimationController(vsync: this, duration: duration1000);
-    _stick2Controller.addStatusListener(stick2ControllerListener);
-    _stick3Controller =
-        AnimationController(vsync: this, duration: duration1000);
-    _stick3Controller.addStatusListener(stick3ControllerListener);
+    _stickController = AnimationController(vsync: this, duration: duration1000)
+      ..addStatusListener(stickControllerListener);
+    _stick2Controller = AnimationController(vsync: this, duration: duration1000)
+      ..addStatusListener(stick2ControllerListener);
+    _stick3Controller = AnimationController(vsync: this, duration: duration1000)
+      ..addStatusListener(stick3ControllerListener);
   }
 
   void infoControllerListener(AnimationStatus status) {

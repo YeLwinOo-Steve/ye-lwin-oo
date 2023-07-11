@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
 
 import '../configs/configs.dart';
 
@@ -22,31 +23,29 @@ class AnimatedStrokeText extends AnimatedWidget {
   final Animation<Color?> animation;
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        // Stroked text as border.
-        Text(
-          text,
-          style: TextStyle(
-            fontSize: fontSize,
-            fontWeight: fontWeight,
-            letterSpacing: letterSpacing,
-            foreground: Paint()
-              ..style = PaintingStyle.stroke
-              ..strokeWidth = strokeWidth
-              ..color = animation.value!,
-          ),
+    return <Widget>[
+      // Stroked text as border.
+      Text(
+        text,
+        style: TextStyle(
+          fontSize: fontSize,
+          fontWeight: fontWeight,
+          letterSpacing: letterSpacing,
+          foreground: Paint()
+            ..style = PaintingStyle.stroke
+            ..strokeWidth = strokeWidth
+            ..color = animation.value!,
         ),
-        Text(
-          text,
-          style: TextStyle(
-            fontSize: fontSize,
-            fontWeight: fontWeight,
-            letterSpacing: letterSpacing,
-            color: textColor,
-          ),
+      ),
+      Text(
+        text,
+        style: TextStyle(
+          fontSize: fontSize,
+          fontWeight: fontWeight,
+          letterSpacing: letterSpacing,
+          color: textColor,
         ),
-      ],
-    );
+      ),
+    ].addStack();
   }
 }

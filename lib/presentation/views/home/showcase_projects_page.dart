@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:visibility_detector/visibility_detector.dart';
+import 'package:yelwinoo/data/model/showcase_project.dart';
 import 'package:yelwinoo/presentation/route/route_transitions.dart';
 import 'package:yelwinoo/presentation/route/routes.dart';
 import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
@@ -47,6 +48,20 @@ class _ShowcaseProjectsPageState extends State<ShowcaseProjectsPage>
     super.dispose();
   }
 
+  void navigateToProjectDetailsPage({required ShowcaseProject project}) {
+    Navigator.of(context).push(
+      SlideRouteTransition(
+        position: SlidePosition.right,
+        enterWidget: ProjectDetailsView(
+          project: project,
+        ),
+        settings: RouteSettings(
+          name: '${Routes.projectDetails}/${project.title}',
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     appBarHeight = Theme.of(context).appBarTheme.toolbarHeight!;
@@ -54,8 +69,8 @@ class _ShowcaseProjectsPageState extends State<ShowcaseProjectsPage>
     imageWidth = context.percentWidth(s50) * 0.8;
     return VisibilityDetector(
       key: const ValueKey("showcase_projects"),
-      onVisibilityChanged: (info){
-        if(info.visibleFraction > 0.3){
+      onVisibilityChanged: (info) {
+        if (info.visibleFraction > 0.3) {
           _controller.forward();
         }
       },
@@ -89,33 +104,23 @@ class _ShowcaseProjectsPageState extends State<ShowcaseProjectsPage>
                     animation: _controller,
                     slideUpTween: _slideUpTween,
                     label: project.title,
-                    labelStyle: Theme.of(context).textTheme.labelLarge!.copyWith(
-                          fontWeight: FontWeight.w700,
-                        ),
+                    labelStyle:
+                        Theme.of(context).textTheme.labelLarge!.copyWith(
+                              fontWeight: FontWeight.w700,
+                            ),
                     descriptionStyle: Theme.of(context).textTheme.bodyMedium!,
                     description: project.shortDescription,
                     index: ksShowcaseProjects.indexOf(project),
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        SlideRouteTransition(
-                          position: SlidePosition.right,
-                          enterWidget: ProjectDetailsView(
-                            project: project,
-                          ),
-                          settings: RouteSettings(
-                            name: '${Routes.projectDetails}/${project.title}',
-                          ),
-                        ),
-                      );
-                    },
+                    onPressed: () =>
+                        navigateToProjectDetailsPage(project: project),
                   ),
                 )
                 .toList(),
           ]
               .addColumn(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  )
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              )
               .addContainer(
                   height: containerHeight,
                   padding: context.symmetricPadding(h: s30, v: s0))

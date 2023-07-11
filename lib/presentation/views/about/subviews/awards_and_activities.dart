@@ -117,17 +117,18 @@ class ActivityContainer extends StatelessWidget {
         const Icon(kiLink),
         horizontalSpaceMedium,
         GestureDetector(
-            onTap: () {
-              activity.link!.launchWebsite();
-            },
-            child: Text(
-              activity.link!,
-              style: const TextStyle(
-                  decoration: TextDecoration.underline,
-                decorationStyle: TextDecorationStyle.dotted,
-                decorationColor: kBlack26,
-                  ),
-            )),
+          onTap: () {
+            activity.link!.launchWebsite();
+          },
+          child: Text(
+            activity.link!,
+            style: const TextStyle(
+              decoration: TextDecoration.underline,
+              decorationStyle: TextDecorationStyle.dotted,
+              decorationColor: kBlack26,
+            ),
+          ),
+        ),
       ].addRow(
         mainAxisSize: MainAxisSize.min,
       );

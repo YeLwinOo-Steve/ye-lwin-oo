@@ -31,11 +31,10 @@ class _AboutViewState extends State<AboutView> {
   @override
   Widget build(BuildContext context) {
     return Wrapper(
-      page: ListView(
+      page: aboutPages.addListView(
         key: _key,
         scrollDirection: Axis.vertical,
         physics: const ClampingScrollPhysics(),
-        children: aboutPages,
       ),
     );
   }

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 /// custom icons are prefixed with [ki]
+const IconData kiArrowBack = Icons.arrow_back_outlined;
+const IconData kiArrowNext = Icons.arrow_forward_outlined;
 const IconData kiArrowForward = Icons.arrow_right_alt;
 const IconData kiClose = Atlas.xmark_circle_thin;
 const IconData kiCircle = Icons.circle;
@@ -27,3 +29,6 @@ const IconData kiActivity = Atlas.diploma_certificate;
 const IconData kiMemo = Atlas.memo_thin;
 const IconData kiError = Atlas.exclamation_chat;
 const IconData kiSuccess = Atlas.check_message;
+const IconData kiMail = Atlas.mailbox;
+const IconData kiCredit = Atlas.star_trophy_achievement;
+const IconData kiHeart = Atlas.heart_arrow_bold;

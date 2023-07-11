@@ -64,7 +64,7 @@ class _AnimatedTextSlideBoxTransitionState
     setTextWidthAndHeight();
     controller = widget.controller;
     visibleAnimation = widget.visibleBoxAnimation ??
-        Tween<double>(begin: 0, end: textWidth - (hiddenFactor*2)).animate(
+        Tween<double>(begin: 0, end: textWidth - (hiddenFactor * 2)).animate(
           CurvedAnimation(
             parent: controller,
             curve: Interval(
@@ -76,7 +76,7 @@ class _AnimatedTextSlideBoxTransitionState
         );
 
     invisibleAnimation = widget.invisibleBoxAnimation ??
-        Tween<double>(begin: 0, end: textWidth - (hiddenFactor*2)).animate(
+        Tween<double>(begin: 0, end: textWidth - (hiddenFactor * 2)).animate(
           CurvedAnimation(
             parent: controller,
             curve: Interval(
@@ -104,6 +104,12 @@ class _AnimatedTextSlideBoxTransitionState
     );
 
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 
   void setTextWidthAndHeight() {
@@ -138,7 +144,7 @@ class _AnimatedTextSlideBoxTransitionState
         ),
       ),
     ].addStack().addSizedBox(
-      height: textHeight,
-    );
+          height: textHeight,
+        );
   }
 }

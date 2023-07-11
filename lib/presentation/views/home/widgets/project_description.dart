@@ -50,15 +50,14 @@ class ProjectDescription extends StatelessWidget {
               style: descriptionStyle,
             ),
             verticalSpaceSmall,
-            Row(
+            <Widget>[
+              CustomButton(
+                label: ksViewProject,
+                onPressed: onPressed,
+                icon: kiArrowForward,
+              ),
+            ].addRow(
               mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                CustomButton(
-                  label: ksViewProject,
-                  onPressed: onPressed,
-                  icon: kiArrowForward,
-                ),
-              ],
             ),
           ].addColumn(
             crossAxisAlignment: CrossAxisAlignment.start,

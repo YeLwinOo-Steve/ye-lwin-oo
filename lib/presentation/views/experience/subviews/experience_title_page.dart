@@ -36,43 +36,33 @@ class _ExperienceTitlePageState extends State<ExperienceTitlePage>
   @override
   Widget build(BuildContext context) {
     return <Widget>[
-      Align(
-        alignment: Alignment.topRight,
-        child: SvgPicture.asset(
-          kaWorkStump,
-          semanticsLabel: 'Work Stump SVG',
-          width: context.percentHeight(s40),
-          height: context.percentHeight(s40),
-        ).addPadding(
-          edgeInsets: context.percentPadding(
-            r: s5,
-            t: s5,
-          ),
-        ),
-      ),
-      Align(
-        alignment: Alignment.center,
-        child: AnimatedTextSlideBoxTransition(
-          controller: _titleController,
-          text: ksExperience,
-          coverColor: kPrimary,
-          textStyle: Theme.of(context).textTheme.headlineMedium,
-        ),
-      ),
-      Align(
-        alignment: Alignment.bottomCenter,
-        child: AnimatedSlideBox(
-          controller: _stickController,
-          height: context.percentHeight(s40),
-          isVertical: true,
-          coverColor: kPrimary,
-          visibleBoxCurve: Curves.fastLinearToSlowEaseIn,
-          width: s6,
-        ),
-      ),
+      SvgPicture.asset(
+        kaWorkStump,
+        semanticsLabel: 'Work Stump SVG',
+        width: context.percentHeight(s40),
+        height: context.percentHeight(s40),
+      )
+          .addPadding(
+            edgeInsets: context.percentPadding(r: s5, t: s5),
+          )
+          .addAlign(alignment: Alignment.topRight),
+      AnimatedTextSlideBoxTransition(
+        controller: _titleController,
+        text: ksExperience,
+        coverColor: kPrimary,
+        textStyle: Theme.of(context).textTheme.headlineMedium,
+      ).addAlign(alignment: Alignment.center),
+      AnimatedSlideBox(
+        controller: _stickController,
+        height: context.percentHeight(s40),
+        isVertical: true,
+        coverColor: kPrimary,
+        visibleBoxCurve: Curves.fastLinearToSlowEaseIn,
+        width: s6,
+      ).addAlign(alignment: Alignment.bottomCenter),
     ].addStack().addSizedBox(
-      width: context.screenWidth,
-      height: context.screenHeight - context.appBarTheme().toolbarHeight!,
-    );
+          width: context.screenWidth,
+          height: context.screenHeight - context.appBarTheme().toolbarHeight!,
+        );
   }
 }
