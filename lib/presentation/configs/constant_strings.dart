@@ -342,7 +342,8 @@ final List<SocialMedia> ksSocialMedia = [
   ),
 ];
 
-const String dummyImage = "assets/images/projects/ggone.jpg";
+const String dummyImage = "assets/images/projects/pulse_x.png";
+const String threadImage = "assets/images/projects/thread.png";
 
 const String _FLUTTER = 'Flutter';
 const String _DART = 'Dart';
@@ -435,10 +436,9 @@ final List<ShowcaseProject> ksShowcaseProjects = [
         icon: kiLink,
         label: "Project Links",
         isLink: true,
-      contents: [
-        "https://github.com/YeLwinOo-Steve/notee",
-      ]
-    ),
+        contents: [
+          "https://github.com/YeLwinOo-Steve/notee",
+        ]),
     heroTag: 'notee',
     tags: ProjectInfo(
       icon: kiTag,
@@ -479,6 +479,62 @@ final List<ShowcaseProject> ksShowcaseProjects = [
     ),
   ),
   ShowcaseProject(
+    title: 'Threads Logo Animation',
+    image: threadImage,
+    shortDescription:
+        "Animated Facebook Threads App Logo made with custom paths and painters",
+    description: """
+        Here, I provide you with 4 things:
+          1. Two versions of animated threads logo - stroked thread logo and filled threads logo
+          2. Custom Gradient slider with gradient thumb
+          3. Custom Gradient Text
+          4. Custom Gradient Icon Button
+        """,
+    link: ProjectInfo(
+      icon: kiLink,
+      label: "Project Links",
+      isLink: true,
+      contents: [
+        "https://github.com/YeLwinOo-Steve/thread_logo_animation",
+      ],
+    ),
+    heroTag: 'threads_logo',
+    tags: ProjectInfo(
+      icon: kiTag,
+      label: 'Tags',
+      isTag: true,
+      contents: [
+        'animation',
+        _FLUTTER.toLowerCase(),
+        _DART.toLowerCase(),
+      ],
+    ),
+    tech: ProjectInfo(
+      icon: kiChip,
+      label: 'Tools & Technologies',
+      contents: [
+        _DART.toUpperCase(),
+        _FLUTTER.toUpperCase(),
+      ],
+    ),
+    author: ProjectInfo(
+      icon: kiPerson,
+      label: 'Developer',
+      contents: [
+        _ME,
+      ],
+    ),
+    platform: ProjectInfo(
+      icon: kiLaptop,
+      label: 'Available Platforms',
+      contents: [
+        _ANDROID,
+        _IOS,
+        _WEB,
+      ],
+    ),
+  ),
+  ShowcaseProject(
     title: 'The Golden Land (Myanmar) ',
     image: dummyImage,
     shortDescription:
@@ -496,8 +552,7 @@ final List<ShowcaseProject> ksShowcaseProjects = [
         contents: [
           "https://the-golden-land.vercel.app/",
           "https://github.com/YeLwinOo-Steve/TheGoldenLand",
-        ]
-    ),
+        ]),
     heroTag: 'the-golden-land',
     tags: ProjectInfo(
       icon: kiTag,
@@ -544,13 +599,13 @@ final List<ShowcaseProject> ksShowcaseProjects = [
         Currently, a total of 12 animated buttons are available. More fancy buttons are coming soon...
         """,
     link: ProjectInfo(
-        icon: kiLink,
-        label: "Project Links",
-        isLink: true,
-        contents: [
-          "https://pub.dev/packages/pretty_animated_buttons",
-          "https://github.com/YeLwinOo-Steve/pretty_animated_buttons",
-        ],
+      icon: kiLink,
+      label: "Project Links",
+      isLink: true,
+      contents: [
+        "https://pub.dev/packages/pretty_animated_buttons",
+        "https://github.com/YeLwinOo-Steve/pretty_animated_buttons",
+      ],
     ),
     heroTag: 'pretty_animated_buttons',
     tags: ProjectInfo(
@@ -748,14 +803,13 @@ final List<ShowcaseProject> ksShowcaseProjects = [
         Still developing ...
         """,
     link: ProjectInfo(
-    icon: kiLink,
-    label: "Project Links",
-    isLink: true,
-    contents: [
-      "https://github.com/YeLwinOo-Steve/design_patterns",
-    ],
-  ),
-
+      icon: kiLink,
+      label: "Project Links",
+      isLink: true,
+      contents: [
+        "https://github.com/YeLwinOo-Steve/design_patterns",
+      ],
+    ),
     heroTag: 'design_patterns',
     tags: ProjectInfo(
       icon: kiTag,

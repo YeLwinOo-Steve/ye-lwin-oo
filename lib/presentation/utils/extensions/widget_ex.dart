@@ -102,8 +102,9 @@ extension WidgetEx on Widget {
 }
 
 extension WidgetListEx on List<Widget> {
-  Widget addStack({AlignmentGeometry? alignment}) {
+  Widget addStack({AlignmentGeometry? alignment, StackFit? fit}) {
     return Stack(
+      fit: fit ?? StackFit.loose,
       alignment: alignment ?? AlignmentDirectional.topStart,
       children: this,
     );
@@ -135,7 +136,10 @@ extension WidgetListEx on List<Widget> {
     );
   }
 
-  Widget addWrap({double spacing = 0.0,double vSpacing = 0.0,}) {
+  Widget addWrap({
+    double spacing = 0.0,
+    double vSpacing = 0.0,
+  }) {
     return Wrap(
       spacing: spacing,
       runSpacing: vSpacing,

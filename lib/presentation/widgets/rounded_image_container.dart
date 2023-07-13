@@ -49,20 +49,21 @@ class RoundedImageContainer extends StatelessWidget {
     return AlignTransition(
       alignment: alignAnimation,
       child: <Widget>[
-        Hero(
-          tag: tag,
-          child: Container(
-            width: width,
-            margin: EdgeInsets.all(margin),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(borderRadius),
-              image: DecorationImage(
-                image: AssetImage(
-                  imageUrl,
-                ),
-                fit: BoxFit.cover,
-              ),
-            ),
+        Container(
+          width: width,
+          decoration: BoxDecoration(
+            color: kSecondary,
+            borderRadius: BorderRadius.circular(borderRadius),
+          ),
+        ),
+        Positioned(
+          right: -s20,
+          bottom: -s30,
+          width: width * 0.7,
+          child: Hero(
+            tag: tag,
+            child:
+                AspectRatio(aspectRatio: 12 / 9, child: Image.asset(imageUrl)),
           ),
         ),
         Positioned(
@@ -74,6 +75,6 @@ class RoundedImageContainer extends StatelessWidget {
           ),
         ),
       ].addStack(),
-    ).addExpanded();
+    ).addPadding(edgeInsets: context.allPadding(p: margin)).addExpanded();
   }
 }

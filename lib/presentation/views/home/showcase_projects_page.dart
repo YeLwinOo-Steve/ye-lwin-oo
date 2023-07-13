@@ -98,7 +98,7 @@ class _ShowcaseProjectsPageState extends State<ShowcaseProjectsPage>
               crossAxisAlignment: CrossAxisAlignment.start,
             ),
             ...ksShowcaseProjects
-                .sublist(0, 4)
+                .sublist(0, 3)
                 .map(
                   (project) => ProjectDescription(
                     animation: _controller,
@@ -126,7 +126,9 @@ class _ShowcaseProjectsPageState extends State<ShowcaseProjectsPage>
                   padding: context.symmetricPadding(h: s30, v: s0))
               .addExpanded(),
         ].addRow(),
-      ].addColumn().addPadding(
+      ]
+          .addColumn()
+          .addPadding(
             edgeInsets: context.padding(
               l: s80,
               r: s80,
