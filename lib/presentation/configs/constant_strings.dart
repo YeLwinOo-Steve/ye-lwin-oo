@@ -342,8 +342,7 @@ final List<SocialMedia> ksSocialMedia = [
   ),
 ];
 
-const String dummyImage = "assets/images/projects/pulse_x.png";
-const String threadImage = "assets/images/projects/thread.png";
+
 
 const String _FLUTTER = 'Flutter';
 const String _DART = 'Dart';
@@ -363,7 +362,7 @@ const String _WEB = 'Web';
 final List<ShowcaseProject> ksShowcaseProjects = [
   ShowcaseProject(
     title: 'Pulse-X State Management',
-    image: dummyImage,
+    image: kaPulseX,
     shortDescription:
         "Pulse-X is a state management library for Flutter projects.",
     description: """
@@ -423,7 +422,7 @@ final List<ShowcaseProject> ksShowcaseProjects = [
   ),
   ShowcaseProject(
     title: 'Notee Personal Management App',
-    image: dummyImage,
+    image: kaNotee,
     shortDescription: "Notee is a personal management app built with Flutter",
     description: """
         Notee is a personal management app that includes four parts :
@@ -480,7 +479,7 @@ final List<ShowcaseProject> ksShowcaseProjects = [
   ),
   ShowcaseProject(
     title: 'Threads Logo Animation',
-    image: threadImage,
+    image: kaThread,
     shortDescription:
         "Animated Facebook Threads App Logo made with custom paths and painters",
     description: """
@@ -536,7 +535,7 @@ final List<ShowcaseProject> ksShowcaseProjects = [
   ),
   ShowcaseProject(
     title: 'The Golden Land (Myanmar) ',
-    image: dummyImage,
+    image: kaTheGoldenLand,
     shortDescription:
         "The Golden Land (Myanmar) is a website for showing Myanmar's Culture.",
     description: """
@@ -591,7 +590,7 @@ final List<ShowcaseProject> ksShowcaseProjects = [
   ),
   ShowcaseProject(
     title: 'Pretty Animated Buttons',
-    image: dummyImage,
+    image: kaAnimatedButtons,
     shortDescription:
         "A collection of ready-to-use smoothly animated pretty buttons written in Flutter",
     description: """
@@ -648,7 +647,7 @@ final List<ShowcaseProject> ksShowcaseProjects = [
   ),
   ShowcaseProject(
     title: 'Flappy Ironman',
-    image: dummyImage,
+    image: kaIronMan,
     shortDescription: "Flappy Ironman game inspired by Flappy Bird Game",
     description: """
         This is Flappy Ironman game inspired by Flappy Bird Game. 
@@ -700,7 +699,7 @@ final List<ShowcaseProject> ksShowcaseProjects = [
   ),
   ShowcaseProject(
     title: 'AI Chat Bot',
-    image: dummyImage,
+    image: kaAIChatBot,
     shortDescription: "AI chat bot using Flutter and Dialogflow.",
     description: """
         AI chat bot using Flutter and Dialogflow.
@@ -751,7 +750,7 @@ final List<ShowcaseProject> ksShowcaseProjects = [
   ),
   ShowcaseProject(
     title: 'GraphQL Notes',
-    image: dummyImage,
+    image: kaGraphQLNotes,
     shortDescription: "My Apollo graphQL Associate Certified Developer path",
     description: """
        My Apollo graphQL Associate Certified Developer path coding practice notes
@@ -794,7 +793,7 @@ final List<ShowcaseProject> ksShowcaseProjects = [
   ),
   ShowcaseProject(
     title: 'Design Patterns',
-    image: dummyImage,
+    image: kaDesignPatterns,
     shortDescription:
         "Design patterns usage with simple examples written in Dart",
     description: """

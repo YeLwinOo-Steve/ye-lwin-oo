@@ -14,6 +14,18 @@ const String kaComplexity = "$basePath$mePath/complexity.svg";
 const String kaWorkStump = "$basePath$mePath/work_stump.svg";
 const String kaShowcaseStyle = "$basePath$mePath/my_showcase_style.png";
 
+/// project images
+const String projectPath = "/projects";
+const String kaPulseX = "$basePath$projectPath/pulse_x.png";
+const String kaThread = "$basePath$projectPath/thread.png";
+const String kaNotee = "$basePath$projectPath/notee.png";
+const String kaTheGoldenLand = "$basePath$projectPath/the_golden_land.png";
+const String kaAnimatedButtons = "$basePath$projectPath/animated_buttons.png";
+const String kaAIChatBot = "$basePath$projectPath/ai_chat_bot.png";
+const String kaGraphQLNotes = "$basePath$projectPath/graphql_notes.png";
+const String kaIronMan = "$basePath$projectPath/iron_man.png";
+const String kaDesignPatterns = "$basePath$projectPath/design_patterns.png";
+
 /// my tools
 const String toolsPath = "/tools";
 const String kaDart = "$basePath$toolsPath/dart.svg";
