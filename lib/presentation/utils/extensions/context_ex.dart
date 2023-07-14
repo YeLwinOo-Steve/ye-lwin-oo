@@ -3,12 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 extension ContextEx on BuildContext {
-  Size getSize() {
-    return MediaQuery.of(this).size;
-  }
-
-  double get screenWidth => getSize().width;
-  double get screenHeight => getSize().height;
+  double get screenWidth => MediaQuery.of(this).size.width;
+  double get screenHeight => MediaQuery.of(this).size.height;
   double percentWidth(double percent) => screenWidth * (percent / 100);
   double percentHeight(double percent) => screenHeight * (percent / 100);
   SizedBox percentSizedBox({double? pWidth, double? pHeight}) => SizedBox(
@@ -51,6 +47,4 @@ extension ContextEx on BuildContext {
     double val = (width / 1400) * maxTextScaleFactor;
     return max(1, min(val, maxTextScaleFactor));
   }
-
-
 }

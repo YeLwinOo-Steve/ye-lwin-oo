@@ -54,7 +54,11 @@ class VanGoghImage extends StatelessWidget {
                   ? noSpace
                   : Container(
                       height: context.percentHeight(s40),
-                      width: context.percentWidth(s30),
+                      width: context.adaptive<double>(
+                        context.percentWidth(s60),
+                        context.percentWidth(s30),
+                        md: context.percentWidth(s40),
+                      ),
                       decoration: BoxDecoration(
                         image: DecorationImage(
                           image: images[hoveredIndex].image,
@@ -65,7 +69,8 @@ class VanGoghImage extends StatelessWidget {
             ),
           ),
         ].addStack().addSizedBox(
-              width: context.percentWidth(s50),
+              width: context.adaptive<double>(
+                  context.percentWidth(s80), context.percentWidth(s50)),
               height: context.percentHeight(s50),
             ),
       ),

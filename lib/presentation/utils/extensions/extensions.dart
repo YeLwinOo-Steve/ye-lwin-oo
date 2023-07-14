@@ -5,3 +5,4 @@ export './theme_ex.dart';
 export './widget_ex.dart';
 export './path_ex.dart';
 export './datetime_ex.dart';
+export './layout_adapter_ex.dart';

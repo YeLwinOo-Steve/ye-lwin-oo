@@ -192,6 +192,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "10.4.0"
+  gap:
+    dependency: transitive
+    description:
+      name: gap
+      sha256: db02ec4ac4511ea8d324d7f671d526959a8e7857468b4ea64113fe8a82f16a2c
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.2"
   intl:
     dependency: "direct main"
     description:
@@ -208,6 +216,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.6.5"
+  layout:
+    dependency: "direct main"
+    description:
+      name: layout
+      sha256: e3674626233dfa4669f73175dd920e0379f84412c50e03af53dde13d2c7a91c4
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.3"
   lints:
     dependency: transitive
     description:

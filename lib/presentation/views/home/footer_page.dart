@@ -43,13 +43,25 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
         kBlack,
         kBlack,
       ];
+  List<Color> get smallSectorColors => [
+        _footerForegroundColor,
+        _footerForegroundColor,
+        kBlack,
+        kBlack,
+        kBlack,
+      ];
   Quote randomQuote = ksQuotes[Random().nextInt(ksQuotes.length)];
   String get quoteName => randomQuote.name.addDoubleQuote();
   int maxLines = 5;
-  TextStyle? get quoteTextStyle =>
-      Theme.of(context).textTheme.titleMedium?.copyWith(
-            fontWeight: FontWeight.w500,
-          );
+  TextStyle? get quoteTextStyle => context
+      .adaptive<TextStyle?>(
+        Theme.of(context).textTheme.bodyLarge,
+        Theme.of(context).textTheme.titleMedium,
+        md: Theme.of(context).textTheme.titleSmall,
+      )
+      ?.copyWith(
+        fontWeight: FontWeight.w500,
+      );
   final Color _footerForegroundColor = kSecondary;
   @override
   void didChangeDependencies() {
@@ -57,9 +69,11 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
     createStaggeredIntervals();
     screenHeight = context.screenHeight - context.percentHeight(s20);
     sectorHeight = screenHeight / sectors;
-    quoteHeight = (context.screenHeight / sectors) * 3;
+    quoteHeight =
+        (context.screenHeight / sectors) * context.adaptive(2, 3, md: 3);
     quotePadding = context.screenWidth * 0.06;
-    footerHeight = (context.screenHeight / sectors) * 2;
+    footerHeight =
+        (context.screenHeight / sectors) * context.adaptive(3, 2, md: 2);
     _slideController = AnimationController(
       duration: slideDuration,
       vsync: this,
@@ -128,7 +142,11 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
         (index) => CustomSlider(
           width: context.screenWidth,
           height: sectorHeight,
-          color: sectorColors[index],
+          color: context.adaptive(
+            smallSectorColors[index],
+            sectorColors[index],
+            md: sectorColors[index],
+          ),
           animation: _slideController.view,
           interval: _itemSlideIntervals[index],
         ).addExpanded(),
@@ -158,7 +176,13 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
           coverColor: _footerForegroundColor,
           width: quoteSize.width + s50,
           text: "— ${randomQuote.author}",
-          textStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(
+          textStyle: context
+              .adaptive<TextStyle?>(
+                Theme.of(context).textTheme.bodySmall,
+                Theme.of(context).textTheme.bodyLarge,
+                md: Theme.of(context).textTheme.bodyMedium,
+              )
+              ?.copyWith(
                 fontWeight: FontWeight.w400,
               ),
         ),
@@ -182,7 +206,13 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
       AnimatedTextSlideBoxTransition(
         controller: _footerTextController,
         text: ksLetsWork,
-        textStyle: Theme.of(context).textTheme.titleLarge?.copyWith(
+        textStyle: context
+            .adaptive<TextStyle?>(
+              Theme.of(context).textTheme.titleSmall,
+              Theme.of(context).textTheme.titleLarge,
+              md: Theme.of(context).textTheme.titleMedium,
+            )
+            ?.copyWith(
               color: _footerForegroundColor,
             ),
         boxColor: kSecondary,
@@ -192,7 +222,13 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
       AnimatedTextSlideBoxTransition(
         controller: _footerTextController,
         text: ksFreelanceAvailability,
-        textStyle: Theme.of(context).textTheme.titleSmall?.copyWith(
+        textStyle: context
+            .adaptive<TextStyle?>(
+              Theme.of(context).textTheme.bodyMedium,
+              Theme.of(context).textTheme.titleSmall,
+              md: Theme.of(context).textTheme.bodyLarge,
+            )
+            ?.copyWith(
               color: _footerForegroundColor,
             ),
         boxColor: kSecondary,
@@ -376,7 +412,13 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
           <Widget>[
             <Widget>[
               _footerWelcomePart(),
-              _footerAnimatedPath().addExpanded(),
+              Visibility(
+                  visible: context.adaptive(
+                    false,
+                    true,
+                    md: true,
+                  ),
+                  child: _footerAnimatedPath().addExpanded()),
               _footerSocialAndCreditPart(),
             ].addRow().addExpanded(),
             _madeWithFlutterLabel(),

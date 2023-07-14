@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:layout/layout.dart';
 import 'package:url_strategy/url_strategy.dart';
 import 'package:yelwinoo/injection.dart';
 import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
@@ -15,22 +16,23 @@ void main() async{
   );
   Injection.setUp();
   setPathUrlStrategy();
-  runApp(const MyApp());
+  runApp(const TucoYe());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class TucoYe extends StatelessWidget {
+  const TucoYe({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'yelwinoo',
-      scrollBehavior: AppScrollBehavior(),
-      debugShowCheckedModeBanner: false,
-      theme: context.theme(),
-      initialRoute: initialRoute,
-      onGenerateRoute: RouteGen.generateRoute,
+    return Layout(
+      child: MaterialApp(
+        title: 'yelwinoo',
+        scrollBehavior: AppScrollBehavior(),
+        debugShowCheckedModeBanner: false,
+        theme: context.theme(),
+        initialRoute: initialRoute,
+        onGenerateRoute: RouteGen.generateRoute,
+      ),
     );
   }
   String get initialRoute => Routes.home;

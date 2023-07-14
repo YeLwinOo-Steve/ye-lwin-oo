@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
+import 'package:yelwinoo/presentation/utils/extensions/layout_adapter_ex.dart';
 import 'package:yelwinoo/presentation/widgets/widgets.dart';
 
 import '../../configs/configs.dart';
@@ -45,8 +46,8 @@ class _MenuPageState extends State<MenuPage> with TickerProviderStateMixin {
 
   void _addSizeConfig() {
     _padding = context.symmetricPercentPadding(
-      hPercent: s10,
-      vPercent: s10,
+      hPercent: context.adaptive<double>(s2, s10, md: s5),
+      vPercent: context.adaptive<double>(s20, s12, md: s14),
     );
     double top = _padding.top;
     double bottom = _padding.bottom;

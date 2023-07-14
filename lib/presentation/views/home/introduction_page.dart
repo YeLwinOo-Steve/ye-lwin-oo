@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
+import 'package:yelwinoo/presentation/utils/extensions/layout_adapter_ex.dart';
 import 'package:yelwinoo/presentation/widgets/widgets.dart';
 
 import '../../configs/configs.dart';
@@ -19,15 +20,15 @@ class _IntroductionPageState extends State<IntroductionPage>
   late Animation<double> blueCircleTween;
   late Animation<double> whiteCircleTween;
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
+  void initState() {
+    super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 3000),
+      duration: duration3000,
     )..forward();
     _controller2 = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 3000),
+      duration: duration3000,
     );
     blueCircleTween = Tween<double>(
       begin: 0,
@@ -61,6 +62,13 @@ class _IntroductionPageState extends State<IntroductionPage>
 
   @override
   Widget build(BuildContext context) {
+    TextStyle? titleTextStyle = context.adaptive(
+      Theme.of(context).textTheme.titleLarge,
+      Theme.of(context).textTheme.headlineSmall,
+      md: Theme.of(context).textTheme.titleLarge,
+    );
+    double circleSize = s400;
+    bool codeVisibility = context.adaptive(false, true, md: true);
     return <Widget>[
       <Widget>[
         ScaleTransition(
@@ -91,8 +99,8 @@ class _IntroductionPageState extends State<IntroductionPage>
           ),
         ),
       ].addStack().addSizedBox(
-            width: s400,
-            height: s400,
+            width: circleSize,
+            height: circleSize,
           ),
       <Widget>[
         <Widget>[
@@ -100,13 +108,13 @@ class _IntroductionPageState extends State<IntroductionPage>
             controller: _controller,
             coverColor: Theme.of(context).scaffoldBackgroundColor,
             text: ksFlutterDeveloperAnd,
-            textStyle: Theme.of(context).textTheme.headlineSmall,
+            textStyle: titleTextStyle,
           ),
           AnimatedTextSlideBoxTransition(
             controller: _controller,
             coverColor: Theme.of(context).scaffoldBackgroundColor,
             text: ksAiEnthusiast,
-            textStyle: Theme.of(context).textTheme.headlineSmall,
+            textStyle: titleTextStyle,
           ),
           verticalSpaceMassive,
           AnimatedTextSlideBoxTransition(
@@ -114,8 +122,7 @@ class _IntroductionPageState extends State<IntroductionPage>
             text: ksIntro,
             coverColor: Theme.of(context).scaffoldBackgroundColor,
             textStyle: Theme.of(context).textTheme.bodyLarge,
-            width: context.screenWidth * 0.3,
-            maxLines: 4,
+            maxLines: 10,
           ),
           verticalSpaceMassive,
           CustomButton(
@@ -154,7 +161,7 @@ class _IntroductionPageState extends State<IntroductionPage>
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
         ),
-        const CodeBlock(),
+        Visibility(visible: codeVisibility, child: const CodeBlock()),
       ].addRow(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
       ),
@@ -164,7 +171,11 @@ class _IntroductionPageState extends State<IntroductionPage>
         )
         .addPadding(
           edgeInsets: context.symmetricPercentPadding(
-            hPercent: 10,
+            hPercent: context.adaptive(
+              s2,
+              s10,
+              md: s4,
+            ),
           ),
         )
         .addSizedBox(

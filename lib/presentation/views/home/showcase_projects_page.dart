@@ -126,51 +126,30 @@ class _ShowcaseProjectsPageState extends State<ShowcaseProjectsPage>
                   padding: context.symmetricPadding(h: s30, v: s0))
               .addExpanded(),
         ].addRow(),
-      ]
-          .addColumn()
-          .addPadding(
-            edgeInsets: context.padding(
-              l: s80,
-              r: s80,
-              t: appBarHeight,
-              b: s10,
-            ),
+      ].addColumn().addPadding(
+            edgeInsets:
+                context.padding(l: s80, r: s80, t: appBarHeight, b: s10),
           ),
     );
   }
 
   Widget leftImages() {
     return <Widget>[
-      RoundedImageContainer(
-        width: imageWidth,
-        margin: s10,
-        beginAlignment: Alignment.topRight,
-        endAlignment: Alignment.topLeft,
-        animation: _controller.view,
-        index: 1,
-        imageUrl: ksShowcaseProjects[0].image,
-        tag: ksShowcaseProjects[0].heroTag,
-      ),
-      RoundedImageContainer(
-        width: imageWidth,
-        margin: s10,
-        beginAlignment: Alignment.centerLeft,
-        endAlignment: Alignment.centerRight,
-        animation: _controller.view,
-        index: 2,
-        imageUrl: ksShowcaseProjects[1].image,
-        tag: ksShowcaseProjects[1].heroTag,
-      ),
-      RoundedImageContainer(
-        width: imageWidth,
-        margin: s10,
-        beginAlignment: Alignment.bottomRight,
-        endAlignment: Alignment.bottomLeft,
-        animation: _controller.view,
-        index: 3,
-        imageUrl: ksShowcaseProjects[2].image,
-        tag: ksShowcaseProjects[2].heroTag,
-      ),
+      ...ksShowcaseProjects
+          .sublist(0, 3)
+          .map(
+            (project) => RoundedImageContainer(
+              width: imageWidth,
+              margin: s10,
+              beginAlignment: Alignment.topRight,
+              endAlignment: Alignment.topLeft,
+              animation: _controller.view,
+              index: ksShowcaseProjects.indexOf(project) + 1,
+              imageUrl: project.image,
+              tag: project.heroTag,
+            ),
+          )
+          .toList(),
     ]
         .addColumn(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

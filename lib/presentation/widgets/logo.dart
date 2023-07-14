@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
+import 'package:yelwinoo/presentation/utils/extensions/layout_adapter_ex.dart';
 
 import '../configs/configs.dart';
 
@@ -11,13 +12,18 @@ class Logo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double size = context.adaptive<double>(
+      s20,
+      s80,
+      md: s60,
+    );
     return Transform.scale(
       scaleX: -1,
       child: SvgPicture.asset(
         kaLogo,
         semanticsLabel: 'Logo SVG',
-        width: s80,
-        height: s80,
+        width: size,
+        height: size,
       ),
     ).addPadding(edgeInsets: context.padding(l: s10));
   }

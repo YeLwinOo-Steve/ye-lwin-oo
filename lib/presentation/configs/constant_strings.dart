@@ -18,7 +18,7 @@ const String ksFlutterDeveloperAnd = "Flutter Developer &";
 const String ksAiEnthusiast = "AI/ML Enthusiast";
 const String ksIntro = """
   Hi, I'm Ye Lwin Oo!
-    - a passionate mobile developer from Myanmar
+    - a passionate mobile developer
     - a CDM student from UCSM
     - an avid reader
   """;

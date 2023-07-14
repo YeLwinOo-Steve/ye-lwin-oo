@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:visibility_detector/visibility_detector.dart';
+import 'package:yelwinoo/presentation/utils/extensions/layout_adapter_ex.dart';
 
 extension WidgetEx on Widget {
   Padding addPadding({required EdgeInsetsGeometry edgeInsets}) {
@@ -133,6 +134,21 @@ extension WidgetListEx on List<Widget> {
       crossAxisAlignment: crossAxisAlignment ?? CrossAxisAlignment.center,
       mainAxisSize: mainAxisSize ?? MainAxisSize.max,
       children: this,
+    );
+  }
+
+  Widget addDesktopRowMobileColumn(
+    BuildContext context, {
+    MainAxisSize mSize = MainAxisSize.min,
+  }) {
+    return context.adaptive<Widget>(
+      addColumn(mainAxisSize: mSize),
+      addRow(
+        mainAxisSize: mSize,
+      ),
+      md: addColumn(
+        mainAxisSize: mSize,
+      ),
     );
   }
 

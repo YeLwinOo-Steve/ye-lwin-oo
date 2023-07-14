@@ -59,11 +59,11 @@ class RoundedImageContainer extends StatelessWidget {
         Positioned(
           right: -s20,
           bottom: -s30,
-          width: width * 0.7,
+          width: width * 0.6,
           child: Hero(
             tag: tag,
             child:
-                AspectRatio(aspectRatio: 12 / 9, child: Image.asset(imageUrl)),
+                AspectRatio(aspectRatio: 11 / 9, child: Image.asset(imageUrl)),
           ),
         ),
         Positioned(
