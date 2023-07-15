@@ -56,12 +56,21 @@ class _JobsListPageState extends State<JobsListPage>
             double end = (index + 1) > ksExperiences.length
                 ? s1
                 : (index + 1) / ksExperiences.length;
-            return ExperienceStepCard(
-              experience: exp,
-              index: index + 1,
-              animation: _controller,
-              start: start,
-              end: end,
+            return context.adaptive<Widget>(
+              MobileExperienceStepCard(
+                experience: exp,
+                index: index + 1,
+                animation: _controller,
+                start: start,
+                end: end,
+              ),
+              ExperienceStepCard(
+                experience: exp,
+                index: index + 1,
+                animation: _controller,
+                start: start,
+                end: end,
+              ),
             );
           },
         ).toList(),
@@ -75,7 +84,11 @@ class _JobsListPageState extends State<JobsListPage>
           child: AnimatedTextSlideBoxTransition(
             controller: _textController,
             text: ksWhatElse.addDoubleQuote(),
-            textStyle: Theme.of(context).textTheme.titleLarge,
+            maxLines: 4,
+            textStyle: context.adaptive(
+              Theme.of(context).textTheme.bodyMedium,
+              Theme.of(context).textTheme.titleLarge,
+            ),
             textAlign: TextAlign.center,
             coverColor: kPrimary,
           ).addPadding(
@@ -88,7 +101,13 @@ class _JobsListPageState extends State<JobsListPage>
         AnimatedTextSlideBoxTransition(
           controller: _textController,
           text: ksSayHello.addDoubleQuote(),
-          textStyle: Theme.of(context).textTheme.titleSmall?.copyWith(
+          maxLines: 3,
+          textStyle: context
+              .adaptive(
+                Theme.of(context).textTheme.bodyMedium,
+                Theme.of(context).textTheme.titleSmall,
+              )
+              ?.copyWith(
                 fontWeight: FontWeight.w300,
               ),
           textAlign: TextAlign.center,

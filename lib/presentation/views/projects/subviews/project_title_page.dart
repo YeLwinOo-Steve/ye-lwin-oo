@@ -35,12 +35,14 @@ class _ProjectTitlePageState extends State<ProjectTitlePage>
 
   @override
   Widget build(BuildContext context) {
+    final svgSize = context.adaptive<double>(
+        context.percentHeight(s20), context.percentHeight(s30));
     return <Widget>[
       SvgPicture.asset(
         kaComplexity,
         semanticsLabel: 'Complexity SVG',
-        width: context.percentHeight(s30),
-        height: context.percentHeight(s30),
+        width: svgSize,
+        height: svgSize,
       )
           .addPadding(
             edgeInsets: context.percentPadding(
@@ -53,11 +55,14 @@ class _ProjectTitlePageState extends State<ProjectTitlePage>
         controller: _titleController,
         text: ksBrowseProjects,
         coverColor: kPrimary,
-        textStyle: Theme.of(context).textTheme.headlineMedium,
+        textStyle: context.adaptive(
+          Theme.of(context).textTheme.titleLarge,
+          Theme.of(context).textTheme.headlineMedium,
+        ),
       ).addAlign(alignment: Alignment.center),
       AnimatedSlideBox(
         controller: _stickController,
-        height: context.percentHeight(s40),
+        height: context.adaptive(context.percentHeight(s30), context.percentHeight(s40),),
         isVertical: true,
         coverColor: kPrimary,
         visibleBoxCurve: Curves.fastLinearToSlowEaseIn,

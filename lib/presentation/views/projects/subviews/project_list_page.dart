@@ -112,7 +112,7 @@ class _ProjectListPageState extends State<ProjectListPage>
 
   @override
   Widget build(BuildContext context) {
-    double cardWidth = context.percentWidth(s20);
+    double cardWidth = context.percentWidth(context.adaptive(s70, s20));
     return VisibilityDetector(
       key: const ValueKey("project_list"),
       onVisibilityChanged: (info) {
@@ -131,7 +131,7 @@ class _ProjectListPageState extends State<ProjectListPage>
         <Widget>[
           <Widget>[
             ...kaTools.map((tool) {
-              double cardSize = s50;
+              double cardSize = context.adaptive(s30, s50);
               int index = kaTools.indexOf(tool);
               return ToolCard(
                 animation: _toolAnimations[index],
@@ -152,8 +152,10 @@ class _ProjectListPageState extends State<ProjectListPage>
                 ),
           ),
         ]
-            .addRow(
-              mainAxisSize: MainAxisSize.min,
+            .addDesktopRowMobileColumn(
+              context,
+              mSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
             )
             .addAlign(
               alignment: Alignment.topLeft,
@@ -161,10 +163,11 @@ class _ProjectListPageState extends State<ProjectListPage>
             .addPadding(
               edgeInsets: context.symmetricPercentPadding(
                 hPercent: s5,
-                vPercent: s10,
+                vPercent: context.adaptive(s14, s10),
               ),
             ),
         <Widget>[
+          const Expanded(child: noSpace,),
           SlideTransition(
             position: projectSlideAnimation,
             child: HorizontalProjectList(
@@ -172,9 +175,9 @@ class _ProjectListPageState extends State<ProjectListPage>
               scrollController: _scrollController,
             ),
           ).addSizedBox(
-            height: context.percentHeight(s60),
+            // height: context.percentHeight(context.adaptive(s50, s60)),
             width: double.maxFinite,
-          ),
+          ).addExpanded(flex: 2),
           FadeTransition(
             opacity: _slideOpacityController,
             child: ProjectScrollIcons(
@@ -185,9 +188,6 @@ class _ProjectListPageState extends State<ProjectListPage>
         ]
             .addColumn(
               mainAxisSize: MainAxisSize.min,
-            )
-            .addAlign(
-              alignment: Alignment.bottomCenter,
             ),
       ].addStack().addSizedBox(
             width: context.screenWidth,

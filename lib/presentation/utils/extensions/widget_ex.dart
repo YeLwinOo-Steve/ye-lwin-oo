@@ -140,14 +140,24 @@ extension WidgetListEx on List<Widget> {
   Widget addDesktopRowMobileColumn(
     BuildContext context, {
     MainAxisSize mSize = MainAxisSize.min,
+    MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start,
+    CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.center,
   }) {
     return context.adaptive<Widget>(
-      addColumn(mainAxisSize: mSize),
+      addColumn(
+        mainAxisSize: mSize,
+        mainAxisAlignment: mainAxisAlignment,
+        crossAxisAlignment: crossAxisAlignment,
+      ),
       addRow(
         mainAxisSize: mSize,
+        mainAxisAlignment: mainAxisAlignment,
+        crossAxisAlignment: crossAxisAlignment,
       ),
       md: addColumn(
         mainAxisSize: mSize,
+        mainAxisAlignment: mainAxisAlignment,
+        crossAxisAlignment: crossAxisAlignment,
       ),
     );
   }

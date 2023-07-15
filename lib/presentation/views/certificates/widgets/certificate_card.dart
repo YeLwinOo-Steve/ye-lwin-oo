@@ -114,7 +114,10 @@ class AnimatedCertificateImage extends AnimatedWidget {
           title: <Widget>[
             Text(
               certificate.name,
-              style: Theme.of(context).textTheme.bodyLarge,
+              style: context.adaptive(
+                Theme.of(context).textTheme.bodySmall,
+                Theme.of(context).textTheme.bodyLarge,
+              ),
             ),
             IconButton(
               onPressed: () {

@@ -19,7 +19,7 @@ class CertificatesView extends StatefulWidget {
 class _CertificatesViewState extends State<CertificatesView>
     with TickerProviderStateMixin {
   late AnimationController _stickController;
-  List<AnimationController> _controller = [];
+  final List<AnimationController> _controller = [];
   late AnimationController _textController;
   @override
   void initState() {
@@ -59,7 +59,10 @@ class _CertificatesViewState extends State<CertificatesView>
           AnimatedTextSlideBoxTransition(
             controller: _textController,
             text: ksCertificates,
-            textStyle: Theme.of(context).textTheme.titleSmall,
+            textStyle: context.adaptive(
+              Theme.of(context).textTheme.bodyLarge,
+              Theme.of(context).textTheme.titleSmall,
+            ),
             coverColor: kPrimary,
           ),
         ].addRow(),
@@ -67,17 +70,18 @@ class _CertificatesViewState extends State<CertificatesView>
           physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           gridDelegate: SliverWovenGridDelegate.count(
-            crossAxisCount: 2,
+            crossAxisCount: context.adaptive(1, 2),
             mainAxisSpacing: s10,
             pattern: [
               const WovenGridTile(
                 1.5,
               ),
-              const WovenGridTile(
-                13 / 9,
-                crossAxisRatio: 0.95,
-                alignment: AlignmentDirectional.centerEnd,
-              ),
+              if (!context.isMobile)
+                const WovenGridTile(
+                  13 / 9,
+                  crossAxisRatio: 0.95,
+                  alignment: AlignmentDirectional.centerEnd,
+                ),
             ],
           ),
           childrenDelegate: SliverChildBuilderDelegate(
@@ -111,7 +115,10 @@ class _CertificatesViewState extends State<CertificatesView>
       ]
           .addColumn()
           .addPadding(
-            edgeInsets: context.allPercentPadding(allPercent: s8),
+            edgeInsets: context.symmetricPercentPadding(
+              hPercent: context.adaptive(s10, s8),
+              vPercent: context.adaptive(s14, s12),
+            ),
           )
           .addScrollView(
             physics: const BouncingScrollPhysics(),

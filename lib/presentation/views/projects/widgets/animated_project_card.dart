@@ -74,8 +74,11 @@ class AnimatedProjectCard extends AnimatedWidget {
           ),
           Align(
             alignment: Alignment.bottomRight,
-            child: Image.asset(
-              project.image,
+            child: AspectRatio(
+              aspectRatio: 16/9,
+              child: Image.asset(
+                project.image,
+              ),
             ),
           ),
         ]
@@ -85,8 +88,8 @@ class AnimatedProjectCard extends AnimatedWidget {
             )
             .addOpacity(opacity: 1 - curvedAnimation.value)
             .addContainer(
-              width: context.percentWidth(s20),
-              height: context.percentHeight(s50),
+              width: context.percentWidth(context.adaptive(s70, s20)),
+              height: context.percentHeight(context.adaptive(s100, s50)),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(s20),
                 color: bgColor,
@@ -98,8 +101,8 @@ class AnimatedProjectCard extends AnimatedWidget {
       ),
     ).addPadding(
       edgeInsets: context.symmetricPercentPadding(
-        hPercent: s4,
-        vPercent: s8,
+        hPercent: context.adaptive(s8, s4),
+        vPercent: context.adaptive(s4, s8),
       ),
     );
   }

@@ -256,12 +256,12 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
 
   Widget _footerSocialAndCreditPart() {
     return <Widget>[
-      const Spacer(),
+      context.adaptive(noSpace, const Spacer()),
       Text(
         ksContactInfo,
-        style: context.bodyLarge.copyWith(
-          color: _footerForegroundColor,
-        ),
+        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+              color: _footerForegroundColor,
+            ),
       ),
       <Widget>[
         Icon(
@@ -272,13 +272,13 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
         horizontalSpaceMedium,
         Text(
           ksWorkEmail,
-          style: context.bodyMedium.copyWith(
-            color: _footerForegroundColor,
-          ),
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                color: _footerForegroundColor,
+              ),
         ),
-      ].addRow().addInkWell(
-            onTap: ksWorkEmail.launchEmail,
-          ),
+      ]
+          .addRow(mainAxisSize: MainAxisSize.min)
+          .addInkWell(onTap: ksWorkEmail.launchEmail),
       <Widget>[
         Icon(
           kiPhone,
@@ -288,11 +288,11 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
         horizontalSpaceMedium,
         Text(
           ksWorkPhone,
-          style: context.bodyMedium.copyWith(
-            color: kSecondary,
-          ),
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                color: kSecondary,
+              ),
         ),
-      ].addRow(),
+      ].addRow(mainAxisSize: MainAxisSize.min),
       verticalSpaceMedium,
       <Widget>[
         ...ksSocialMedia.map((media) {
@@ -303,13 +303,14 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
         }).toList()
       ].addRow(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisSize: MainAxisSize.min,
       ),
-      const Spacer(),
+      context.adaptive(noSpace, const Spacer()),
       Text(
         ksCreditTo,
-        style: context.bodyMedium.copyWith(
-          color: _footerForegroundColor,
-        ),
+        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              color: _footerForegroundColor,
+            ),
       ),
       <Widget>[
         <Widget>[
@@ -322,17 +323,17 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
           horizontalSpaceMedium,
           Text(
             ksDavidCobbina,
-            style: context.bodyMedium.copyWith(
-              color: _footerForegroundColor,
-              decorationStyle: TextDecorationStyle.dotted,
-              decoration: TextDecoration.underline,
-              decorationColor: _footerForegroundColor,
-              decorationThickness: s4,
-            ),
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  color: _footerForegroundColor,
+                  decorationStyle: TextDecorationStyle.dotted,
+                  decoration: TextDecoration.underline,
+                  decorationColor: _footerForegroundColor,
+                  decorationThickness: s4,
+                ),
           ),
-        ].addRow().addInkWell(
-              onTap: ksDavidCobbinaWebsite.launchWebsite,
-            ),
+        ]
+            .addRow(mainAxisSize: MainAxisSize.min)
+            .addInkWell(onTap: ksDavidCobbinaWebsite.launchWebsite),
         <Widget>[
           horizontalSpaceMassive,
           Icon(
@@ -351,12 +352,12 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
               decorationThickness: s4,
             ),
           ),
-        ].addRow().addInkWell(
-              onTap: ksJuliusGWebsite.launchWebsite,
-            ),
+        ]
+            .addRow(mainAxisSize: MainAxisSize.min)
+            .addInkWell(onTap: ksJuliusGWebsite.launchWebsite),
       ].addColumn(
-        crossAxisAlignment: CrossAxisAlignment.start,
-      ),
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min),
     ].addColumn(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -410,17 +411,27 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
         <Widget>[
           _quoteSection(),
           <Widget>[
-            <Widget>[
-              _footerWelcomePart(),
-              Visibility(
-                  visible: context.adaptive(
-                    false,
-                    true,
-                    md: true,
-                  ),
-                  child: _footerAnimatedPath().addExpanded()),
-              _footerSocialAndCreditPart(),
-            ].addRow().addExpanded(),
+            context.adaptive<Widget>(
+              <Widget>[
+                _footerWelcomePart(),
+                verticalSpaceLarge,
+                _footerSocialAndCreditPart(),
+              ].addColumn(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+              ).addExpanded(),
+              <Widget>[
+                _footerWelcomePart(),
+                Visibility(
+                    visible: context.adaptive(
+                      false,
+                      true,
+                      md: true,
+                    ),
+                    child: _footerAnimatedPath().addExpanded()),
+                _footerSocialAndCreditPart(),
+              ].addRow().addExpanded(),
+            ),
             _madeWithFlutterLabel(),
             verticalSpaceMedium,
             _ccLabel(),
