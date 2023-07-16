@@ -200,13 +200,14 @@ class _ShowcaseProjectsPageState extends State<ShowcaseProjectsPage>
   }
 
   Widget projectImage(ShowcaseProject project) {
+    int index = ksShowcaseProjects.indexOf(project);
     return RoundedImageContainer(
       width: imageWidth,
       margin: s10,
-      beginAlignment: Alignment.topRight,
-      endAlignment: Alignment.topLeft,
+      beginAlignment: index % 2 == 0 ? Alignment.topRight : Alignment.topLeft,
+      endAlignment: index % 2 == 0 ? Alignment.topLeft : Alignment.topRight,
       animation: _controller.view,
-      index: ksShowcaseProjects.indexOf(project) + 1,
+      index: index + 1,
       imageUrl: project.image,
       tag: project.heroTag,
     );
