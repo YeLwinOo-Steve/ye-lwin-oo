@@ -97,7 +97,7 @@ class _WrapperState extends State<Wrapper> with TickerProviderStateMixin {
   void navigate(String routeName) {
     _loadingController.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        Navigator.pushReplacementNamed(
+        Navigator.pushNamed(
           context,
           routeName,
         );
