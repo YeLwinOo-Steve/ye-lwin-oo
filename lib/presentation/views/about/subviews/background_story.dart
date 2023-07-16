@@ -97,7 +97,7 @@ class _BackgroundStoryState extends State<BackgroundStory>
     return VisibilityDetector(
       key: const ValueKey("background_story"),
       onVisibilityChanged: (info) {
-        if (info.visibleFraction > 0.2) {
+        if (info.visibleFraction > 0.1) {
           _stickController.forward();
         }
       },
@@ -153,7 +153,8 @@ class _BackgroundStoryState extends State<BackgroundStory>
                 hPercent: s8,
               ),
             ),
-      ].addStack(),
+      ].addStack().addPadding(
+          edgeInsets: context.symmetricPercentPadding(vPercent: s4)),
     );
   }
 }

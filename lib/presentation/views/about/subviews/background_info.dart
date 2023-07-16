@@ -56,15 +56,25 @@ class BackgroundInfo extends StatelessWidget {
             style: Theme.of(context).textTheme.labelLarge,
           ),
           verticalSpaceLarge,
-          const <Widget>[
-            HobbyItem(icon: kiCoding, label: ksCoding),
-            HobbyItem(icon: kiCoffee, label: ksCoffee),
-            HobbyItem(icon: kiReading, label: ksReading),
-            HobbyItem(icon: kiMusic, label: ksMusic),
-            HobbyItem(icon: kiMovie, label: ksMovie),
-            HobbyItem(icon: kiExplore, label: ksExplore),
-          ].addRow(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          <Widget>[
+            HobbyItem(
+                icon: kiCoding,
+                label: context.adaptive<String>(ksCodingMobile, ksCoding)),
+            const HobbyItem(icon: kiCoffee, label: ksCoffee),
+            const HobbyItem(icon: kiReading, label: ksReading),
+            HobbyItem(
+                icon: kiMusic,
+                label: context.adaptive<String>(ksMusicMobile, ksMusic)),
+            const HobbyItem(icon: kiMovie, label: ksMovie),
+            HobbyItem(
+                icon: kiExplore,
+                label: context.adaptive<String>(ksExploreMobile, ksExplore)),
+          ].addWrap(
+            // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            alignment: WrapAlignment.spaceEvenly,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            spacing: s10,
+            vSpacing: s10,
           ),
         ]
             .addColumn(

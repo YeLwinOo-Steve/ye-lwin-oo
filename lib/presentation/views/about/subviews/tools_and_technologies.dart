@@ -53,7 +53,7 @@ class ToolsAndTechnologies extends StatelessWidget {
               fontWeight: FontWeight.w300,
             ),
           ),
-        ].addRow(),
+        ].addWrap(),
         verticalSpaceMedium,
         <Widget>[
           <Widget>[

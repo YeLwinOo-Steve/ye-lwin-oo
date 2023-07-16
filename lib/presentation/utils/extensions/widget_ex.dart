@@ -165,12 +165,14 @@ extension WidgetListEx on List<Widget> {
   Widget addWrap({
     double spacing = 0.0,
     double vSpacing = 0.0,
+    WrapAlignment alignment = WrapAlignment.start,
+    WrapCrossAlignment crossAxisAlignment = WrapCrossAlignment.start,
   }) {
     return Wrap(
       spacing: spacing,
       runSpacing: vSpacing,
-      alignment: WrapAlignment.start,
-      crossAxisAlignment: WrapCrossAlignment.start,
+      alignment: alignment,
+      crossAxisAlignment: crossAxisAlignment,
       children: this,
     );
   }

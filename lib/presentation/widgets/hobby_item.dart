@@ -14,6 +14,8 @@ class HobbyItem extends StatelessWidget {
       verticalSpaceLarge,
       Text(
         label,
+        maxLines: 3,
+        textAlign: TextAlign.center,
         style: Theme.of(context).textTheme.bodySmall?.copyWith(
               fontWeight: FontWeight.w200,
             ),

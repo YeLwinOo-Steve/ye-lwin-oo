@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
 import 'package:yelwinoo/presentation/views/wrapper.dart';
 import 'package:yelwinoo/presentation/widgets/animated_horizontal_stick.dart';
@@ -69,20 +68,10 @@ class _CertificatesViewState extends State<CertificatesView>
         GridView.custom(
           physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
-          gridDelegate: SliverWovenGridDelegate.count(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: context.adaptive(1, 2),
+            childAspectRatio: 16 / 9,
             mainAxisSpacing: s10,
-            pattern: [
-              const WovenGridTile(
-                1.5,
-              ),
-              if (!context.isMobile)
-                const WovenGridTile(
-                  13 / 9,
-                  crossAxisRatio: 0.95,
-                  alignment: AlignmentDirectional.centerEnd,
-                ),
-            ],
           ),
           childrenDelegate: SliverChildBuilderDelegate(
             childCount: ksCertificateList.length,

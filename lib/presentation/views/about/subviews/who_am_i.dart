@@ -16,10 +16,10 @@ class WhoAmI extends StatefulWidget {
 }
 
 class _WhoAmIState extends State<WhoAmI> with TickerProviderStateMixin {
-  late AnimationController _textController;
-  late AnimationController _earthController;
-  late AnimationController _galaxyController;
-  late AnimationController _stickController;
+  AnimationController? _textController;
+  AnimationController? _earthController;
+  AnimationController? _galaxyController;
+  AnimationController? _stickController;
   late Animation<Offset> _earthSlideAnimation;
   late Animation<Offset> _galaxySlideAnimation;
   Image myPicture = Image.asset(kaShowcaseStyle);
@@ -47,14 +47,14 @@ class _WhoAmIState extends State<WhoAmI> with TickerProviderStateMixin {
     _earthSlideAnimation =
         Tween<Offset>(begin: const Offset(s0, -s08), end: Offset.zero).animate(
       CurvedAnimation(
-        parent: _earthController,
+        parent: _earthController!,
         curve: Curves.easeInOut,
       ),
     );
     _galaxySlideAnimation =
         Tween<Offset>(begin: const Offset(s0, s08), end: Offset.zero).animate(
       CurvedAnimation(
-        parent: _galaxyController,
+        parent: _galaxyController!,
         curve: Curves.easeInOut,
       ),
     );
@@ -68,10 +68,26 @@ class _WhoAmIState extends State<WhoAmI> with TickerProviderStateMixin {
 
   @override
   void dispose() {
-    _textController.dispose();
-    _earthController.dispose();
-    _galaxyController.dispose();
-    _stickController.dispose();
+    if (_textController != null) {
+      _textController!
+        ..stop()
+        ..dispose();
+    }
+    if (_earthController != null) {
+      _earthController!
+        ..stop()
+        ..dispose();
+    }
+    if (_galaxyController != null) {
+      _galaxyController!
+        ..stop()
+        ..dispose();
+    }
+    if (_stickController != null) {
+      _stickController!
+        ..stop()
+        ..dispose();
+    }
     super.dispose();
   }
 
@@ -90,8 +106,8 @@ class _WhoAmIState extends State<WhoAmI> with TickerProviderStateMixin {
         bottom: s0,
         left: s0,
         child: LeftStickLabel(
-          textController: _textController,
-          stickController: _stickController,
+          textController: _textController!,
+          stickController: _stickController!,
         ),
       ),
       Positioned(
@@ -187,8 +203,8 @@ class _WhoAmIState extends State<WhoAmI> with TickerProviderStateMixin {
         bottom: s0,
         left: s0,
         child: LeftStickLabel(
-          textController: _textController,
-          stickController: _stickController,
+          textController: _textController!,
+          stickController: _stickController!,
         ),
       ),
       Positioned(

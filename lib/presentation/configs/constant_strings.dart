@@ -100,11 +100,14 @@ final List<String> ksOtherTech = [
 ];
 
 const String ksCoding = "Software Engineering";
+const String ksCodingMobile = "Software\nEngineering";
 const String ksCoffee = "Coffee";
 const String ksReading = "Reading";
 const String ksMusic = "80's,90's Music";
+const String ksMusicMobile = "80's,90's\nMusic";
 const String ksMovie = "Movies";
 const String ksExplore = "Exploring more...";
+const String ksExploreMobile = "Exploring\nmore...";
 
 final List<RouteModel> ksMenu = [
   RouteModel(label: ksHome, route: Routes.home),
@@ -341,8 +344,6 @@ final List<SocialMedia> ksSocialMedia = [
     ),
   ),
 ];
-
-
 
 const String _FLUTTER = 'Flutter';
 const String _DART = 'Dart';

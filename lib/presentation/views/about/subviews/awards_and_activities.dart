@@ -79,7 +79,11 @@ class ActivityContainer extends StatelessWidget {
           horizontalSpaceMedium,
           Text(
             activity.name,
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+            maxLines: 3,
+            style: context
+                .adaptive(Theme.of(context).textTheme.bodyMedium,
+                    Theme.of(context).textTheme.bodyLarge)
+                ?.copyWith(
                   fontWeight: FontWeight.w300,
                 ),
           ),
@@ -87,12 +91,12 @@ class ActivityContainer extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
         ),
         link(),
-      ].addRow(
-        mainAxisSize:
-            activity.link == null ? MainAxisSize.min : MainAxisSize.max,
-        mainAxisAlignment: activity.link == null
-            ? MainAxisAlignment.start
-            : MainAxisAlignment.spaceBetween,
+      ].addWrap(
+        // mainAxisSize:
+        //     activity.link == null ? MainAxisSize.min : MainAxisSize.max,
+        alignment: activity.link == null
+            ? WrapAlignment.start
+            : WrapAlignment.spaceBetween,
       ),
       verticalSpaceSmall,
       Text(activity.details).addPadding(
