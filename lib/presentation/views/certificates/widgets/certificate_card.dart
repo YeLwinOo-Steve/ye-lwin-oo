@@ -114,6 +114,7 @@ class AnimatedCertificateImage extends AnimatedWidget {
           title: <Widget>[
             Text(
               certificate.name,
+              maxLines: 3,
               style: context.adaptive(
                 Theme.of(context).textTheme.bodySmall,
                 Theme.of(context).textTheme.bodyLarge,

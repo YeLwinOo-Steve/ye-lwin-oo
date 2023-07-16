@@ -206,6 +206,8 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
       AnimatedTextSlideBoxTransition(
         controller: _footerTextController,
         text: ksLetsWork,
+        maxLines: 2,
+        textAlign: TextAlign.center,
         textStyle: context
             .adaptive<TextStyle?>(
               Theme.of(context).textTheme.titleSmall,
@@ -417,10 +419,12 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
                 _footerWelcomePart(),
                 verticalSpaceMedium,
                 _footerSocialAndCreditPart(),
-              ].addColumn(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-              ).addExpanded(),
+              ]
+                  .addColumn(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                  )
+                  .addExpanded(),
               <Widget>[
                 _footerWelcomePart(),
                 Visibility(
@@ -440,7 +444,8 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
           ].addColumn().addContainer(
                 height: footerHeight,
                 width: context.screenWidth,
-                padding: context.symmetricPadding(h: s80),
+                padding:
+                    context.symmetricPadding(h: context.adaptive(s10, s80)),
               ),
         ].addColumn(),
       ].addStack().addSizedBox(

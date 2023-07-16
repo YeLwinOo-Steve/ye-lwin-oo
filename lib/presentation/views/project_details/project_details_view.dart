@@ -113,7 +113,7 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView>
                     width: context.screenWidth,
                     color: kTransparent,
                     padding: context.symmetricPadding(
-                      h: s50,
+                      h: context.adaptive(s5, s50),
                     ),
                   ),
             ),

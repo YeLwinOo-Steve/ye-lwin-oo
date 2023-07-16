@@ -63,6 +63,8 @@ class ToolsAndTechnologies extends StatelessWidget {
             <Widget>[
               Text(
                 ksMobile,
+                maxLines: 3,
+                softWrap: true,
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       fontWeight: FontWeight.w600,
@@ -83,6 +85,8 @@ class ToolsAndTechnologies extends StatelessWidget {
             <Widget>[
               Text(
                 ksWebAndOther,
+                maxLines: 3,
+                softWrap: true,
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       fontWeight: FontWeight.w600,
