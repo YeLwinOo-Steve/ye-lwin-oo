@@ -63,7 +63,7 @@ class _IntroductionPageState extends State<IntroductionPage>
   @override
   Widget build(BuildContext context) {
     TextStyle? titleTextStyle = context.adaptive(
-      Theme.of(context).textTheme.titleLarge,
+      Theme.of(context).textTheme.titleMedium,
       Theme.of(context).textTheme.headlineSmall,
       md: Theme.of(context).textTheme.titleLarge,
     );
@@ -113,7 +113,7 @@ class _IntroductionPageState extends State<IntroductionPage>
           AnimatedTextSlideBoxTransition(
             controller: _controller,
             coverColor: Theme.of(context).scaffoldBackgroundColor,
-            text: ksAiEnthusiast,
+            text: ksAiMlEnthusiast,
             textStyle: titleTextStyle,
           ),
           verticalSpaceMassive,
@@ -130,7 +130,7 @@ class _IntroductionPageState extends State<IntroductionPage>
             onPressed: widget.onTapSeeMyWorks,
             icon: kiArrowForward,
           ),
-          context.percentSizedBox(pHeight: s10),
+          context.percentSizedBox(pHeight: context.adaptive(s12, s10)),
           <Widget>[
             AnimatedHoverLink(
               label: ksGithub,

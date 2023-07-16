@@ -86,8 +86,8 @@ class _JobsListPageState extends State<JobsListPage>
             text: ksWhatElse.addDoubleQuote(),
             maxLines: 4,
             textStyle: context.adaptive(
-              Theme.of(context).textTheme.bodyMedium,
-              Theme.of(context).textTheme.titleLarge,
+              Theme.of(context).textTheme.bodySmall,
+              Theme.of(context).textTheme.titleMedium,
             ),
             textAlign: TextAlign.center,
             coverColor: kPrimary,
@@ -104,7 +104,7 @@ class _JobsListPageState extends State<JobsListPage>
           maxLines: 3,
           textStyle: context
               .adaptive(
-                Theme.of(context).textTheme.bodyMedium,
+                Theme.of(context).textTheme.bodySmall,
                 Theme.of(context).textTheme.titleSmall,
               )
               ?.copyWith(

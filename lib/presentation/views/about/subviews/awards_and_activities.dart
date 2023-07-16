@@ -88,12 +88,9 @@ class ActivityContainer extends StatelessWidget {
                 ),
           ),
         ].addWrap(
-          // mainAxisSize: MainAxisSize.min,
         ),
-        link(),
+        link(context),
       ].addWrap(
-        // mainAxisSize:
-        //     activity.link == null ? MainAxisSize.min : MainAxisSize.max,
         alignment: activity.link == null
             ? WrapAlignment.start
             : WrapAlignment.spaceBetween,
@@ -115,10 +112,10 @@ class ActivityContainer extends StatelessWidget {
         );
   }
 
-  Widget link() {
+  Widget link(BuildContext context) {
     if (activity.link != null) {
       return <Widget>[
-        const Icon(kiLink),
+        Icon(kiLink,size: context.adaptive(s14,s24),),
         horizontalSpaceMedium,
         GestureDetector(
           onTap: () {

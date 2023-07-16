@@ -150,7 +150,7 @@ class _BackgroundStoryState extends State<BackgroundStory>
             )
             .addPadding(
               edgeInsets: context.symmetricPercentPadding(
-                hPercent: s8,
+                hPercent: context.adaptive(s3,s8),
               ),
             ),
       ].addStack().addPadding(

@@ -4,13 +4,14 @@ import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
 import '../configs/configs.dart';
 
 class AnimatedOutlinedText extends AnimatedWidget {
-  AnimatedOutlinedText({
+  const AnimatedOutlinedText({
     super.key,
     required this.text,
     required this.fontSize,
     required this.strokeColor,
     required this.animation,
     this.strokeWidth = s4,
+    this.maxLines = 1,
     this.letterSpacing = s1,
     this.fontWeight = FontWeight.normal,
   }) : super(listenable: animation);
@@ -20,6 +21,7 @@ class AnimatedOutlinedText extends AnimatedWidget {
   final Color strokeColor;
   final double strokeWidth;
   final FontWeight fontWeight;
+  final int maxLines;
   final Animation<Color?> animation;
   @override
   Widget build(BuildContext context) {
@@ -27,6 +29,7 @@ class AnimatedOutlinedText extends AnimatedWidget {
       // Stroked text as border.
       Text(
         text,
+        maxLines: maxLines,
         style: TextStyle(
           fontSize: fontSize,
           fontWeight: fontWeight,
@@ -39,6 +42,7 @@ class AnimatedOutlinedText extends AnimatedWidget {
       ),
       Text(
         text,
+        maxLines: maxLines,
         style: TextStyle(
           fontSize: fontSize,
           fontWeight: fontWeight,

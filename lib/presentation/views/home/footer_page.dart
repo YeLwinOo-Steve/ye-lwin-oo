@@ -413,8 +413,9 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
           <Widget>[
             context.adaptive<Widget>(
               <Widget>[
+                verticalSpaceMedium,
                 _footerWelcomePart(),
-                verticalSpaceLarge,
+                verticalSpaceMedium,
                 _footerSocialAndCreditPart(),
               ].addColumn(
                 mainAxisSize: MainAxisSize.min,

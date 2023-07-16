@@ -39,7 +39,6 @@ class ExperienceStepCard extends StatelessWidget {
     );
     return IntrinsicHeight(
       child: <Widget>[
-        noSpace.addExpanded(),
         ThreeDFlip(
           animation: curvedAnimation,
           start: start,
@@ -51,9 +50,11 @@ class ExperienceStepCard extends StatelessWidget {
                     fontWeight: FontWeight.w200,
                   ),
             ),
-            horizontalSpaceMassive,
+            horizontalSpaceMedium,
             Text(
               "${experience.startDate.toMonthAndYear()} - ${experience.endDate.toMonthAndYear()}",
+              textAlign: TextAlign.center,
+              maxLines: 2,
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     fontWeight: FontWeight.w200,
                   ),
@@ -65,7 +66,7 @@ class ExperienceStepCard extends StatelessWidget {
               .addPadding(
                 edgeInsets: padding,
               ),
-        ).addAlign(alignment: Alignment.topLeft).addExpanded(flex: 2),
+        ).addAlign(alignment: Alignment.topCenter).addExpanded(),
         ThreeDFlip(
           animation: curvedAnimation,
           start: start,
@@ -92,9 +93,11 @@ class ExperienceStepCard extends StatelessWidget {
                   ),
             ),
             verticalSpaceMedium,
-            Text(experience.position),
+            Text(experience.position,style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              fontWeight: FontWeight.w600,
+            ),),
             if (experience.type == JobType.remote) const Text("(remote)"),
-            verticalSpaceMassive,
+            verticalSpaceLarge,
             ...experience.responsibilities
                 .map(
                   (responsibility) => Text(
@@ -109,7 +112,7 @@ class ExperienceStepCard extends StatelessWidget {
               .addPadding(
                 edgeInsets: padding,
               ),
-        ).addExpanded(flex: 7)
+        ).addExpanded(flex: 2)
       ].addRow(crossAxisAlignment: CrossAxisAlignment.start),
     );
   }

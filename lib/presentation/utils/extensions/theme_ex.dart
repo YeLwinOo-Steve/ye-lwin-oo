@@ -39,12 +39,9 @@ extension ThemeEx on BuildContext {
     );
   }
   InputDecorationTheme inputDecorationTheme(){
-    return InputDecorationTheme(
+    return const InputDecorationTheme(
       filled: true,
       fillColor: kTransparent,
-      hintStyle: bodyLarge.copyWith(
-        color: kBlack26,
-      ),
       alignLabelWithHint: true,
     );
   }

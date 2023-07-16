@@ -41,6 +41,14 @@ class RoundedImageContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return context.adaptive(
+      projectImageWidget(context),
+      projectImageWidget(context).addExpanded(),
+    );
+  }
+
+  Widget projectImageWidget(BuildContext context) {
+    final imageHeight = context.percentHeight(s24);
     String label = '$index'.prefixZero();
     labelStyle = labelStyle ??
         context.headlineMedium.copyWith(
@@ -51,6 +59,7 @@ class RoundedImageContainer extends StatelessWidget {
       child: <Widget>[
         Container(
           width: width,
+          height: context.adaptive(imageHeight, null),
           decoration: BoxDecoration(
             color: kSecondary,
             borderRadius: BorderRadius.circular(borderRadius),
@@ -75,6 +84,8 @@ class RoundedImageContainer extends StatelessWidget {
           ),
         ),
       ].addStack(),
-    ).addPadding(edgeInsets: context.allPadding(p: margin)).addExpanded();
+    ).addPadding(
+      edgeInsets: context.allPadding(p: margin),
+    );
   }
 }

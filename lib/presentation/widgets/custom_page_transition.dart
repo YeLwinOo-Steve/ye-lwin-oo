@@ -63,14 +63,15 @@ class CustomPageTransition extends AnimatedWidget {
         width: width,
         decoration: BoxDecoration(
           color: boxColor,
-          border: Border.all(color: boxColor),
+          border: const Border(),
         ),
       ),
       Container(
         height: invisibleAnimation.value,
         decoration: BoxDecoration(
           color: coverColor,
-          border: Border.all(color: coverColor),
+          border: Border.all(
+              color: coverColor, strokeAlign: BorderSide.strokeAlignInside),
         ),
         width: width,
       ),

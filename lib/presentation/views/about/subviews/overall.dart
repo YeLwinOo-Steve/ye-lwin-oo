@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
 import 'package:yelwinoo/presentation/widgets/widgets.dart';
@@ -105,7 +106,7 @@ class _OverallState extends State<Overall> with TickerProviderStateMixin {
         ),
       );
   Animation<Color?> get strokeColorTween =>
-      ColorTween(begin: kGrey50, end: kGrey300).animate(
+      ColorTween(begin: kGrey50, end: kGrey500).animate(
         CurvedAnimation(
           parent: _stickController,
           curve: Curves.easeInOut,
@@ -134,12 +135,22 @@ class _OverallState extends State<Overall> with TickerProviderStateMixin {
         }
       },
       child: <Widget>[
+        if (context.isMobile)
+          Align(
+            alignment: Alignment.center,
+            child: SvgPicture.asset(
+              kaCoffee,
+              semanticsLabel: 'Coffee SVG',
+              height: context.percentHeight(s12),
+            ).addOpacity(opacity: 0.2),
+          ),
         Positioned(
           top: context.percentHeight(s10),
           left: context.percentWidth(s8),
           child: AnimatedOutlinedText(
-            text: "I'm",
+            text: ksIm,
             fontSize: context.adaptive(s14, s80),
+            strokeWidth: context.adaptive(0.3, s4),
             strokeColor: kTeal200,
             animation: introColorTween,
             fontWeight: FontWeight.w500,
@@ -169,9 +180,9 @@ class _OverallState extends State<Overall> with TickerProviderStateMixin {
           child: SlideTransition(
             position: slideLeftTween,
             child: AnimatedOutlinedText(
-              text: "a  tech  nerd".toUpperCase(),
-              fontSize: s200,
-              strokeWidth: s18,
+              text: ksTechNerd.toUpperCase(),
+              fontSize: context.adaptive(s30, s100),
+              strokeWidth: context.adaptive(s6, s18),
               letterSpacing: 2.5,
               strokeColor: kSecondary,
               animation: transparentColorTween,
@@ -185,8 +196,8 @@ class _OverallState extends State<Overall> with TickerProviderStateMixin {
           child: SlideTransition(
             position: slideRightTween,
             child: AnimatedOutlinedText(
-              text: "coffee addict".toUpperCase(),
-              fontSize: s180,
+              text: coffeeAddict.toUpperCase(),
+              fontSize: context.adaptive(s28, s120),
               strokeColor: kCoffee,
               fontWeight: FontWeight.w700,
               animation: coffeeColorTween,
@@ -197,8 +208,8 @@ class _OverallState extends State<Overall> with TickerProviderStateMixin {
           top: context.percentHeight(s48),
           right: context.percentWidth(s8),
           child: AnimatedStrokeText(
-            text: 'ai enthusiast'.toUpperCase(),
-            fontSize: s70,
+            text: ksAiEnthusiast.toUpperCase(),
+            fontSize: context.adaptive(s24, s70),
             strokeWidth: s1,
             letterSpacing: s10,
             fontWeight: FontWeight.w900,
@@ -220,8 +231,8 @@ class _OverallState extends State<Overall> with TickerProviderStateMixin {
             ),
             horizontalSpaceMedium,
             AnimatedStrokeText(
-              text: 'an introvert'.toUpperCase(),
-              fontSize: s30,
+              text: ksIntrovert.toUpperCase(),
+              fontSize: context.adaptive(s20, s30),
               strokeWidth: s1,
               letterSpacing: s2,
               fontWeight: FontWeight.w900,
@@ -233,13 +244,15 @@ class _OverallState extends State<Overall> with TickerProviderStateMixin {
           ),
         ),
         Positioned(
-          bottom: context.percentHeight(s8),
-          left: context.percentWidth(s10),
+          bottom: context.percentHeight(context.adaptive(s30, s8)),
+          left: context.percentWidth(context.adaptive(s30, s10)),
           child: SlideTransition(
             position: slideUpTween,
             child: AnimatedOutlinedText(
-              text: "flutter  dev".toUpperCase(),
-              fontSize: s250,
+              text: ksFlutterDev.toUpperCase(),
+              fontSize: context.adaptive(s40, s180),
+              maxLines: 2,
+              strokeWidth: context.adaptive(0.3, s4),
               strokeColor: kSecondary,
               animation: colorTween,
               fontWeight: FontWeight.w900,

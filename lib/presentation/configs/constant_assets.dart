@@ -13,6 +13,7 @@ const String kaGalaxy = "$basePath$mePath/galaxy.svg";
 const String kaComplexity = "$basePath$mePath/complexity.svg";
 const String kaWorkStump = "$basePath$mePath/work_stump.svg";
 const String kaShowcaseStyle = "$basePath$mePath/my_showcase_style.png";
+const String kaCoffee = "$basePath$mePath/coffee.svg";
 
 /// project images
 const String projectPath = "/projects";

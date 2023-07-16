@@ -12,7 +12,7 @@ extension LayoutAdapter on BuildContext {
     return layout.value<T>(
       xs: xs,
       sm: sm ?? (md ?? xs),
-      md: md ?? lg,
+      md: md ?? sm,
       lg: lg,
       xl: xl ?? lg,
     );

@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
+import 'package:yelwinoo/presentation/route/routes.dart';
 import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
 import 'package:yelwinoo/presentation/views/menu/menu_page.dart';
 import 'package:yelwinoo/presentation/widgets/widgets.dart';
@@ -105,6 +106,11 @@ class _WrapperState extends State<Wrapper> with TickerProviderStateMixin {
     });
   }
 
+  void navigateToHomePage() {
+    _loadingController.forward();
+    navigate(Routes.home);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -113,8 +119,10 @@ class _WrapperState extends State<Wrapper> with TickerProviderStateMixin {
       appBar: AnimatedAppBar(
         animation: _appBarController.view,
         appBar: AppBar(
-          leadingWidth: s70,
-          leading: const Logo(),
+          leadingWidth: context.adaptive(s40, s70),
+          leading: Logo(
+            onTap: navigateToHomePage,
+          ),
           actions: [
             MenuButton(
               onPressed: onMenuTapped,

@@ -55,14 +55,16 @@ class _ProjectTitlePageState extends State<ProjectTitlePage>
         controller: _titleController,
         text: ksBrowseProjects,
         coverColor: kPrimary,
+        maxLines: 2,
+        textAlign: TextAlign.center,
         textStyle: context.adaptive(
-          Theme.of(context).textTheme.titleLarge,
+          Theme.of(context).textTheme.titleSmall,
           Theme.of(context).textTheme.headlineMedium,
         ),
       ).addAlign(alignment: Alignment.center),
       AnimatedSlideBox(
         controller: _stickController,
-        height: context.adaptive(context.percentHeight(s30), context.percentHeight(s40),),
+        height: context.percentHeight(s30),
         isVertical: true,
         coverColor: kPrimary,
         visibleBoxCurve: Curves.fastLinearToSlowEaseIn,

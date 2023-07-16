@@ -27,7 +27,7 @@ class IconLabel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return <Widget>[
-      FadeTransition(opacity: _fadeAnimation, child: Icon(icon)),
+      FadeTransition(opacity: _fadeAnimation, child: Icon(icon,size: context.adaptive(s18, s24),)),
       horizontalSpaceMassive,
       AnimatedTextSlideBoxTransition(
         controller: controller,

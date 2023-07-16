@@ -181,11 +181,11 @@ class _GetInTouchPageState extends State<GetInTouchPage>
         ).addOpacity(opacity: 0.05),
       ).addAlign(alignment: Alignment.bottomLeft),
       <Widget>[
-        Text('Get In Touch'.prefixSlash()),
+        Text('Get In Touch'.prefixSlash(),style: context.adaptive(Theme.of(context).textTheme.bodySmall,Theme.of(context).textTheme.bodyMedium),),
         verticalSpaceMedium,
         Text(
           'Schedule an Appointment',
-          style: Theme.of(context).textTheme.titleLarge,
+          style: context.adaptive(Theme.of(context).textTheme.bodyLarge,Theme.of(context).textTheme.titleLarge),
         ),
         context.percentSizedBox(pHeight: s12),
         <Widget>[
@@ -197,7 +197,7 @@ class _GetInTouchPageState extends State<GetInTouchPage>
             node: _nameNode,
             textController: _nameController,
             hintText: 'Your Name',
-            width: context.percentWidth(s20),
+            width: context.percentWidth(context.adaptive(s40, s20)),
           ),
           const ContactLabel(
             label: "and I'm looking for",
@@ -205,7 +205,7 @@ class _GetInTouchPageState extends State<GetInTouchPage>
           AnimatedTextField(
             animation: _jobAnimationController,
             node: _jobNode,
-            width: context.percentWidth(s30),
+            width: context.percentWidth(context.adaptive(s40, s30)),
             textController: _jobController,
             hintText: 'Your Job Type',
           ),
@@ -231,7 +231,7 @@ class _GetInTouchPageState extends State<GetInTouchPage>
             node: _messageNode,
             hintText: 'Tell Me More',
             textController: _messageController,
-            width: context.percentWidth(s50),
+            width: context.percentWidth(context.adaptive(s70,s50)),
           ),
           const ContactLabel(label: "."),
         ].addWrap(
@@ -239,10 +239,10 @@ class _GetInTouchPageState extends State<GetInTouchPage>
             s1,
           ),
           vSpacing: context.percentHeight(
-            s6,
+            context.adaptive(s1, s6),
           ),
         ),
-        context.percentSizedBox(pHeight: s4),
+        context.percentSizedBox(pHeight: context.adaptive(s8,s4)),
         PrettyCapsuleButton(
           label: ksSendMessage,
           onPressed: sendMessage,
@@ -285,6 +285,7 @@ class _GetInTouchPageState extends State<GetInTouchPage>
           Icon(
             hasError ? kiError : kiSuccess,
             color: hasError ? kRed : kTeal,
+            size: context.adaptive(s14, s24),
           ),
           horizontalSpaceLarge,
           Text(
@@ -293,7 +294,10 @@ class _GetInTouchPageState extends State<GetInTouchPage>
                     ? "Please fill the form first!"
                     : _contactVM.error)
                 : "Your message has been sent!",
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+            style: context
+                .adaptive(Theme.of(context).textTheme.bodySmall,
+                    Theme.of(context).textTheme.bodyLarge)
+                ?.copyWith(
                   fontWeight: FontWeight.w300,
                   color: hasError ? kRed : kTeal,
                 ),
@@ -327,7 +331,10 @@ class ContactLabel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       label,
-      style: Theme.of(context).textTheme.labelLarge?.copyWith(
+      style: context
+          .adaptive(Theme.of(context).textTheme.bodyMedium,
+              Theme.of(context).textTheme.labelLarge)
+          ?.copyWith(
             fontWeight: FontWeight.w300,
           ),
     );

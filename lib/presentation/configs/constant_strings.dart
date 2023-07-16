@@ -15,7 +15,13 @@ import 'package:yelwinoo/presentation/route/routes.dart';
 const String ksFontFamily = "Poppins";
 
 const String ksFlutterDeveloperAnd = "Flutter Developer &";
-const String ksAiEnthusiast = "AI/ML Enthusiast";
+const String ksAiMlEnthusiast = "AI/ML Enthusiast";
+const String ksAiEnthusiast = "ai enthusiast";
+const String ksTechNerd = "a  tech  nerd";
+const String ksFlutterDev = "flutter  dev";
+const String coffeeAddict = "coffee addict";
+const String ksIntrovert = "an introvert";
+const String ksIm = "I'm";
 const String ksIntro = """
   Hi, I'm Ye Lwin Oo!
     - a passionate mobile developer

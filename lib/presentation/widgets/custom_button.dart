@@ -28,6 +28,8 @@ class _CustomButtonState extends State<CustomButton> {
 
   @override
   Widget build(BuildContext context) {
+    final labelStyle = context.adaptive(Theme.of(context).textTheme.bodySmall,
+        Theme.of(context).textTheme.bodyMedium);
     return GestureDetector(
       onTap: widget.onPressed,
       child: MouseRegion(
@@ -49,9 +51,9 @@ class _CustomButtonState extends State<CustomButton> {
             child: <Widget>[
               Text(
                 widget.label.toUpperCase(),
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: widget.shadowColor ?? kSecondary,
-                    ),
+                style: labelStyle?.copyWith(
+                  color: widget.shadowColor ?? kSecondary,
+                ),
               ),
               customSpace(w: _isHovered ? s10 : s5),
               Icon(
@@ -59,9 +61,9 @@ class _CustomButtonState extends State<CustomButton> {
                 color: widget.shadowColor ?? kSecondary,
               ),
             ].addRow().addCenter().addContainer(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: s14,
-                    horizontal: s42,
+                  padding: EdgeInsets.symmetric(
+                    vertical: context.adaptive(s6, s14),
+                    horizontal: context.adaptive(s24, s42),
                   ),
                   decoration: BoxDecoration(
                     color: widget.shadowColor ?? kSecondary,
@@ -74,7 +76,7 @@ class _CustomButtonState extends State<CustomButton> {
           <Widget>[
             Text(
               widget.label.toUpperCase(),
-              style: Theme.of(context).textTheme.bodyMedium,
+              style: labelStyle,
             ),
             AnimatedContainer(
               width: _isHovered ? s10 : s5,
@@ -86,8 +88,10 @@ class _CustomButtonState extends State<CustomButton> {
             ),
           ].addRow().addCenter().addContainer(
                 margin: const EdgeInsets.only(left: s8, bottom: s8),
-                padding:
-                    const EdgeInsets.symmetric(vertical: s14, horizontal: s42),
+                padding: EdgeInsets.symmetric(
+                  vertical: context.adaptive(s6, s14),
+                  horizontal: context.adaptive(s24, s42),
+                ),
                 decoration: BoxDecoration(
                   border: Border.all(
                     color: widget.foregroundColor,

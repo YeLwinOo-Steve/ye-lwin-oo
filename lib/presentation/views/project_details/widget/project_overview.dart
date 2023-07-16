@@ -61,15 +61,21 @@ class _ProjectOverviewState extends State<ProjectOverview>
         controller: _titleController,
         text: 'Project Overview',
         coverColor: kPrimary,
-        textStyle: Theme.of(context).textTheme.titleMedium,
+        textStyle: context.adaptive(
+          Theme.of(context).textTheme.bodyLarge,
+          Theme.of(context).textTheme.titleMedium,
+        ),
       ),
       verticalSpaceMassive,
       AnimatedTextSlideBoxTransition(
         controller: _contentController,
         text: widget.project.description,
         coverColor: kPrimary,
-        textStyle: Theme.of(context).textTheme.bodyLarge,
-        maxLines: 10,
+        textStyle: context.adaptive(
+          Theme.of(context).textTheme.bodyMedium,
+          Theme.of(context).textTheme.bodyLarge,
+        ),
+        maxLines: 15,
       ),
       context.percentSizedBox(
         pHeight: s3,
@@ -102,7 +108,7 @@ class _ProjectOverviewState extends State<ProjectOverview>
         )
         .addContainer(
           padding: context.symmetricPercentPadding(
-            hPercent: s10,
+            hPercent: context.adaptive(s4, s10),
             vPercent: s0,
           ),
         )

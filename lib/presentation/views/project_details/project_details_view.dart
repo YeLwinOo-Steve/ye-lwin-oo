@@ -73,15 +73,16 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView>
       key: _key,
       body: <Widget>[
         <Widget>[
-          Align(
-            alignment: Alignment.center,
-            child: AspectRatio(
-              aspectRatio: 12 / 9,
-              child: Image.asset(
-                project.image,
-                width: context.percentWidth(30),
-              ).addHero(tag: project.heroTag),
-            ),
+          Positioned(
+            left: s0,
+            right: s0,
+            bottom: s0,
+            top: s0,
+            child: Image.asset(
+              project.image,
+              width: context.percentWidth(context.adaptive(s20, s30)),
+              height: context.percentHeight(s30),
+            ).addHero(tag: project.heroTag),
           ),
           <Widget>[
             SlideTransition(
@@ -90,8 +91,12 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView>
                 AnimatedTextSlideBoxTransition(
                   controller: _titleController,
                   text: project.title,
-                  textStyle: Theme.of(context).textTheme.labelLarge,
-                  coverColor: kSecondary,
+                  maxLines: 3,
+                  textStyle: context.adaptive(
+                    Theme.of(context).textTheme.bodyLarge,
+                    Theme.of(context).textTheme.labelLarge,
+                  ),
+                  coverColor: kPrimary,
                 ),
                 MenuButton(
                   onPressed: () {

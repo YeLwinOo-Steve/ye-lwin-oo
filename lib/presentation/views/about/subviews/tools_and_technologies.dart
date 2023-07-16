@@ -33,91 +33,97 @@ class ToolsAndTechnologies extends StatelessWidget {
         ),
       ].addRow(),
       verticalSpaceMassive,
-      SlideWidget(<Widget>[
-        Text(
+      SlideWidget(
+        <Widget>[
+          Text(
             ksMyTools,
             style: Theme.of(context).textTheme.bodyLarge,
           ),
-        verticalSpaceSmall,
-        <Widget>[
-          Text(
-            ksWeapon,
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-              fontWeight: FontWeight.w300,
-            ),
-          ),
-          horizontalSpaceMedium,
-          Text(
-            ksFlutter.toUpperCase(),
-            style: Theme.of(context).textTheme.labelLarge?.copyWith(
-              fontWeight: FontWeight.w300,
-            ),
-          ),
-        ].addWrap(),
-        verticalSpaceMedium,
-        <Widget>[
+          verticalSpaceSmall,
           <Widget>[
             Text(
-              ksMobile,
+              ksWeapon,
               style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                fontWeight: FontWeight.w600,
-              ),
+                    fontWeight: FontWeight.w300,
+                  ),
             ),
-            verticalSpaceLarge,
-            ...ksMobileTech
-                .map(
-                  (tech) => Text(tech),
-            )
-                .toList(),
-          ]
-              .addColumn(
-            crossAxisAlignment: CrossAxisAlignment.start,
-          )
-              .addExpanded(),
+            horizontalSpaceMedium,
+            const FlutterLogo(
+              size: s24,
+            ),
+            // Text(
+            //   ksFlutter.toUpperCase(),
+            //   style: Theme.of(context).textTheme.labelMedium?.copyWith(
+            //     fontWeight: FontWeight.w300,
+            //   ),
+            // ),
+          ].addWrap(),
+          verticalSpaceMedium,
           <Widget>[
-            Text(
-              ksWebAndOther,
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            verticalSpaceLarge,
             <Widget>[
-              ksWebTech
-                  .map((tech) => Text(tech))
-                  .toList()
-                  .addColumn(
-                crossAxisAlignment: CrossAxisAlignment.start,
-              )
-                  .addExpanded(),
-              ksOtherTech
-                  .map((tech) => Text(tech))
-                  .toList()
-                  .addColumn(
-                crossAxisAlignment: CrossAxisAlignment.start,
-              )
-                  .addExpanded(),
-            ].addRow(
-              crossAxisAlignment: CrossAxisAlignment.start,
-            ),
-          ]
-              .addColumn(
+              Text(
+                ksMobile,
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      fontWeight: FontWeight.w600,
+                    ),
+              ),
+              verticalSpaceLarge,
+              ...ksMobileTech
+                  .map(
+                    (tech) => Text(tech),
+                  )
+                  .toList(),
+            ]
+                .addColumn(
+                  crossAxisAlignment: context.adaptive(
+                      CrossAxisAlignment.center, CrossAxisAlignment.start),
+                )
+                .addExpanded(),
+            <Widget>[
+              Text(
+                ksWebAndOther,
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      fontWeight: FontWeight.w600,
+                    ),
+              ),
+              verticalSpaceLarge,
+              <Widget>[
+                ksWebTech
+                    .map((tech) => Text(tech))
+                    .toList()
+                    .addColumn()
+                    .addExpanded(),
+                ksOtherTech
+                    .map((tech) => Text(tech))
+                    .toList()
+                    .addColumn()
+                    .addExpanded(),
+              ].addRow(
+                crossAxisAlignment: context.adaptive(
+                    CrossAxisAlignment.center, CrossAxisAlignment.start),
+              ),
+            ]
+                .addColumn(
+                  crossAxisAlignment: context.adaptive(
+                      CrossAxisAlignment.center, CrossAxisAlignment.start),
+                )
+                .addExpanded(
+                  flex: 2,
+                ),
+          ].addRow(
             crossAxisAlignment: CrossAxisAlignment.start,
-          )
-              .addExpanded(
-            flex: 2,
           ),
-        ].addRow(
-          crossAxisAlignment: CrossAxisAlignment.start,
-        ),
-      ]
-          .addColumn(
-        crossAxisAlignment: CrossAxisAlignment.start,
-      )
-          .addPadding(
-        edgeInsets: context.symmetricPercentPadding(hPercent: s8),
-      ), animation: techController,
-      slidePosition: SlidePosition.bottom,
+        ]
+            .addColumn(
+              crossAxisAlignment: CrossAxisAlignment.start,
+            )
+            .addPadding(
+              edgeInsets: context.symmetricPercentPadding(hPercent: s8),
+            ),
+        animation: techController,
+        slidePosition: SlidePosition.bottom,
       ),
     ].addColumn(
       crossAxisAlignment: CrossAxisAlignment.start,

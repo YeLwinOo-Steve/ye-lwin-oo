@@ -43,9 +43,15 @@ class AnimatedTextField extends StatelessWidget {
           expands: false,
           decoration: InputDecoration(
             hintText: hintText,
+            hintStyle: context
+                .adaptive(Theme.of(context).textTheme.bodySmall,
+                    Theme.of(context).textTheme.bodyLarge)
+                ?.copyWith(
+                  color: kBlack26,
+                ),
             isCollapsed: true,
             contentPadding: context.allPadding(
-              p: s12,
+              p: context.adaptive(s6,s12),
             ),
           ),
         ).addSizedBox(

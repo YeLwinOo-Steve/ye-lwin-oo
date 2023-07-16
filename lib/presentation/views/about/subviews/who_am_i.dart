@@ -275,8 +275,14 @@ class _WhoAmIState extends State<WhoAmI> with TickerProviderStateMixin {
           .addAlign(
             alignment: Alignment.centerRight,
           ),
-    ].addStack(
-      alignment: Alignment.centerLeft,
-    );
+    ]
+        .addStack(
+          alignment: Alignment.centerLeft,
+        )
+        .addSizedBox(
+          width: context.screenWidth,
+          height: context.screenHeight -
+              Theme.of(context).appBarTheme.toolbarHeight!,
+        );
   }
 }

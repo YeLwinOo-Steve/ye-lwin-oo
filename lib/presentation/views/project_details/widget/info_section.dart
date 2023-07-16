@@ -12,13 +12,13 @@ class InfoSection extends StatelessWidget {
     required this.controller,
     required this.info,
   })  : _slideUpAnimation =
-  Tween<Offset>(begin: const Offset(s0, s1), end: Offset.zero)
-      .animate(
-    CurvedAnimation(
-      parent: controller,
-      curve: Curves.easeInOut,
-    ),
-  ),
+            Tween<Offset>(begin: const Offset(s0, s1), end: Offset.zero)
+                .animate(
+          CurvedAnimation(
+            parent: controller,
+            curve: Curves.easeInOut,
+          ),
+        ),
         _fadeAnimation = Tween<double>(begin: s0, end: s1).animate(
           CurvedAnimation(
             parent: controller,
@@ -37,13 +37,16 @@ class InfoSection extends StatelessWidget {
         controller: controller,
         label: info.label,
         coverColor: kPrimary,
-        textStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(
-          fontWeight: FontWeight.w700,
-        ),
+        textStyle: context
+            .adaptive(Theme.of(context).textTheme.bodyMedium,
+                Theme.of(context).textTheme.bodyLarge)
+            ?.copyWith(
+              fontWeight: FontWeight.w700,
+            ),
       ),
       verticalSpaceLarge,
       ...info.contents.map(
-            (content) {
+        (content) {
           return FadeTransition(
             opacity: _fadeAnimation,
             child: SlideTransition(
@@ -53,20 +56,14 @@ class InfoSection extends StatelessWidget {
                 child: Text(
                   info.isTag == true
                       ? content.prefixHash()
-                      : info.isLink == true
-                      ? content.prefixLink()
                       : content.prefixDash(),
-                )
-                    .addContainer(
-                  decoration: BoxDecoration(
-                    border: info.isLink == true
-                        ? const Border(
-                      bottom: BorderSide(color: kBlack26),
-                    )
-                        : const Border(),
+                  style: TextStyle(
+                    decoration: info.isLink == true
+                        ? TextDecoration.underline
+                        : TextDecoration.none,
+                    decorationColor: kBlack26,
                   ),
-                )
-                    .addPadding(
+                ).addPadding(
                   edgeInsets: context.padding(
                     l: 2 * horizontalSpaceMassive.width!,
                   ),
@@ -78,14 +75,14 @@ class InfoSection extends StatelessWidget {
       ),
     ]
         .addColumn(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-    )
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+        )
         .addPadding(
-      edgeInsets: context.padding(
-        r: s100,
-        b: s50,
-      ),
-    );
+          edgeInsets: context.padding(
+            r: context.adaptive(s10, s100),
+            b: context.adaptive(s10, s50),
+          ),
+        );
   }
 }

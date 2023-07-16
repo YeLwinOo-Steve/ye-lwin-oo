@@ -52,40 +52,45 @@ class AnimatedProjectCard extends AnimatedWidget {
       child: GestureDetector(
         onTap: () => navigateToProjectDetailsPage(context),
         child: <Widget>[
-          Text(
-            index > 9 ? "/ $index" : "/ ${"$index".prefixZero()}",
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: kWhite,
-                  fontWeight: FontWeight.w300,
-                ),
-          ),
-          Text(
-            project.title,
-            style:
-                Theme.of(context).textTheme.bodyLarge?.copyWith(color: kWhite),
-          ),
-          verticalSpaceMedium,
-          Text(
-            project.shortDescription,
-            style: const TextStyle(
-              color: kWhite,
-              fontWeight: FontWeight.w300,
-            ),
-          ),
           Align(
             alignment: Alignment.bottomRight,
             child: AspectRatio(
-              aspectRatio: 16/9,
+              aspectRatio: 11 / 9,
               child: Image.asset(
                 project.image,
               ),
+            ).addOpacity(opacity: 0.5),
+          ),
+          <Widget>[
+            Text(
+              index > 9 ? "/ $index" : "/ ${"$index".prefixZero()}",
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: kWhite,
+                    fontWeight: FontWeight.w300,
+                  ),
             ),
+            Text(
+              project.title,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyLarge
+                  ?.copyWith(color: kWhite),
+            ),
+            verticalSpaceMedium,
+            Text(
+              project.shortDescription,
+              style: const TextStyle(
+                color: kWhite,
+                fontWeight: FontWeight.w300,
+              ),
+            ),
+          ].addColumn(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.start,
           ),
         ]
-            .addColumn(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            )
+            .addStack()
             .addOpacity(opacity: 1 - curvedAnimation.value)
             .addContainer(
               width: context.percentWidth(context.adaptive(s70, s20)),

@@ -66,101 +66,149 @@ class _ShowcaseProjectsPageState extends State<ShowcaseProjectsPage>
   Widget build(BuildContext context) {
     appBarHeight = Theme.of(context).appBarTheme.toolbarHeight!;
     containerHeight = context.screenHeight - (appBarHeight + s10);
-    imageWidth = context.percentWidth(s50) * 0.8;
+    imageWidth =
+        context.adaptive(context.screenWidth, context.percentWidth(s50) * 0.8);
     return VisibilityDetector(
       key: const ValueKey("showcase_projects"),
       onVisibilityChanged: (info) {
-        if (info.visibleFraction > 0.3) {
+        if (info.visibleFraction > 0.2) {
           _controller.forward();
         }
       },
       child: <Widget>[
-        <Widget>[
-          leftImages(),
-          <Widget>[
-            <Widget>[
-              AnimatedTextSlideBoxTransition(
-                controller: _controller,
-                coverColor: Theme.of(context).scaffoldBackgroundColor,
-                text: ksCraftedWithLove,
-                textStyle: Theme.of(context).textTheme.titleLarge,
-              ),
-              AnimatedTextSlideBoxTransition(
-                controller: _controller,
-                coverColor: Theme.of(context).scaffoldBackgroundColor,
-                text: ksRecentProjects,
-                textStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      fontWeight: FontWeight.w300,
-                    ),
-              ),
-            ].addColumn(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-            ),
-            ...ksShowcaseProjects
-                .sublist(0, 3)
-                .map(
-                  (project) => ProjectDescription(
-                    animation: _controller,
-                    slideUpTween: _slideUpTween,
-                    label: project.title,
-                    labelStyle:
-                        Theme.of(context).textTheme.labelLarge!.copyWith(
-                              fontWeight: FontWeight.w700,
-                            ),
-                    descriptionStyle: Theme.of(context).textTheme.bodyMedium!,
-                    description: project.shortDescription,
-                    index: ksShowcaseProjects.indexOf(project),
-                    onPressed: () =>
-                        navigateToProjectDetailsPage(project: project),
-                  ),
-                )
-                .toList(),
-          ]
-              .addColumn(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              )
-              .addContainer(
-                  height: containerHeight,
-                  padding: context.symmetricPadding(h: s30, v: s0))
-              .addExpanded(),
-        ].addRow(),
+        context.adaptive<Widget>(mobileVersion(), desktopVersion()),
       ].addColumn().addPadding(
-            edgeInsets:
-                context.padding(l: s80, r: s80, t: appBarHeight, b: s10),
+            edgeInsets: context.padding(
+                l: context.adaptive(s20, s80),
+                r: context.adaptive(s20, s80),
+                t: appBarHeight,
+                b: s10),
           ),
     );
   }
 
-  Widget leftImages() {
+  Widget mobileVersion() {
     return <Widget>[
+      craftedWithText(),
+      recentProjectsText(),
+      verticalSpaceMedium,
       ...ksShowcaseProjects
           .sublist(0, 3)
           .map(
-            (project) => RoundedImageContainer(
-              width: imageWidth,
-              margin: s10,
-              beginAlignment: Alignment.topRight,
-              endAlignment: Alignment.topLeft,
-              animation: _controller.view,
-              index: ksShowcaseProjects.indexOf(project) + 1,
-              imageUrl: project.image,
-              tag: project.heroTag,
-            ),
+            (project) => <Widget>[
+              projectImage(project),
+              verticalSpaceMedium,
+              projectDescriptionText(project),
+              verticalSpaceLarge,
+            ].addColumn(mainAxisSize: MainAxisSize.min),
           )
           .toList(),
-    ]
-        .addColumn(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        )
-        .addContainer(
-          width: double.maxFinite,
-          height: containerHeight,
-          padding: context.symmetricPadding(
-            v: s20,
+    ].addColumn(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+    );
+  }
+
+  Widget desktopVersion() {
+    return <Widget>[
+      <Widget>[
+        ...ksShowcaseProjects
+            .sublist(0, 3)
+            .map(
+              (project) => projectImage(project),
+            )
+            .toList(),
+      ]
+          .addColumn(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          )
+          .addContainer(
+            width: double.maxFinite,
+            height: containerHeight,
+            padding: context.symmetricPadding(
+              v: s20,
+            ),
+          )
+          .addExpanded(),
+      <Widget>[
+        <Widget>[
+          craftedWithText(),
+          recentProjectsText(),
+        ].addColumn(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+        ),
+        ...ksShowcaseProjects
+            .sublist(0, 3)
+            .map(
+              (project) => projectDescriptionText(project),
+            )
+            .toList(),
+      ]
+          .addColumn(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          )
+          .addContainer(
+              // height: containerHeight,
+              padding: context.symmetricPadding(h: s30, v: s0))
+          .addExpanded(),
+    ].addRow();
+  }
+
+  Widget craftedWithText() {
+    return AnimatedTextSlideBoxTransition(
+      controller: _controller,
+      coverColor: Theme.of(context).scaffoldBackgroundColor,
+      text: ksCraftedWithLove,
+      textStyle: context.adaptive(Theme.of(context).textTheme.bodyLarge,
+          Theme.of(context).textTheme.titleLarge),
+    );
+  }
+
+  Widget recentProjectsText() {
+    return AnimatedTextSlideBoxTransition(
+      controller: _controller,
+      coverColor: Theme.of(context).scaffoldBackgroundColor,
+      text: ksRecentProjects,
+      textStyle: context
+          .adaptive(Theme.of(context).textTheme.bodySmall,
+              Theme.of(context).textTheme.bodyLarge)
+          ?.copyWith(
+            fontWeight: FontWeight.w300,
           ),
-        )
-        .addExpanded();
+    );
+  }
+
+  Widget projectDescriptionText(ShowcaseProject project) {
+    return ProjectDescription(
+      animation: _controller,
+      slideUpTween: _slideUpTween,
+      label: project.title,
+      labelStyle: context
+          .adaptive(Theme.of(context).textTheme.bodyLarge,
+              Theme.of(context).textTheme.labelLarge)!
+          .copyWith(
+            fontWeight: FontWeight.w500,
+          ),
+      descriptionStyle: context.adaptive(Theme.of(context).textTheme.bodySmall,
+          Theme.of(context).textTheme.bodyMedium)!,
+      description: project.shortDescription,
+      index: ksShowcaseProjects.indexOf(project),
+      onPressed: () => navigateToProjectDetailsPage(project: project),
+    );
+  }
+
+  Widget projectImage(ShowcaseProject project) {
+    return RoundedImageContainer(
+      width: imageWidth,
+      margin: s10,
+      beginAlignment: Alignment.topRight,
+      endAlignment: Alignment.topLeft,
+      animation: _controller.view,
+      index: ksShowcaseProjects.indexOf(project) + 1,
+      imageUrl: project.image,
+      tag: project.heroTag,
+    );
   }
 }
