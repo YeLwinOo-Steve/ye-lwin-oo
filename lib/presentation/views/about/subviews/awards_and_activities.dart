@@ -75,7 +75,7 @@ class ActivityContainer extends StatelessWidget {
       activity.title != null ? verticalSpaceMedium : noSpace,
       <Widget>[
         <Widget>[
-          Icon(activity.icon),
+          Icon(activity.icon,size: context.adaptive(s18, s24),),
           horizontalSpaceMedium,
           Text(
             activity.name,
@@ -87,8 +87,8 @@ class ActivityContainer extends StatelessWidget {
                   fontWeight: FontWeight.w300,
                 ),
           ),
-        ].addRow(
-          mainAxisSize: MainAxisSize.min,
+        ].addWrap(
+          // mainAxisSize: MainAxisSize.min,
         ),
         link(),
       ].addWrap(

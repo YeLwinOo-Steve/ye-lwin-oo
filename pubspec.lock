@@ -158,6 +158,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.1"
+  flutter_staggered_grid_view:
+    dependency: "direct main"
+    description:
+      name: flutter_staggered_grid_view
+      sha256: "1312314293acceb65b92754298754801b0e1f26a1845833b740b30415bbbcf07"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.6.2"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -188,10 +196,10 @@ packages:
     dependency: transitive
     description:
       name: gap
-      sha256: db02ec4ac4511ea8d324d7f671d526959a8e7857468b4ea64113fe8a82f16a2c
+      sha256: f19387d4e32f849394758b91377f9153a1b41d79513ef7668c088c77dbc6955d
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.2"
+    version: "3.0.1"
   intl:
     dependency: "direct main"
     description:
@@ -211,11 +219,12 @@ packages:
   layout:
     dependency: "direct main"
     description:
-      name: layout
-      sha256: e3674626233dfa4669f73175dd920e0379f84412c50e03af53dde13d2c7a91c4
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.3"
+      path: "."
+      ref: main
+      resolved-ref: "918ccd25bd2ae21d2f2954d887f9c87a4f5735e2"
+      url: "https://github.com/YeLwinOo-Steve/layout.git"
+    source: git
+    version: "1.0.4"
   lints:
     dependency: transitive
     description:
@@ -511,4 +520,4 @@ packages:
     version: "6.2.2"
 sdks:
   dart: ">=2.19.0 <4.0.0"
-  flutter: ">=3.7.0-0"
+  flutter: ">=3.7.0"

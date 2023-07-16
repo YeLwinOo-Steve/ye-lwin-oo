@@ -21,13 +21,17 @@ dependencies:
   visibility_detector: ^0.4.0+2
   flutter_svg: ^2.0.5
   responsive_builder: ^0.7.0
+  flutter_staggered_grid_view: ^0.6.2
   flutter_staggered_animations: ^1.1.1
   intl: ^0.18.1
   pretty_animated_buttons: ^0.0.1
   firebase_core: ^2.14.0
   cloud_firestore: ^4.8.2
   locator: ^0.0.0-dev.2
-  layout: ^1.0.3
+  layout:
+    git:
+      url: https://github.com/YeLwinOo-Steve/layout.git
+      ref: main
 
 dev_dependencies:
   flutter_test:

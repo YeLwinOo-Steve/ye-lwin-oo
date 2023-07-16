@@ -139,7 +139,7 @@ class _OverallState extends State<Overall> with TickerProviderStateMixin {
           left: context.percentWidth(s8),
           child: AnimatedOutlinedText(
             text: "I'm",
-            fontSize: s80,
+            fontSize: context.adaptive(s14, s80),
             strokeColor: kTeal200,
             animation: introColorTween,
             fontWeight: FontWeight.w500,
