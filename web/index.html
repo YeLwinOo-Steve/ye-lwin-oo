@@ -90,8 +90,9 @@
     .loading-label{
       font-size: 18px;
       font-weight: normal;
+      text-align: center;
       font-style: normal;
-      font-color: #000000;
+      font-color: black;
       animation-name: changing;
       animation-duration: 1.5s;
       animation-iteration-count: infinite;
@@ -140,7 +141,7 @@
         onEntrypointLoaded: function(engineInitializer) {
           engineInitializer.initializeEngine().then(function(appRunner) {
               const loader = document.getElementById("loader");
-              // loader.remove();
+              loader.remove();
               appRunner.runApp();
           });
         }
