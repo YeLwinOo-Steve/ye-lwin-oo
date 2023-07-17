@@ -2,7 +2,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:layout/layout.dart';
-import 'package:responsive_builder/responsive_builder.dart';
 import 'package:url_strategy/url_strategy.dart';
 import 'package:yelwinoo/injection.dart';
 import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
@@ -30,16 +29,14 @@ class TucoYe extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Layout(
-      child: ResponsiveApp(builder: (context) {
-        return MaterialApp(
-          title: 'yelwinoo',
-          scrollBehavior: AppScrollBehavior(),
-          debugShowCheckedModeBanner: false,
-          theme: context.theme(),
-          initialRoute: initialRoute,
-          onGenerateRoute: RouteGen.generateRoute,
-        );
-      }),
+      child: MaterialApp(
+        title: 'yelwinoo',
+        scrollBehavior: AppScrollBehavior(),
+        debugShowCheckedModeBanner: false,
+        theme: context.theme(),
+        initialRoute: initialRoute,
+        onGenerateRoute: RouteGen.generateRoute,
+      ),
     );
   }
 
