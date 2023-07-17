@@ -1,16 +1,41 @@
-# yelwinoo
+# Personal Portfolio
 
-My Portfolio website made with Flutter 🍃🍒❤️
+My Personal Portfolio website made with Flutter 🍃🍒❤️
 
-## Getting Started
+[![Open Source Love svg1](https://badges.frapsoft.com/os/v3/open-source.svg?v=103)](#)
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+![Project Thumbnail](assets/images/thumbnails/portfolio_thumbnail.png)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 📑 Overview
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+This is my personal portfolio website v1 built with Flutter - available for multiple platforms : website , android, ios and windows
+
+
+### 🗝️ Key Features: 
+- Home Page
+- Projects Page
+- Project Details Page
+- Experiences Page
+- Certificates Page
+- About Page
+- Contact Me Page
+- Firebase Integration
+
+### 🔗 Preview Links:
+
+- 🕸️ [Web Version: https://ye-lwin-oo.vercel.app](https://ye-lwin-oo.vercel.app)
+- 📱 [Mobile Version](http://u.pc.cd/oJ17)
+
+### 🪪 Project License:
+This project is licensed under [BSD 3-Clause License](LICENSE).
+
+### Want a short preview?
+
+![Walkghrough video](assets/images/thumbnails/portfolio_peek.gif)
+
+
+Feel free to check it out and give it a ⭐ if you like it. 
+Follow me for more updates and more projects ...
+
+Copyright (©️) 2023 __YE LWIN OO__
