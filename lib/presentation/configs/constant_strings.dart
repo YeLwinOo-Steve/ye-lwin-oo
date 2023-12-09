@@ -158,10 +158,12 @@ final List<Activity> ksActivityList = [
 
 final List<Experience> ksExperiences = [
   Experience(
-    company: "Simbolo",
+    company: "Simbolo Learning Platform",
     position: "Flutter Instructor",
     responsibilities: [
-      "Teach Flutter class Batch - 1",
+      "Teach basic Dart Programming Language",
+      "Teach basic Flutter Widgets",
+      "Teach Provider & GetX state managements, clean code and some design patterns",
     ],
     startDate: DateTime(2023, 11),
     endDate: DateTime.now(),
@@ -170,7 +172,8 @@ final List<Experience> ksExperiences = [
     company: "AYA Inno Labs (AYA Bank)",
     position: "Senior Flutter Developer",
     responsibilities: [
-      "Responsible for AYA Bank financial application development",
+      "Closely collaborated with mobile developers, UI/ UX developers and testers for AYA Pay v3.0 Lite App",
+      "Mainly responsible for Authentication flow, OCR Scanning, Third-party biller transactions and transaction history",
     ],
     startDate: DateTime(2022, 9),
     endDate: DateTime.now(),
