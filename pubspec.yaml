@@ -68,3 +68,25 @@ flutter:
           weight: 800
         - asset: assets/fonts/poppins/Poppins-Black.ttf
           weight: 900
+
+    - family: ShantellSans
+      fonts:
+        - asset: assets/fonts/shantell_sans/ShantellSans-Regular.ttf
+        - asset: assets/fonts/shantell_sans/ShantellSans-Italic.ttf
+          style: italic
+        - asset: assets/fonts/shantell_sans/ShantellSans-Light.ttf
+          weight: 100
+        - asset: assets/fonts/shantell_sans/ShantellSans-Light.ttf
+          weight: 200
+        - asset: assets/fonts/shantell_sans/ShantellSans-Medium.ttf
+          weight: 400
+        - asset: assets/fonts/shantell_sans/ShantellSans-Regular.ttf
+          weight: 500
+        - asset: assets/fonts/shantell_sans/ShantellSans-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/shantell_sans/ShantellSans-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/shantell_sans/ShantellSans-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/shantell_sans/ShantellSans-ExtraBold.ttf
+          weight: 900

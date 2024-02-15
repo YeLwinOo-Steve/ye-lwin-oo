@@ -12,7 +12,7 @@ import 'package:yelwinoo/presentation/configs/configs.dart';
 import 'package:yelwinoo/presentation/route/routes.dart';
 
 /// constant strings are prefixed with [ks]
-const String ksFontFamily = "Poppins";
+const String ksFontFamily = "ShantellSans";
 
 const String ksFlutterDeveloperAnd = "Flutter Developer &";
 const String ksAiMlEnthusiast = "AI/ML Enthusiast";
