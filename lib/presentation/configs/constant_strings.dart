@@ -129,7 +129,10 @@ const String ksAward = "Award I've won";
 const String ksAwardName = "Design Award by WIT (Web Innovative Talent Award)";
 const String ksAwardLink = "https://witaward.com/result/2020";
 const String ksAwardDetails =
-    "This project aims for foreigners and Myanmar citizens who are enthusiastic about Myanmar culture, cuisine, handicrafts and who want to pay a visit to famous places in Myanmar and who want to enhance their knowledge about various ethnic groups in Myanmar.";
+    """
+- The biggest web development contest in Myanmar ( collaboration with Japan )
+- This project aims for foreigners and Myanmar citizens who are enthusiastic about Myanmar culture, cuisine, handicrafts and who want to pay a visit to famous places in Myanmar and who want to enhance their knowledge about various ethnic groups in Myanmar.
+""";
 const String ksActivities = "Activities I've joined";
 final List<Activity> ksActivityList = [
   Activity(
@@ -161,9 +164,12 @@ final List<Experience> ksExperiences = [
     company: "Simbolo Learning Platform",
     position: "Flutter Instructor",
     responsibilities: [
-      "Teach basic Dart Programming Language",
-      "Teach basic Flutter Widgets",
-      "Teach Provider & GetX state managements, clean code and some design patterns",
+      "Taught over 30 students (batch 1 & batch 2)",
+      "Taught basic Dart Programming Language",
+      "Taught basic Flutter Widgets",
+      "Taught Provider & GetX state managements",
+      "Taught Networking and Local Storage",
+      "Taught Clean Code Principles and 5 Design Patterns",
     ],
     startDate: DateTime(2023, 11),
     endDate: DateTime.now(),
@@ -172,8 +178,17 @@ final List<Experience> ksExperiences = [
     company: "AYA Inno Labs (AYA Bank)",
     position: "Senior Flutter Developer",
     responsibilities: [
-      "Closely collaborated with mobile developers, UI/ UX developers and testers for AYA Pay v3.0 Lite App",
-      "Mainly responsible for Authentication flow, OCR Scanning, Third-party biller transactions and transaction history",
+      "Software house of the second largest commercial bank in Myanamar",
+      "Closely collaborated with mobile developers, backend developers, UI/ UX designers and QA team for AYA Pay v3.0 Lite App",
+      """Mainly responsible for 
+        ● Project Architecture
+        ● Authentication flow,
+        ● OCR Scanning,
+        ● Third-party payments,
+        ● Vouchers, Deals & Rewards
+        ● Transaction history
+        """,
+        "Maintain AYA Pay Partner App used by tens of thousands of users", 
     ],
     startDate: DateTime(2022, 9),
     endDate: DateTime.now(),
