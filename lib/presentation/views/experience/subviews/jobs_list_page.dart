@@ -18,7 +18,7 @@ class _JobsListPageState extends State<JobsListPage>
   late AnimationController _controller;
   late AnimationController _textController;
 
-  final Duration duration = duration1000;
+  final Duration duration = duration500;
   @override
   void initState() {
     super.initState();
@@ -44,7 +44,7 @@ class _JobsListPageState extends State<JobsListPage>
         if (info.visibleFraction > 0.2) {
           _controller.forward();
         }
-        if (info.visibleFraction < 0.4 && _controller.isCompleted) {
+        if (info.visibleFraction < 0.1 && _controller.isCompleted) {
           _controller.reverse();
         }
       },
