@@ -24,9 +24,11 @@ const String ksIntrovert = "an introvert";
 const String ksIm = "I'm";
 const String ksIntro = """
   Hi, I'm Ye Lwin Oo!
-    - a passionate mobile developer
-    - a CDM student from UCSM
-    - an avid reader
+
+    - a passionate (4+ years) Flutter developer
+    - GDG (Google Developer Group) Speaker
+    - an occasional open source maintainer
+    - a CDM (Civil Disobedience Movement) student from UCSM
   """;
 const String ksSeeMyWork = "See my work";
 const String ksBrowseProjects = "Browse My Projects";

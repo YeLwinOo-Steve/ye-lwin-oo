@@ -32,7 +32,7 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
   double quotePadding = 0.0;
   Size quoteSize = Size.zero;
   Duration get staggeredDuration => duration100;
-  Duration get itemSlideDuration => duration1000;
+  Duration get itemSlideDuration => duration500;
   Duration get labelDuration => duration1000;
   Duration get slideDuration =>
       staggeredDuration + (staggeredDuration * sectors) + itemSlideDuration;
@@ -83,7 +83,7 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
       vsync: this,
     );
     _pathController = AnimationController(
-      duration: duration2000,
+      duration: duration1000,
       vsync: this,
     );
     _pathAnimation = CurvedAnimation(
@@ -92,7 +92,7 @@ class _FooterPageState extends State<FooterPage> with TickerProviderStateMixin {
     );
     _footerTextController = AnimationController(
       vsync: this,
-      duration: duration2000,
+      duration: duration1000,
     );
     quoteSize = quoteName.textSize(
       style: quoteTextStyle,

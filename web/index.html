@@ -141,7 +141,7 @@
         onEntrypointLoaded: function(engineInitializer) {
           engineInitializer.initializeEngine().then(function(appRunner) {
               const loader = document.getElementById("loader");
-              loader.remove();
+              // loader.remove();
               appRunner.runApp();
           });
         }
