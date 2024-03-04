@@ -28,9 +28,13 @@ class _ExperienceTitlePageState extends State<ExperienceTitlePage>
 
   @override
   void dispose() {
+    try{
     _titleController.dispose();
     _stickController.dispose();
     super.dispose();
+    }catch(e){
+      debugPrint(e.toString());
+    }
   }
 
   @override

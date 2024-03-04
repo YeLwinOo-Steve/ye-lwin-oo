@@ -51,7 +51,7 @@ class AnimatedTextSlideBoxTransition extends StatefulWidget {
 class _AnimatedTextSlideBoxTransitionState
     extends State<AnimatedTextSlideBoxTransition>
     with SingleTickerProviderStateMixin {
-  late AnimationController controller;
+  AnimationController? controller;
   late Animation<double> visibleAnimation;
   late Animation<double> invisibleAnimation;
   late Animation<RelativeRect> textPositionAnimation;
@@ -66,7 +66,7 @@ class _AnimatedTextSlideBoxTransitionState
     visibleAnimation = widget.visibleBoxAnimation ??
         Tween<double>(begin: 0, end: textWidth - (hiddenFactor * 2)).animate(
           CurvedAnimation(
-            parent: controller,
+            parent: controller!,
             curve: Interval(
               0,
               0.35,
@@ -78,7 +78,7 @@ class _AnimatedTextSlideBoxTransitionState
     invisibleAnimation = widget.invisibleBoxAnimation ??
         Tween<double>(begin: 0, end: textWidth - (hiddenFactor * 2)).animate(
           CurvedAnimation(
-            parent: controller,
+            parent: controller!,
             curve: Interval(
               0.35,
               0.7,
@@ -98,7 +98,7 @@ class _AnimatedTextSlideBoxTransitionState
       ),
     ).animate(
       CurvedAnimation(
-        parent: controller,
+        parent: controller!,
         curve: Interval(0.7, 1.0, curve: widget.invisibleAnimationCurve),
       ),
     );
@@ -108,7 +108,8 @@ class _AnimatedTextSlideBoxTransitionState
 
   @override
   void dispose() {
-    controller.dispose();
+    controller?.dispose();
+    controller = null;
     super.dispose();
   }
 
