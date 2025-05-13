@@ -130,8 +130,7 @@ const String ksAwardsAndActivities = "Awards & Activities";
 const String ksAward = "Award I've won";
 const String ksAwardName = "Design Award by WIT (Web Innovative Talent Award)";
 const String ksAwardLink = "https://witaward.com/result/2020";
-const String ksAwardDetails =
-    """
+const String ksAwardDetails = """
 - The biggest web development contest in Myanmar ( collaboration with Japan )
 - This project aims for foreigners and Myanmar citizens who are enthusiastic about Myanmar culture, cuisine, handicrafts and who want to pay a visit to famous places in Myanmar and who want to enhance their knowledge about various ethnic groups in Myanmar.
 """;
@@ -163,6 +162,22 @@ final List<Activity> ksActivityList = [
 
 final List<Experience> ksExperiences = [
   Experience(
+    company: "Jumpspeak",
+    position: "Senior Flutter Developer",
+    responsibilities: [
+      "Maintained the language learning app for over 500,000 users",
+      "Beautified UI with seamless animations",
+      """Mainly responsible for 
+        ● Words feature,
+        ● Video lessons
+        ● AI tutor role play,
+        ● AI chat translations
+        """,
+    ],
+    startDate: DateTime(2024, 3),
+    endDate: DateTime.now(),
+  ),
+  Experience(
     company: "Simbolo Learning Platform",
     position: "Flutter Instructor",
     responsibilities: [
@@ -174,7 +189,7 @@ final List<Experience> ksExperiences = [
       "Taught Clean Code Principles and 5 Design Patterns",
     ],
     startDate: DateTime(2023, 11),
-    endDate: DateTime.now(),
+    endDate: DateTime(2024, 5),
   ),
   Experience(
     company: "AYA Inno Labs (AYA Bank)",
@@ -190,10 +205,10 @@ final List<Experience> ksExperiences = [
         ● Vouchers, Deals & Rewards
         ● Transaction history
         """,
-        "Maintain AYA Pay Partner App used by tens of thousands of users", 
+      "Maintain AYA Pay Partner App used by tens of thousands of users",
     ],
     startDate: DateTime(2022, 9),
-    endDate: DateTime.now(),
+    endDate: DateTime(2023, 8),
   ),
   Experience(
     company: "Nexus Hub Solution",
