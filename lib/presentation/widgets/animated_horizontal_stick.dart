@@ -12,11 +12,11 @@ class AnimatedHorizontalStick extends AnimatedWidget {
   final Animation<double> controller;
   final double height;
   Animation<double> get width => Tween<double>(begin: s0, end: s100).animate(
-    CurvedAnimation(
-      parent: controller,
-      curve: Curves.easeInOut,
-    ),
-  );
+        CurvedAnimation(
+          parent: controller,
+          curve: Curves.easeInOut,
+        ),
+      );
   @override
   Widget build(BuildContext context) {
     return Container(

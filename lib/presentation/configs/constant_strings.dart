@@ -1,4 +1,3 @@
-import 'package:atlas_icons/atlas_icons.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:yelwinoo/data/model/activity.dart';
 import 'package:yelwinoo/data/model/certificate.dart';
@@ -404,21 +403,21 @@ final List<SocialMedia> ksSocialMedia = [
   ),
 ];
 
-const String _FLUTTER = 'Flutter';
-const String _DART = 'Dart';
-const String _FIREBASE = 'Firebase';
-const String _HTML = 'Html';
-const String _CSS = 'Css';
-const String _JAVASCRIPT = 'Javascript';
-const String _GRAPHQL = "GraphQL";
-const String _ME = 'Ye Lwin Oo';
+const String _flutter = 'Flutter';
+const String _dart = 'Dart';
+const String _firebase = 'Firebase';
+const String _html = 'Html';
+const String _css = 'Css';
+const String _javascript = 'Javascript';
+const String _graphql = "GraphQL";
+const String _me = 'Ye Lwin Oo';
 
-const String _ANDROID = 'Android';
-const String _IOS = 'Ios';
-const String _WINDOWS = 'Windows';
-const String _LINUX = 'Linux';
-const String _MAC = 'MacOs';
-const String _WEB = 'Web';
+const String _android = 'Android';
+const String _ios = 'Ios';
+const String _windows = 'Windows';
+const String _linux = 'Linux';
+const String _mac = 'MacOs';
+const String _web = 'Web';
 final List<ShowcaseProject> ksShowcaseProjects = [
   ShowcaseProject(
     title: 'Pulse-X State Management',
@@ -448,8 +447,8 @@ final List<ShowcaseProject> ksShowcaseProjects = [
       isTag: true,
       contents: [
         'package',
-        _FLUTTER.toLowerCase(),
-        _DART.toLowerCase(),
+        _flutter.toLowerCase(),
+        _dart.toLowerCase(),
         'state management',
       ],
     ),
@@ -457,26 +456,26 @@ final List<ShowcaseProject> ksShowcaseProjects = [
       icon: kiChip,
       label: 'Tools & Technologies',
       contents: [
-        _FLUTTER.toUpperCase(),
-        _DART.toUpperCase(),
+        _flutter.toUpperCase(),
+        _dart.toUpperCase(),
       ],
     ),
     author: ProjectInfo(
       icon: kiPerson,
       label: 'Developer',
       contents: [
-        _ME,
+        _me,
       ],
     ),
     platform: ProjectInfo(
       icon: kiLaptop,
       label: 'Available Platforms',
       contents: [
-        _ANDROID,
-        _IOS,
-        _WINDOWS,
-        _LINUX,
-        _MAC,
+        _android,
+        _ios,
+        _windows,
+        _linux,
+        _mac,
       ],
     ),
   ),
@@ -505,8 +504,8 @@ final List<ShowcaseProject> ksShowcaseProjects = [
       isTag: true,
       contents: [
         'app',
-        _FLUTTER.toLowerCase(),
-        _DART.toLowerCase(),
+        _flutter.toLowerCase(),
+        _dart.toLowerCase(),
         'note',
         'to-do',
         'timer',
@@ -516,24 +515,24 @@ final List<ShowcaseProject> ksShowcaseProjects = [
       icon: kiChip,
       label: 'Tools & Technologies',
       contents: [
-        _FLUTTER.toUpperCase(),
-        _DART.toUpperCase(),
-        _FIREBASE.toUpperCase(),
+        _flutter.toUpperCase(),
+        _dart.toUpperCase(),
+        _firebase.toUpperCase(),
       ],
     ),
     author: ProjectInfo(
       icon: kiPerson,
       label: 'Developer',
       contents: [
-        _ME,
+        _me,
       ],
     ),
     platform: ProjectInfo(
       icon: kiLaptop,
       label: 'Available Platforms',
       contents: [
-        _ANDROID,
-        _IOS,
+        _android,
+        _ios,
       ],
     ),
   ),
@@ -564,32 +563,32 @@ final List<ShowcaseProject> ksShowcaseProjects = [
       isTag: true,
       contents: [
         'animation',
-        _FLUTTER.toLowerCase(),
-        _DART.toLowerCase(),
+        _flutter.toLowerCase(),
+        _dart.toLowerCase(),
       ],
     ),
     tech: ProjectInfo(
       icon: kiChip,
       label: 'Tools & Technologies',
       contents: [
-        _DART.toUpperCase(),
-        _FLUTTER.toUpperCase(),
+        _dart.toUpperCase(),
+        _flutter.toUpperCase(),
       ],
     ),
     author: ProjectInfo(
       icon: kiPerson,
       label: 'Developer',
       contents: [
-        _ME,
+        _me,
       ],
     ),
     platform: ProjectInfo(
       icon: kiLaptop,
       label: 'Available Platforms',
       contents: [
-        _ANDROID,
-        _IOS,
-        _WEB,
+        _android,
+        _ios,
+        _web,
       ],
     ),
   ),
@@ -619,32 +618,32 @@ final List<ShowcaseProject> ksShowcaseProjects = [
       isTag: true,
       contents: [
         'website',
-        _HTML.toLowerCase(),
-        _CSS.toLowerCase(),
-        _JAVASCRIPT.toLowerCase(),
+        _html.toLowerCase(),
+        _css.toLowerCase(),
+        _javascript.toLowerCase(),
       ],
     ),
     tech: ProjectInfo(
       icon: kiChip,
       label: 'Tools & Technologies',
       contents: [
-        _HTML.toUpperCase(),
-        _CSS.toUpperCase(),
-        _JAVASCRIPT.toUpperCase(),
+        _html.toUpperCase(),
+        _css.toUpperCase(),
+        _javascript.toUpperCase(),
       ],
     ),
     author: ProjectInfo(
       icon: kiPerson,
       label: 'Developer',
       contents: [
-        _ME,
+        _me,
       ],
     ),
     platform: ProjectInfo(
       icon: kiLaptop,
       label: 'Available Platforms',
       contents: [
-        _WEB,
+        _web,
       ],
     ),
   ),
@@ -673,8 +672,8 @@ final List<ShowcaseProject> ksShowcaseProjects = [
       isTag: true,
       contents: [
         'package',
-        _FLUTTER.toLowerCase(),
-        _DART.toLowerCase(),
+        _flutter.toLowerCase(),
+        _dart.toLowerCase(),
         'animation',
       ],
     ),
@@ -682,26 +681,26 @@ final List<ShowcaseProject> ksShowcaseProjects = [
       icon: kiChip,
       label: 'Tools & Technologies',
       contents: [
-        _FLUTTER.toUpperCase(),
-        _DART.toUpperCase(),
+        _flutter.toUpperCase(),
+        _dart.toUpperCase(),
       ],
     ),
     author: ProjectInfo(
       icon: kiPerson,
       label: 'Developer',
       contents: [
-        _ME,
+        _me,
       ],
     ),
     platform: ProjectInfo(
       icon: kiLaptop,
       label: 'Available Platforms',
       contents: [
-        _ANDROID,
-        _IOS,
-        _LINUX,
-        _MAC,
-        _WEB,
+        _android,
+        _ios,
+        _linux,
+        _mac,
+        _web,
       ],
     ),
   ),
@@ -729,31 +728,31 @@ final List<ShowcaseProject> ksShowcaseProjects = [
       isTag: true,
       contents: [
         'game',
-        _FLUTTER.toLowerCase(),
-        _DART.toLowerCase(),
+        _flutter.toLowerCase(),
+        _dart.toLowerCase(),
       ],
     ),
     tech: ProjectInfo(
       icon: kiChip,
       label: 'Tools & Technologies',
       contents: [
-        _DART.toUpperCase(),
-        _FLUTTER.toUpperCase(),
+        _dart.toUpperCase(),
+        _flutter.toUpperCase(),
       ],
     ),
     author: ProjectInfo(
       icon: kiPerson,
       label: 'Developer',
       contents: [
-        _ME,
+        _me,
       ],
     ),
     platform: ProjectInfo(
       icon: kiLaptop,
       label: 'Available Platforms',
       contents: [
-        _ANDROID,
-        _IOS,
+        _android,
+        _ios,
       ],
     ),
   ),
@@ -780,31 +779,31 @@ final List<ShowcaseProject> ksShowcaseProjects = [
       isTag: true,
       contents: [
         'chat bot',
-        _FLUTTER.toLowerCase(),
-        _DART.toLowerCase(),
+        _flutter.toLowerCase(),
+        _dart.toLowerCase(),
       ],
     ),
     tech: ProjectInfo(
       icon: kiChip,
       label: 'Tools & Technologies',
       contents: [
-        _DART.toUpperCase(),
-        _FLUTTER.toUpperCase(),
+        _dart.toUpperCase(),
+        _flutter.toUpperCase(),
       ],
     ),
     author: ProjectInfo(
       icon: kiPerson,
       label: 'Developer',
       contents: [
-        _ME,
+        _me,
       ],
     ),
     platform: ProjectInfo(
       icon: kiLaptop,
       label: 'Available Platforms',
       contents: [
-        _ANDROID,
-        _IOS,
+        _android,
+        _ios,
       ],
     ),
   ),
@@ -835,14 +834,14 @@ final List<ShowcaseProject> ksShowcaseProjects = [
       icon: kiChip,
       label: 'Tools & Technologies',
       contents: [
-        _GRAPHQL.toLowerCase(),
+        _graphql.toLowerCase(),
       ],
     ),
     author: ProjectInfo(
       icon: kiPerson,
       label: 'Developer',
       contents: [
-        _ME,
+        _me,
       ],
     ),
     platform: ProjectInfo(
@@ -876,21 +875,21 @@ final List<ShowcaseProject> ksShowcaseProjects = [
       isTag: true,
       contents: [
         'design_patterns',
-        _DART.toLowerCase(),
+        _dart.toLowerCase(),
       ],
     ),
     tech: ProjectInfo(
       icon: kiChip,
       label: 'Tools & Technologies',
       contents: [
-        _DART.toUpperCase(),
+        _dart.toUpperCase(),
       ],
     ),
     author: ProjectInfo(
       icon: kiPerson,
       label: 'Developer',
       contents: [
-        _ME,
+        _me,
       ],
     ),
     platform: ProjectInfo(

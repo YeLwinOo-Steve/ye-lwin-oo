@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
-import 'package:yelwinoo/presentation/widgets/animated_horizontal_stick.dart';
-import 'package:yelwinoo/presentation/widgets/animated_slide_box.dart';
 
 import '../configs/configs.dart';
 
@@ -51,7 +49,7 @@ class AnimatedTextField extends StatelessWidget {
                 ),
             isCollapsed: true,
             contentPadding: context.allPadding(
-              p: context.adaptive(s6,s12),
+              p: context.adaptive(s6, s12),
             ),
           ),
         ).addSizedBox(

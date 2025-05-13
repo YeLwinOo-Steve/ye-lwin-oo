@@ -1,7 +1,5 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:yelwinoo/presentation/configs/configs.dart';
-import 'package:yelwinoo/presentation/utils/extensions/context_ex.dart';
 import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
 import 'package:yelwinoo/presentation/views/wrapper.dart';
 import 'package:yelwinoo/presentation/widgets/widgets.dart';
@@ -59,11 +57,11 @@ class _HomePageState extends State<HomePage>
   Widget build(BuildContext context) {
     return Wrapper(
       page: mainPages.addListView(
-          key: _key,
-          controller: _scrollController,
-          physics: const ClampingScrollPhysics(),
-          scrollDirection: Axis.vertical,
-        ),
+        key: _key,
+        controller: _scrollController,
+        physics: const ClampingScrollPhysics(),
+        scrollDirection: Axis.vertical,
+      ),
     );
   }
 }

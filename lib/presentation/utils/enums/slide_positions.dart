@@ -1,6 +1,1 @@
-enum SlidePositions{
-  top,
-  left,
-  right,
-  bottom
-}
+enum SlidePositions { top, left, right, bottom }

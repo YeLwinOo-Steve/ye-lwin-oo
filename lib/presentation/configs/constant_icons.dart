@@ -1,6 +1,5 @@
 import 'package:atlas_icons/atlas_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 /// custom icons are prefixed with [ki]
 const IconData kiArrowBack = Icons.arrow_back_outlined;

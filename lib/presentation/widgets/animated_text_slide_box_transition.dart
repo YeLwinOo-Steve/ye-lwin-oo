@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:logger/logger.dart';
 import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
 import 'animated_slide_box.dart';
 
@@ -44,6 +43,7 @@ class AnimatedTextSlideBoxTransition extends StatefulWidget {
   final int maxLines;
 
   @override
+  // ignore: library_private_types_in_public_api
   _AnimatedTextSlideBoxTransitionState createState() =>
       _AnimatedTextSlideBoxTransitionState();
 }

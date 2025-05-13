@@ -13,7 +13,8 @@ class SlideRouteTransition extends PageRouteBuilder {
   }) : super(
             transitionDuration:
                 position == SlidePosition.top ? duration500 : duration1000,
-            reverseTransitionDuration: position == SlidePosition.top ? duration500 : duration1000,
+            reverseTransitionDuration:
+                position == SlidePosition.top ? duration500 : duration1000,
             pageBuilder: (BuildContext context, Animation<double> animation,
                 Animation<double> secondaryAnimation) {
               return enterWidget;

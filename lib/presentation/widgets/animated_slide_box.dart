@@ -55,7 +55,8 @@ class AnimatedSlideBox extends AnimatedWidget {
         top: hiddenFactor,
         left: hiddenFactor,
         child: Container(
-          width: isVertical ? width - (hiddenFactor * 2) : visibleAnimation.value,
+          width:
+              isVertical ? width - (hiddenFactor * 2) : visibleAnimation.value,
           height:
               isVertical ? visibleAnimation.value : height - (hiddenFactor * 2),
           color: boxColor,

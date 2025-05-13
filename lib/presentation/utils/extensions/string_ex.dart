@@ -19,18 +19,19 @@ extension StringEx on String {
     return '0$this';
   }
 
-  String prefixHash(){
+  String prefixHash() {
     return """#   $this""";
   }
-  String prefixDash(){
+
+  String prefixDash() {
     return """-   $this""";
   }
 
-  String prefixLink(){
+  String prefixLink() {
     return """🔗   $this""";
   }
 
-  String prefixSlash(){
+  String prefixSlash() {
     return """/   $this""";
   }
 

@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-import 'package:atlas_icons/atlas_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pretty_animated_buttons/pretty_animated_buttons.dart';
@@ -181,11 +180,16 @@ class _GetInTouchPageState extends State<GetInTouchPage>
         ).addOpacity(opacity: 0.05),
       ).addAlign(alignment: Alignment.bottomLeft),
       <Widget>[
-        Text('Get In Touch'.prefixSlash(),style: context.adaptive(Theme.of(context).textTheme.bodySmall,Theme.of(context).textTheme.bodyMedium),),
+        Text(
+          'Get In Touch'.prefixSlash(),
+          style: context.adaptive(Theme.of(context).textTheme.bodySmall,
+              Theme.of(context).textTheme.bodyMedium),
+        ),
         verticalSpaceMedium,
         Text(
           'Schedule an Appointment',
-          style: context.adaptive(Theme.of(context).textTheme.bodyLarge,Theme.of(context).textTheme.titleLarge),
+          style: context.adaptive(Theme.of(context).textTheme.bodyLarge,
+              Theme.of(context).textTheme.titleLarge),
         ),
         context.percentSizedBox(pHeight: s12),
         <Widget>[
@@ -231,7 +235,7 @@ class _GetInTouchPageState extends State<GetInTouchPage>
             node: _messageNode,
             hintText: 'Tell Me More',
             textController: _messageController,
-            width: context.percentWidth(context.adaptive(s70,s50)),
+            width: context.percentWidth(context.adaptive(s70, s50)),
           ),
           const ContactLabel(label: "."),
         ].addWrap(
@@ -242,7 +246,7 @@ class _GetInTouchPageState extends State<GetInTouchPage>
             context.adaptive(s1, s6),
           ),
         ),
-        context.percentSizedBox(pHeight: context.adaptive(s8,s4)),
+        context.percentSizedBox(pHeight: context.adaptive(s8, s4)),
         PrettyCapsuleButton(
           label: ksSendMessage,
           onPressed: sendMessage,

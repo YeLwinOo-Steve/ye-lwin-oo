@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
-import 'package:yelwinoo/presentation/utils/extensions/layout_adapter_ex.dart';
 
 import '../configs/configs.dart';
 
@@ -21,9 +20,9 @@ class MenuItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TextStyle? menuLabelStyle = context.adaptive<TextStyle?>(
-        Theme.of(context).textTheme.bodyLarge,
-        Theme.of(context).textTheme.titleMedium,
-        md: Theme.of(context).textTheme.titleSmall,
+      Theme.of(context).textTheme.bodyLarge,
+      Theme.of(context).textTheme.titleMedium,
+      md: Theme.of(context).textTheme.titleSmall,
     );
     TextStyle? hoverMenuLabelStyle = context.adaptive<TextStyle?>(
       Theme.of(context).textTheme.titleSmall,

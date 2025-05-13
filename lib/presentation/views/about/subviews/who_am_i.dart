@@ -117,7 +117,7 @@ class _WhoAmIState extends State<WhoAmI> with TickerProviderStateMixin {
           text: ksNobody,
           strokeWidth: s1,
           fontSize: s20,
-          strokeColor: kSecondary.withOpacity(0.3),
+          strokeColor: kSecondary.withValues(alpha: 0.3),
           textColor: kTransparent,
           fontWeight: FontWeight.w900,
         ),

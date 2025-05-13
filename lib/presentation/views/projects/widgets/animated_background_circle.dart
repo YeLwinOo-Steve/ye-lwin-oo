@@ -9,19 +9,21 @@ class AnimatedBackgroundCircle extends AnimatedWidget {
     required this.targetWidth,
     required this.targetHeight,
   }) : super(
-    listenable: animation,
-  );
+          listenable: animation,
+        );
   final double targetWidth;
   final double targetHeight;
   final Animation<double> animation;
 
-  double get largerSide => targetWidth > targetHeight ? targetWidth : targetHeight;
+  double get largerSide =>
+      targetWidth > targetHeight ? targetWidth : targetHeight;
   Animation<double> get widthAnimation =>
       Tween<double>(begin: s150, end: largerSide).animate(curvedAnimation);
   Animation<double> get heightAnimation =>
       Tween<double>(begin: s150, end: largerSide).animate(curvedAnimation);
   Animation<double> get radiusAnimation =>
-      Tween<double>(begin: widthAnimation.value * 0.5, end: 0).animate(curvedAnimation);
+      Tween<double>(begin: widthAnimation.value * 0.5, end: 0)
+          .animate(curvedAnimation);
 
   Animation<double> get delayedAnimation =>
       CurvedAnimation(parent: animation, curve: Curves.fastLinearToSlowEaseIn);

@@ -9,8 +9,7 @@ class AnimatedAppBar extends PreferredSize {
     required this.animation,
   }) : super(
           child: appBar,
-          preferredSize:
-              const Size.fromHeight(s100),
+          preferredSize: const Size.fromHeight(s100),
         );
 
   final Widget appBar;

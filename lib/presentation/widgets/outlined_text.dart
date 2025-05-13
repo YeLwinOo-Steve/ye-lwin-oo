@@ -36,7 +36,7 @@ class OutlinedText extends StatelessWidget {
             ..strokeWidth = strokeWidth
             ..color = strokeColor,
         ),
-        textScaleFactor: context.textScaleFactor(),
+        textScaler: TextScaler.linear(context.textScaleFactor()),
       ),
       Text(
         text,
@@ -46,7 +46,7 @@ class OutlinedText extends StatelessWidget {
           letterSpacing: letterSpacing,
           color: textColor,
         ),
-        textScaleFactor: context.textScaleFactor(),
+        textScaler: TextScaler.linear(context.textScaleFactor()),
       ),
     ].addStack();
   }

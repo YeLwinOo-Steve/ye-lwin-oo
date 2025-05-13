@@ -32,19 +32,21 @@ extension ThemeEx on BuildContext {
       backgroundColor: kTransparent,
       elevation: s0,
       titleTextStyle: Theme.of(this).textTheme.labelLarge!.copyWith(
-        fontWeight: FontWeight.w700,
-      ),
+            fontWeight: FontWeight.w700,
+          ),
       foregroundColor: kBlack,
       toolbarHeight: s100,
     );
   }
-  InputDecorationTheme inputDecorationTheme(){
+
+  InputDecorationTheme inputDecorationTheme() {
     return const InputDecorationTheme(
       filled: true,
       fillColor: kTransparent,
       alignLabelWithHint: true,
     );
   }
+
   TextTheme textTheme() {
     return Theme.of(this).textTheme.copyWith(
           headlineLarge: headlineLarge,
@@ -124,10 +126,8 @@ extension ThemeEx on BuildContext {
       onSecondary: kSecondary,
       error: kRed,
       onError: kRed100,
-      background: kWhite,
-      onBackground: kWhite,
-      surface: kGrey100,
-      onSurface: kGrey100,
+      surface: kWhite,
+      onSurface: kWhite,
     );
   }
 }

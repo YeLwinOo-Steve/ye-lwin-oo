@@ -18,8 +18,8 @@ class LeftStickLabel extends StatelessWidget {
           controller: textController,
           coverColor: kPrimary,
           textStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
-            fontWeight: FontWeight.w700,
-          ),
+                fontWeight: FontWeight.w700,
+              ),
         ),
       ).addPadding(
         edgeInsets: context.symmetricPadding(

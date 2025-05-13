@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yelwinoo/presentation/configs/configs.dart';
 import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
 
+// ignore: must_be_immutable
 class RoundedImageContainer extends StatelessWidget {
   RoundedImageContainer({
     Key? key,

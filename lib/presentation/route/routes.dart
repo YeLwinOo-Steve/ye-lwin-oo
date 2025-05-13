@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:yelwinoo/data/model/showcase_project.dart';
-import 'package:yelwinoo/presentation/configs/configs.dart';
 import 'package:yelwinoo/presentation/utils/extensions/extensions.dart';
 import 'package:yelwinoo/presentation/views/about/about_view.dart';
 import 'package:yelwinoo/presentation/views/certificates/certificates_view.dart';

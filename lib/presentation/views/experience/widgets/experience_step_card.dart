@@ -93,9 +93,12 @@ class ExperienceStepCard extends StatelessWidget {
                   ),
             ),
             verticalSpaceMedium,
-            Text(experience.position,style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              fontWeight: FontWeight.w600,
-            ),),
+            Text(
+              experience.position,
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
+            ),
             if (experience.type == JobType.remote) const Text("(remote)"),
             verticalSpaceLarge,
             ...experience.responsibilities
